@@ -1,0 +1,72 @@
+import React from "react";
+import { Home, Stethoscope, CalendarPlus, Phone } from "lucide-react";
+import { LOCALIZATION } from "../localization";
+
+interface BottomNavProps {
+  setIsBookingOpen: (open: boolean) => void;
+  setActiveTab: (tab: string) => void;
+  activeTab?: string;
+}
+
+export const BottomNav: React.FC<BottomNavProps> = ({
+  setIsBookingOpen,
+  setActiveTab,
+  activeTab,
+}) => {
+  const handleTabClick = (id: string) => {
+    setActiveTab(id);
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const navItems = [
+    {
+      name: LOCALIZATION.NAV.OVERVIEW,
+      id: "overview",
+      icon: Home,
+      action: () => handleTabClick("overview"),
+    },
+    {
+      name: LOCALIZATION.NAV.SERVICES,
+      id: "services",
+      icon: Stethoscope,
+      action: () => handleTabClick("services"),
+    },
+    {
+      name: "Book",
+      id: "book",
+      icon: CalendarPlus,
+      action: () => setIsBookingOpen(true),
+    },
+    {
+      name: "Contact",
+      id: "contact",
+      icon: Phone,
+      action: () => (window.location.href = `tel:${LOCALIZATION.CONTACT.PHONE_NUMBER}`),
+    },
+  ];
+
+  return (
+    <div className="fixed bottom-0 left-0 right-0 z-[100] bg-white border-t border-gray-200 flex justify-around items-center p-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] md:hidden shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+      {navItems.map((item) => {
+        const isActive = activeTab === item.id;
+        return (
+          <button
+            key={item.name}
+            onClick={item.action}
+            className={`flex flex-col items-center justify-center p-2 transition-colors ${isActive ? "text-google-blue" : "text-google-grey hover:text-google-blue"}`}
+          >
+            <item.icon
+              className={`w-6 h-6 ${isActive ? "fill-blue-50" : ""}`}
+            />
+            <span
+              className={`text-[10px] font-bold mt-1 uppercase tracking-wider ${isActive ? "text-google-blue" : ""}`}
+            >
+              {item.name}
+            </span>
+          </button>
+        );
+      })}
+    </div>
+  );
+};
