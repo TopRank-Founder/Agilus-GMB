@@ -12,7 +12,7 @@ const BookingPage = () => {
                 <h1 className="text-3xl font-black mb-6 text-[#202124]">Request Appointment</h1>
                 <form className="space-y-4">
                     <input type="text" placeholder={LOCALIZATION.FORM_PLACEHOLDERS.NAME} className="w-full p-4 border rounded-xl" />
-                    <input type="tel" placeholder={LOCALIZATION.FORM_PLACEHOLDERS.PHONE} className="w-full p-4 border rounded-xl" />
+                    <input type="text" placeholder={LOCALIZATION.FORM_PLACEHOLDERS.LOCATION} className="w-full p-4 border rounded-xl" />
                     <input type="date" className="w-full p-4 border rounded-xl" />
                     <select className="w-full p-4 border rounded-xl">
                         <option value="">{LOCALIZATION.FORM_PLACEHOLDERS.TIME_SLOT}</option>

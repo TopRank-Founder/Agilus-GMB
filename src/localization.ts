@@ -31,7 +31,7 @@ export const LOCALIZATION = {
 
   // Contact & Location Details
   CONTACT: {
-    PHONE_NUMBER: "+919115459115",
+    PHONE_NUMBER: "+9115459115",
     EMAIL: "info@srllabmohali.in",
     ADDRESS:
       "Booth No. 12, GMADA Market, Near Gurukul World School, Sector 69, Mohali, Punjab 160069",
@@ -72,7 +72,7 @@ export const LOCALIZATION = {
   // Form Field Placeholders
   FORM_PLACEHOLDERS: {
     NAME: "Your Full Name (e.g. John Doe)",
-    PHONE: "10-Digit Mobile Number",
+    LOCATION: "Your Address or Location",
     EMAIL: "Email Address (Optional)",
     DATE: "Preferred Date",
     TIME_SLOT: "Preferred Time Slot",
@@ -83,9 +83,9 @@ export const LOCALIZATION = {
     NAME_REQUIRED:
       "Please tell us your name so we can personalize your experience.",
     NAME_SHORT: "Please enter a name with at least 3 characters.",
-    PHONE_REQUIRED:
-      "Please share your mobile number so our team can contact you to confirm.",
-    PHONE_INVALID: "Please enter a valid, 10-digit mobile number.",
+    LOCATION_REQUIRED:
+      "Please share your area or address so our team can plan the collection.",
+    LOCATION_INVALID: "Please enter a valid location.",
     EMAIL_INVALID: "Please double-check and enter a valid email address.",
     DATE_REQUIRED:
       "Please choose a preferred date for your test or collection.",
@@ -112,7 +112,7 @@ export const LOCALIZATION = {
 
   // Message template for WhatsApp booking
   WHATSAPP_BOOKING_TEMPLATE:
-    "Hi, I would like to book a blood test appointment.\n\nName: {name}\nPhone: {phone}\nEmail: {email}\nDate: {date}\nTime: {time}",
+    "Hi, I would like to book a blood test appointment.\n\nName: {name}\nLocation: {location}\nEmail: {email}\nDate: {date}\nTime: {time}",
   WHATSAPP_GENERAL_TEMPLATE:
     "Hi, I am in Mohali and want to book a diagnostic test or health checkup.",
 };

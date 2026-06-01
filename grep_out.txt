@@ -1,0 +1,336 @@
+144-    menSpecial: "Serum Testosterone - Clinically essential screening marker to monitor male cellular fitness, muscle performance, and stress response.",
+145-    womenSpecial: "Estrogen Screen - Highly sensitive reproductive and hormonal pathway indicator for female metabolic wellness."
+146-  },
+147-  {
+148-    id: "vital-75",
+149:    title: "Agilus Complete Care Vital",
+150-    priceText: "75 PARAMETERS",
+151-    parameters: "75 Parameters",
+152-    sub: "Essential diagnostics covering blood glucose, thyroid performance, lipid parameters, and vital organs.",
+153-    desc: "Best for: Essential regular health tracking covering blood sugar, thyroid, liver, and kidney health indices. Inclusions: CBC, Fasting Blood Sugar, LFT, KFT, Lipid Profile, Urine Examination. Same Day Report Available.",
+154-    features: [
+--
+391-    window.open("https://wa.me/9115459115?text=Hi, I want to book a blood test in Mohali Sector 69.", "_blank", "noopener,noreferrer");
+392-  };
+393-  const handleShare = async () => {
+394-    const shareUrl = "https://maps.app.goo.gl/49GEMYGUA2JW2aGf7";
+395-    const webUrl = "https://www.srllabmohali.in";
+396:    const title = "Agilus Diagnostics Mohali - Sector 69";
+397-    const text =
+398-      "NABL Accredited Lab with Free Home Collection in Mohali. Serving Mohali with clinical precision since 1997.";
+399-
+400-    if (navigator.share) {
+401-      try {
+--
+524-
+525-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+526-  const heroImages = [
+527-    {
+528-      src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAF-6kv1elhJvFOYgZom8JrFu329YquzGnhEfignDqUSW4cHyFpePWE_9dl2DMEgwaZIVDv-SuubYh9CgoCpLvD2rtiEbbuCLfd8Q0EWr9xldQsYaqetSEaUs4xt0ZqQUMQ-dK32b5k5KDWD=s680-w680-h510-rw",
+529:      alt: "Front view of Agilus Diagnostics Centre Mohali Sector 69",
+530-      title: "Trusted Diagnostics",
+531-      desc: "Serving Mohali with heartfelt care since 1997. We combine decades of clinical precision with a gentle touch, ensuring your health is in the best hands right here in the heart of Mohali.",
+532-      badge: "Caring since 1997",
+533-      cta1: "Book Home Collection",
+534-      cta2: "View Test Menu",
+535-    },
+536-    {
+537-      src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAGrXfKjr3IKX21mBGYQ4DXO-0-2hcpULoGbsYMUXBIFc4XfgfkeHHMj7_QpUeiG-JDKIEE8Vzqublze0lRH1cxHyVYMFd0elbw6A0z20_T1TStyeRszjdG9hScH4lN6lgIX4BIfIO-WDfI=s680-w680-h510-rw",
+538:      alt: "Automated blood testing analyzers at Agilus Diagnostics Mohali",
+539-      title: "Precision Testing",
+540-      desc: "Our facility is designed with your comfort in mind, equipped with the latest technology for rapid, accurate results, so you can spend less time worrying and more time living.",
+541-      badge: "Accuracy you trust",
+542-      cta1: "Explore Facilities",
+543-      cta2: "Watch Virtual Tour",
+544-    },
+545-    {
+546-      src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAHndBvgZhfzPgmxk75cT17C_j0JmW5K5E2ScPyz7IblrwEZxMAhL1CW5HrUiHexrhu0D1K0D2wJ9HouyYFd3bskL0qMVO-XGI6t0ygTxxoR9sf8L2BXWlnsjh09HMJHAWQjX49znVLOcwoP=s680-w680-h510-rw",
+547:      alt: "Clinical Sample Processing Room at Agilus Mohali - Managed by Top Pathologists.",
+548-      title: "Expert Pathology",
+549-      desc: "Managed by highly qualified pathologists to ensure the highest standards of clinical testing and patient care in Punjab.",
+550-      badge: "Expert Doctors",
+551-      cta1: "Meet the Team",
+552-      cta2: "View Specialities",
+--
+560-      cta1: "Schedule Visit",
+561-      cta2: "Learn More",
+562-    },
+563-    {
+564-      src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAGq7NJv_QgwRxsGJblold9mllDuLWewb84nSNkSlg5Dd3PyeY_CuNw2pXPL3Odl72KlXxsbD8DqxM0n1Nj1wVsRmzdllEiDB3jH1gLlH525w4_eqCpFSus5uVyiB85yp08lYHTzEr6KVef_=s680-w680-h510-rw",
+565:      alt: "High-end Medical Facility Interior with MNC Standards - Agilus Diagnostics Mohali.",
+566-      title: "Global Standards",
+567-      desc: "Operating strictly under NABL and ISO guidelines to ensure international reliability for life-saving diagnostics.",
+568-      badge: "NABL Accredited",
+569-      cta1: "Verify Quality",
+570-      cta2: "Our Standards",
+--
+679-        "Allergy Panel - Non Veg",
+680-      ],
+681-      freeHomeCollection: true,
+682-    },
+683-    {
+684:      name: "Agilus Wellness Packages",
+685-      subtext: "Comprehensive Health Plans",
+686-      tags: ["screening", "health check"],
+687-      symptoms: ["Prevention", "Healthy Lifestyle", "Executive Health"],
+688-      relatedTests: ["Vital Care", "Active Care", "Premium Full Body"],
+689-      freeHomeCollection: true,
+--
+717-
+718-    // SEO: Inject Local Business JSON-LD for Search Engines
+719-    const schemaData = {
+720-      "@context": "https://schema.org",
+721-      "@type": "MedicalBusiness",
+722:      name: "SRL Diagnostics Lab Mohali / Agilus Diagnostics",
+723:      alternateName: "Agilus Diagnostics Mohali Sector 69",
+724-      description:
+725-        "NABL Accredited premium pathology lab in Mohali. 24/7 Home Blood Sample Collection, Wellness Packages, and 3000+ specialized tests.",
+726-      url: window.location.href,
+727-      logo: "https://media.agilus.in/consumer-web/agilusLogo.png",
+728-      image: "https://media.agilus.in/consumer-web/agilusLogo.png",
+--
+849-    {
+850-      name: "Vikram Singh",
+851-      rating: 5,
+852-      date: "2 months ago",
+853-      comment:
+854:        "Agilus (SRL) Mohali has state of the art equipment. The lab is very clean and follows all safety protocols.",
+855-    },
+856-    {
+857-      name: "Deepak Malhotra",
+858-      rating: 5,
+859-      date: "5 days ago",
+--
+990-            />
+991-            <RouterLink
+992-              to="/"
+993-              className="flex items-center gap-2 hover:opacity-85 transition-opacity overflow-hidden flex-shrink-0 select-none"
+994-            >
+995:              {/* Official Agilus Logo Image */}
+996-              <img
+997-                src="https://media.agilus.in/consumer-web/agilusLogo.png"
+998:                alt="Agilus Diagnostics"
+999-                className="h-8 md:h-12 w-auto object-contain flex-shrink-0"
+1000-              />
+1001-            </RouterLink>
+1002-          </div>
+1003-
+--
+1206-                      className="text-white/90 text-lg md:text-2xl mb-10 max-w-2xl font-medium leading-relaxed drop-shadow-xl"
+1207-                    >
+1208-                      {heroImages[currentImageIndex].desc.includes(
+1209-                        "heart of Mohali",
+1210-                      )
+1211:                        ? "Agilus Diagnostics (Formerly SRL) Sector 69. Superior Clinical Accuracy, 24/7 Free Home Sample Collection, & 3,000+ Specialized Tests."
+1212-                        : heroImages[currentImageIndex].desc}
+1213-                    </motion.p>
+1214-                    <motion.div
+1215-                      variants={{
+1216-                        hidden: { opacity: 0, y: 30 },
+--
+1292-            >
+1293-              <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+1294-                <div>
+1295-                  <div className="flex flex-col lg:flex-row lg:items-center gap-2 mb-2">
+1296-                    <h2 className="text-4xl font-extrabold tracking-tight text-[#202124] lg:text-5xl">
+1297:                      Agilus Diagnostics (Formerly SRL Lab) - Sector 69, Mohali
+1298-                    </h2>
+1299-                    <div className="flex items-center bg-blue-50 text-google-blue px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border border-google-blue/20 shadow-sm w-fit">
+1300-                      <ShieldCheck className="w-3 h-3 mr-1.5" />
+1301-                      Verified by Google
+1302-                    </div>
+--
+1405-                >
+1406-                  <div className="grid grid-cols-2 gap-2 h-[250px] sm:h-[350px] md:h-[450px] w-full rounded-3xl overflow-hidden shadow-2xl relative group">
+1407-                    <div className="relative overflow-hidden aspect-square">
+1408-                      <img
+1409-                        src={centerPhotos[0].url}
+1410:                        alt="Front view of Agilus Diagnostics Centre Mohali Sector 69"
+1411-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+1412-                        referrerPolicy="no-referrer"
+1413-                        loading="lazy"
+1414-                      />
+1415-                    </div>
+1416-                    <div className="relative overflow-hidden aspect-square">
+1417-                      <img
+1418-                        src={centerPhotos[1].url}
+1419:                        alt="Automated blood testing analyzers at Agilus Diagnostics Mohali"
+1420-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+1421-                        referrerPolicy="no-referrer"
+1422-                        loading="lazy"
+1423-                      />
+1424-                    </div>
+1425-                    <div className="relative overflow-hidden aspect-square">
+1426-                      <img
+1427-                        src={centerPhotos[2].url}
+1428:                        alt="Professional patient sample collection assistance at Agilus Mohali"
+1429-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+1430-                        referrerPolicy="no-referrer"
+1431-                        loading="lazy"
+1432-                      />
+1433-                    </div>
+1434-                    <div className="relative overflow-hidden aspect-square">
+1435-                      <img
+1436-                        src={centerPhotos[3].url}
+1437:                        alt="Modern diagnostic testing room at Agilus Lab Sector 69 Mohali"
+1438-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+1439-                        referrerPolicy="no-referrer"
+1440-                        loading="lazy"
+1441-                      />
+1442-                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-black text-lg backdrop-blur-sm">
+--
+1450-              {/* Latest Updates (GMB Posts Style) */}
+1451-              <section className="mb-12">
+1452-                <div className="flex items-center justify-between mb-8">
+1453-                  <div>
+1454-                    <h2 className="text-3xl font-black text-[#202124] tracking-tighter">
+1455:                      Updates from Agilus
+1456-                    </h2>
+1457-                    <p className="text-google-grey text-sm font-medium mt-1">
+1458-                      Direct from our Mohali facility
+1459-                    </p>
+1460-                  </div>
+--
+1640-                    </span>
+1641-                    .
+1642-                  </h2>
+1643-                  <p className="text-lg text-google-grey mb-8 font-medium leading-relaxed">
+1644-                    Strategically located in the heart of Gmada Market, Sector
+1645:                    69, Agilus Diagnostics (formerly SRL) is Mohali's premier
+1646-                    clinical laboratory. We serve residents across Sector 69,
+1647-                    70, 71, Mohali Phase 7, 8, 9, 10, and 11 with rapid,
+1648-                    reliable diagnostics.
+1649-                  </p>
+1650-                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+--
+1721-                    Fullbody Health Packages
+1722-                  </h2>
+1723-                  <div className="flex items-center gap-2 mt-1">
+1724-                    <div className="w-1.5 h-1.5 rounded-full bg-google-blue animate-pulse" />
+1725-                    <p className="text-xs font-bold text-google-blue uppercase tracking-widest">
+1726:                      NABL Accredited • Agilus Global Standards
+1727-                    </p>
+1728-                  </div>
+1729-                </div>
+1730-
+1731-                {/* Direct Swiping Controls & Interaction */}
+--
+1898-              className="block border border-google-border rounded-xl md:rounded-2xl overflow-hidden shadow-sm aspect-video md:aspect-[21/9] lg:aspect-[3/1] relative group cursor-pointer mb-12"
+1899-            >
+1900-              <img
+1901-                src="https://img.youtube.com/vi/lyGfyFxq3Cw/maxresdefault.jpg"
+1902-                className="w-full h-full object-cover brightness-50 group-hover:brightness-75 transition-all duration-700"
+1903:                alt="Agilus Diagnostics SRL Lab Mohali Virtual Tour - Inside the Clinical Facility"
+1904-                referrerPolicy="no-referrer"
+1905-                loading="lazy"
+1906-              />
+1907-              <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4 md:p-6 text-center">
+1908-                <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform shadow-lg border border-white/20">
+--
+1910-                </div>
+1911-                <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-2 tracking-tight text-white drop-shadow-md">
+1912-                  Take a Virtual Tour
+1913-                </h3>
+1914-                <p className="text-xs md:text-sm lg:text-base text-gray-100 max-w-sm md:max-w-md drop-shadow-sm font-medium">
+1915:                  Experience the precision and hygiene standards of Agilus
+1916-                  Diagnostics state-of-the-art facilities.
+1917-                </p>
+1918-              </div>
+1919-            </a>
+1920-
+--
+2127-                    loading="lazy"
+2128-                  />
+2129-                  <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-lg"></div>
+2130-                </div>
+2131-                <p className="mt-8 text-sm text-google-grey max-w-sm leading-relaxed">
+2132:                  Since 1997, our commitment as SRL, now Agilus Diagnostics, has
+2133-                  been deeply rooted in Mohali. We take immense pride in our
+2134-                  long legacy of providing top-tier clinical accuracy and
+2135-                  reliable diagnostics, caring for generations of families with
+2136-                  the same passion and precision.
+2137-                </p>
+--
+2139-
+2140-              <div className="border border-google-border rounded-2xl shadow-sm overflow-hidden group flex flex-col hover:shadow-xl hover:border-google-blue/20 transition-all duration-500">
+2141-                <div className="h-72 overflow-hidden relative">
+2142-                  <img
+2143-                    src="https://images.unsplash.com/photo-1584432810601-6c7f27d2362b?auto=format&fit=crop&q=80&w=800&fm=webp"
+2144:                    alt="Premium Healthcare Interior & Professional Standards at Agilus diagnostics Mohali Sector 69."
+2145-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2s]"
+2146-                    loading="lazy"
+2147-                  />
+2148-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+2149-                  <div className="absolute bottom-6 left-6 right-6 z-10 transition-transform duration-500 group-hover:-translate-y-1">
+--
+2184-                  </div>
+2185-                  <h2 className="text-3xl font-bold text-[#202124] mb-6 tracking-tight">
+2186-                    Committed to Patient Safety & Medical Ethics
+2187-                  </h2>
+2188-                  <p className="text-base text-google-grey mb-8 leading-relaxed max-w-lg">
+2189:                    At SRL Lab Mohali (Agilus Diagnostics), we prioritize{" "}
+2190-                    <strong>Clinical Governance</strong>. Our team undergoes
+2191-                    rigorous training on international safety standards, hygiene
+2192-                    protocols, and <strong>PoSH</strong> (Prevention of Sexual
+2193-                    Harassment) to ensure a safe, dignified, and world-class
+2194-                    care experience for every patient.
+--
+2219-                  </div>
+2220-                </div>
+2221-                <div className="w-full md:w-[40%] aspect-[4/3] relative rounded-2xl border border-google-border overflow-hidden bg-white shadow-2xl p-3 group">
+2222-                  <img
+2223-                    src="https://images.unsplash.com/photo-1581056771107-24ca5f033842?auto=format&fit=crop&q=80&w=800&fm=webp"
+2224:                    alt="Agilus Diagnostics commitment to medical standards and professional phlebotomy training"
+2225-                    className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-700"
+2226-                    loading="lazy"
+2227-                    referrerPolicy="no-referrer"
+2228-                  />
+2229-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+--
+2380-          </h3>
+2381-          <p>
+2382-            When patients search for the best <strong className="text-[#202124]">full body checkup price near me</strong> or reliable <strong className="text-[#202124]">blood test home collection</strong>, they trust our state-of-the-art facility. We understand that finding accurate diagnostics is critical, whether you need transparent details on <strong className="text-[#202124]">CBC test cost in Chandigarh</strong>, the <strong className="text-[#202124]">Liver function test / LFT price</strong>, or a <strong className="text-[#202124]">Kidney function test (KFT) near me</strong>. Our expert phlebotomists provide a seamless <strong className="text-[#202124]">pathology lab home sample collection</strong> experience, ensuring your comfort and convenience. We also offer advanced diagnostics ranging from <strong className="text-[#202124]">Cancer screening tests / Biopsy labs</strong> to routine checks like a <strong className="text-[#202124]">Urine culture and sensitivity test</strong> and <strong className="text-[#202124]">Stool routine examination cost</strong>.
+2383-          </p>
+2384-          <p>
+2385:            As a leading Agilus franchise, we proudly serve the entire region. Patients frequently compare <strong className="text-[#202124]">Agilus full body checkup packages Tricity</strong> to find the right health monitoring solutions. Whether you are searching for the <strong className="text-[#202124]">Agilus lab Panchkula sector 8</strong>, looking for the <strong className="text-[#202124]">SRL lab Kharar address</strong>, or trying to locate the <strong className="text-[#202124]">Agilus Diagnostics Zirakpur center</strong>, our central Mohali Sector 69 hub provides unmatched accessibility.
+2386-          </p>
+2387-          <p>
+2388:            We aim to eliminate booking friction. Skip the wait by using the <strong className="text-[#202124]">Agilus WhatsApp booking number</strong> or dialing the <strong className="text-[#202124]">SRL Diagnostics Chandigarh contact number</strong> for immediate assistance. Once your tests are complete, you can easily access your results through our secure <strong className="text-[#202124]">SRL diagnostics report download online</strong> portal.
+2389-          </p>
+2390-        </section>
+2391-      </main>
+2392-
+2393-      {/* Booking Modal */}
+--
+2860-            <div className="space-y-6">
+2861-              <div className="flex flex-col space-y-1">
+2862-                <div className="flex items-baseline">
+2863-                  <img
+2864-                    src="https://media.agilus.in/consumer-web/agilusLogo.png"
+2865:                    alt="Agilus Diagnostics"
+2866-                    className="h-10 w-auto object-contain brightness-0 invert"
+2867-                  />
+2868-                </div>
+2869-                <p className="text-[9px] text-[#E85D23] font-bold tracking-[0.05em] uppercase pt-2">
+2870-                  Authorised Home Visit Partner in Mohali
+2871-                </p>
+2872-              </div>
+2873-              <p className="text-sm text-google-grey mb-8 leading-relaxed mt-6">
+2874:                Agilus Diagnostics Mohali Formerly SRL Lab Mohali is a leading
+2875-                pathology center in Sector 69. We are NABL accredited and
+2876-                specialize in clinical blood tests, home collection, and
+2877-                MNC-standard diagnostic precision for patients in Mohali and
+2878-                Chandigarh.
+2879-              </p>
+--
+3127-            </div>
+3128-          </div>
+3129-
+3130-          <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
+3131-            <p className="text-xs text-google-grey">
+3132:              © 2026 SRL Lab Mohali (Agilus Diagnostics). Premium Diagnostic
+3133-              Partner.
+3134-            </p>
+3135-            <div className="flex gap-8 text-[10px] font-bold text-google-grey uppercase tracking-widest">
+3136-              <a href="#" className="hover:text-white">
+3137-                Privacy
