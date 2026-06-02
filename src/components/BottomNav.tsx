@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Home, Stethoscope, CalendarPlus, Phone } from "lucide-react";
 import { LOCALIZATION } from "../localization";
 
@@ -13,10 +14,32 @@ export const BottomNav: React.FC<BottomNavProps> = ({
   setActiveTab,
   activeTab,
 }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const handleTabClick = (id: string) => {
+    if (location.pathname !== "/") {
+      navigate("/");
+      // Set active tab after path change
+      setTimeout(() => {
+        setActiveTab(id);
+        if (id === "overview") {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        } else {
+          const el = document.getElementById(id);
+          if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 100);
+      return;
+    }
+
     setActiveTab(id);
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (id === "overview") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   };
 
   const navItems = [
@@ -36,7 +59,14 @@ export const BottomNav: React.FC<BottomNavProps> = ({
       name: "Book",
       id: "book",
       icon: CalendarPlus,
-      action: () => setIsBookingOpen(true),
+      action: () => {
+        if (location.pathname !== "/") {
+          sessionStorage.setItem("triggerBookingOnMount", "true");
+          navigate("/");
+        } else {
+          setIsBookingOpen(true);
+        }
+      },
     },
     {
       name: "Contact",

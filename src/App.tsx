@@ -13,6 +13,11 @@ import {
 } from "react-router-dom";
 import TestDetailPage from "./pages/TestDetailPage";
 import { BottomNav } from "./components/BottomNav";
+const imagePhoto1 = "/src/assets/images/agilus-diagnostics-mohali-exterior.jpg";
+const imageClinical = "/src/assets/images/agilus-diagnostics-clinical-phlebotomy.jpg";
+const imageJourney = "/src/assets/images/srl-diagnostics-mohali-history-1997.jpg";
+const imageTrusted = "/src/assets/images/agilus-diagnostics-laboratory-equipment.jpg";
+const imageOverview5 = "/src/assets/images/agilus-diagnostics-medical-facility-interior.jpg";
 import { testMenu } from "./constants";
 import { LOCALIZATION, formatTemplate } from "./localization";
 import {
@@ -366,6 +371,14 @@ export default function App() {
 
   const [isHoursOpen, setIsHoursOpen] = useState(false);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("triggerBookingOnMount") === "true") {
+      sessionStorage.removeItem("triggerBookingOnMount");
+      setIsBookingOpen(true);
+    }
+  }, []);
+
   const [bookingStatus, setBookingStatus] = useState<
     "idle" | "submitting" | "success"
   >("idle");
@@ -386,13 +399,13 @@ export default function App() {
 
   const handleDirection = () =>
     window.open("https://maps.app.goo.gl/cjZ9Zjs4n3BWewWQ9", "_blank");
-  const handleCall = () => (window.location.href = "tel:+9115459115");
+  const handleCall = () => (window.location.href = "tel:+919115459115");
   const handleWhatsApp = () => {
-    window.open("https://wa.me/9115459115?text=Hi, I want to book a blood test in Mohali Sector 69.", "_blank", "noopener,noreferrer");
+    window.open("https://wa.me/919115459115?text=Hi, I want to book a blood test in Mohali Sector 69.", "_blank", "noopener,noreferrer");
   };
   const handleShare = async () => {
     const shareUrl = "https://maps.app.goo.gl/49GEMYGUA2JW2aGf7";
-    const webUrl = "https://www.srllabmohali.in";
+    const webUrl = "https://reports.agilus.in/secure/login.aspx";
     const title = "Agilus Diagnostics Mohali - Sector 69";
     const text =
       "NABL Accredited Lab with Free Home Collection in Mohali. Serving Mohali with clinical precision since 1997.";
@@ -430,7 +443,7 @@ export default function App() {
 
   const centerPhotos = [
     {
-      url: "https://lh3.googleusercontent.com/p/AF1QipPilDAb5f4awWB323dDwPt0C2kUkJQqyE7Zs3AP=s680-w680-h510-rw",
+      url: imagePhoto1,
       title: "Diagnostic Lab",
     },
     {
@@ -509,7 +522,7 @@ export default function App() {
     
     // Close modal and redirect directly, no delay needed and avoids popup blockers
     closeBooking();
-    window.open(`https://wa.me/9115459115?text=${whatsappMessage}`, "_blank", "noopener,noreferrer");
+    window.open(`https://wa.me/919115459115?text=${whatsappMessage}`, "_blank", "noopener,noreferrer");
 
     console.log("Appointment Booked via WhatsApp:", formData);
   };
@@ -561,7 +574,7 @@ export default function App() {
       cta2: "Learn More",
     },
     {
-      src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAGq7NJv_QgwRxsGJblold9mllDuLWewb84nSNkSlg5Dd3PyeY_CuNw2pXPL3Odl72KlXxsbD8DqxM0n1Nj1wVsRmzdllEiDB3jH1gLlH525w4_eqCpFSus5uVyiB85yp08lYHTzEr6KVef_=s680-w680-h510-rw",
+      src: imageOverview5,
       alt: "High-end Medical Facility Interior with MNC Standards - Agilus Diagnostics Mohali.",
       title: "Global Standards",
       desc: "Operating strictly under NABL and ISO guidelines to ensure international reliability for life-saving diagnostics.",
@@ -722,11 +735,11 @@ export default function App() {
       name: "SRL Diagnostics Lab Mohali / Agilus Diagnostics",
       alternateName: "Agilus Diagnostics Mohali Sector 69",
       description:
-        "NABL Accredited premium pathology lab in Mohali. 24/7 Home Blood Sample Collection, Wellness Packages, and 3000+ specialized tests.",
+        "NABL and 2 CAP Accredited Labs in Mohali. 24/7 Home Blood Sample Collection, Wellness Packages, and 3600+ specialized tests.",
       url: window.location.href,
       logo: "https://media.agilus.in/consumer-web/agilusLogo.png",
       image: "https://media.agilus.in/consumer-web/agilusLogo.png",
-      telephone: "+9115459115",
+      telephone: "+919115459115",
       address: {
         "@type": "PostalAddress",
         streetAddress:
@@ -776,9 +789,22 @@ export default function App() {
     };
   }, []);
 
+  const [isPackagesLoading, setIsPackagesLoading] = useState(true);
+  const [isTestListLoading, setIsTestListLoading] = useState(true);
+
+  useEffect(() => {
+    const pTimer = setTimeout(() => setIsPackagesLoading(false), 950);
+    const tTimer = setTimeout(() => setIsTestListLoading(false), 1250);
+    return () => {
+      clearTimeout(pTimer);
+      clearTimeout(tTimer);
+    };
+  }, []);
+
   const [activeTab, setActiveTab] = useState<
     "overview" | "services" | "reviews" | "about"
   >("overview");
+
   const [darkMode, setDarkMode] = useState(() => {
     return (
       localStorage.getItem("theme") === "dark" ||
@@ -910,7 +936,7 @@ export default function App() {
   }, [curatedTestimonials.length]);
 
   return (
-    <div className="min-h-screen bg-white font-sans selection:bg-google-blue selection:text-white relative">
+    <div className="min-h-screen bg-white font-sans selection:bg-google-blue selection:text-white relative w-full max-w-full overflow-x-clip">
       {/* Cinematic Spotlight Backdrop - Premium Feel */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-google-blue/5 blur-[120px] rounded-full" />
@@ -980,9 +1006,9 @@ export default function App() {
         </motion.button>
       </div>
 
-      {/* Modern Cinematic Header (Floating & Polished) */}
-      <header className="sticky top-4 z-[60] mx-4 sm:mx-6 bg-white/95 backdrop-blur-md rounded-2xl border border-gray-200/60 px-4 sm:px-6 py-3 shadow-lg shadow-gray-200/50">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+      {/* Modern Cinematic Header (Sticky top-0) */}
+      <header className="sticky top-0 z-[60] w-full bg-white/95 backdrop-blur-md border-b border-gray-200/80 px-4 sm:px-[24px] h-16 md:h-20 flex items-center shadow-sm">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4 w-full">
           <div className="flex items-center gap-2 md:gap-3 flex-1 overflow-hidden">
             <Menu
               aria-label="Menu"
@@ -990,13 +1016,20 @@ export default function App() {
             />
             <RouterLink
               to="/"
-              className="flex items-center gap-2 hover:opacity-85 transition-opacity overflow-hidden flex-shrink-0 select-none"
+              onClick={(e) => {
+                if (location.pathname === "/") {
+                  e.preventDefault();
+                  setActiveTab("overview");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }
+              }}
+              className="flex items-center gap-2 hover:opacity-85 active:scale-95 transition-all duration-200 overflow-hidden flex-shrink-0 select-none cursor-pointer"
             >
               {/* Official Agilus Logo Image */}
               <img
                 src="https://media.agilus.in/consumer-web/agilusLogo.png"
                 alt="Agilus Diagnostics"
-                className="h-8 md:h-12 w-auto object-contain flex-shrink-0"
+                className="h-8 md:h-12 w-auto object-contain flex-shrink-0 cursor-pointer transition-all duration-200 hover:scale-[1.03]"
               />
             </RouterLink>
           </div>
@@ -1028,8 +1061,8 @@ export default function App() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto pb-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-6 px-4 sm:px-6">
+      <main className="max-w-7xl mx-auto pb-6 md:pb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 pt-4 px-4 sm:px-6">
           {/* GMB Navigation Tabs (SEO & UX Optimized) */}
           <BottomNav
             setIsBookingOpen={setIsBookingOpen}
@@ -1037,7 +1070,7 @@ export default function App() {
             activeTab={activeTab}
           />
           <nav
-            className="sticky top-[72px] md:top-20 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200/80 px-4 sm:px-6 overflow-x-auto no-scrollbar lg:col-span-12 w-full transition-all duration-300"
+            className="sticky top-16 md:top-20 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200/80 px-4 sm:px-6 overflow-x-auto no-scrollbar lg:col-span-12 w-full transition-all"
             aria-label="Business sections"
           >
             <div
@@ -1083,7 +1116,7 @@ export default function App() {
             id="overview"
             role="tabpanel"
             aria-labelledby="overview-tab"
-            className="lg:col-span-12 scroll-mt-36"
+            className="lg:col-span-12 scroll-mt-32 md:scroll-mt-40"
           >
             <div className="relative group w-full h-[250px] sm:h-[400px] md:h-[500px] bg-black rounded-3xl overflow-hidden shadow-2xl border border-google-border">
               <Swiper
@@ -1284,25 +1317,34 @@ export default function App() {
           </section>
 
           {/* Business Info Column */}
-          <div className="lg:col-span-12 max-w-4xl mx-auto w-full flex flex-col space-y-6">
+          <div className="lg:col-span-12 max-w-4xl mx-auto w-full flex flex-col space-y-4 md:space-y-6">
             <motion.section
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="border border-google-border rounded-2xl p-6 md:p-8 shadow-sm bg-white"
+              className="border border-google-border rounded-2xl p-5 md:p-8 shadow-sm bg-white"
             >
-              <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+              <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-5 md:mb-6">
                 <div>
                   <div className="flex flex-col lg:flex-row lg:items-center gap-2 mb-2">
                     <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#202124]">
                       Agilus Diagnostics (Formerly SRL Lab) - Sector 69, Mohali
                     </h1>
-                    <div className="flex items-center bg-blue-50 text-google-blue px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border border-google-blue/20 shadow-sm w-fit">
+                    <div
+                      onClick={() => {
+                        window.open(
+                          "https://www.google.com/maps/place/Agilus+Diagnostics+(formerly+SRL)+-+Sector+69,+Mohali+%7C+Blood+Test+%7C+Full+Body+Checkup+%7C+Pathology+Lab/@30.6912131,76.7166846,17z/data=!4m14!1m7!3m6!1s0x390fef36051472b9:0x43b355830735f22b!2sAgilus+Diagnostics+(formerly+SRL)+-+Sector+69,+Mohali+%7C+Blood+Test+%7C+Full+Body+Checkup+%7C+Pathology+Lab!8m2!3d30.6912131!4d76.7192595!16s%2Fg%2F11zb4dqjdk!3m5!1s0x390fef36051472b9:0x43b355830735f22b!8m2!3d30.6912131!4d76.7192595!16s%2Fg%2F11zb4dqjdk?entry=ttu&g_ep=EgoyMDI2MDUyNy4wIKXMDSoASAFQAw%3D%3D",
+                          "_blank",
+                          "noopener,noreferrer"
+                        );
+                      }}
+                      className="flex items-center bg-blue-50 hover:bg-blue-100 active:scale-95 transition-all cursor-pointer text-google-blue px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border border-google-blue/20 shadow-sm w-fit"
+                    >
                       <ShieldCheck className="w-3 h-3 mr-1.5" />
                       Verified by Google
                     </div>
                   </div>
                   <p className="text-google-blue font-bold text-sm mb-3 underline decoration-google-blue/20 underline-offset-4">
-                    Formerly SRL Lab • NABL Accredited Center
+                    Blood Test | Full Body Checkup | Pathology Lab
                   </p>
                   <div className="flex flex-wrap items-center gap-3">
                     <div className="flex items-center gap-1">
@@ -1331,7 +1373,7 @@ export default function App() {
               </div>
 
               {/* GMB Premium Dashboard Header */}
-              <div className="flex items-center justify-between gap-4 py-8 border-b border-google-border">
+              <div className="flex items-center justify-between gap-4 py-5 md:py-6 border-b border-google-border">
                 <div className="flex flex-wrap items-center gap-3 lg:gap-6">
                   <button
                     onClick={handleDirection}
@@ -1380,12 +1422,17 @@ export default function App() {
                 </div>
 
                 <div className="hidden sm:flex flex-col items-end">
-                  <div className="flex items-center gap-2 px-4 py-2 bg-agilus-green/10 border border-agilus-green/30 rounded-2xl mb-2">
+                  <a
+                    href="https://reports.agilus.in/secure/login.aspx"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-2 bg-agilus-green/10 border border-agilus-green/30 rounded-2xl mb-2 hover:bg-agilus-green/20 transition-all cursor-pointer"
+                  >
                     <ShieldCheck className="w-4 h-4 text-agilus-green" />
                     <span className="text-[10px] font-black text-agilus-green uppercase tracking-widest">
                       Online Reports Ready
                     </span>
-                  </div>
+                  </a>
                   <div className="flex items-center gap-3 px-4 py-2 bg-google-blue/10 border border-google-blue/30 rounded-2xl">
                     <ClipboardCheck className="w-4 h-4 text-google-blue" />
                     <span className="text-[10px] font-black text-google-blue uppercase tracking-widest">
@@ -1396,7 +1443,7 @@ export default function App() {
               </div>
 
               {/* GMB Premium Photo Widget */}
-              <section id="photos" className="scroll-mt-24">
+              <section id="photos" className="scroll-mt-32 md:scroll-mt-40">
                 <a
                   href="https://www.google.com/search?q=SRL+Lab+Mohali&stick=H4sIAAAAAAAA_-NgU1I1qDC2NEizNE4zSzY3NUkyN0yyMqgwTDQwMkk0NUtMSUlJM0lNWcTKFxzko-CTmKTgm5-RmJMJAFRg05w6AAAA&hl=en&mat=Cb-ztOnJ85ZlElcBTVDHnvpK7UZHp1TY-0rfrGw6k3-HP2Rlf5zmTam-gUBy-jnNNxTLJqL-CncUqOLzPFIw0Ngm0u7nyaen7gcyIcP1g3Q9yFqdL6qwaARNl8Cpzp6Enk4&authuser=0"
                   target="_blank"
@@ -1449,7 +1496,7 @@ export default function App() {
 
               {/* Latest Updates (GMB Posts Style) */}
               <section className="">
-                <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center justify-between mb-4 md:mb-5">
                   <div>
                     <h2 className="text-2xl md:text-3xl font-black text-[#202124] tracking-tighter">
                       Updates from Agilus
@@ -1459,14 +1506,14 @@ export default function App() {
                     </p>
                   </div>
                   <button
-                    onClick={() => window.open('https://agilusdiagnostics.com/health-checkup/mohali', '_blank', 'noopener,noreferrer')}
+                    onClick={() => window.open('https://www.google.com/search?sca_esv=37ec142c46dae260&rlz=1C5GCEM_enIN1196IN1196&cs=1&sxsrf=ANbL-n6mkBurf3x8E58FFmdUhrDJ6xQDhg:1780363391202&si=AL3DRZGNtcdgKOqVhotcr-UG2kkYpwR2WO4qu3O00NmpwBmLndRtLgrQuXytoKow3EMlQTVu-C2UvcDxx4FVZsm-1pdKA2XNHW4zT8TYLxlt7APiUI3fQ_VauHbrqTs18pqu0GxDjU9z_unl-LR9BnAPuYRXtt0cwGGYT1TKEugfJF8B4KKT8W2bityByk1gBw6vPh2wMyF_G-CXik-7kM76i-mzaTdnt1BfHVshvU436jUCq4uxlSc%3D&q=Agilus+Diagnostics+%28formerly+SRL%29+-+Sector+69,+Mohali+%7C+Blood+Test+%7C+Full+Body+Checkup+%7C+Pathology+Lab&hl=en-IN&sa=X&ved=2ahUKEwiGmoK8sueUAxXkxDgGHWGOCWQQ_oMLegQICxAB&biw=1440&bih=900&dpr=1#lpc=lpc', '_blank', 'noopener,noreferrer')}
                     className="text-google-blue text-sm font-black hover:bg-google-blue/5 px-6 py-3 rounded-2xl transition-all uppercase tracking-widest"
                   >
                     View all
                   </button>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="border border-google-border/60 rounded-[2rem] p-8 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] transition-all group bg-white relative overflow-hidden">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                  <div className="border border-google-border/60 rounded-[2rem] p-5 md:p-6 pb-6 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] transition-all group bg-white relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-google-blue/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700" />
                     <div className="flex items-center gap-4 mb-6 relative z-10">
                       <div className="w-14 h-14 rounded-2xl bg-google-blue/10 flex items-center justify-center shadow-inner">
@@ -1493,7 +1540,7 @@ export default function App() {
                       Learn More <ArrowRight className="w-4 h-4" />
                     </button>
                   </div>
-                  <div className="border border-google-border/60 rounded-[2rem] p-8 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] transition-all group bg-white relative overflow-hidden">
+                  <div className="border border-google-border/60 rounded-[2rem] p-5 md:p-6 pb-6 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] transition-all group bg-white relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-agilus-green/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700" />
                     <div className="flex items-center gap-4 mb-6 relative z-10">
                       <div className="w-14 h-14 rounded-2xl bg-agilus-green/10 flex items-center justify-center shadow-inner">
@@ -1522,7 +1569,7 @@ export default function App() {
                 </div>
               </section>
 
-              <div className="space-y-6 pt-8">
+              <div className="space-y-4 pt-5 md:pt-6">
                 <div className="flex items-start gap-4 group cursor-pointer">
                   <div className="w-10 h-10 rounded-full bg-google-light-grey flex items-center justify-center shrink-0 group-hover:bg-google-blue/10 transition-colors">
                     <MapPin className="w-5 h-5 text-google-blue" />
@@ -1557,7 +1604,10 @@ export default function App() {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4 group cursor-pointer">
+                <div
+                  onClick={handleCall}
+                  className="flex items-start gap-4 group cursor-pointer"
+                >
                   <div className="w-10 h-10 rounded-full bg-google-light-grey flex items-center justify-center shrink-0 group-hover:bg-google-blue/10 transition-colors">
                     <Phone className="w-5 h-5 text-google-blue" />
                   </div>
@@ -1566,7 +1616,7 @@ export default function App() {
                       Direct Contact
                     </p>
                     <p className="text-lg text-google-blue font-bold tracking-tight">
-                      091154 59115
+                      +91 91154 59115
                     </p>
                   </div>
                 </div>
@@ -1574,7 +1624,10 @@ export default function App() {
             </motion.section>
 
             <div className="mt-6 flex flex-col sm:flex-row gap-3">
-              <button className="flex-1 flex items-center justify-center gap-2 bg-google-blue text-white px-6 py-2.5 rounded-full text-sm font-medium hover:shadow-md transition-shadow">
+              <button
+                onClick={handleCall}
+                className="flex-1 flex items-center justify-center gap-2 bg-google-blue text-white px-6 py-2.5 rounded-full text-sm font-medium hover:shadow-md transition-shadow"
+              >
                 <Phone className="w-4 h-4" />
                 Call Now
               </button>
@@ -1588,11 +1641,11 @@ export default function App() {
             </div>
 
             {/* Clinical Trust & Scale Benchmarks (Business Intelligence Visuals) */}
-            <section className="py-6 border-y border-google-border bg-google-light-grey/20">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
+            <section className="py-4 sm:py-5 border-y border-google-border bg-google-light-grey/20">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
                 <div className="flex flex-col items-center text-center">
                   <span className="text-3xl font-black text-[#202124] mb-1">
-                    3000+
+                    3600+
                   </span>
                   <span className="text-[10px] font-bold text-google-grey uppercase tracking-[0.2em]">
                     Clinical Tests
@@ -1608,10 +1661,10 @@ export default function App() {
                 </div>
                 <div className="flex flex-col items-center text-center">
                   <span className="text-3xl font-black text-[#202124] mb-1">
-                    100%
+                    40+
                   </span>
                   <span className="text-[10px] font-bold text-google-grey uppercase tracking-[0.2em]">
-                    NABL Aligned
+                    NABL & 2 CAP Labs
                   </span>
                 </div>
                 <div className="flex flex-col items-center text-center">
@@ -1626,9 +1679,9 @@ export default function App() {
             </section>
 
             {/* Hyper-Local SEO Section: Targeting Mohali Sector 69 & Surroundings */}
-            <section className="bg-google-blue/[0.02] border border-google-blue/10 rounded-3xl p-6 md:p-8 relative overflow-hidden">
+            <section className="bg-google-blue/[0.02] border border-google-blue/10 rounded-3xl p-5 md:p-8 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-64 h-64 bg-google-blue/5 rounded-full -mr-32 -mt-32 blur-3xl" />
-              <div className="relative z-10 flex flex-col md:flex-row items-center gap-12">
+              <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 md:gap-8">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-4">
                     <span className="bg-google-blue/10 text-google-blue text-[10px] font-black px-3 py-1 rounded border border-google-blue/20 uppercase tracking-widest leading-none">
@@ -1636,21 +1689,21 @@ export default function App() {
                     </span>
                     <div className="h-px w-8 bg-google-blue/20" />
                   </div>
-                  <h2 className="text-2xl md:text-4xl font-black text-[#202124] tracking-tighter mb-4 md:mb-6 leading-tight">
+                  <h2 className="text-2xl md:text-3xl font-black text-[#202124] tracking-tighter mb-4 md:mb-6 leading-tight">
                     Trusted Pathology Near <br />
                     <span className="text-google-blue">
                       Sohana Gurudwara
                     </span>
                     .
                   </h2>
-                  <p className="text-lg text-google-grey mb-8 font-medium leading-relaxed">
+                  <p className="text-base text-google-grey mb-4 md:mb-6 font-medium leading-relaxed">
                     Strategically located in the heart of Gmada Market, Sector
                     69, Agilus Diagnostics (formerly SRL) is Mohali's premier
                     clinical laboratory. We serve residents across Sector 69,
                     70, 71, Mohali Phase 7, 8, 9, 10, and 11 with rapid,
                     reliable diagnostics.
                   </p>
-                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4 md:mb-6">
                     {[
                       "Home Collection in 60 Mins",
                       "NABL Accredited Facility",
@@ -1683,7 +1736,7 @@ export default function App() {
                   </div>
                 </div>
                 <div className="w-full md:w-1/3 flex flex-col gap-4">
-                  <div className="bg-white p-6 rounded-2xl shadow-xl border border-google-border">
+                  <div className="bg-white p-4 md:p-5 rounded-2xl shadow-xl border border-google-border">
                     <div className="flex items-center gap-4 mb-4">
                       <div className="w-12 h-12 rounded-full bg-google-light-grey flex items-center justify-center">
                         <Navigation className="w-6 h-6 text-google-blue" />
@@ -1730,7 +1783,7 @@ export default function App() {
 
             {/* Featured Premier Health Packages (Indian Context) */}
             <section className="">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 px-2 md:px-0 gap-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 md:mb-5 px-2 md:px-0 gap-4">
                 <div className="flex flex-col">
                   <h2 className="text-2xl font-bold text-[#202124] tracking-tight">
                     Fullbody Health Packages
@@ -1778,114 +1831,157 @@ export default function App() {
                 onScroll={handlePackageScrollEvent}
                 className="flex gap-5 overflow-x-auto pb-6 no-scrollbar -mx-4 px-4 md:mx-0 md:px-0 scroll-smooth snap-x snap-mandatory scroll-px-4 md:scroll-px-0"
               >
-                {LAB_WELLNESS_PACKAGES.map((pkg) => {
-                  const IconComponent = pkg.icon;
-                  return (
+                {isPackagesLoading ? (
+                  Array.from({ length: 3 }).map((_, idx) => (
                     <div
-                      key={pkg.id}
-                      data-package-card
-                      className="snap-center w-[265px] sm:w-[295px] md:w-[315px] flex-shrink-0 border border-google-border rounded-[2.2rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 bg-white group cursor-pointer relative flex flex-col justify-between"
-                      onClick={() => {
-                        setSelectedInclusionsPackage(pkg);
-                        setInclusionsGender("men");
-                      }}
+                      key={`pkg-skeleton-${idx}`}
+                      className="snap-center w-[265px] sm:w-[295px] md:w-[315px] flex-shrink-0 border border-google-border rounded-[2.2rem] overflow-hidden bg-white p-5 flex flex-col justify-between animate-pulse select-none"
                     >
-                      {/* Top Medical Badge */}
-                      <div className="absolute top-4 right-4 z-20">
-                        <div className="w-8 h-8 rounded-full bg-white/95 backdrop-blur-md flex items-center justify-center shadow-md border border-google-border/40 group-hover:bg-google-blue group-hover:text-white transition-all duration-500">
-                          <ShieldCheck className="w-4 h-4 text-google-blue group-hover:text-white" />
+                      <div>
+                        {/* Shimmering Top Image Panel Placeholder */}
+                        <div className="h-40 bg-gray-250 bg-gray-200/50 rounded-[1.8rem] mb-4 relative overflow-hidden flex flex-col justify-between p-4">
+                          <div className="flex justify-between items-center">
+                            <div className="w-20 h-5 bg-gray-300/60 rounded animate-pulse" />
+                            <div className="p-2 rounded-xl bg-gray-300/40 w-8 h-8 animate-pulse" />
+                          </div>
+                          <div className="space-y-2">
+                            <div className="w-2/3 h-5 bg-gray-300/60 rounded animate-pulse" />
+                            <div className="w-5/6 h-3 bg-gray-300/60 rounded animate-pulse" />
+                          </div>
+                        </div>
+
+                        {/* Title and details loading */}
+                        <div className="flex items-center justify-between mb-3">
+                          <div className="w-24 h-4 bg-gray-200 rounded animate-pulse" />
+                          <div className="w-2 h-2 rounded-full bg-gray-300 animate-pulse" />
+                        </div>
+                        <div className="w-3/4 h-5 bg-gray-200 rounded mb-2.5 animate-pulse" />
+                        <div className="space-y-1.5 mb-4">
+                          <div className="w-full h-3 bg-gray-100 rounded animate-pulse" />
+                          <div className="w-5/6 h-3 bg-gray-100 rounded animate-pulse" />
+                        </div>
+                        <div className="flex gap-1.5 flex-wrap">
+                          <div className="w-16 h-4 bg-gray-100 rounded animate-pulse" />
+                          <div className="w-12 h-4 bg-gray-100 rounded animate-pulse" />
+                          <div className="w-16 h-4 bg-gray-100 rounded animate-pulse" />
                         </div>
                       </div>
+                      <div className="flex gap-2 pt-4 border-t border-google-border/40 mt-4">
+                        <div className="flex-1 h-8 bg-gray-200 rounded-full animate-pulse" />
+                        <div className="flex-1 h-8 bg-gray-200 rounded-full animate-pulse" />
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  LAB_WELLNESS_PACKAGES.map((pkg) => {
+                    const IconComponent = pkg.icon;
+                    return (
+                      <div
+                        key={pkg.id}
+                        data-package-card
+                        className="snap-center w-[265px] sm:w-[295px] md:w-[315px] flex-shrink-0 border border-google-border rounded-[2.2rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 bg-white group cursor-pointer relative flex flex-col justify-between"
+                        onClick={() => {
+                          setSelectedInclusionsPackage(pkg);
+                          setInclusionsGender("men");
+                        }}
+                      >
+                        {/* Top Medical Badge */}
+                        <div className="absolute top-4 right-4 z-20">
+                          <div className="w-8 h-8 rounded-full bg-white/95 backdrop-blur-md flex items-center justify-center shadow-md border border-google-border/40 group-hover:bg-google-blue group-hover:text-white transition-all duration-500">
+                            <ShieldCheck className="w-4 h-4 text-google-blue group-hover:text-white" />
+                          </div>
+                        </div>
 
-                      {/* Top Visual Panel */}
-                      <div className="h-44 overflow-hidden relative rounded-t-[2.15rem]">
-                        <div className={`w-full h-full p-5 flex flex-col justify-between relative overflow-hidden ${pkg.bgClass} select-none`}>
-                          <div className="absolute -right-6 -top-6 w-24 h-24 rounded-full bg-white/20 blur-md pointer-events-none" />
-                          <div className="absolute -left-6 -bottom-6 w-24 h-24 rounded-full bg-white/10 blur-sm pointer-events-none" />
-                          
-                          <div className="flex items-center justify-between z-10 w-full animate-fade-in">
-                            <span className={`text-[9px] font-black tracking-widest uppercase px-2.5 py-1 rounded-md border ${pkg.badgeBg} ${pkg.badgeText} shadow-sm`}>
-                              {pkg.priceText}
+                        {/* Top Visual Panel */}
+                        <div className="h-44 overflow-hidden relative rounded-t-[2.15rem]">
+                          <div className={`w-full h-full p-5 flex flex-col justify-between relative overflow-hidden ${pkg.bgClass} select-none`}>
+                            <div className="absolute -right-6 -top-6 w-24 h-24 rounded-full bg-white/20 blur-md pointer-events-none" />
+                            <div className="absolute -left-6 -bottom-6 w-24 h-24 rounded-full bg-white/10 blur-sm pointer-events-none" />
+                            
+                            <div className="flex items-center justify-between z-10 w-full animate-fade-in">
+                              <span className={`text-[9px] font-black tracking-widest uppercase px-2.5 py-1 rounded-md border ${pkg.badgeBg} ${pkg.badgeText} shadow-sm`}>
+                                {pkg.priceText}
+                              </span>
+                              <div className="p-2 rounded-xl bg-white/70 backdrop-blur-md shadow-sm border border-white/30">
+                                <IconComponent className={`w-4 h-4 ${pkg.textColorClass}`} />
+                              </div>
+                            </div>
+
+                            <div className="z-10 mt-2">
+                              <h4 className={`text-base font-extrabold tracking-tight leading-tight ${pkg.textColorClass} mb-1`}>
+                                {pkg.title}
+                              </h4>
+                              <p className={`text-[10px] leading-snug font-semibold opacity-90 ${pkg.textColorClass} line-clamp-2`}>
+                                {pkg.sub}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="absolute bottom-4 left-4 z-10 pointer-events-none">
+                            <span className="bg-google-blue text-white text-[9px] font-black px-3 py-1.5 rounded-lg shadow-xl tracking-[0.2em] uppercase border border-white/20 select-none">
+                              NABL QUALITY APPROVED
                             </span>
-                            <div className="p-2 rounded-xl bg-white/70 backdrop-blur-md shadow-sm border border-white/30">
-                              <IconComponent className={`w-4 h-4 ${pkg.textColorClass}`} />
+                          </div>
+                        </div>
+
+                        {/* Content Panel */}
+                        <div className="p-4 md:p-5 flex-grow flex flex-col justify-between bg-white">
+                          <div>
+                            <div className="flex items-center justify-between mb-3">
+                              <p className="text-[10px] uppercase font-black text-google-blue tracking-[0.15rem] bg-google-blue/5 px-2.5 py-1 rounded-md border border-google-blue/10">
+                                {pkg.parameters}
+                              </p>
+                              <div className="w-2 h-2 rounded-full bg-google-blue animate-pulse shadow-[0_0_12px_rgba(66,133,244,0.8)]" />
+                            </div>
+                            <h3 className="font-extrabold text-[#202124] text-lg group-hover:text-google-blue transition-colors mb-2.5 leading-[1.2]">
+                              {pkg.title}
+                            </h3>
+                            <p className="text-xs text-google-grey leading-relaxed font-semibold line-clamp-3 mb-4">
+                              {pkg.desc}
+                            </p>
+
+                            {/* Attribute Indicators */}
+                            <div className="flex flex-wrap gap-1 mb-4">
+                              {pkg.features.slice(0, 4).map((feature, i) => (
+                                <span key={i} className="text-[9px] font-black text-google-grey/95 bg-google-border/40 px-2 py-1 rounded-md">
+                                  {feature}
+                                </span>
+                              ))}
+                              {pkg.features.length > 4 && (
+                                <span className="text-[9px] font-black text-google-blue bg-google-blue/5 border border-google-blue/10 px-2 py-1 rounded-md">
+                                  +{pkg.features.length - 4} More
+                                </span>
+                              )}
                             </div>
                           </div>
 
-                          <div className="z-10 mt-2">
-                            <h4 className={`text-base font-extrabold tracking-tight leading-tight ${pkg.textColorClass} mb-1`}>
-                              {pkg.title}
-                            </h4>
-                            <p className={`text-[10px] leading-snug font-semibold opacity-90 ${pkg.textColorClass} line-clamp-2`}>
-                              {pkg.sub}
-                            </p>
+                          {/* Interactive Footer buttons */}
+                          <div className="flex gap-2 pt-4 border-t border-google-border/40">
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setSelectedInclusionsPackage(pkg);
+                                setInclusionsGender("men");
+                              }}
+                              className="flex-1 py-2 text-[10px] font-black border border-google-border text-google-blue bg-white rounded-full hover:border-google-blue hover:bg-google-blue/5 transition-all uppercase tracking-wider text-center"
+                            >
+                              View Details
+                            </button>
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setSelectedPackageForBooking(pkg.title);
+                                setIsBookingOpen(true);
+                              }}
+                              className="flex-1 py-2 text-[10px] font-black bg-google-blue text-white rounded-full hover:bg-blue-700 hover:shadow-md transition-all active:scale-95 uppercase tracking-wider text-center"
+                            >
+                              Book Now
+                            </button>
                           </div>
-                        </div>
-                        <div className="absolute bottom-4 left-4 z-10 pointer-events-none">
-                          <span className="bg-google-blue text-white text-[9px] font-black px-3 py-1.5 rounded-lg shadow-xl tracking-[0.2em] uppercase border border-white/20 select-none">
-                            NABL QUALITY APPROVED
-                          </span>
                         </div>
                       </div>
-
-                      {/* Content Panel */}
-                      <div className="p-6 flex-grow flex flex-col justify-between bg-white">
-                        <div>
-                          <div className="flex items-center justify-between mb-3">
-                            <p className="text-[10px] uppercase font-black text-google-blue tracking-[0.15rem] bg-google-blue/5 px-2.5 py-1 rounded-md border border-google-blue/10">
-                              {pkg.parameters}
-                            </p>
-                            <div className="w-2 h-2 rounded-full bg-google-blue animate-pulse shadow-[0_0_12px_rgba(66,133,244,0.8)]" />
-                          </div>
-                          <h3 className="font-extrabold text-[#202124] text-lg group-hover:text-google-blue transition-colors mb-2.5 leading-[1.2]">
-                            {pkg.title}
-                          </h3>
-                          <p className="text-xs text-google-grey leading-relaxed font-semibold line-clamp-3 mb-4">
-                            {pkg.desc}
-                          </p>
-
-                          {/* Attribute Indicators */}
-                          <div className="flex flex-wrap gap-1 mb-4">
-                            {pkg.features.slice(0, 4).map((feature, i) => (
-                              <span key={i} className="text-[9px] font-black text-google-grey/95 bg-google-border/40 px-2 py-1 rounded-md">
-                                {feature}
-                              </span>
-                            ))}
-                            {pkg.features.length > 4 && (
-                              <span className="text-[9px] font-black text-google-blue bg-google-blue/5 border border-google-blue/10 px-2 py-1 rounded-md">
-                                +{pkg.features.length - 4} More
-                              </span>
-                            )}
-                          </div>
-                        </div>
-
-                        {/* Interactive Footer buttons */}
-                        <div className="flex gap-2 pt-4 border-t border-google-border/40">
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setSelectedInclusionsPackage(pkg);
-                              setInclusionsGender("men");
-                            }}
-                            className="flex-1 py-2 text-[10px] font-black border border-google-border text-google-blue bg-white rounded-full hover:border-google-blue hover:bg-google-blue/5 transition-all uppercase tracking-wider text-center"
-                          >
-                            View Details
-                          </button>
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setSelectedPackageForBooking(pkg.title);
-                              setIsBookingOpen(true);
-                            }}
-                            className="flex-1 py-2 text-[10px] font-black bg-google-blue text-white rounded-full hover:bg-blue-700 hover:shadow-md transition-all active:scale-95 uppercase tracking-wider text-center"
-                          >
-                            Book Now
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })
+                )}
               </div>
 
               {/* Progress dots at bottom */}
@@ -1938,9 +2034,9 @@ export default function App() {
               id="services"
               role="tabpanel"
               aria-labelledby="services-tab"
-              className="border border-google-border rounded-xl p-6 shadow-sm scroll-mt-24"
+              className="border border-google-border rounded-xl p-5 md:p-6 shadow-sm scroll-mt-32 md:scroll-mt-40"
             >
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4 md:mb-5">
                 <div>
                   <h2 className="text-2xl font-bold text-[#202124]">
                     Specialized Test Menu
@@ -1976,13 +2072,41 @@ export default function App() {
                     </tr>
                   </thead>
                   <tbody>
-                    {testMenu.map((test, idx) => (
-                      <ExpandableTestRow
-                        key={idx}
-                        test={test}
-                        onBook={() => setIsBookingOpen(true)}
-                      />
-                    ))}
+                    {isTestListLoading ? (
+                      Array.from({ length: 5 }).map((_, idx) => (
+                        <tr
+                          key={`test-skeleton-${idx}`}
+                          className="border-b border-google-border/50 animate-pulse"
+                        >
+                          <td className="py-4 px-2">
+                            <div className="flex items-center gap-3">
+                              <div className="w-5 h-5 rounded-full bg-gray-200 shrink-0" />
+                              <div className="flex flex-col gap-1.5 w-full">
+                                <div className="h-4 w-32 bg-gray-200 rounded animate-pulse" />
+                                <div className="h-3 w-16 bg-gray-100 rounded animate-pulse" />
+                              </div>
+                            </div>
+                          </td>
+                          <td className="py-4 px-2">
+                            <div className="h-5 w-24 bg-gray-200 rounded-full animate-pulse" />
+                          </td>
+                          <td className="py-4 text-right pr-2">
+                            <div className="inline-flex gap-2">
+                              <div className="w-20 h-8 bg-gray-100 rounded-full animate-pulse" />
+                              <div className="w-16 h-8 bg-gray-200 rounded-full animate-pulse" />
+                            </div>
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      testMenu.map((test, idx) => (
+                        <ExpandableTestRow
+                          key={idx}
+                          test={test}
+                          onBook={() => setIsBookingOpen(true)}
+                        />
+                      ))
+                    )}
                   </tbody>
                 </table>
               </div>
@@ -2028,9 +2152,9 @@ export default function App() {
             {/* Services Section */}
             <section
               id="services-provided"
-              className="border border-google-border rounded-xl p-6 shadow-sm scroll-mt-24 mt-6"
+              className="border border-google-border rounded-xl p-5 md:p-6 shadow-sm scroll-mt-32 md:scroll-mt-40 mt-2"
             >
-              <div className="flex flex-col mb-6 gap-3">
+              <div className="flex flex-col mb-4 gap-3">
                 <div className="flex justify-between items-center">
                   <h2 className="text-2xl font-bold flex items-center gap-2 text-[#202124]">
                     Leading Pathology Care at Our Labs
@@ -2131,27 +2255,27 @@ export default function App() {
               id="about"
               role="tabpanel"
               aria-labelledby="about-tab"
-              className="grid grid-cols-1 md:grid-cols-2 gap-8 scroll-mt-24"
+              className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 scroll-mt-32 md:scroll-mt-40"
             >
-              <div className="border border-google-border rounded-2xl p-8 shadow-sm flex flex-col justify-center items-center text-center bg-gradient-to-br from-[#FFF9F0] to-white relative overflow-hidden group hover:shadow-xl hover:border-google-blue/20 transition-all duration-500">
+              <div className="border border-google-border rounded-2xl p-5 md:p-6 pb-6 shadow-sm flex flex-col justify-center items-center text-center bg-gradient-to-br from-[#FFF9F0] to-white relative overflow-hidden group hover:shadow-xl hover:border-google-blue/20 transition-all duration-500">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-yellow-400/10 rounded-full blur-3xl group-hover:bg-yellow-400/20 transition-colors"></div>
-                <div className="w-14 h-14 rounded-xl bg-orange-100 flex items-center justify-center mb-6">
+                <div className="w-14 h-14 rounded-xl bg-orange-100 flex items-center justify-center mb-4">
                   <Award className="w-8 h-8 text-orange-600" />
                 </div>
-                <h3 className="text-2xl font-bold text-[#202124] mb-6">
+                <h3 className="text-2xl font-bold text-[#202124] mb-4">
                   {" "}
                   Our Journey Since 1997{" "}
                 </h3>
                 <div className="w-full aspect-[4/3] border border-white shadow-2xl bg-white rounded-xl p-2 overflow-hidden transform group-hover:scale-[1.03] transition-transform duration-700">
                   <img
-                    src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800&fm=webp"
+                    src={imageJourney}
                     alt="Clinical Excellence - State of the art Lab Equipment at SRL Mohali Center"
                     className="w-full h-full object-cover rounded-lg"
                     loading="lazy"
                   />
                   <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-lg"></div>
                 </div>
-                <p className="mt-8 text-sm text-google-grey max-w-sm leading-relaxed">
+                <p className="mt-4 text-sm text-google-grey max-w-sm leading-relaxed">
                   Since 1997, our commitment as SRL, now Agilus Diagnostics, has
                   been deeply rooted in Mohali. We take immense pride in our
                   long legacy of providing top-tier clinical accuracy and
@@ -2163,14 +2287,24 @@ export default function App() {
               <div className="border border-google-border rounded-2xl shadow-sm overflow-hidden group flex flex-col hover:shadow-xl hover:border-google-blue/20 transition-all duration-500">
                 <div className="h-72 overflow-hidden relative">
                   <img
-                    src="https://images.unsplash.com/photo-1584432810601-6c7f27d2362b?auto=format&fit=crop&q=80&w=800&fm=webp"
+                    src={imageTrusted}
                     alt="Premium Healthcare Interior & Professional Standards at Agilus diagnostics Mohali Sector 69."
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2s]"
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
                   <div className="absolute bottom-6 left-6 right-6 z-10 transition-transform duration-500 group-hover:-translate-y-1">
-                    <span className="bg-google-blue/90 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full inline-block shadow-lg border border-white/20 mb-3">
+                    <span
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.open(
+                          "https://www.google.com/maps/place/Agilus+Diagnostics+(formerly+SRL)+-+Sector+69,+Mohali+%7C+Blood+Test+%7C+Full+Body+Checkup+%7C+Pathology+Lab/@30.6912131,76.7166846,17z/data=!4m14!1m7!3m6!1s0x390fef36051472b9:0x43b355830735f22b!2sAgilus+Diagnostics+(formerly+SRL)+-+Sector+69,+Mohali+%7C+Blood+Test+%7C+Full+Body+Checkup+%7C+Pathology+Lab!8m2!3d30.6912131!4d76.7192595!16s%2Fg%2F11zb4dqjdk!3m5!1s0x390fef36051472b9:0x43b355830735f22b!8m2!3d30.6912131!4d76.7192595!16s%2Fg%2F11zb4dqjdk?entry=ttu&g_ep=EgoyMDI2MDUyNy4wIKXMDSoASAFQAw%3D%3D",
+                          "_blank",
+                          "noopener,noreferrer"
+                        );
+                      }}
+                      className="bg-google-blue hover:bg-google-blue/85 active:scale-95 transition-all cursor-pointer backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full inline-block shadow-lg border border-white/20 mb-3"
+                    >
                       Visit Our Center
                     </span>
                     <h3 className="text-white text-2xl font-bold leading-tight">
@@ -2178,8 +2312,8 @@ export default function App() {
                     </h3>
                   </div>
                 </div>
-                <div className="p-8 flex flex-col justify-between flex-1 bg-white">
-                  <p className="text-sm text-google-grey mb-6 leading-relaxed">
+                <div className="p-5 md:p-6 pb-6 flex flex-col justify-between flex-1 bg-white">
+                  <p className="text-sm text-google-grey mb-4 leading-relaxed">
                     Our Sector 69 facility is designed to provide a{" "}
                     <strong>World-Class Diagnostic Experience</strong> with
                     minimal wait times, fully automated robotics, and a sterile
@@ -2198,17 +2332,17 @@ export default function App() {
             </section>
 
             {/* Patient Safety & Clinical Standards Section */}
-            <section className="border border-google-border rounded-2xl p-6 shadow-sm bg-white overflow-hidden relative hover:border-google-blue/30 transition-all duration-500">
+            <section className="border border-google-border rounded-2xl p-5 md:p-6 shadow-sm bg-white overflow-hidden relative hover:border-google-blue/30 transition-all duration-500">
               <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-google-blue/5 rounded-full blur-3xl" />
-              <div className="flex flex-col md:flex-row items-center gap-12 relative z-10">
+              <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8 relative z-10">
                 <div className="flex-1">
-                  <div className="w-12 h-12 rounded-xl bg-google-blue/10 flex items-center justify-center mb-6">
+                  <div className="w-12 h-12 rounded-xl bg-google-blue/10 flex items-center justify-center mb-4">
                     <ShieldCheck className="w-6 h-6 text-google-blue" />
                   </div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-[#202124] mb-4 md:mb-6 tracking-tight">
+                  <h2 className="text-2xl md:text-3xl font-bold text-[#202124] mb-3 md:mb-4 tracking-tight">
                     Committed to Patient Safety & Medical Ethics
                   </h2>
-                  <p className="text-base text-google-grey mb-8 leading-relaxed max-w-lg">
+                  <p className="text-base text-google-grey mb-4 md:mb-6 leading-relaxed max-w-lg">
                     At SRL Lab Mohali (Agilus Diagnostics), we prioritize{" "}
                     <strong>Clinical Governance</strong>. Our team undergoes
                     rigorous training on international safety standards, hygiene
@@ -2243,7 +2377,7 @@ export default function App() {
                 </div>
                 <div className="w-full md:w-[40%] aspect-[4/3] relative rounded-2xl border border-google-border overflow-hidden bg-white shadow-2xl p-3 group">
                   <img
-                    src="https://images.unsplash.com/photo-1581056771107-24ca5f033842?auto=format&fit=crop&q=80&w=800&fm=webp"
+                    src={imageClinical}
                     alt="Agilus Diagnostics commitment to medical standards and professional phlebotomy training"
                     className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-700"
                     loading="lazy"
@@ -2259,9 +2393,9 @@ export default function App() {
               id="reviews"
               role="tabpanel"
               aria-labelledby="reviews-tab"
-              className="border border-google-border rounded-2xl p-6 md:p-8 shadow-sm bg-white scroll-mt-24"
+              className="border border-google-border rounded-2xl p-5 md:p-8 shadow-sm bg-white scroll-mt-32 md:scroll-mt-40"
             >
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4 md:mb-5">
                 <div>
                   <h2 className="text-2xl font-bold text-[#202124] flex items-center gap-3">
                     Patient Reviews
@@ -2324,7 +2458,7 @@ export default function App() {
                       "_blank",
                     )
                   }
-                  className="mt-10 w-full flex items-center justify-center gap-2 border border-blue-100 bg-blue-50 py-4 rounded-2xl text-sm font-black text-blue-700 hover:bg-blue-100 transition-all group"
+                  className="mt-5 md:mt-6 w-full flex items-center justify-center gap-2 border border-blue-100 bg-blue-50 py-4 rounded-2xl text-sm font-black text-blue-700 hover:bg-blue-100 transition-all group"
                 >
                   See All Experiences on Google
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -2333,8 +2467,8 @@ export default function App() {
             </section>
 
             {/* FAQ Section */}
-            <section className="border border-google-border rounded-xl p-6 shadow-sm">
-              <h2 className="text-xl font-normal mb-6">
+            <section className="border border-google-border rounded-xl p-5 md:p-6 shadow-sm">
+              <h2 className="text-xl font-normal mb-4">
                 Frequently Asked Questions
               </h2>
               <div className="space-y-2">
@@ -2344,7 +2478,7 @@ export default function App() {
                 />
                 <FaqItem
                   question="How can I book an appointment?"
-                  answer="Booking is simple. You can call us directly at 091154 59115, use the 'Make Appointment' form on this website, or visit our Sector 69 center."
+                  answer="Booking is simple. You can call us directly at +91 91154 59115, use the 'Make Appointment' form on this website, or visit our Sector 69 center."
                 />
                 <FaqItem
                   question="When will I get my blood test reports?"
@@ -2358,14 +2492,14 @@ export default function App() {
             </section>
 
             {/* Verified Directory Listings (Citations) */}
-            <section className="border border-google-border rounded-xl p-6 shadow-sm bg-google-light-grey/30">
-              <div className="flex items-center gap-2 mb-6">
+            <section className="border border-google-border rounded-xl p-5 md:p-6 shadow-sm bg-google-light-grey/30">
+              <div className="flex items-center gap-2 mb-4">
                 <CheckCircle2 className="w-5 h-5 text-google-blue" />
                 <h2 className="text-lg font-medium">
                   Verified Digital Presence
                 </h2>
               </div>
-              <p className="text-sm text-google-grey mb-6 leading-relaxed">
+              <p className="text-sm text-google-grey mb-4 leading-relaxed">
                 SRL Lab Mohali is a verified healthcare provider across leading
                 digital platforms. Access our live profiles for real-time
                 customer feedback and ratings.
@@ -2374,22 +2508,22 @@ export default function App() {
                 <DirectoryLink
                   name="Justdial"
                   icon="JD"
-                  url="https://www.justdial.com/Mohali/Srl-Lab-Mohali-Post-Office-Ptl-Chowk/0172PX172-X172-241016220516-Q1B9_BZDET"
+                  url="https://jsdl.in/DT-19QZ6ZHKYGF"
                 />
                 <DirectoryLink
                   name="Sulekha"
                   icon="S"
-                  url="https://www.sulekha.com/srl-lab-mohali"
+                  url="https://www.sulekha.com/srl-diagnostics-mohali-sector-59-mohali-contact-address"
                 />
                 <DirectoryLink
                   name="IndiaMart"
                   icon="IM"
-                  url="https://www.indiamart.com/srl-diagnostics-mohali"
+                  url="https://www.indiamart.com/s-r-l-lab-collection/"
                 />
                 <DirectoryLink
-                  name="Mediyaar"
-                  icon="M"
-                  url="https://mediyaar.com/lab/srl-lab-mohali"
+                  name="Magicpin"
+                  icon="MP"
+                  url="https://magicpin.in/Chandigarh/Sector-69/Healthcare/Srl-Lab-Mohali/store/1c24c08"
                 />
               </div>
             </section>
@@ -2397,7 +2531,7 @@ export default function App() {
         </div>
 
         {/* AI Overview & Comprehensive Pathology SEO Block (Geo, AEO, Local) */}
-        <section className="mt-16 bg-white border border-google-border rounded-3xl p-8 md:p-10 text-google-grey text-sm md:text-base leading-relaxed space-y-5 shadow-sm">
+        <section className="mt-5 md:mt-8 bg-white border border-google-border rounded-3xl p-5 md:p-8 pb-12 md:pb-8 text-google-grey text-sm md:text-base leading-relaxed space-y-5 shadow-sm">
           <h3 className="text-2xl font-bold text-[#202124] mb-3">
             Comprehensive Pathology Services Across the Tricity
           </h3>
@@ -2408,277 +2542,281 @@ export default function App() {
             As a leading Agilus franchise, we proudly serve the entire region. Patients frequently compare <strong className="text-[#202124]">Agilus full body checkup packages Tricity</strong> to find the right health monitoring solutions. Whether you are searching for the <strong className="text-[#202124]">Agilus lab Panchkula sector 8</strong>, looking for the <strong className="text-[#202124]">SRL lab Kharar address</strong>, or trying to locate the <strong className="text-[#202124]">Agilus Diagnostics Zirakpur center</strong>, our central Mohali Sector 69 hub provides unmatched accessibility.
           </p>
           <p>
-            We aim to eliminate booking friction. Skip the wait by using the <strong className="text-[#202124]">Agilus WhatsApp booking number</strong> or dialing the <strong className="text-[#202124]">SRL Diagnostics Chandigarh contact number</strong> for immediate assistance. Once your tests are complete, you can easily access your results through our secure <strong className="text-[#202124]">SRL diagnostics report download online</strong> portal.
+            We aim to eliminate booking friction. Skip the wait by using the <strong className="text-[#202124]">Agilus WhatsApp booking number</strong> or dialing the <strong className="text-[#202124]">SRL Diagnostics Chandigarh contact number</strong> for immediate assistance. Once your tests are complete, you can easily access your results through our secure <a href="https://reports.agilus.in/secure/login.aspx" target="_blank" rel="noopener noreferrer" className="text-google-blue font-bold hover:underline">Agilus Diagnostics Report Download Online</a> portal.
           </p>
         </section>
       </main>
 
       {/* Booking Modal */}
-      {isBookingOpen && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            onClick={closeBooking}
-            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
-          />
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            className="relative bg-white w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden"
-          >
-            <div className="bg-google-blue p-6 text-white flex justify-between items-center">
-              <div>
-                <h3 className="text-xl font-medium">Book Appointment</h3>
-                <p className="text-white/80 text-sm">
-                  Agilus Diagnostics Formerly SRL, Home Collection
-                </p>
-              </div>
-              <button
-                onClick={closeBooking}
-                className="p-2 hover:bg-white/10 rounded-full transition-colors"
-              >
-                <X className="w-6 h-6" />
-              </button>
-            </div>
-
-            <div className="p-8">
-              {bookingStatus === "success" ? (
-                <div className="text-center py-12">
-                  <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <CheckCircle2 className="w-10 h-10 text-green-600" />
-                  </div>
-                  <h4 className="text-2xl font-medium mb-2">
-                    Booking Confirmed!
-                  </h4>
-                  <p className="text-google-grey mb-8">
-                    Our team will call you shortly to confirm the preferred time
-                    slot.
+      <AnimatePresence>
+        {isBookingOpen && (
+          <div className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center p-0 sm:p-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeBooking}
+              className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            />
+            <motion.div
+              initial={{ opacity: 0, y: "100%", scale: 1 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: "100%", scale: 0.95 }}
+              transition={{ type: "spring", damping: 25, stiffness: 280 }}
+              className="relative bg-white w-full max-w-lg rounded-t-[2.5rem] sm:rounded-3xl shadow-2xl overflow-hidden max-h-[92vh] sm:max-h-[85vh] flex flex-col z-10"
+            >
+              <div className="bg-google-blue px-6 py-5 sm:p-6 text-white flex justify-between items-center shrink-0 border-b border-white/10">
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-bold tracking-tight">Book Appointment</h3>
+                  <p className="text-white/80 text-xs sm:text-sm mt-0.5 font-medium">
+                    Agilus Diagnostics Formerly SRL, Home Collection
                   </p>
-                  <button
-                    onClick={closeBooking}
-                    className="w-full bg-google-blue text-white py-3 rounded-xl font-medium"
-                  >
-                    Close
-                  </button>
                 </div>
-              ) : (
-                <form
-                  onSubmit={handleBookingSubmit}
-                  className="space-y-5"
-                  noValidate
+                <button
+                  onClick={closeBooking}
+                  className="p-2.5 hover:bg-white/10 active:bg-white/20 rounded-full transition-colors cursor-pointer"
+                  aria-label="Close booking form"
                 >
-                  {selectedPackageForBooking && (
-                    <div className="p-4 bg-google-blue/5 border border-google-blue/15 rounded-xl flex items-start gap-3 animate-fade-in">
-                      <div className="p-2 bg-google-blue/10 rounded-lg text-google-blue mt-0.5">
-                        <ClipboardCheck className="w-4 h-4" />
-                      </div>
-                      <div>
-                        <p className="text-[10px] uppercase font-black text-google-blue tracking-wider">PRE-SELECTED WELLNESS PACKAGE</p>
-                        <h4 className="font-extrabold text-[#202124] text-sm">{selectedPackageForBooking}</h4>
-                        <p className="text-[11px] text-google-grey mt-0.5 font-medium">This package has been pre-locked. Same-day clinical processing is standard.</p>
-                      </div>
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              <div className="p-6 sm:p-8 overflow-y-auto flex-1">
+                {bookingStatus === "success" ? (
+                  <div className="text-center py-12 px-4">
+                    <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                      <CheckCircle2 className="w-10 h-10 text-green-600" />
                     </div>
-                  )}
-                  <div className="space-y-1">
-                    <label className="text-xs font-bold text-google-grey uppercase tracking-wider">
-                      Full Name *
-                    </label>
-                    <input
-                      id="name"
-                      aria-label="Full Name"
-                      aria-required="true"
-                      aria-invalid={!!formErrors.name}
-                      aria-describedby={
-                        formErrors.name ? "name-error" : undefined
-                      }
-                      type="text"
-                      placeholder="Rahul Sharma"
-                      className={`w-full px-4 py-3 rounded-xl border focus:ring-2 outline-none transition-all ${formErrors.name ? "border-red-500 focus:ring-red-500" : "border-google-border focus:ring-google-blue"}`}
-                      value={formData.name}
-                      onChange={(e) => {
-                        setFormData({ ...formData, name: e.target.value });
-                        if (formErrors.name)
-                          setFormErrors({ ...formErrors, name: undefined });
-                      }}
-                    />
-                    {formErrors.name && (
-                      <p id="name-error" className="text-xs text-red-500 mt-1">
-                        {formErrors.name}
-                      </p>
-                    )}
+                    <h4 className="text-2xl font-bold text-[#202124] mb-2">
+                      Booking Confirmed!
+                    </h4>
+                    <p className="text-google-grey text-sm sm:text-base mb-8 max-w-sm mx-auto leading-relaxed">
+                      Our team will call you shortly to confirm the preferred time
+                      slot.
+                    </p>
+                    <button
+                      onClick={closeBooking}
+                      className="w-full bg-google-blue text-white py-4 rounded-xl font-bold transition-all active:scale-[0.98] cursor-pointer"
+                    >
+                      Close
+                    </button>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="space-y-1">
-                      <label className="text-xs font-bold text-google-grey uppercase tracking-wider">
-                        Location *
+                ) : (
+                  <form
+                    onSubmit={handleBookingSubmit}
+                    className="space-y-5"
+                    noValidate
+                  >
+                    {selectedPackageForBooking && (
+                      <div className="p-4 bg-google-blue/5 border border-google-blue/15 rounded-xl flex items-start gap-3 animate-fade-in mb-2">
+                        <div className="p-2 bg-google-blue/10 rounded-lg text-google-blue mt-0.5 shrink-0">
+                          <ClipboardCheck className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <p className="text-[10px] uppercase font-black text-google-blue tracking-wider">PRE-SELECTED WELLNESS PACKAGE</p>
+                          <h4 className="font-extrabold text-[#202124] text-sm mt-0.5">{selectedPackageForBooking}</h4>
+                          <p className="text-[11px] text-google-grey mt-1 font-medium leading-relaxed">This package has been pre-locked. Same-day clinical processing is standard.</p>
+                        </div>
+                      </div>
+                    )}
+                    <div className="space-y-1.5">
+                      <label htmlFor="name" className="text-[11px] font-black text-google-grey uppercase tracking-wider block">
+                        Full Name *
                       </label>
                       <input
-                        id="location"
-                        aria-label="Location"
+                        id="name"
+                        aria-label="Full Name"
                         aria-required="true"
-                        aria-invalid={!!formErrors.location}
+                        aria-invalid={!!formErrors.name}
                         aria-describedby={
-                          formErrors.location ? "location-error" : undefined
+                          formErrors.name ? "name-error" : undefined
                         }
                         type="text"
-                        placeholder="Phase 7, Mohali"
-                        className={`w-full px-4 py-3 rounded-xl border focus:ring-2 outline-none transition-all ${formErrors.location ? "border-red-500 focus:ring-red-500" : "border-google-border focus:ring-google-blue"}`}
-                        value={formData.location}
+                        placeholder="Rahul Sharma"
+                        className={`w-full px-4 py-3.5 sm:py-3 rounded-xl border focus:ring-2 outline-none bg-white transition-all text-base sm:text-sm ${
+                          formErrors.name ? "border-red-500 focus:ring-red-500" : "border-google-border focus:ring-google-blue hover:border-google-grey/40"
+                        }`}
+                        value={formData.name}
                         onChange={(e) => {
-                          setFormData({ ...formData, location: e.target.value });
-                          if (formErrors.location)
-                            setFormErrors({ ...formErrors, location: undefined });
+                          setFormData({ ...formData, name: e.target.value });
+                          if (formErrors.name)
+                            setFormErrors({ ...formErrors, name: undefined });
                         }}
                       />
-                      {formErrors.location && (
-                        <p
-                          id="location-error"
-                          className="text-xs text-red-500 mt-1"
-                        >
-                          {formErrors.location}
+                      {formErrors.name && (
+                        <p id="name-error" className="text-xs text-red-500 mt-1 font-medium">
+                          {formErrors.name}
                         </p>
                       )}
                     </div>
-                    <div className="space-y-1">
-                      <label className="text-xs font-bold text-google-grey uppercase tracking-wider">
-                        Email (Optional)
-                      </label>
-                      <input
-                        id="email"
-                        aria-label="Email Address"
-                        aria-invalid={!!formErrors.email}
-                        aria-describedby={
-                          formErrors.email ? "email-error" : undefined
-                        }
-                        type="email"
-                        placeholder="rahul@example.com"
-                        className={`w-full px-4 py-3 rounded-xl border focus:ring-2 outline-none transition-all ${formErrors.email ? "border-red-500 focus:ring-red-500" : "border-google-border focus:ring-google-blue"}`}
-                        value={formData.email}
-                        onChange={(e) => {
-                          setFormData({ ...formData, email: e.target.value });
-                          if (formErrors.email)
-                            setFormErrors({ ...formErrors, email: undefined });
-                        }}
-                      />
-                      {formErrors.email && (
-                        <p
-                          id="email-error"
-                          className="text-xs text-red-500 mt-1"
-                        >
-                          {formErrors.email}
-                        </p>
-                      )}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="space-y-1.5">
+                        <label htmlFor="location" className="text-[11px] font-black text-google-grey uppercase tracking-wider block">
+                          Location *
+                        </label>
+                        <input
+                          id="location"
+                          aria-label="Location"
+                          aria-required="true"
+                          aria-invalid={!!formErrors.location}
+                          aria-describedby={
+                            formErrors.location ? "location-error" : undefined
+                          }
+                          type="text"
+                          placeholder="Phase 7, Mohali"
+                          className={`w-full px-4 py-3.5 sm:py-3 rounded-xl border focus:ring-2 outline-none bg-white transition-all text-base sm:text-sm ${
+                            formErrors.location ? "border-red-500 focus:ring-red-500" : "border-google-border focus:ring-google-blue hover:border-google-grey/40"
+                          }`}
+                          value={formData.location}
+                          onChange={(e) => {
+                            setFormData({ ...formData, location: e.target.value });
+                            if (formErrors.location)
+                              setFormErrors({ ...formErrors, location: undefined });
+                          }}
+                        />
+                        {formErrors.location && (
+                          <p id="location-error" className="text-xs text-red-500 mt-1 font-medium">
+                            {formErrors.location}
+                          </p>
+                        )}
+                      </div>
+                      <div className="space-y-1.5">
+                        <label htmlFor="email" className="text-[11px] font-black text-google-grey uppercase tracking-wider block">
+                          Email (Optional)
+                        </label>
+                        <input
+                          id="email"
+                          aria-label="Email Address"
+                          aria-invalid={!!formErrors.email}
+                          aria-describedby={
+                            formErrors.email ? "email-error" : undefined
+                          }
+                          type="email"
+                          placeholder="rahul@example.com"
+                          className={`w-full px-4 py-3.5 sm:py-3 rounded-xl border focus:ring-2 outline-none bg-white transition-all text-base sm:text-sm ${
+                            formErrors.email ? "border-red-500 focus:ring-red-500" : "border-google-border focus:ring-google-blue hover:border-google-grey/40"
+                          }`}
+                          value={formData.email}
+                          onChange={(e) => {
+                            setFormData({ ...formData, email: e.target.value });
+                            if (formErrors.email)
+                              setFormErrors({ ...formErrors, email: undefined });
+                          }}
+                        />
+                        {formErrors.email && (
+                          <p id="email-error" className="text-xs text-red-500 mt-1 font-medium">
+                            {formErrors.email}
+                          </p>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="space-y-1">
-                      <label className="text-xs font-bold text-google-grey uppercase tracking-wider">
-                        Preferred Date *
-                      </label>
-                      <input
-                        id="booking-date"
-                        aria-label="Preferred Appointment Date"
-                        aria-required="true"
-                        aria-invalid={!!formErrors.date}
-                        aria-describedby={
-                          formErrors.date ? "date-error" : undefined
-                        }
-                        type="date"
-                        className={`w-full px-4 py-3 rounded-xl border focus:ring-2 outline-none transition-all ${formErrors.date ? "border-red-500 focus:ring-red-500" : "border-google-border focus:ring-google-blue"}`}
-                        value={formData.date}
-                        min={new Date().toISOString().split("T")[0]}
-                        onChange={(e) => {
-                          setFormData({ ...formData, date: e.target.value });
-                          if (formErrors.date)
-                            setFormErrors({ ...formErrors, date: undefined });
-                        }}
-                      />
-                      {formErrors.date && (
-                        <p
-                          id="date-error"
-                          className="text-xs text-red-500 mt-1"
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="space-y-1.5">
+                        <label htmlFor="booking-date" className="text-[11px] font-black text-google-grey uppercase tracking-wider block">
+                          Preferred Date *
+                        </label>
+                        <input
+                          id="booking-date"
+                          aria-label="Preferred Appointment Date"
+                          aria-required="true"
+                          aria-invalid={!!formErrors.date}
+                          aria-describedby={
+                            formErrors.date ? "date-error" : undefined
+                          }
+                          type="date"
+                          className={`w-full px-4 py-3.5 sm:py-3 rounded-xl border focus:ring-2 outline-none bg-white transition-all text-base sm:text-sm ${
+                            formErrors.date ? "border-red-500 focus:ring-red-500" : "border-google-border focus:ring-google-blue hover:border-google-grey/40"
+                          }`}
+                          value={formData.date}
+                          min={new Date().toISOString().split("T")[0]}
+                          onChange={(e) => {
+                            setFormData({ ...formData, date: e.target.value });
+                            if (formErrors.date)
+                              setFormErrors({ ...formErrors, date: undefined });
+                          }}
+                        />
+                        {formErrors.date && (
+                          <p id="date-error" className="text-xs text-red-500 mt-1 font-medium">
+                            {formErrors.date}
+                          </p>
+                        )}
+                      </div>
+                      <div className="space-y-1.5">
+                        <label htmlFor="booking-time" className="text-[11px] font-black text-google-grey uppercase tracking-wider block">
+                          Preferred Time *
+                        </label>
+                        <select
+                          id="booking-time"
+                          aria-label="Preferred Appointment Time Slot"
+                          aria-required="true"
+                          aria-invalid={!!formErrors.time}
+                          aria-describedby={
+                            formErrors.time ? "time-error" : undefined
+                          }
+                          className={`w-full px-4 py-3.5 sm:py-3 rounded-xl border focus:ring-2 outline-none bg-white transition-all text-base sm:text-sm ${
+                            formErrors.time ? "border-red-500 focus:ring-red-500" : "border-google-border focus:ring-google-blue hover:border-google-grey/40"
+                          }`}
+                          value={formData.time}
+                          onChange={(e) => {
+                            setFormData({ ...formData, time: e.target.value });
+                            if (formErrors.time)
+                              setFormErrors({ ...formErrors, time: undefined });
+                          }}
                         >
-                          {formErrors.date}
-                        </p>
-                      )}
-                    </div>
-                    <div className="space-y-1">
-                      <label className="text-xs font-bold text-google-grey uppercase tracking-wider">
-                        Preferred Time *
-                      </label>
-                      <select
-                        id="booking-time"
-                        aria-label="Preferred Appointment Time Slot"
-                        aria-required="true"
-                        aria-invalid={!!formErrors.time}
-                        aria-describedby={
-                          formErrors.time ? "time-error" : undefined
-                        }
-                        className={`w-full px-4 py-3 rounded-xl border focus:ring-2 outline-none transition-all bg-white ${formErrors.time ? "border-red-500 focus:ring-red-500" : "border-google-border focus:ring-google-blue"}`}
-                        value={formData.time}
-                        onChange={(e) => {
-                          setFormData({ ...formData, time: e.target.value });
-                          if (formErrors.time)
-                            setFormErrors({ ...formErrors, time: undefined });
-                        }}
-                      >
-                        <option value="">Select Slot</option>
-                        {Array.from({ length: 28 }).map((_, i) => {
-                          const totalMinutes = 6 * 60 + 30 + i * 30;
-                          const hour = Math.floor(totalMinutes / 60);
-                          const minute = totalMinutes % 60;
+                          <option value="">Select Slot</option>
+                          {Array.from({ length: 28 }).map((_, i) => {
+                            const totalMinutes = 6 * 60 + 30 + i * 30;
+                            const hour = Math.floor(totalMinutes / 60);
+                            const minute = totalMinutes % 60;
 
-                          const formattedHour = hour > 12 ? hour - 12 : hour;
-                          const ampm = hour >= 12 ? "PM" : "AM";
-                          const formattedMinute = minute === 0 ? "00" : "30";
-                          const time = `${formattedHour}:${formattedMinute} ${ampm}`;
-                          return (
-                            <option key={time} value={time}>
-                              {time}
-                            </option>
-                          );
-                        })}
-                      </select>
-                      {formErrors.time && (
-                        <p
-                          id="time-error"
-                          className="text-xs text-red-500 mt-1"
-                        >
-                          {formErrors.time}
-                        </p>
-                      )}
+                            const formattedHour = hour > 12 ? hour - 12 : hour;
+                            const ampm = hour >= 12 ? "PM" : "AM";
+                            const formattedMinute = minute === 0 ? "00" : "30";
+                            const time = `${formattedHour}:${formattedMinute} ${ampm}`;
+                            return (
+                              <option key={time} value={time}>
+                                {time}
+                              </option>
+                            );
+                          })}
+                        </select>
+                        {formErrors.time && (
+                          <p id="time-error" className="text-xs text-red-500 mt-1 font-medium">
+                            {formErrors.time}
+                          </p>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                  <button
-                    id="submit-booking"
-                    aria-label="Confirm Appointment Booking"
-                    disabled={bookingStatus === "submitting"}
-                    type="submit"
-                    className="w-full bg-google-blue text-white py-4 rounded-xl font-medium text-lg mt-4 shadow-lg shadow-google-blue/20 hover:bg-blue-700 transition-all disabled:opacity-50 flex items-center justify-center gap-2"
-                  >
-                    {bookingStatus === "submitting" ? (
-                      <>
-                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                        Processing...
-                      </>
-                    ) : (
-                      <>
-                        Confirm Appointment
-                        <ArrowRight className="w-5 h-5" />
-                      </>
-                    )}
-                  </button>
-                  <p className="text-[10px] text-center text-google-grey mt-4">
-                    By confirming, you agree to our privacy policy. Data is
-                    encrypted and stored securely.
-                  </p>
-                </form>
-              )}
-            </div>
-          </motion.div>
-        </div>
-      )}
+                    <button
+                      id="submit-booking"
+                      aria-label="Confirm Appointment Booking"
+                      disabled={bookingStatus === "submitting"}
+                      type="submit"
+                      className="w-full bg-google-blue text-white py-4 sm:py-3.5 rounded-xl font-bold text-base sm:text-lg mt-6 shadow-lg shadow-google-blue/15 hover:bg-blue-700 active:scale-[0.98] transition-all disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer"
+                    >
+                      {bookingStatus === "submitting" ? (
+                        <>
+                          <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                          Processing...
+                        </>
+                      ) : (
+                        <>
+                          Confirm Appointment
+                          <ArrowRight className="w-5 h-5" />
+                        </>
+                      )}
+                    </button>
+                    <p className="text-[10px] text-center text-google-grey mt-4 leading-relaxed px-2">
+                      By confirming, you agree to our privacy policy. Data is
+                      encrypted and stored securely. Preferred times are slots request.
+                    </p>
+                  </form>
+                )}
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
       {/* Inclusions / Clinical Details Modal */}
       {selectedInclusionsPackage && (
@@ -2839,7 +2977,7 @@ export default function App() {
                 <div>
                   <p className="text-xs font-extrabold uppercase tracking-wide text-amber-700">Patient Preparation Guideline</p>
                   <p className="text-[11px] leading-relaxed font-semibold mt-0.5 text-amber-900/90">
-                    A standard 10-12 hours overnight fasting is clinically required for blood sampling in these packages. Free home sample collection in Mohali is standard. Call <a href="tel:+9115459115" className="underline font-bold">+91 91154 59115</a> for setup.
+                    A standard 10-12 hours overnight fasting is clinically required for blood sampling in these packages. Free home sample collection in Mohali is standard. Call <a href="tel:+919115459115" className="underline font-bold">+91 91154 59115</a> for setup.
                   </p>
                 </div>
               </div>
@@ -2865,155 +3003,131 @@ export default function App() {
       {/* Mobile Floating Actions */}
       <div className="lg:hidden fixed bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-[0_4px_16px_rgba(0,0,0,0.15)] border border-google-border z-50">
         <a
-          href="tel:09115459115"
+          href="tel:+919115459115"
           className="flex items-center gap-2 text-sm font-medium text-google-blue px-3 py-1.5 border-r border-google-border pr-4"
         >
           <Phone className="w-4 h-4 fill-google-blue" />
           Call
         </a>
-        <button className="flex items-center gap-2 text-sm font-medium text-google-blue px-3 py-1.5">
+        <button
+          onClick={handleDirection}
+          className="flex items-center gap-2 text-sm font-medium text-google-blue px-3 py-1.5"
+        >
           <Navigation className="w-4 h-4" />
           Directions
         </button>
       </div>
 
-      <footer className="bg-[#1a1a1b] text-white pt-16 pb-24 md:pb-8 px-4 md:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
-            <div className="space-y-6">
+      <div className="w-full h-[3px] bg-gradient-to-r from-google-blue via-[#17b978] to-[#ff8a00] opacity-80" />
+      <footer className="bg-[#0c0d0f] text-white pt-10 pb-24 md:pb-8 px-4 md:px-8 border-t border-white/5 relative">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-google-blue/5 rounded-full blur-[100px] pointer-events-none" />
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+            {/* Column 1: Brand Identity & Unified Digital Connections */}
+            <div className="space-y-4">
               <div className="flex flex-col space-y-1">
-                <div className="flex items-baseline">
-                  <img
-                    src="https://media.agilus.in/consumer-web/agilusLogo.png"
-                    alt="Agilus Diagnostics"
-                    className="h-10 w-auto object-contain brightness-0 invert"
-                  />
-                </div>
-                <p className="text-[9px] text-[#E85D23] font-bold tracking-[0.05em] uppercase pt-2">
-                  Authorised Home Visit Partner in Mohali
-                </p>
+                <img
+                  src="https://media.agilus.in/consumer-web/agilusLogo.png"
+                  alt="Agilus Diagnostics"
+                  className="h-8 w-auto object-contain brightness-0 invert self-start"
+                />
+                <span className="text-[9px] bg-orange-500/10 text-[#FF8A00] font-black tracking-wider uppercase px-2 py-0.5 rounded border border-orange-500/20 w-fit mt-2">
+                  Authorised Home Visit Partner
+                </span>
               </div>
-              <p className="text-sm text-google-grey mb-8 leading-relaxed mt-6">
-                Agilus Diagnostics Mohali Formerly SRL Lab Mohali is a leading
-                pathology center in Sector 69. We are NABL accredited and
-                specialize in clinical blood tests, home collection, and
-                MNC-standard diagnostic precision for patients in Mohali and
-                Chandigarh.
+              <p className="text-xs text-google-grey leading-relaxed pr-2">
+                Agilus Diagnostics Mohali (Formerly SRL Lab) is Mohali's premier pathology center in Sector 69. Offering NABL standard clinical integrity, seamless home collection, and certified diagnostic precision.
               </p>
-              <div className="flex flex-wrap items-center gap-4 mt-8">
-                <a
-                  title="Instagram"
-                  href="https://www.instagram.com/srl_lab_mohali_home_collection/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#E1306C] hover:-translate-y-1 transition-all cursor-pointer"
-                >
-                  <Instagram className="w-5 h-5 text-white" />
-                </a>
-                <a
-                  title="Facebook"
-                  href="https://www.facebook.com/SRLLabMohali/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#1877F2] hover:-translate-y-1 transition-all cursor-pointer"
-                >
-                  <Facebook className="w-5 h-5 text-white" />
-                </a>
-                <a
-                  title="JustDial"
-                  href="https://www.justdial.com/Mohali/Srl-Lab-Mohali-Post-Office-Ptl-Chowk/0172PX172-X172-241016220516-Q1B9_BZDET"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#FF8A00] hover:-translate-y-1 transition-all cursor-pointer font-black text-sm text-white"
-                >
-                  JD
-                </a>
-                <a
-                  title="Apple Maps"
-                  href="https://maps.apple.com/?address=Booth%20No%2012%0ASector%2069,%20Sahibzada%20Ajit%20Singh%20Nagar%0AMohali%0APunjab%20160069%0AIndia&auid=17299077469199884354&ll=30.689314,76.715340&lsp=9902&q=SRL%20Lab%20Mohali%20-%20Home%20Collection&_ext=CjMKBQgEEIwBCgQIBRADCgUIBhDXAwoECAoQAAoECFIQAwoECFUQEQoECFkQBAoFCMEBEAESJinROHk2UK8+QDEfAv10ci1TQDnlmgKZnbE+QEEmoZnMHS5TQFAE"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#5E5E5E] hover:-translate-y-1 transition-all cursor-pointer"
-                >
-                  <Map className="w-5 h-5 text-white" />
-                </a>
-                <a
-                  title="Google Maps"
-                  href="https://maps.app.goo.gl/tPN5MedC4LLAbe4P8"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#4285F4] hover:-translate-y-1 transition-all cursor-pointer"
-                >
-                  <MapPin className="w-5 h-5 text-white" />
-                </a>
-              </div>
-
-              <div className="mt-8 border-t border-white/10 pt-6">
-                <h4 className="text-xs font-bold uppercase tracking-widest text-google-grey mb-4">
-                  Verified Citations (Google Aligned)
-                </h4>
-                <div className="flex flex-wrap items-center gap-3">
+              
+              {/* Eye-catching unified socials & citations directory */}
+              <div className="pt-2">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-google-grey mb-2.5">
+                  Digital Connect Network
+                </p>
+                <div className="flex flex-wrap items-center gap-2">
                   <a
-                    title="JustDial"
+                    title="Instagram"
+                    href="https://www.instagram.com/srl_lab_mohali_home_collection/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#E1306C] flex items-center justify-center hover:-translate-y-0.5 transition-all cursor-pointer border border-white/10"
+                  >
+                    <Instagram className="w-4 h-4 text-white" />
+                  </a>
+                  <a
+                    title="Facebook"
+                    href="https://www.facebook.com/SRLLabMohali/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#1877F2] flex items-center justify-center hover:-translate-y-0.5 transition-all cursor-pointer border border-white/10"
+                  >
+                    <Facebook className="w-4 h-4 text-white" />
+                  </a>
+                  <a
+                    title="JustDial Portfolio"
                     href="https://www.justdial.com/Mohali/Srl-Lab-Mohali-Post-Office-Ptl-Chowk/0172PX172-X172-241016220516-Q1B9_BZDET"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#FF8A00] transition-colors font-black text-[10px] text-white tooltip-trigger"
-                    aria-label="JustDial"
+                    className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#FF8A00] flex items-center justify-center hover:-translate-y-0.5 transition-all cursor-pointer font-black text-xs text-white border border-white/10"
                   >
                     JD
                   </a>
                   <a
-                    title="Sulekha"
-                    href="https://www.sulekha.com/srl-lab-mohali"
+                    title="Apple Maps Directions"
+                    href="https://maps.apple.com/?address=Booth%20No%2012%0ASector%2069,%20Sahibzada%20Ajit%20Singh%20Nagar%0AMohali%0APunjab%20160069%0AIndia&auid=17299077469199884354&ll=30.689314,76.715340&lsp=9902&q=SRL%20Lab%20Mohali%20-%20Home%20Collection&_ext=CjMKBQgEEIwBCgQIBRADCgUIBhDXAwoECAoQAAoECFIQAwoECFUQEQoECFkQBAoFCMEBEAESJinROHk2UK8+QDEfAv10ci1TQDnlmgKZnbE+QEEmoZnMHS5TQFAE"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#FFB900] transition-colors font-black text-[10px] text-white"
-                    aria-label="Sulekha"
+                    className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#7d7d7d] flex items-center justify-center hover:-translate-y-0.5 transition-all cursor-pointer border border-white/10"
+                  >
+                    <Map className="w-4 h-4 text-white" />
+                  </a>
+                  <a
+                    title="Google Maps Location"
+                    href="https://maps.app.goo.gl/tPN5MedC4LLAbe4P8"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-full bg-white/5 hover:bg-google-blue flex items-center justify-center hover:-translate-y-0.5 transition-all cursor-pointer border border-white/10"
+                  >
+                    <MapPin className="w-4 h-4 text-white" />
+                  </a>
+                  <div className="h-4 w-px bg-white/10 mx-0.5"></div>
+                  <a
+                    title="Sulekha Verified Profile"
+                    href="https://www.sulekha.com/srl-diagnostics-mohali-sector-59-mohali-contact-address"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#FFA500] flex items-center justify-center hover:-translate-y-0.5 transition-all cursor-pointer font-black text-[10px] text-white border border-white/10"
                   >
                     S
                   </a>
                   <a
-                    title="IndiaMart"
-                    href="https://www.indiamart.com/srl-diagnostics-mohali"
+                    title="IndiaMart Listing"
+                    href="https://www.indiamart.com/s-r-l-lab-collection/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#002f6c] transition-colors font-black text-[10px] text-white"
-                    aria-label="IndiaMart"
+                    className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#02447A] flex items-center justify-center hover:-translate-y-0.5 transition-all cursor-pointer font-black text-[10px] text-white border border-white/10"
                   >
                     IM
                   </a>
                   <a
-                    title="Mediyaar"
-                    href="https://mediyaar.com/lab/srl-lab-mohali"
+                    title="Magicpin Healthcare"
+                    href="https://magicpin.in/Chandigarh/Sector-69/Healthcare/Srl-Lab-Mohali/store/1c24c08"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#00c853] transition-colors font-black text-[10px] text-white"
-                    aria-label="Mediyaar"
+                    className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#FF3E6C] flex items-center justify-center hover:-translate-y-0.5 transition-all cursor-pointer font-black text-[10px] text-white border border-white/10"
                   >
-                    M
-                  </a>
-                  <div className="h-4 w-px bg-white/20 mx-1"></div>
-                  <a
-                    title="Verified on Google Business"
-                    href="https://maps.app.goo.gl/tPN5MedC4LLAbe4P8"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-[11px] font-bold text-google-grey hover:text-white transition-colors"
-                    aria-label="Google Business"
-                  >
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#4285F4]" /> GMB
-                    Profile
+                    MP
                   </a>
                 </div>
               </div>
             </div>
 
+            {/* Column 2: Streamlined Services & Dynamic Download */}
             <div>
-              <h4 className="text-sm font-bold uppercase tracking-widest mb-6 text-google-grey">
-                Our Services
-              </h4>
-              <ul className="space-y-4 text-sm text-google-grey">
+              <p className="text-xs font-black uppercase tracking-widest text-google-grey mb-4 block border-l-2 border-google-blue pl-2">
+                Diagnostic Scope
+              </p>
+              <ul className="space-y-3.5 text-xs text-google-grey">
                 <li>
                   <a
                     href="#services"
@@ -3025,8 +3139,8 @@ export default function App() {
                     }}
                     className="hover:text-white transition-colors cursor-pointer flex items-center gap-2 group"
                   >
-                    <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform text-google-blue" />
-                    <span>Pathology Lab</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform text-google-blue" />
+                    <span>Pathology & Blood Checks</span>
                   </a>
                 </li>
                 <li>
@@ -3040,8 +3154,8 @@ export default function App() {
                     }}
                     className="hover:text-white transition-colors cursor-pointer flex items-center gap-2 group"
                   >
-                    <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform text-google-blue" />
-                    <span>Home Collection</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform text-google-blue" />
+                    <span>Free Home Blood Sample Collection</span>
                   </a>
                 </li>
                 <li>
@@ -3055,115 +3169,102 @@ export default function App() {
                     }}
                     className="hover:text-white transition-colors cursor-pointer flex items-center gap-2 group"
                   >
-                    <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform text-google-blue" />
-                    <span>Wellness Packages</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform text-google-blue" />
+                    <span>Comprehensive Wellness Packages</span>
                   </a>
                 </li>
-                <li>
+                <li className="pt-2">
                   <a
-                    href="#services"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      document
-                        .getElementById("services")
-                        ?.scrollIntoView({ behavior: "smooth" });
-                    }}
-                    className="hover:text-white transition-colors cursor-pointer flex items-center gap-2 group"
-                  >
-                    <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform text-google-blue" />
-                    <span>Specialized Tests</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-sm font-bold uppercase tracking-widest mb-6 text-google-grey">
-                Quick Links
-              </h4>
-              <ul className="space-y-4 text-sm text-google-grey">
-                <li>
-                  <a
-                    href="https://srllimited.com/patient-report"
+                    href="https://reports.agilus.in/secure/login.aspx"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-white transition-colors cursor-pointer flex items-center gap-2 group"
+                    className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-google-blue/15 hover:bg-google-blue/25 text-google-blue hover:text-white border border-google-blue/20 transition-all font-bold text-[11px] uppercase tracking-wider cursor-pointer"
                   >
-                    <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform text-google-blue" />
-                    <span>Download Reports</span>
+                    <Download className="w-3.5 h-3.5" />
+                    Download Patient Reports
                   </a>
                 </li>
               </ul>
             </div>
 
+            {/* Column 3: Contact Channels & Patient Support */}
             <div>
-              <h4 className="text-sm font-bold uppercase tracking-widest mb-6 text-google-grey">
-                Support
-              </h4>
-              <ul className="space-y-4 text-sm text-google-grey">
+              <p className="text-xs font-black uppercase tracking-widest text-google-grey mb-4 block border-l-2 border-green-500 pl-2">
+                Patient Support
+              </p>
+              <ul className="space-y-3 text-xs text-google-grey">
                 <li
                   onClick={handleCall}
-                  className="flex items-start gap-3 hover:text-white transition-colors cursor-pointer group"
+                  className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-white/5 hover:text-white transition-all cursor-pointer group border border-transparent hover:border-white/5"
                 >
-                  <Phone className="w-4 h-4 mt-0.5 text-google-blue group-hover:scale-110 transition-transform" />
-                  <span>091154 59115</span>
+                  <Phone className="w-4 h-4 text-google-blue group-hover:scale-110 transition-transform shrink-0" />
+                  <span className="font-bold">+91 91154 59115 (Call Desk)</span>
                 </li>
                 <li
                   onClick={handleWhatsApp}
-                  className="flex items-start gap-3 hover:text-white transition-colors cursor-pointer group"
+                  className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-white/5 hover:text-white transition-all cursor-pointer group border border-transparent hover:border-white/5"
                 >
-                  <Smartphone className="w-4 h-4 mt-0.5 text-agilus-green group-hover:scale-110 transition-transform" />
-                  <span>WhatsApp Chat</span>
+                  <Smartphone className="w-4 h-4 text-agilus-green group-hover:scale-110 transition-transform shrink-0" />
+                  <span className="font-bold text-agilus-green">WhatsApp Home Collection</span>
                 </li>
                 <li
                   onClick={handleDirection}
-                  className="flex items-start gap-3 hover:text-white transition-colors cursor-pointer group"
+                  className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-white/5 hover:text-white transition-all cursor-pointer group border border-transparent hover:border-white/5"
                 >
-                  <MapPin className="w-4 h-4 mt-0.5 text-red-500 group-hover:scale-110 transition-transform" />
-                  <span>Sector 69 Market, Mohali</span>
+                  <MapPin className="w-4 h-4 text-red-500 group-hover:scale-110 transition-transform shrink-0 mt-0.5" />
+                  <span className="leading-tight">Booth 12, Gmada Market, Near Gurukul School, Sector 69</span>
                 </li>
-                <li className="flex items-start gap-3 hover:text-white transition-colors cursor-pointer">
-                  <MessageSquare className="w-4 h-4 mt-0.5 text-google-blue" />
-                  <span className="break-all">help@srllabmohali.in</span>
+                <li className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-white/5 hover:text-white transition-all group border border-transparent hover:border-white/5">
+                  <MessageSquare className="w-4 h-4 text-google-blue shrink-0" />
+                  <a href="mailto:Agilusmohali69@gmail.com" className="break-all font-medium hover:underline">Agilusmohali69@gmail.com</a>
                 </li>
               </ul>
             </div>
 
-            <div>
-              <h4 className="text-sm font-bold uppercase tracking-widest mb-6 text-google-grey">
-                Certifications
-              </h4>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-white/5 p-4 rounded-xl flex flex-col items-center justify-center text-center border border-white/10 hover:border-google-blue/30 transition-colors">
-                  <span className="text-lg font-bold text-white">NABL</span>
-                  <span className="text-[10px] text-google-grey uppercase font-bold tracking-widest">
+            {/* Column 4: NABL Credentials & Safety Badges */}
+            <div className="space-y-4">
+              <p className="text-xs font-black uppercase tracking-widest text-google-grey mb-4 block border-l-2 border-[#ff8a00] pl-2">
+                Quality Credentials
+              </p>
+              <div className="grid grid-cols-2 gap-2.5">
+                <div className="bg-white/[0.02] hover:bg-white/[0.06] p-3 rounded-2xl flex flex-col items-center justify-center text-center border border-white/5 hover:border-google-blue/20 transition-all">
+                  <span className="text-sm font-black text-white tracking-wide">NABL</span>
+                  <span className="text-[9px] text-google-grey uppercase font-bold tracking-wider mt-0.5">
                     Accredited Lab
                   </span>
                 </div>
-                <div className="bg-white/5 p-4 rounded-xl flex flex-col items-center justify-center text-center border border-white/10 hover:border-google-blue/30 transition-colors">
-                  <span className="text-lg font-bold text-white">ISO</span>
-                  <span className="text-[10px] text-google-grey uppercase font-bold tracking-widest">
+                <div className="bg-white/[0.02] hover:bg-white/[0.06] p-3 rounded-2xl flex flex-col items-center justify-center text-center border border-white/5 hover:border-google-blue/20 transition-all">
+                  <span className="text-sm font-black text-white tracking-wide">ISO</span>
+                  <span className="text-[9px] text-google-grey uppercase font-bold tracking-wider mt-0.5">
                     9001 Certified
                   </span>
                 </div>
               </div>
+              <a
+                href="https://maps.app.goo.gl/tPN5MedC4LLAbe4P8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between p-3 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-google-blue/20 hover:bg-white/[0.04] transition-all group"
+              >
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-google-blue" />
+                  <span className="text-xs font-bold text-google-grey group-hover:text-white transition-colors">Verified Google Profile</span>
+                </div>
+                <ArrowRight className="w-3.5 h-3.5 text-google-grey/60 group-hover:translate-x-1 transition-transform" />
+              </a>
             </div>
           </div>
 
-          <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
-            <p className="text-xs text-google-grey text-center md:text-left">
-              © {new Date().getFullYear()} SRL Lab Mohali (Agilus Diagnostics). Premium Diagnostic
-              Partner.
+          <div className="pt-6 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
+            <p className="text-xs text-google-grey">
+              © {new Date().getFullYear()} SRL Lab Mohali (Agilus Diagnostics). All clinical rights reserved.
             </p>
-            <div className="flex flex-wrap justify-center gap-8 text-[10px] font-bold text-google-grey uppercase tracking-widest">
+            <div className="flex flex-wrap justify-center gap-6 text-[10px] font-black text-google-grey uppercase tracking-widest">
               <a href="#" className="hover:text-white transition-colors">
-                Privacy
+                Privacy Policy
               </a>
               <a href="#" className="hover:text-white transition-colors">
-                Terms
-              </a>
-              <a href="#" className="hover:text-white transition-colors">
-                Contact
+                Terms and Conditions
               </a>
               <a href="/sitemap.xml" className="hover:text-white transition-colors">
                 Sitemap
@@ -3178,9 +3279,9 @@ export default function App() {
         initial={{ y: 200 }}
         animate={{ y: 0 }}
         transition={{ delay: 1, type: "spring", stiffness: 100 }}
-        className="fixed bottom-6 left-4 right-4 z-50 lg:hidden"
+        className="hidden lg:hidden"
       >
-        <div className="bg-white/80 backdrop-blur-2xl border border-white/40 shadow-[0_20px_50px_rgba(0,0,0,0.2)] rounded-[2.5rem] p-2 flex items-center gap-2 overflow-hidden border border-white/50 premium-shadow">
+        <div className="hidden bg-white/80 backdrop-blur-2xl border border-white/40 shadow-[0_20px_50px_rgba(0,0,0,0.2)] rounded-[2.5rem] p-2 flex items-center gap-2 overflow-hidden border border-white/50 premium-shadow">
           <button
             onClick={handleCall}
             className="flex-1 bg-[#202124] text-white py-4 px-6 rounded-full flex items-center justify-center gap-2 active:scale-95 transition-transform"
@@ -3569,6 +3670,18 @@ function DirectoryLink({
   icon: string;
   url: string;
 }) {
+  // Brand specific styling mimicking official app/site icon themes
+  let brandIconClass = "bg-google-light-grey text-google-grey group-hover:bg-google-blue group-hover:text-white";
+  if (name.toLowerCase() === "justdial") {
+    brandIconClass = "bg-orange-50 text-orange-600 border border-orange-200 group-hover:bg-orange-500 group-hover:text-white group-hover:border-transparent";
+  } else if (name.toLowerCase() === "sulekha") {
+    brandIconClass = "bg-yellow-50 text-yellow-600 border border-yellow-200 group-hover:bg-yellow-500 group-hover:text-white group-hover:border-transparent";
+  } else if (name.toLowerCase() === "indiamart") {
+    brandIconClass = "bg-sky-50 text-sky-900 border border-sky-200 group-hover:bg-[#002f6c] group-hover:text-white group-hover:border-transparent";
+  } else if (name.toLowerCase() === "magicpin") {
+    brandIconClass = "bg-pink-50 text-pink-600 border border-pink-200 group-hover:bg-[#fd3e66] group-hover:text-white group-hover:border-transparent";
+  }
+
   return (
     <a
       href={url}
@@ -3576,7 +3689,7 @@ function DirectoryLink({
       rel="noopener noreferrer"
       className="flex flex-col items-center gap-2 p-3 bg-white rounded-xl border border-google-border hover:border-google-blue hover:shadow-md transition-all group"
     >
-      <div className="w-8 h-8 rounded-lg bg-google-light-grey flex items-center justify-center text-xs font-black text-google-grey group-hover:bg-google-blue/10 group-hover:text-google-blue">
+      <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs font-black transition-all duration-300 ${brandIconClass}`}>
         {icon}
       </div>
       <span className="text-[11px] font-bold text-google-grey group-hover:text-[#202124]">
