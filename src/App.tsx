@@ -13,11 +13,11 @@ import {
 } from "react-router-dom";
 import TestDetailPage from "./pages/TestDetailPage";
 import { BottomNav } from "./components/BottomNav";
-const imagePhoto1 = "/src/assets/images/agilus-diagnostics-mohali-exterior.jpg";
-const imageClinical = "/src/assets/images/agilus-diagnostics-clinical-phlebotomy.jpg";
-const imageJourney = "/src/assets/images/srl-diagnostics-mohali-history-1997.jpg";
-const imageTrusted = "/src/assets/images/agilus-diagnostics-laboratory-equipment.jpg";
-const imageOverview5 = "/src/assets/images/agilus-diagnostics-medical-facility-interior.jpg";
+import imagePhoto1 from "./assets/images/agilus-diagnostics-mohali-exterior.jpg";
+import imageClinical from "./assets/images/agilus-diagnostics-clinical-phlebotomy.jpg";
+import imageJourney from "./assets/images/srl-diagnostics-mohali-history-1997.jpg";
+import imageTrusted from "./assets/images/agilus-diagnostics-laboratory-equipment.jpg";
+import imageOverview5 from "./assets/images/agilus-diagnostics-medical-facility-interior.jpg";
 import { testMenu } from "./constants";
 import { LOCALIZATION, formatTemplate } from "./localization";
 import {
@@ -66,6 +66,9 @@ import {
   ClipboardCheck,
   Smartphone,
   Download,
+  ArrowUpDown,
+  ArrowUp,
+  ArrowDown,
 } from "lucide-react";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
@@ -441,21 +444,108 @@ export default function App() {
     }
   };
 
-  const centerPhotos = [
+  const allGalleryPhotos = [
     {
       url: imagePhoto1,
-      title: "Diagnostic Lab",
+      title: "Agilus Diagnostics Centre Exterior",
+      category: "Exterior & Building",
+      desc: "Strategically located in Sector 69 near Gurukul World School for stress-free street-level patient parking and fast direct laboratory access."
+    },
+    {
+      url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFzkCsfd2SGjTxPnXaehVMK5tGHGEwcQ_OAPPHgXqQQGzvN1zq1oMhllgpbWDOeTBBFQDb2Fyu5l6L3MOeGzMEhfHcVHnmVXOHXL9jHP_ydQ9vHEKMYeJhQU5-ljy-LB9ff2v01_EenAqv3=s680-w680-h510-rw",
+      title: "Main Entrance & Center Front Signage",
+      category: "Exterior & Building",
+      desc: "Prominent front entrance and authorized partner branding, offering direct step-in entry for patients in Sector 69."
+    },
+    {
+      url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFUPfhJG4oXwMlO5RHFaW_xxHcp0lDzp-fYq9lDmQZpv6zKWw6UFcg5G1mR8xglq8Oef8nDrT7arIt84IU_t-C0ue2Lxc200MiHI-Fl7Rlf2U2FzIr7XcAlEkO48g7SC5qnfozA5vo8isl8=s680-w680-h510-rw",
+      title: "Authorized Reception & Registration Desk",
+      category: "Reception Area",
+      desc: "Warm and organized administrative desk equipped with dynamic digital ticketing and computer systems for quick test processing."
+    },
+    {
+      url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFSK8yeKeMYSUYgIGNfy0dELAZVAsxuW-wuRB0anoVLq_65kwqLsgWRB9SBpnpRPeHqeKjQN6AmbErx76bsJVp_OIxjPHJDvflWpYqnwvMQM7rMy7lDuEAY0UVkjdHp9W7f21KxNYuG7Ytm=s680-w680-h510-rw",
+      title: "NABL Standard Bio-Analytical Analyzers Desk",
+      category: "Laboratory Facility",
+      desc: "High-throughput fully automated immuno-chemistry and biochemistry analyzers providing speed, integrity, and clinical precision."
+    },
+    {
+      url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFlaB5_pzNKrnwe-Fg59wtnHZ1Bz5TfAReMu3lt7c1FY7juFoyslIKyFbkyjVVZh1Vt3RFh7B3IZZR3p6WWFPJ9wLJeVyTmJiBO0Kijz8UCafJMd8LE4dImeGdHDVYkq7ti9fOciA=s680-w680-h510-rw",
+      title: "Sterilized Phlebotomy Chair & Sampling Station",
+      category: "Patient Bay",
+      desc: "Supervised clinical station for blood drawing, featuring ergonomic safety recliners and hygienic, single-use barcoded lancets."
+    },
+    {
+      url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEikeVOTEhzyYvKFJocJklO_z_IXjC386ZNX98CTy8b5gPiIJ-dy_9ekEp1jncOShvth864-7zt2w2xsRQYFdVEQvEmSY_74NPQrT5e9ChZUSQS9YjhNyIPDonHVSjJ4Fp6_mmWlJTuZtE=s680-w680-h510-rw",
+      title: "Biochemical Diagnostics Division Unit",
+      category: "Laboratory Facility",
+      desc: "Clinical grade instrumentation for hormone assays, metabolic panels, and dynamic thyroid diagnostics controls."
+    },
+    {
+      url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEghvda5TCSLXFak8DpuiukpBYwQwEl5ANdsYK2MvLfLiukqL8PzA_EPOw5ixTZHoybH7rBdqA8Fp_agLOa5FbKKcrvzIyZqR9XQdnLb1fPSzW6bBSmCxZktLJYNiUbEeIHxSmfmg=s680-w680-h510-rw",
+      title: "Professional Testing Area & Diagnostic Setup",
+      category: "Laboratory Facility",
+      desc: "Advanced clinical analyzer setup overseen by certified pathology professionals ensuring zero cross-contamination and genuine validation."
+    },
+    {
+      url: imageClinical,
+      title: "Phlebotomy & Sample Collection Area",
+      category: "Patient Bay",
+      desc: "Safe, sterile, and fully sanitized collection lounge with specialized comfort recliners designed for gentle and rapid blood drawing."
     },
     {
       url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAHndBvgZhfzPgmxk75cT17C_j0JmW5K5E2ScPyz7IblrwEZxMAhL1CW5HrUiHexrhu0D1K0D2wJ9HouyYFd3bskL0qMVO-XGI6t0ygTxxoR9sf8L2BXWlnsjh09HMJHAWQjX49znVLOcwoP=s680-w680-h510-rw",
-      title: "Testing Facility",
+      title: "Bio-Testing Automated Analyzers Unit",
+      category: "Laboratory Facility",
+      desc: "Advanced fully-automated clinical testing and immunoassay machinery, significantly minimizing human contact and delivering raw authentic analysis."
+    },
+    {
+      url: imageTrusted,
+      title: "State-of-the-Art Laboratory Equipment",
+      category: "Laboratory Facility",
+      desc: "Fully equipped testing chamber featuring advanced chemistry and hematology instruments verified daily with NABL standard controls."
     },
     {
       url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEiB5ryxWLcsUYA35H_Gk00Q5-Cvk1R-FSoQ3GFPdOrS5oRePSFSWNZKPyiAkIc_uAIHnRfOWUVHdia-I7xS-mq0korrLo9Udb4qeJBu4QgRG4hmWp6tsro-hZBWUZyUER-dZ11sbXFNZs=s680-w680-h510-rw",
-      title: "Professional Pathology",
+      title: "Pathology Analyzer & Professional Team Setup",
+      category: "Laboratory Facility",
+      desc: "Clinical grade diagnostic station utilizing next-gen automated equipment for hematology, biochemistry, and hormone markers verification."
+    },
+    {
+      url: imageOverview5,
+      title: "Polished Reception & Comfort Waiting Lounge",
+      category: "Reception Area",
+      desc: "Air-conditioned reception lobby providing immediate digital assistance, computerized token system, and safe seating distance."
+    },
+    {
+      url: imageJourney,
+      title: "Clinical Trust Legacy Since 1997",
+      category: "About SRL Agilus",
+      desc: "Pioneering pathology services across Mohali with unmatched report accuracy, accredited standards, and prompt local trust."
     },
     {
       url: "https://lh3.googleusercontent.com/p/AF1QipPilDAb5f4awWB323dDwPt0C2kUkJQqyE7Zs3AP=s680-w680-h510-rw",
+      title: "Hygienic Consumables Storage & Sterile Prep",
+      category: "Patient Bay",
+      desc: "Temperature-regulated medical storage room highlighting sterilized single-use blood-drawing kits and barcode tracking solutions."
+    }
+  ];
+
+  const centerPhotos = [
+    {
+      url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFzkCsfd2SGjTxPnXaehVMK5tGHGEwcQ_OAPPHgXqQQGzvN1zq1oMhllgpbWDOeTBBFQDb2Fyu5l6L3MOeGzMEhfHcVHnmVXOHXL9jHP_ydQ9vHEKMYeJhQU5-ljy-LB9ff2v01_EenAqv3=s680-w680-h510-rw",
+      title: "Diagnostic Lab",
+    },
+    {
+      url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFUPfhJG4oXwMlO5RHFaW_xxHcp0lDzp-fYq9lDmQZpv6zKWw6UFcg5G1mR8xglq8Oef8nDrT7arIt84IU_t-C0ue2Lxc200MiHI-Fl7Rlf2U2FzIr7XcAlEkO48g7SC5qnfozA5vo8isl8=s680-w680-h510-rw",
+      title: "Testing Facility",
+    },
+    {
+      url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFSK8yeKeMYSUYgIGNfy0dELAZVAsxuW-wuRB0anoVLq_65kwqLsgWRB9SBpnpRPeHqeKjQN6AmbErx76bsJVp_OIxjPHJDvflWpYqnwvMQM7rMy7lDuEAY0UVkjdHp9W7f21KxNYuG7Ytm=s680-w680-h510-rw",
+      title: "Professional Pathology",
+    },
+    {
+      url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFlaB5_pzNKrnwe-Fg59wtnHZ1Bz5TfAReMu3lt7c1FY7juFoyslIKyFbkyjVVZh1Vt3RFh7B3IZZR3p6WWFPJ9wLJeVyTmJiBO0Kijz8UCafJMd8LE4dImeGdHDVYkq7ti9fOciA=s680-w680-h510-rw",
       title: "Home Sample Collection",
     },
   ];
@@ -805,6 +895,9 @@ export default function App() {
     "overview" | "services" | "reviews" | "about"
   >("overview");
 
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  const [activeGalleryIndex, setActiveGalleryIndex] = useState(0);
+
   const [darkMode, setDarkMode] = useState(() => {
     return (
       localStorage.getItem("theme") === "dark" ||
@@ -822,6 +915,41 @@ export default function App() {
       localStorage.setItem("theme", "light");
     }
   }, [darkMode]);
+
+  const [testSortField, setTestSortField] = useState<"name" | "tat" | null>(null);
+  const [testSortDirection, setTestSortDirection] = useState<"asc" | "desc">("asc");
+
+  const sortedTestMenu = useMemo(() => {
+    if (!testSortField) return testMenu;
+
+    return [...testMenu].sort((a, b) => {
+      let comparison = 0;
+      if (testSortField === "name") {
+        comparison = (a.name || "").localeCompare(b.name || "");
+      } else if (testSortField === "tat") {
+        const getTatValue = (tat: string) => {
+          if (!tat) return 999;
+          const match = tat.match(/(\d+)(?:\s*-\s*(\d+))?/);
+          if (!match) return 999;
+          const minVal = parseInt(match[1], 10);
+          const maxVal = match[2] ? parseInt(match[2], 10) : minVal;
+          return (minVal + maxVal) / 2; // average hours
+        };
+        comparison = getTatValue(a.tat) - getTatValue(b.tat);
+      }
+
+      return testSortDirection === "asc" ? comparison : -comparison;
+    });
+  }, [testSortField, testSortDirection]);
+
+  const handleSort = (field: "name" | "tat") => {
+    if (testSortField === field) {
+      setTestSortDirection((prev) => (prev === "asc" ? "desc" : "asc"));
+    } else {
+      setTestSortField(field);
+      setTestSortDirection("asc");
+    }
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -1029,6 +1157,8 @@ export default function App() {
               <img
                 src="https://media.agilus.in/consumer-web/agilusLogo.png"
                 alt="Agilus Diagnostics"
+                width={150}
+                height={48}
                 className="h-8 md:h-12 w-auto object-contain flex-shrink-0 cursor-pointer transition-all duration-200 hover:scale-[1.03]"
               />
             </RouterLink>
@@ -1118,7 +1248,7 @@ export default function App() {
             aria-labelledby="overview-tab"
             className="lg:col-span-12 scroll-mt-32 md:scroll-mt-40"
           >
-            <div className="relative group w-full h-[250px] sm:h-[400px] md:h-[500px] bg-black rounded-3xl overflow-hidden shadow-2xl border border-google-border">
+            <div className="relative group w-full h-[380px] sm:h-[440px] md:h-[500px] bg-black rounded-3xl overflow-hidden shadow-2xl border border-google-border">
               <Swiper
                 modules={[
                   Autoplay,
@@ -1162,7 +1292,7 @@ export default function App() {
                 ))}
               </Swiper>
 
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/95 via-black/60 to-black/10 p-6 md:p-12 pointer-events-none z-10">
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/95 via-black/70 to-black/10 p-4 sm:p-8 md:p-12 pointer-events-none z-10">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={`text-${currentImageIndex}`}
@@ -1187,38 +1317,38 @@ export default function App() {
                   >
                     <motion.div
                       variants={{
-                        hidden: { opacity: 0, y: 30 },
+                        hidden: { opacity: 0, y: 20 },
                         visible: {
                           opacity: 1,
                           y: 0,
                           transition: { duration: 0.6, ease: "easeOut" },
                         },
                       }}
-                      className="flex items-center gap-2 mb-4"
+                      className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-2 sm:mb-4"
                     >
-                      <span className="text-xs font-black text-white bg-agilus-green px-4 py-1.5 rounded-full uppercase tracking-[0.2em] shadow-lg border border-white/20">
+                      <span className="text-[10px] sm:text-xs font-black text-white bg-agilus-green px-3 sm:px-4 py-1 sm:py-1.5 rounded-full uppercase tracking-[0.15em] sm:tracking-[0.2em] shadow-lg border border-white/20">
                         Best Diagnostic Lab in Mohali
                       </span>
-                      <div className="flex items-center bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-[10px] text-white font-black uppercase tracking-widest border border-white/20">
-                        <CheckCircle2 className="w-3 h-3 text-agilus-green mr-2" />
+                      <div className="flex items-center bg-white/10 backdrop-blur-md px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[9px] sm:text-[10px] text-white font-black uppercase tracking-widest border border-white/20">
+                        <CheckCircle2 className="w-3 h-3 text-agilus-green mr-1.5 sm:mr-2" />
                         NABL Accredited
                       </div>
                     </motion.div>
                     <motion.h1
                       variants={{
-                        hidden: { opacity: 0, y: 30 },
+                        hidden: { opacity: 0, y: 20 },
                         visible: {
                           opacity: 1,
                           y: 0,
                           transition: { duration: 0.6, ease: "easeOut" },
                         },
                       }}
-                      className="text-5xl md:text-7xl font-black text-white mb-4 leading-[0.9] drop-shadow-2xl tracking-tighter"
+                      className="text-2xl sm:text-5xl md:text-7xl font-black text-white mb-2 sm:mb-4 leading-[1.1] sm:leading-[0.9] drop-shadow-2xl tracking-tighter"
                     >
                       {heroImages[currentImageIndex].title ===
                       "Trusted Diagnostics" ? (
                         <>
-                          Best Diagnostic <br />
+                          Best Diagnostic <br className="hidden sm:block" />
                           <span className="text-agilus-green">
                             Lab in Mohali.
                           </span>
@@ -1229,14 +1359,14 @@ export default function App() {
                     </motion.h1>
                     <motion.p
                       variants={{
-                        hidden: { opacity: 0, y: 30 },
+                        hidden: { opacity: 0, y: 20 },
                         visible: {
                           opacity: 1,
                           y: 0,
                           transition: { duration: 0.6, ease: "easeOut" },
                         },
                       }}
-                      className="text-white/90 text-lg md:text-2xl mb-10 max-w-2xl font-medium leading-relaxed drop-shadow-xl"
+                      className="text-white/90 text-xs sm:text-lg md:text-2xl mb-4 sm:mb-10 max-w-2xl font-medium leading-relaxed drop-shadow-xl line-clamp-3 sm:line-clamp-none"
                     >
                       {heroImages[currentImageIndex].desc.includes(
                         "heart of Mohali",
@@ -1246,14 +1376,14 @@ export default function App() {
                     </motion.p>
                     <motion.div
                       variants={{
-                        hidden: { opacity: 0, y: 30 },
+                        hidden: { opacity: 0, y: 20 },
                         visible: {
                           opacity: 1,
                           y: 0,
                           transition: { duration: 0.6, ease: "easeOut" },
                         },
                       }}
-                      className="flex flex-col sm:flex-row flex-wrap gap-4 w-full justify-start"
+                      className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-4 w-full justify-start animate-fade-in"
                     >
                       <button
                         onClick={() => {
@@ -1271,9 +1401,9 @@ export default function App() {
                             setIsBookingOpen(true);
                           }
                         }}
-                        className="bg-google-blue hover:bg-blue-600 text-white px-8 md:px-10 py-4 md:py-5 rounded-2xl font-black text-base md:text-lg transition-all shadow-2xl shadow-blue-900/40 active:scale-95 flex items-center justify-center gap-3 w-full sm:w-auto"
+                        className="bg-google-blue hover:bg-blue-600 text-white px-5 sm:px-10 py-3 sm:py-5 rounded-xl sm:rounded-2xl font-black text-xs sm:text-lg transition-all shadow-2xl shadow-blue-900/40 active:scale-95 flex items-center justify-center gap-2 sm:gap-3 w-full sm:w-auto"
                       >
-                        <Droplets className="w-6 h-6" aria-hidden="true" />
+                        <Droplets className="w-4.5 h-4.5 sm:w-6 sm:h-6" aria-hidden="true" />
                         {heroImages[currentImageIndex].cta1}
                       </button>
                       <button
@@ -1283,7 +1413,7 @@ export default function App() {
                             "_blank",
                           )
                         }
-                        className="bg-white hover:bg-google-light-grey text-google-blue px-8 md:px-10 py-4 md:py-5 rounded-2xl font-black text-base md:text-lg transition-all active:scale-95 shadow-xl w-full sm:w-auto flex items-center justify-center"
+                        className="bg-white/95 hover:bg-white text-google-blue px-5 sm:px-10 py-3 sm:py-5 rounded-xl sm:rounded-2xl font-black text-xs sm:text-lg transition-all active:scale-95 shadow-xl w-full sm:w-auto hidden sm:flex items-center justify-center"
                       >
                         {heroImages[currentImageIndex].cta2}
                       </button>
@@ -1373,49 +1503,49 @@ export default function App() {
               </div>
 
               {/* GMB Premium Dashboard Header */}
-              <div className="flex items-center justify-between gap-4 py-5 md:py-6 border-b border-google-border">
-                <div className="flex flex-wrap items-center gap-3 lg:gap-6">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 py-5 md:py-6 border-b border-google-border">
+                <div className="grid grid-cols-4 sm:flex sm:flex-wrap items-center gap-1 sm:gap-4 lg:gap-6 w-full sm:w-auto">
                   <button
                     onClick={handleDirection}
-                    className="flex flex-col items-center gap-2 group"
+                    className="flex flex-col items-center gap-1.5 group w-full sm:w-auto"
                   >
-                    <div className="w-14 h-14 rounded-full bg-google-blue flex items-center justify-center text-white shadow-lg group-hover:scale-110 group-hover:shadow-google-blue/30 transition-all">
-                      <Navigation className="w-6 h-6 group-hover:rotate-12 transition-transform" />
+                    <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-google-blue flex items-center justify-center text-white shadow-lg group-hover:scale-110 group-hover:shadow-google-blue/30 transition-all">
+                      <Navigation className="w-5 h-5 sm:w-6 sm:h-6 group-hover:rotate-12 transition-transform" />
                     </div>
-                    <span className="text-[11px] font-black uppercase text-google-blue tracking-widest">
+                    <span className="text-[9px] sm:text-[11px] font-black uppercase text-google-blue tracking-wider sm:tracking-widest">
                       Directions
                     </span>
                   </button>
                   <button
                     onClick={handleCall}
-                    className="flex flex-col items-center gap-2 group"
+                    className="flex flex-col items-center gap-1.5 group w-full sm:w-auto"
                   >
-                    <div className="w-14 h-14 rounded-full border-2 border-google-border flex items-center justify-center text-google-blue hover:bg-google-blue hover:text-white hover:border-google-blue transition-all group-hover:scale-110">
-                      <Phone className="w-6 h-6 group-hover:animate-bounce" />
+                    <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-full border border-google-border sm:border-2 flex items-center justify-center text-google-blue hover:bg-google-blue hover:text-white hover:border-google-blue transition-all group-hover:scale-110">
+                      <Phone className="w-5 h-5 sm:w-6 sm:h-6 group-hover:animate-bounce" />
                     </div>
-                    <span className="text-[11px] font-black uppercase text-google-blue tracking-widest">
+                    <span className="text-[9px] sm:text-[11px] font-black uppercase text-google-blue tracking-wider sm:tracking-widest">
                       Call
                     </span>
                   </button>
                   <button
                     onClick={handleWhatsApp}
-                    className="flex flex-col items-center gap-2 group"
+                    className="flex flex-col items-center gap-1.5 group w-full sm:w-auto"
                   >
-                    <div className="w-14 h-14 rounded-full border-2 border-[#25D366] flex items-center justify-center text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all group-hover:scale-110">
-                      <Smartphone className="w-6 h-6" />
+                    <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-full border border-[#25D366]/40 sm:border-2 flex items-center justify-center text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all group-hover:scale-110">
+                      <Smartphone className="w-5 h-5 sm:w-6 sm:h-6" />
                     </div>
-                    <span className="text-[11px] font-black uppercase text-[#25D366] tracking-widest">
+                    <span className="text-[9px] sm:text-[11px] font-black uppercase text-[#25D366] tracking-wider sm:tracking-widest">
                       WhatsApp
                     </span>
                   </button>
                   <button
                     onClick={handleShare}
-                    className="flex flex-col items-center gap-2 group"
+                    className="flex flex-col items-center gap-1.5 group w-full sm:w-auto"
                   >
-                    <div className="w-14 h-14 rounded-full border-2 border-google-border flex items-center justify-center text-google-grey hover:bg-google-grey hover:text-white transition-all group-hover:scale-110">
-                      <Share2 className="w-6 h-6" />
+                    <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-full border border-google-border sm:border-2 flex items-center justify-center text-google-grey hover:bg-google-grey hover:text-white transition-all group-hover:scale-110">
+                      <Share2 className="w-5 h-5 sm:w-6 sm:h-6" />
                     </div>
-                    <span className="text-[11px] font-black uppercase text-google-grey tracking-widest">
+                    <span className="text-[9px] sm:text-[11px] font-black uppercase text-google-grey tracking-wider sm:tracking-widest">
                       Share
                     </span>
                   </button>
@@ -1444,54 +1574,103 @@ export default function App() {
 
               {/* GMB Premium Photo Widget */}
               <section id="photos" className="scroll-mt-32 md:scroll-mt-40">
-                <a
-                  href="https://www.google.com/search?q=SRL+Lab+Mohali&stick=H4sIAAAAAAAA_-NgU1I1qDC2NEizNE4zSzY3NUkyN0yyMqgwTDQwMkk0NUtMSUlJM0lNWcTKFxzko-CTmKTgm5-RmJMJAFRg05w6AAAA&hl=en&mat=Cb-ztOnJ85ZlElcBTVDHnvpK7UZHp1TY-0rfrGw6k3-HP2Rlf5zmTam-gUBy-jnNNxTLJqL-CncUqOLzPFIw0Ngm0u7nyaen7gcyIcP1g3Q9yFqdL6qwaARNl8Cpzp6Enk4&authuser=0"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full"
+                <div
+                  onClick={() => {
+                    setIsGalleryOpen(true);
+                    setActiveGalleryIndex(0);
+                  }}
+                  className="grid grid-cols-2 gap-2 h-[250px] sm:h-[350px] md:h-[450px] w-full rounded-3xl overflow-hidden shadow-2xl relative group cursor-pointer"
                 >
-                  <div className="grid grid-cols-2 gap-2 h-[250px] sm:h-[350px] md:h-[450px] w-full rounded-3xl overflow-hidden shadow-2xl relative group">
-                    <div className="relative overflow-hidden aspect-square">
-                      <img
-                        src={centerPhotos[0].url}
-                        alt="Front view of Agilus Diagnostics Centre Mohali Sector 69"
-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                        referrerPolicy="no-referrer"
-                        loading="lazy"
-                      />
-                    </div>
-                    <div className="relative overflow-hidden aspect-square">
-                      <img
-                        src={centerPhotos[1].url}
-                        alt="Automated blood testing analyzers at Agilus Diagnostics Mohali"
-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                        referrerPolicy="no-referrer"
-                        loading="lazy"
-                      />
-                    </div>
-                    <div className="relative overflow-hidden aspect-square">
-                      <img
-                        src={centerPhotos[2].url}
-                        alt="Professional patient sample collection assistance at Agilus Mohali"
-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                        referrerPolicy="no-referrer"
-                        loading="lazy"
-                      />
-                    </div>
-                    <div className="relative overflow-hidden aspect-square">
-                      <img
-                        src={centerPhotos[3].url}
-                        alt="Modern diagnostic testing room at Agilus Lab Sector 69 Mohali"
-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                        referrerPolicy="no-referrer"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-black text-lg backdrop-blur-sm">
-                        +38
-                      </div>
+                  <div
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsGalleryOpen(true);
+                      setActiveGalleryIndex(0);
+                    }}
+                    className="relative overflow-hidden aspect-square cursor-zoom-in group/item"
+                  >
+                    <img
+                      src={centerPhotos[0].url}
+                      alt="Front view of Agilus Diagnostics Centre Mohali Sector 69"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02] hover:!scale-105"
+                      referrerPolicy="no-referrer"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3 opacity-0 group-hover/item:opacity-100 transition-opacity flex items-center justify-between text-white">
+                      <span className="text-[10px] font-black uppercase tracking-wider">Front Exterior</span>
+                      <ImageIcon className="w-3.5 h-3.5" />
                     </div>
                   </div>
-                </a>
+                  <div
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsGalleryOpen(true);
+                      setActiveGalleryIndex(1);
+                    }}
+                    className="relative overflow-hidden aspect-square cursor-zoom-in group/item"
+                  >
+                    <img
+                      src={centerPhotos[1].url}
+                      alt="Automated blood testing analyzers at Agilus Diagnostics Mohali"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02] hover:!scale-105"
+                      referrerPolicy="no-referrer"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3 opacity-0 group-hover/item:opacity-100 transition-opacity flex items-center justify-between text-white">
+                      <span className="text-[10px] font-black uppercase tracking-wider">Automated Analyzers</span>
+                      <ImageIcon className="w-3.5 h-3.5" />
+                    </div>
+                  </div>
+                  <div
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsGalleryOpen(true);
+                      setActiveGalleryIndex(2);
+                    }}
+                    className="relative overflow-hidden aspect-square cursor-zoom-in group/item"
+                  >
+                    <img
+                      src={centerPhotos[2].url}
+                      alt="Professional patient sample collection assistance at Agilus Mohali"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02] hover:!scale-105"
+                      referrerPolicy="no-referrer"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3 opacity-0 group-hover/item:opacity-100 transition-opacity flex items-center justify-between text-white">
+                      <span className="text-[10px] font-black uppercase tracking-wider">Sampling Area</span>
+                      <ImageIcon className="w-3.5 h-3.5" />
+                    </div>
+                  </div>
+                  <div
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsGalleryOpen(true);
+                      setActiveGalleryIndex(3);
+                    }}
+                    className="relative overflow-hidden aspect-square cursor-zoom-in"
+                  >
+                    <img
+                      src={centerPhotos[3].url}
+                      alt="Modern diagnostic testing room at Agilus Lab Sector 69 Mohali"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02] hover:!scale-105"
+                      referrerPolicy="no-referrer"
+                      loading="lazy"
+                    />
+                    
+                    {/* View all overlay button that indicates the total number of images */}
+                    <div className="absolute inset-0 bg-black/45 hover:bg-black/55 transition-all duration-300 flex flex-col items-center justify-center text-white gap-2 backdrop-blur-[2px]">
+                      <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/20 border border-white/45 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+                        <ImageIcon className="w-5 h-5 sm:w-7 sm:h-7 text-white" />
+                      </div>
+                      <span className="text-[11px] sm:text-sm font-black tracking-widest uppercase">
+                        View All
+                      </span>
+                      <span className="text-[10px] sm:text-xs text-white/95 font-black bg-white/15 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full border border-white/20 shadow-inner">
+                        42 Photos
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </section>
 
               {/* Latest Updates (GMB Posts Style) */}
@@ -2060,13 +2239,43 @@ export default function App() {
                 <table className="w-full text-left border-collapse">
                   <thead>
                     <tr className="border-b border-google-border">
-                      <th className="py-4 px-2 text-xs font-bold text-google-grey uppercase tracking-wider">
-                        Test Name
+                      <th
+                        onClick={() => handleSort("name")}
+                        className="py-4 px-2 text-xs font-bold text-google-grey uppercase tracking-wider cursor-pointer hover:bg-google-light-grey/40 select-none group transition-colors"
+                        title="Click to sort by Test Name"
+                      >
+                        <div className="flex items-center gap-1.5">
+                          <span>Test Name</span>
+                          {testSortField === "name" ? (
+                            testSortDirection === "asc" ? (
+                              <ArrowUp className="w-3.5 h-3.5 text-google-blue shrink-0" />
+                            ) : (
+                              <ArrowDown className="w-3.5 h-3.5 text-google-blue shrink-0" />
+                            )
+                          ) : (
+                            <ArrowUpDown className="w-3.5 h-3.5 text-google-grey/40 group-hover:text-google-grey/80 shrink-0 transition-colors" />
+                          )}
+                        </div>
                       </th>
-                      <th className="py-4 px-2 text-xs font-bold text-google-grey uppercase tracking-wider">
-                        Delivery Speed
+                      <th
+                        onClick={() => handleSort("tat")}
+                        className="py-4 px-2 text-xs font-bold text-google-grey uppercase tracking-wider cursor-pointer hover:bg-google-light-grey/40 select-none group transition-colors"
+                        title="Click to sort by Delivery Speed"
+                      >
+                        <div className="flex items-center gap-1.5">
+                          <span>Delivery Speed</span>
+                          {testSortField === "tat" ? (
+                            testSortDirection === "asc" ? (
+                              <ArrowUp className="w-3.5 h-3.5 text-google-blue shrink-0" />
+                            ) : (
+                              <ArrowDown className="w-3.5 h-3.5 text-google-blue shrink-0" />
+                            )
+                          ) : (
+                            <ArrowUpDown className="w-3.5 h-3.5 text-google-grey/40 group-hover:text-google-grey/80 shrink-0 transition-colors" />
+                          )}
+                        </div>
                       </th>
-                      <th className="py-4 px-2 text-xs font-bold text-google-grey uppercase tracking-wider text-right">
+                      <th className="py-4 px-2 text-xs font-bold text-google-grey uppercase tracking-wider text-right select-none">
                         Action
                       </th>
                     </tr>
@@ -2099,9 +2308,9 @@ export default function App() {
                         </tr>
                       ))
                     ) : (
-                      testMenu.map((test, idx) => (
+                      sortedTestMenu.map((test) => (
                         <ExpandableTestRow
-                          key={idx}
+                          key={test.code}
                           test={test}
                           onBook={() => setIsBookingOpen(true)}
                         />
@@ -2818,6 +3027,148 @@ export default function App() {
         )}
       </AnimatePresence>
 
+      {/* Interactive Photo Gallery Lightbox */}
+      <AnimatePresence>
+        {isGalleryOpen && (
+          <div className="fixed inset-0 z-[120] flex flex-col justify-between bg-[#0e1013]/98 select-none text-white overflow-hidden p-3 sm:p-6 md:p-8">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-[#07080a]/95 backdrop-blur-md"
+              onClick={() => setIsGalleryOpen(false)}
+            />
+
+            {/* Content Container */}
+            <div className="relative z-10 w-full h-full max-w-7xl mx-auto flex flex-col justify-between gap-4">
+              {/* Header */}
+              <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <ImageIcon className="w-5 h-5 text-google-blue animate-pulse" />
+                    <h3 className="text-sm sm:text-base font-black tracking-tight uppercase text-white">
+                      Agilus Mohali Facility Tour
+                    </h3>
+                  </div>
+                  <p className="text-[11px] text-google-grey mt-0.5">
+                    Photo {activeGalleryIndex + 1} of {allGalleryPhotos.length} • Explore modern diagnostics floor
+                  </p>
+                </div>
+                <button
+                  onClick={() => setIsGalleryOpen(false)}
+                  className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-all cursor-pointer border border-white/10 active:scale-95"
+                >
+                  <X className="w-5 h-5 text-white" />
+                </button>
+              </div>
+
+              {/* Main Body */}
+              <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center min-h-0 overflow-y-auto lg:overflow-visible py-2 sm:py-0">
+                {/* Image Section */}
+                <div className="lg:col-span-8 relative flex items-center justify-center h-[35vh] sm:h-[45vh] lg:h-[55vh] rounded-2xl overflow-hidden bg-black/40 border border-white/5 p-2 sm:p-4 group/img">
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={activeGalleryIndex}
+                      src={allGalleryPhotos[activeGalleryIndex].url}
+                      alt={allGalleryPhotos[activeGalleryIndex].title}
+                      initial={{ opacity: 0, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.98 }}
+                      transition={{ duration: 0.3 }}
+                      className="max-h-full max-w-full object-contain rounded-lg shadow-xl"
+                    />
+                  </AnimatePresence>
+
+                  {/* Nav Arrows */}
+                  <button
+                    onClick={() => {
+                      setActiveGalleryIndex((prev) => (prev === 0 ? allGalleryPhotos.length - 1 : prev - 1));
+                    }}
+                    className="absolute left-3 w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-black/65 hover:bg-black/85 flex items-center justify-center text-white border border-white/10 hover:scale-105 active:scale-95 transition-all opacity-0 group-hover/img:opacity-100 focus:opacity-100 max-sm:opacity-100"
+                  >
+                    <ChevronLeft className="w-6 h-6" />
+                  </button>
+                  <button
+                    onClick={() => {
+                      setActiveGalleryIndex((prev) => (prev === allGalleryPhotos.length - 1 ? 0 : prev + 1));
+                    }}
+                    className="absolute right-3 w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-black/65 hover:bg-black/85 flex items-center justify-center text-white border border-white/10 hover:scale-105 active:scale-95 transition-all opacity-0 group-hover/img:opacity-100 focus:opacity-100 max-sm:opacity-100"
+                  >
+                    <ChevronRight className="w-6 h-6" />
+                  </button>
+                </div>
+
+                {/* Metadata & Actions Sidebar */}
+                <div className="lg:col-span-4 flex flex-col gap-4 self-stretch justify-center h-full">
+                  <div className="bg-white/5 border border-white/10 rounded-2xl p-4 sm:p-5 backdrop-blur-md">
+                    <span className="text-[9px] bg-google-blue/20 text-blue-400 font-extrabold tracking-widest uppercase px-2.5 py-1 rounded-md border border-google-blue/30 inline-block mb-3">
+                      {allGalleryPhotos[activeGalleryIndex].category}
+                    </span>
+                    <h4 className="text-base sm:text-xl font-black text-white leading-snug tracking-tight mb-2">
+                      {allGalleryPhotos[activeGalleryIndex].title}
+                    </h4>
+                    <p className="text-xs sm:text-sm text-google-grey/90 leading-relaxed font-medium">
+                      {allGalleryPhotos[activeGalleryIndex].desc}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col gap-2">
+                    <a
+                      href="https://www.google.com/search?q=SRL+Lab+Mohali&stick=H4sIAAAAAAAA_-NgU1I1qDC2NEizNE4zSzY3NUkyN0yyMqgwTDQwMkk0NUtMSUlJM0lNWcTKFxzko-CTmKTgm5-RmJMJAFRg05w6AAAA&hl=en&mat=Cb-ztOnJ85ZlElcBTVDHnvpK7UZHp1TY-0rfrGw6k3-HP2Rlf5zmTam-gUBy-jnNNxTLJqL-CncUqOLzPFIw0Ngm0u7nyaen7gcyIcP1g3Q9yFqdL6qwaARNl8Cpzp6Enk4&authuser=0"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full bg-[#34a853] hover:bg-[#2e954a] text-white py-3 sm:py-3.5 px-4 rounded-xl font-bold text-[11px] sm:text-xs uppercase tracking-wider flex items-center justify-center gap-2.5 transition-all cursor-pointer active:scale-95 text-center"
+                    >
+                      <MapPin className="w-4 h-4 text-white" />
+                      View Remaining 34+ Photos on Google
+                    </a>
+                    <button
+                      onClick={() => {
+                        setIsGalleryOpen(false);
+                        setIsBookingOpen(true);
+                      }}
+                      className="w-full bg-google-blue hover:bg-blue-600 text-white py-3 sm:py-3.5 px-4 rounded-xl font-bold text-[11px] sm:text-xs uppercase tracking-wider flex items-center justify-center gap-2.5 transition-all shadow-lg shadow-blue-500/10 cursor-pointer active:scale-95"
+                    >
+                      <Calendar className="w-4 h-4" />
+                      Book Collection / Appointment
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Slider Thumbnails bottom bar */}
+              <div className="w-full border-t border-white/10 pt-4 pb-2">
+                <p className="text-[10px] text-google-grey font-bold uppercase tracking-widest mb-2 px-1 text-center sm:text-left">
+                  Quick Navigator ({allGalleryPhotos.length} Key Facility Spaces)
+                </p>
+                <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-thin scrollbar-thumb-white/10 px-1 scroll-smooth">
+                  {allGalleryPhotos.map((photo, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setActiveGalleryIndex(index)}
+                      className={`relative flex-shrink-0 w-16 h-12 sm:w-24 sm:h-16 rounded-xl overflow-hidden min-w-[64px] sm:min-w-[96px] transition-all border-2 cursor-pointer ${
+                        activeGalleryIndex === index
+                          ? "border-google-blue scale-[1.02] shadow-lg shadow-google-blue/30"
+                          : "border-transparent opacity-50 hover:opacity-80"
+                      }`}
+                    >
+                      <img
+                        src={photo.url}
+                        alt={`Thumbnail index ${index + 1}`}
+                        className="w-full h-full object-cover"
+                        referrerPolicy="no-referrer"
+                      />
+                      <div className="absolute inset-0 bg-black/10 hover:bg-transparent transition-colors" />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </AnimatePresence>
+
       {/* Inclusions / Clinical Details Modal */}
       {selectedInclusionsPackage && (
         <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
@@ -3029,6 +3380,8 @@ export default function App() {
                 <img
                   src="https://media.agilus.in/consumer-web/agilusLogo.png"
                   alt="Agilus Diagnostics"
+                  width={100}
+                  height={32}
                   className="h-8 w-auto object-contain brightness-0 invert self-start"
                 />
                 <span className="text-[9px] bg-orange-500/10 text-[#FF8A00] font-black tracking-wider uppercase px-2 py-0.5 rounded border border-orange-500/20 w-fit mt-2">
@@ -3255,7 +3608,7 @@ export default function App() {
             </div>
           </div>
 
-          <div className="pt-6 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
+          <div className="pt-6 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left pointer-events-none select-none">
             <p className="text-xs text-google-grey">
               © {new Date().getFullYear()} SRL Lab Mohali (Agilus Diagnostics). All clinical rights reserved.
             </p>
