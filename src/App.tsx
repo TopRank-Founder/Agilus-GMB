@@ -42,6 +42,9 @@ import {
   Image as ImageIcon,
   Calendar,
   X,
+  Eye,
+  EyeOff,
+  Sparkles,
   Play,
   ArrowRight,
   Info,
@@ -91,7 +94,7 @@ const LAB_WELLNESS_PACKAGES = [
   {
     id: "vital-pro",
     title: "Complete Care Vital Pro",
-    priceText: "92 PARAMETERS",
+    priceText: "2599",
     parameters: "92 Parameters",
     sub: "Comprehensive full body package covering Heart, Kidney, Liver, Thyroid and general Wellness.",
     desc: "Comprehensive full-body test panel monitoring cardiac health (Lipid Profile), diabetes indices (HbA1c & Blood Glucose), Liver, Kidneys, Thyroid profile, Vitamin D, Vitamin B12, and Iron studies.",
@@ -122,7 +125,7 @@ const LAB_WELLNESS_PACKAGES = [
   {
     id: "active-men-women",
     title: "Complete Care Active Men / Women",
-    priceText: "97 PARAMETERS",
+    priceText: "3099",
     parameters: "97 Parameters",
     sub: "Premium diagnostic tracking for active lifestyles: screens active hormones, bone fitness and joint index.",
     desc: "Engineered for active lifestyles. Screens and monitors active hormones (Testosterone/Estrogens), joint/bone health and co-factors, cardiac fitness indicators, stress markers, and full vital organs.",
@@ -155,7 +158,7 @@ const LAB_WELLNESS_PACKAGES = [
   {
     id: "vital-75",
     title: "Agilus Complete Care Vital",
-    priceText: "75 PARAMETERS",
+    priceText: "2099",
     parameters: "75 Parameters",
     sub: "Essential diagnostics covering blood glucose, thyroid performance, lipid parameters, and vital organs.",
     desc: "Best for: Essential regular health tracking covering blood sugar, thyroid, liver, and kidney health indices. Inclusions: CBC, Fasting Blood Sugar, LFT, KFT, Lipid Profile, Urine Examination. Same Day Report Available.",
@@ -183,8 +186,8 @@ const LAB_WELLNESS_PACKAGES = [
   },
   {
     id: "active-pro",
-    title: "Active Pro Care",
-    priceText: "100 PARAMETERS",
+    title: "Complete Care Active Pro",
+    priceText: "4199",
     parameters: "100 Parameters",
     sub: "Comprehensive health check for active individuals monitoring body systems, bone health, active hormones, and vital organ wellness.",
     desc: "NABL Accredited package engineered for active individuals. Monitors heart health, full liver and kidney functions, metabolic indices, active hormones, bone-mineral status, with dedicated gender markers (PSA/CA-125).",
@@ -217,8 +220,8 @@ const LAB_WELLNESS_PACKAGES = [
   },
   {
     id: "premium-care",
-    title: "Premium Care Packages",
-    priceText: "107 PARAMETERS",
+    title: "Complete Care Premium Packages",
+    priceText: "6699",
     parameters: "107 Parameters",
     sub: "Elite holistic diagnostic screening covering advanced cardiac risk markers, hormonal assessment, fitness tracking, and immunity.",
     desc: "Our gold-standard complete diagnostic package. Features comprehensive organ scans, intensive cardiovascular risk markers (Apolipoproteins), essential vitamins, reproductive/hormonal panels, and targeted clinical tumor screenings.",
@@ -252,8 +255,8 @@ const LAB_WELLNESS_PACKAGES = [
   {
     id: "vital-core",
     title: "Complete Care Vital Shape Core",
-    priceText: "88 PARAMETERS",
-    parameters: "88 Parameters",
+    priceText: "5999",
+    parameters: "83 Parameters",
     sub: "Focused core fitness and metabolic wellness checkup analyzing body indicators, basic organs, and bone minerals.",
     desc: "Excellent value package for routine monitoring. Screens and analyzes basic thyroid performance (TSH), diabetes indicators (HbA1c), complete blood indices, full lipid/cholesterol panel, and diagnostic bone/joint markers.",
     features: [
@@ -283,7 +286,7 @@ const LAB_WELLNESS_PACKAGES = [
   {
     id: "diabetes-heart",
     title: "Complete Care Diabetes & Heart Advance",
-    priceText: "103 PARAMETERS",
+    priceText: "3499",
     parameters: "103 Parameters",
     sub: "Advanced targeted diagnostic evaluating cardiovascular health, diabetes indices, and renal-hepatic profiles.",
     desc: "Specially formulated for individuals tracking cardiometabolic health. Evaluates advanced cardiac risks (Apolipoproteins), diabetes controls (HbA1c & Microalbuminuria), myocardial wellness, and comprehensive renal/hepatic integrity.",
@@ -313,6 +316,377 @@ const LAB_WELLNESS_PACKAGES = [
   }
 ];
 
+const allGalleryPhotos = [
+  {
+    url: imagePhoto1,
+    title: "Agilus Diagnostics Centre Exterior",
+    category: "Exterior & Building",
+    desc: "Strategically located in Sector 69 near Gurukul World School for stress-free street-level patient parking and fast direct laboratory access."
+  },
+  {
+    url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFzkCsfd2SGjTxPnXaehVMK5tGHGEwcQ_OAPPHgXqQQGzvN1zq1oMhllgpbWDOeTBBFQDb2Fyu5l6L3MOeGzMEhfHcVHnmVXOHXL9jHP_ydQ9vHEKMYeJhQU5-ljy-LB9ff2v01_EenAqv3=s680-w680-h510-rw",
+    title: "Main Entrance & Center Front Signage",
+    category: "Exterior & Building",
+    desc: "Prominent front entrance and authorized partner branding, offering direct step-in entry for patients in Sector 69."
+  },
+  {
+    url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFUPfhJG4oXwMlO5RHFaW_xxHcp0lDzp-fYq9lDmQZpv6zKWw6UFcg5G1mR8xglq8Oef8nDrT7arIt84IU_t-C0ue2Lxc200MiHI-Fl7Rlf2U2FzIr7XcAlEkO48g7SC5qnfozA5vo8isl8=s680-w680-h510-rw",
+    title: "Authorized Reception & Registration Desk",
+    category: "Reception Area",
+    desc: "Warm and organized administrative desk equipped with dynamic digital ticketing and computer systems for quick test processing."
+  },
+  {
+    url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFSK8yeKeMYSUYgIGNfy0dELAZVAsxuW-wuRB0anoVLq_65kwqLsgWRB9SBpnpRPeHqeKjQN6AmbErx76bsJVp_OIxjPHJDvflWpYqnwvMQM7rMy7lDuEAY0UVkjdHp9W7f21KxNYuG7Ytm=s680-w680-h510-rw",
+    title: "NABL Standard Bio-Analytical Analyzers Desk",
+    category: "Laboratory Facility",
+    desc: "High-throughput fully automated immuno-chemistry and biochemistry analyzers providing speed, integrity, and clinical precision."
+  },
+  {
+    url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFlaB5_pzNKrnwe-Fg59wtnHZ1Bz5TfAReMu3lt7c1FY7juFoyslIKyFbkyjVVZh1Vt3RFh7B3IZZR3p6WWFPJ9wLJeVyTmJiBO0Kijz8UCafJMd8LE4dImeGdHDVYkq7ti9fOciA=s680-w680-h510-rw",
+    title: "Sterilized Phlebotomy Chair & Sampling Station",
+    category: "Patient Bay",
+    desc: "Supervised clinical station for blood drawing, featuring ergonomic safety recliners and hygienic, single-use barcoded lancets."
+  },
+  {
+    url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEikeVOTEhzyYvKFJocJklO_z_IXjC386ZNX98CTy8b5gPiIJ-dy_9ekEp1jncOShvth864-7zt2w2xsRQYFdVEQvEmSY_74NPQrT5e9ChZUSQS9YjhNyIPDonHVSjJ4Fp6_mmWlJTuZtE=s680-w680-h510-rw",
+    title: "Biochemical Diagnostics Division Unit",
+    category: "Laboratory Facility",
+    desc: "Clinical grade instrumentation for hormone assays, metabolic panels, and dynamic thyroid diagnostics controls."
+  },
+  {
+    url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEghvda5TCSLXFak8DpuiukpBYwQwEl5ANdsYK2MvLfLiukqL8PzA_EPOw5ixTZHoybH7rBdqA8Fp_agLOa5FbKKcrvzIyZqR9XQdnLb1fPSzW6bBSmCxZktLJYNiUbEeIHxSmfmg=s680-w680-h510-rw",
+    title: "Professional Testing Area & Diagnostic Setup",
+    category: "Laboratory Facility",
+    desc: "Advanced clinical analyzer setup overseen by certified pathology professionals ensuring zero cross-contamination and genuine validation."
+  },
+  {
+    url: imageClinical,
+    title: "Phlebotomy & Sample Collection Area",
+    category: "Patient Bay",
+    desc: "Safe, sterile, and fully sanitized collection lounge with specialized comfort recliners designed for gentle and rapid blood drawing."
+  },
+  {
+    url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAHndBvgZhfzPgmxk75cT17C_j0JmW5K5E2ScPyz7IblrwEZxMAhL1CW5HrUiHexrhu0D1K0D2wJ9HouyYFd3bskL0qMVO-XGI6t0ygTxxoR9sf8L2BXWlnsjh09HMJHAWQjX49znVLOcwoP=s680-w680-h510-rw",
+    title: "Bio-Testing Automated Analyzers Unit",
+    category: "Laboratory Facility",
+    desc: "Advanced fully-automated clinical testing and immunoassay machinery, significantly minimizing human contact and delivering raw authentic analysis."
+  },
+  {
+    url: imageTrusted,
+    title: "State-of-the-Art Laboratory Equipment",
+    category: "Laboratory Facility",
+    desc: "Fully equipped testing chamber featuring advanced chemistry and hematology instruments verified daily with NABL standard controls."
+  },
+  {
+    url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEiB5ryxWLcsUYA35H_Gk00Q5-Cvk1R-FSoQ3GFPdOrS5oRePSFSWNZKPyiAkIc_uAIHnRfOWUVHdia-I7xS-mq0korrLo9Udb4qeJBu4QgRG4hmWp6tsro-hZBWUZyUER-dZ11sbXFNZs=s680-w680-h510-rw",
+    title: "Pathology Analyzer & Professional Team Setup",
+    category: "Laboratory Facility",
+    desc: "Clinical grade diagnostic station utilizing next-gen automated equipment for hematology, biochemistry, and hormone markers verification."
+  },
+  {
+    url: imageOverview5,
+    title: "Polished Reception & Comfort Waiting Lounge",
+    category: "Reception Area",
+    desc: "Air-conditioned reception lobby providing immediate digital assistance, computerized token system, and safe seating distance."
+  },
+  {
+    url: imageJourney,
+    title: "Clinical Trust Legacy Since 1995",
+    category: "About SRL Agilus",
+    desc: "Pioneering pathology services across Mohali with unmatched report accuracy, accredited standards, and prompt local trust."
+  },
+  {
+    url: "https://lh3.googleusercontent.com/p/AF1QipPilDAb5f4awWB323dDwPt0C2kUkJQqyE7Zs3AP=s680-w680-h510-rw",
+    title: "Hygienic Consumables Storage & Sterile Prep",
+    category: "Patient Bay",
+    desc: "Temperature-regulated medical storage room highlighting sterilized single-use blood-drawing kits and barcode tracking solutions."
+  }
+];
+
+const centerPhotos = [
+  {
+    url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFzkCsfd2SGjTxPnXaehVMK5tGHGEwcQ_OAPPHgXqQQGzvN1zq1oMhllgpbWDOeTBBFQDb2Fyu5l6L3MOeGzMEhfHcVHnmVXOHXL9jHP_ydQ9vHEKMYeJhQU5-ljy-LB9ff2v01_EenAqv3=s680-w680-h510-rw",
+    title: "Diagnostic Lab",
+  },
+  {
+    url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFUPfhJG4oXwMlO5RHFaW_xxHcp0lDzp-fYq9lDmQZpv6zKWw6UFcg5G1mR8xglq8Oef8nDrT7arIt84IU_t-C0ue2Lxc200MiHI-Fl7Rlf2U2FzIr7XcAlEkO48g7SC5qnfozA5vo8isl8=s680-w680-h510-rw",
+    title: "Testing Facility",
+  },
+  {
+    url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFSK8yeKeMYSUYgIGNfy0dELAZVAsxuW-wuRB0anoVLq_65kwqLsgWRB9SBpnpRPeHqeKjQN6AmbErx76bsJVp_OIxjPHJDvflWpYqnwvMQM7rMy7lDuEAY0UVkjdHp9W7f21KxNYuG7Ytm=s680-w680-h510-rw",
+    title: "Professional Pathology",
+  },
+  {
+    url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFlaB5_pzNKrnwe-Fg59wtnHZ1Bz5TfAReMu3lt7c1FY7juFoyslIKyFbkyjVVZh1Vt3RFh7B3IZZR3p6WWFPJ9wLJeVyTmJiBO0Kijz8UCafJMd8LE4dImeGdHDVYkq7ti9fOciA=s680-w680-h510-rw",
+    title: "Home Sample Collection",
+  },
+];
+
+const heroImages = [
+  {
+    src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAF-6kv1elhJvFOYgZom8JrFu329YquzGnhEfignDqUSW4cHyFpePWE_9dl2DMEgwaZIVDv-SuubYh9CgoCpLvD2rtiEbbuCLfd8Q0EWr9xldQsYaqetSEaUs4xt0ZqQUMQ-dK32b5k5KDWD=s680-w680-h510-rw",
+    alt: "Front view of Agilus Diagnostics Centre Mohali Sector 69",
+    title: "Trusted Diagnostics",
+    desc: "Serving Mohali with heartfelt care since 1997. We combine decades of clinical precision with a gentle touch, ensuring your health is in the best hands right here in the heart of Mohali.",
+    badge: "Caring since 1997",
+    cta: "Call +91 91154 59115",
+  },
+  {
+    src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFG-YE9zdYB_S_hdyOvR5Q8-oMZVmsnTgaf3Kto8vXCFzJgfgnA-27ahGxjchY9XGVMdxEba6oZuCXsvE6uSUFZpZDU2fIT9U5i8FMc0OTu4x5nbASVr6vaizebPeXTOdPeHf2UejH04etx=s680-w680-h510-rw",
+    alt: "Automated blood testing analyzers at Agilus Diagnostics Mohali",
+    title: "Precision Testing",
+    desc: "Our facility is designed with your comfort in mind, equipped with the latest technology for rapid, accurate results, so you can spend less time worrying and more time living.",
+    badge: "Accuracy you trust",
+    cta: "View Specialized Test Menu",
+  },
+  {
+    src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEikeVOTEhzyYvKFJocJklO_z_IXjC386ZNX98CTy8b5gPiIJ-dy_9ekEp1jncOShvth864-7zt2w2xsRQYFdVEQvEmSY_74NPQrT5e9ChZUSQS9YjhNyIPDonHVSjJ4Fp6_mmWlJTuZtE=s680-w680-h510-rw",
+    alt: "Clinical Sample Processing Room at Agilus Mohali - Managed by Top Pathologists.",
+    title: "Expert Pathology",
+    desc: "Managed by highly qualified pathologists to ensure the highest standards of clinical testing and patient care in Punjab.",
+    badge: "Expert Doctors",
+    cta: "Schedule Home Visit",
+  },
+  {
+    src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAENCuDxroLg1iJ1RuvIRWSiBSQL7_BsWdfp2t2ejpWVC8Xl3fsxP-7ZJxXEhzJ-tsjHRSBP2rHy-2H0k5PJ_DgGOxEPvcaMALrTHYDhXAqUrgjOAdoT39lMTWIZqxRaYXGH3Gj0vAghEbc=s680-w680-h510-rw",
+    alt: "Professional Blood Sample Collection at Home Mohali - Trained Phlebotomists from SRL Diagnostics Lab.",
+    title: "Home Collection",
+    desc: "Safe, hygienic, and convenient blood sample collection from your doorstep in Mohali & Chandigarh by trained professionals.",
+    badge: "Safe & Convenient",
+    cta: "Open Booking Form",
+  },
+  {
+    src: imageOverview5,
+    alt: "High-end Medical Facility Interior with MNC Standards - Agilus Diagnostics Mohali.",
+    title: "Global Standards",
+    desc: "Operating strictly under NABL and ISO guidelines to ensure international reliability for life-saving diagnostics.",
+    badge: "NABL Accredited",
+    cta: "Explore Health Packages",
+  },
+];
+
+const searchSuggestions = [
+  {
+    name: "Full Body Checkup",
+    subtext: "Wellness & Prevention",
+    tags: ["routine", "health", "package"],
+    symptoms: ["Fatigue", "Weakness", "Annual Checkup", "Body Ache"],
+    relatedTests: ["CBC", "Lipid Profile", "KFT", "LFT"],
+    freeHomeCollection: true,
+  },
+  {
+    name: "Complete Fever Profile",
+    subtext: "Fever, Malaria, Dengue, Typhoid",
+    tags: ["fever", "chills", "body ache", "headache", "cold"],
+    symptoms: ["High Fever", "Chills", "Body Ache", "Headache"],
+    relatedTests: ["Platelet Count", "Widal Test", "Malaria Smear"],
+    freeHomeCollection: true,
+  },
+  {
+    name: "Diabetes Screening",
+    subtext: "Sugar, HbA1c, Glucose Test",
+    tags: ["diabetes", "sugar", "thirst", "tiredness", "frequent urination"],
+    symptoms: ["Excessive Thirst", "Frequent Urination", "Blurred Vision"],
+    relatedTests: ["HbA1c", "Glucose Fasting", "Insulin Fasting"],
+    freeHomeCollection: true,
+  },
+  {
+    name: "Thyroid Profile",
+    subtext: "T3, T4, TSH",
+    tags: ["thyroid", "weight gain", "weight loss", "hormonal", "hair fall"],
+    symptoms: ["Weight Changes", "Hair Loss", "Constipation"],
+    relatedTests: ["TSH", "Free T3", "Free T4", "Anti-TPO"],
+    freeHomeCollection: true,
+  },
+  {
+    name: "Lipid Profile",
+    subtext: "Cholesterol & Heart Health",
+    tags: ["heart", "cholesterol", "fatty liver", "blood pressure"],
+    symptoms: ["Chest Pain", "Shortness of Breath", "Dizziness"],
+    relatedTests: ["Total Cholesterol", "HDL", "LDL", "VLDL"],
+    freeHomeCollection: true,
+  },
+  {
+    name: "Kidney Function Test (KFT)",
+    subtext: "Creatinine, Urea, Uric Acid",
+    tags: ["kidney", "back pain", "swelling", "urine problem"],
+    symptoms: ["Swelling in Feet", "Back Pain", "Urine Changes"],
+    relatedTests: ["Creatinine", "Uric Acid", "BUN", "Urine R/M"],
+    freeHomeCollection: true,
+  },
+  {
+    name: "Liver Function Test (LFT)",
+    subtext: "Bilirubin, SGOT, SGPT",
+    tags: ["liver", "jaundice", "stomach pain", "digestion"],
+    symptoms: ["Yellow Eyes", "Loss of Appetite", "Nausea"],
+    relatedTests: ["SGOT", "SGPT", "Bilirubin Total", "Alkaline Phosphatase"],
+    freeHomeCollection: true,
+  },
+  {
+    name: "Vitamin D & B12 Test",
+    subtext: "Bone & Nerve Health",
+    tags: ["bone pain", "joint pain", "weakness", "numbness"],
+    symptoms: ["Joint Pain", "Numbness", "Muscle Weakness"],
+    relatedTests: ["Vitamin D 25-Hydroxy", "Vitamin B12", "Calcium"],
+    freeHomeCollection: true,
+  },
+  {
+    name: "CBC Test",
+    subtext: "Complete Blood Count",
+    tags: ["infection", "anemia", "weakness", "low blood"],
+    symptoms: ["Pale Skin", "Infection", "Bruising"],
+    relatedTests: [
+      "Hemoglobin",
+      "WBC Count",
+      "Platelet Count",
+      "RBC Indices",
+    ],
+    freeHomeCollection: true,
+  },
+  {
+    name: "Allergy Screening",
+    subtext: "Find your triggers",
+    tags: ["allergy", "itching", "sneezing", "skin rash"],
+    symptoms: ["Sneezing", "Skin Rashes", "Itching Eyes"],
+    relatedTests: [
+      "Total IgE",
+      "Allergy Panel - Veg",
+      "Allergy Panel - Non Veg",
+    ],
+    freeHomeCollection: true,
+  },
+  {
+    name: "Agilus Wellness Packages",
+    subtext: "Comprehensive Health Plans",
+    tags: ["screening", "health check"],
+    symptoms: ["Prevention", "Healthy Lifestyle", "Executive Health"],
+    relatedTests: ["Vital Care", "Active Care", "Premium Full Body"],
+    freeHomeCollection: true,
+  },
+  {
+    name: "Home Collection Mohali",
+    subtext: "Free Sample Pickup",
+    tags: ["home service", "sector 69", "chandigarh"],
+    symptoms: ["Elderly Care", "Convenience", "Bedridden Patients"],
+    relatedTests: ["Doorstep Service", "WhatsApp Reports", "Digital Records"],
+    freeHomeCollection: true,
+  },
+];
+
+const allReviews = [
+  {
+    name: "Rahul Sharma",
+    rating: 5,
+    date: "2 weeks ago",
+    comment:
+      "Excellent service. The home collection was very smooth and the reports were delivered on time via email and WhatsApp. Very professional phlebotomist.",
+  },
+  {
+    name: "Pooja Verma",
+    rating: 5,
+    date: "1 month ago",
+    comment:
+      "One of the best labs in Mohali. Clean environment and the staff was very helpful. Highly recommended for full body checkups.",
+  },
+  {
+    name: "Amit Gupta",
+    rating: 5,
+    date: "3 weeks ago",
+    comment:
+      "Very accurate results and fast reporting. I have been visiting this lab for 2 years now, never disappointed.",
+  },
+  {
+    name: "Sneha Kapoor",
+    rating: 4,
+    date: "1 month ago",
+    comment:
+      "Professional staff and affordable prices. The home collection service is a life saver for my parents.",
+  },
+  {
+    name: "Vikram Singh",
+    rating: 5,
+    date: "2 months ago",
+    comment:
+      "Agilus (SRL) Mohali has state of the art equipment. The lab is very clean and follows all safety protocols.",
+  },
+  {
+    name: "Deepak Malhotra",
+    rating: 5,
+    date: "5 days ago",
+    comment:
+      "Prompt response for home collection and very gentle blood extraction. Highly recommended for anyone in Sector 69.",
+  },
+];
+
+const curatedTestimonials = [
+  {
+    name: "Rahul Sharma",
+    rating: 5,
+    image: "https://i.pravatar.cc/150?img=12",
+    quote:
+      "Smooth and professional. Reports were on my WhatsApp within hours!",
+  },
+  {
+    name: "Deepak Malhotra",
+    rating: 5,
+    image: "https://i.pravatar.cc/150?img=33",
+    quote:
+      "The gentlest blood extraction I've ever experienced. Highly meticulous.",
+  },
+  {
+    name: "Pooja Verma",
+    rating: 5,
+    image: "https://i.pravatar.cc/150?img=44",
+    quote:
+      "Pristine hygiene standards. Clearly the best diagnostic lab in Mohali Sector 69.",
+  },
+  {
+    name: "Amit Gupta",
+    rating: 5,
+    image: "https://i.pravatar.cc/150?img=68",
+    quote:
+      "Reliable and fast. The tech stack they use for reports is very impressive.",
+  },
+  {
+    name: "Sneha Kapoor",
+    rating: 4,
+    image: "https://i.pravatar.cc/150?img=45",
+    quote:
+      "Excellent home collection service. Their phlebotomists are very well-trained.",
+  },
+];
+
+const ALL_FAQS = [
+  {
+    question: "Do you offer home collection in Mohali?",
+    answer: "Yes, we offer 24/7 complimentary home collection services across Mohali (including Sector 69, 70, 71, and all major phases), Chandigarh, and Kharar. Our certified phlebotomists follow strict hygiene and safety protocols to ensure a painless experience right at your doorstep."
+  },
+  {
+    question: "How can I book an appointment?",
+    answer: "Booking is extremely simple. You can call or WhatsApp us directly at +91 91154 59115, use the appointment forms on this website, click 'Book Online' on our specialized test menu, or walk in to our collection center in Sector 69, Mohali."
+  },
+  {
+    question: "When will I get my blood test reports?",
+    answer: "Most routine reports (like CBC, Liver Function Test (LFT), Kidney Function Test (KFT), Lipid Profile, or Diabetes Screening) are processed within 6 to 12 hours. Advanced molecular or culture tests may take 24 to 48 hours. You will receive them instantly on WhatsApp, registered email, and through our secure online portal."
+  },
+  {
+    question: "Are you open on Sundays and Holidays?",
+    answer: "Yes, SRL Diagnostics (Agilus) Mohali is open 24 hours, 7 days a week, including all Sundays and public holidays for urgent clinical diagnostics, home blood collection, and reporting."
+  },
+  {
+    question: "Is SRL Diagnostics now Agilus Diagnostics?",
+    answer: "Yes, SRL Diagnostics has officially rebranded to Agilus Diagnostics. Our commitment to absolute accuracy, world-class pathology services, state-of-the-art laboratory automation, and NABL-accredited standards remains exactly the same under the new name."
+  },
+  {
+    question: "Is home sample collection free in Mohali?",
+    answer: "Yes, home sample collection is entirely free of charge within Mohali. There are no convenience fees or hidden charges for sample collection at your residence or office."
+  },
+  {
+    question: "Are you an NABL accredited lab?",
+    answer: "Yes, our Mohali Sector 69 diagnostic facility is fully NABL accredited. This ensures that our laboratory devices, pathologists, test procedures, and reports meet high national and international regulatory standards for competence, clinical precision, and quality."
+  }
+];
+
 export default function App() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -322,6 +696,7 @@ export default function App() {
   const [inclusionsGender, setInclusionsGender] = useState<"men" | "women">("men");
 
   const [activePackageIndex, setActivePackageIndex] = useState(0);
+  const [activeServiceDesc, setActiveServiceDesc] = useState<number | null>(null);
   const packageScrollRef = useRef<HTMLDivElement>(null);
 
   const handlePackageScroll = (direction: "prev" | "next") => {
@@ -444,112 +819,6 @@ export default function App() {
     }
   };
 
-  const allGalleryPhotos = [
-    {
-      url: imagePhoto1,
-      title: "Agilus Diagnostics Centre Exterior",
-      category: "Exterior & Building",
-      desc: "Strategically located in Sector 69 near Gurukul World School for stress-free street-level patient parking and fast direct laboratory access."
-    },
-    {
-      url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFzkCsfd2SGjTxPnXaehVMK5tGHGEwcQ_OAPPHgXqQQGzvN1zq1oMhllgpbWDOeTBBFQDb2Fyu5l6L3MOeGzMEhfHcVHnmVXOHXL9jHP_ydQ9vHEKMYeJhQU5-ljy-LB9ff2v01_EenAqv3=s680-w680-h510-rw",
-      title: "Main Entrance & Center Front Signage",
-      category: "Exterior & Building",
-      desc: "Prominent front entrance and authorized partner branding, offering direct step-in entry for patients in Sector 69."
-    },
-    {
-      url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFUPfhJG4oXwMlO5RHFaW_xxHcp0lDzp-fYq9lDmQZpv6zKWw6UFcg5G1mR8xglq8Oef8nDrT7arIt84IU_t-C0ue2Lxc200MiHI-Fl7Rlf2U2FzIr7XcAlEkO48g7SC5qnfozA5vo8isl8=s680-w680-h510-rw",
-      title: "Authorized Reception & Registration Desk",
-      category: "Reception Area",
-      desc: "Warm and organized administrative desk equipped with dynamic digital ticketing and computer systems for quick test processing."
-    },
-    {
-      url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFSK8yeKeMYSUYgIGNfy0dELAZVAsxuW-wuRB0anoVLq_65kwqLsgWRB9SBpnpRPeHqeKjQN6AmbErx76bsJVp_OIxjPHJDvflWpYqnwvMQM7rMy7lDuEAY0UVkjdHp9W7f21KxNYuG7Ytm=s680-w680-h510-rw",
-      title: "NABL Standard Bio-Analytical Analyzers Desk",
-      category: "Laboratory Facility",
-      desc: "High-throughput fully automated immuno-chemistry and biochemistry analyzers providing speed, integrity, and clinical precision."
-    },
-    {
-      url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFlaB5_pzNKrnwe-Fg59wtnHZ1Bz5TfAReMu3lt7c1FY7juFoyslIKyFbkyjVVZh1Vt3RFh7B3IZZR3p6WWFPJ9wLJeVyTmJiBO0Kijz8UCafJMd8LE4dImeGdHDVYkq7ti9fOciA=s680-w680-h510-rw",
-      title: "Sterilized Phlebotomy Chair & Sampling Station",
-      category: "Patient Bay",
-      desc: "Supervised clinical station for blood drawing, featuring ergonomic safety recliners and hygienic, single-use barcoded lancets."
-    },
-    {
-      url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEikeVOTEhzyYvKFJocJklO_z_IXjC386ZNX98CTy8b5gPiIJ-dy_9ekEp1jncOShvth864-7zt2w2xsRQYFdVEQvEmSY_74NPQrT5e9ChZUSQS9YjhNyIPDonHVSjJ4Fp6_mmWlJTuZtE=s680-w680-h510-rw",
-      title: "Biochemical Diagnostics Division Unit",
-      category: "Laboratory Facility",
-      desc: "Clinical grade instrumentation for hormone assays, metabolic panels, and dynamic thyroid diagnostics controls."
-    },
-    {
-      url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEghvda5TCSLXFak8DpuiukpBYwQwEl5ANdsYK2MvLfLiukqL8PzA_EPOw5ixTZHoybH7rBdqA8Fp_agLOa5FbKKcrvzIyZqR9XQdnLb1fPSzW6bBSmCxZktLJYNiUbEeIHxSmfmg=s680-w680-h510-rw",
-      title: "Professional Testing Area & Diagnostic Setup",
-      category: "Laboratory Facility",
-      desc: "Advanced clinical analyzer setup overseen by certified pathology professionals ensuring zero cross-contamination and genuine validation."
-    },
-    {
-      url: imageClinical,
-      title: "Phlebotomy & Sample Collection Area",
-      category: "Patient Bay",
-      desc: "Safe, sterile, and fully sanitized collection lounge with specialized comfort recliners designed for gentle and rapid blood drawing."
-    },
-    {
-      url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAHndBvgZhfzPgmxk75cT17C_j0JmW5K5E2ScPyz7IblrwEZxMAhL1CW5HrUiHexrhu0D1K0D2wJ9HouyYFd3bskL0qMVO-XGI6t0ygTxxoR9sf8L2BXWlnsjh09HMJHAWQjX49znVLOcwoP=s680-w680-h510-rw",
-      title: "Bio-Testing Automated Analyzers Unit",
-      category: "Laboratory Facility",
-      desc: "Advanced fully-automated clinical testing and immunoassay machinery, significantly minimizing human contact and delivering raw authentic analysis."
-    },
-    {
-      url: imageTrusted,
-      title: "State-of-the-Art Laboratory Equipment",
-      category: "Laboratory Facility",
-      desc: "Fully equipped testing chamber featuring advanced chemistry and hematology instruments verified daily with NABL standard controls."
-    },
-    {
-      url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEiB5ryxWLcsUYA35H_Gk00Q5-Cvk1R-FSoQ3GFPdOrS5oRePSFSWNZKPyiAkIc_uAIHnRfOWUVHdia-I7xS-mq0korrLo9Udb4qeJBu4QgRG4hmWp6tsro-hZBWUZyUER-dZ11sbXFNZs=s680-w680-h510-rw",
-      title: "Pathology Analyzer & Professional Team Setup",
-      category: "Laboratory Facility",
-      desc: "Clinical grade diagnostic station utilizing next-gen automated equipment for hematology, biochemistry, and hormone markers verification."
-    },
-    {
-      url: imageOverview5,
-      title: "Polished Reception & Comfort Waiting Lounge",
-      category: "Reception Area",
-      desc: "Air-conditioned reception lobby providing immediate digital assistance, computerized token system, and safe seating distance."
-    },
-    {
-      url: imageJourney,
-      title: "Clinical Trust Legacy Since 1997",
-      category: "About SRL Agilus",
-      desc: "Pioneering pathology services across Mohali with unmatched report accuracy, accredited standards, and prompt local trust."
-    },
-    {
-      url: "https://lh3.googleusercontent.com/p/AF1QipPilDAb5f4awWB323dDwPt0C2kUkJQqyE7Zs3AP=s680-w680-h510-rw",
-      title: "Hygienic Consumables Storage & Sterile Prep",
-      category: "Patient Bay",
-      desc: "Temperature-regulated medical storage room highlighting sterilized single-use blood-drawing kits and barcode tracking solutions."
-    }
-  ];
-
-  const centerPhotos = [
-    {
-      url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFzkCsfd2SGjTxPnXaehVMK5tGHGEwcQ_OAPPHgXqQQGzvN1zq1oMhllgpbWDOeTBBFQDb2Fyu5l6L3MOeGzMEhfHcVHnmVXOHXL9jHP_ydQ9vHEKMYeJhQU5-ljy-LB9ff2v01_EenAqv3=s680-w680-h510-rw",
-      title: "Diagnostic Lab",
-    },
-    {
-      url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFUPfhJG4oXwMlO5RHFaW_xxHcp0lDzp-fYq9lDmQZpv6zKWw6UFcg5G1mR8xglq8Oef8nDrT7arIt84IU_t-C0ue2Lxc200MiHI-Fl7Rlf2U2FzIr7XcAlEkO48g7SC5qnfozA5vo8isl8=s680-w680-h510-rw",
-      title: "Testing Facility",
-    },
-    {
-      url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFSK8yeKeMYSUYgIGNfy0dELAZVAsxuW-wuRB0anoVLq_65kwqLsgWRB9SBpnpRPeHqeKjQN6AmbErx76bsJVp_OIxjPHJDvflWpYqnwvMQM7rMy7lDuEAY0UVkjdHp9W7f21KxNYuG7Ytm=s680-w680-h510-rw",
-      title: "Professional Pathology",
-    },
-    {
-      url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFlaB5_pzNKrnwe-Fg59wtnHZ1Bz5TfAReMu3lt7c1FY7juFoyslIKyFbkyjVVZh1Vt3RFh7B3IZZR3p6WWFPJ9wLJeVyTmJiBO0Kijz8UCafJMd8LE4dImeGdHDVYkq7ti9fOciA=s680-w680-h510-rw",
-      title: "Home Sample Collection",
-    },
-  ];
-
   const handleBookingSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -625,55 +894,6 @@ export default function App() {
     setSelectedPackageForBooking("");
   };
 
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const heroImages = [
-    {
-      src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAF-6kv1elhJvFOYgZom8JrFu329YquzGnhEfignDqUSW4cHyFpePWE_9dl2DMEgwaZIVDv-SuubYh9CgoCpLvD2rtiEbbuCLfd8Q0EWr9xldQsYaqetSEaUs4xt0ZqQUMQ-dK32b5k5KDWD=s680-w680-h510-rw",
-      alt: "Front view of Agilus Diagnostics Centre Mohali Sector 69",
-      title: "Trusted Diagnostics",
-      desc: "Serving Mohali with heartfelt care since 1997. We combine decades of clinical precision with a gentle touch, ensuring your health is in the best hands right here in the heart of Mohali.",
-      badge: "Caring since 1997",
-      cta1: "Book Home Collection",
-      cta2: "View Test Menu",
-    },
-    {
-      src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAGrXfKjr3IKX21mBGYQ4DXO-0-2hcpULoGbsYMUXBIFc4XfgfkeHHMj7_QpUeiG-JDKIEE8Vzqublze0lRH1cxHyVYMFd0elbw6A0z20_T1TStyeRszjdG9hScH4lN6lgIX4BIfIO-WDfI=s680-w680-h510-rw",
-      alt: "Automated blood testing analyzers at Agilus Diagnostics Mohali",
-      title: "Precision Testing",
-      desc: "Our facility is designed with your comfort in mind, equipped with the latest technology for rapid, accurate results, so you can spend less time worrying and more time living.",
-      badge: "Accuracy you trust",
-      cta1: "Explore Facilities",
-      cta2: "Watch Virtual Tour",
-    },
-    {
-      src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAHndBvgZhfzPgmxk75cT17C_j0JmW5K5E2ScPyz7IblrwEZxMAhL1CW5HrUiHexrhu0D1K0D2wJ9HouyYFd3bskL0qMVO-XGI6t0ygTxxoR9sf8L2BXWlnsjh09HMJHAWQjX49znVLOcwoP=s680-w680-h510-rw",
-      alt: "Clinical Sample Processing Room at Agilus Mohali - Managed by Top Pathologists.",
-      title: "Expert Pathology",
-      desc: "Managed by highly qualified pathologists to ensure the highest standards of clinical testing and patient care in Punjab.",
-      badge: "Expert Doctors",
-      cta1: "Meet the Team",
-      cta2: "View Specialities",
-    },
-    {
-      src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAENCuDxroLg1iJ1RuvIRWSiBSQL7_BsWdfp2t2ejpWVC8Xl3fsxP-7ZJxXEhzJ-tsjHRSBP2rHy-2H0k5PJ_DgGOxEPvcaMALrTHYDhXAqUrgjOAdoT39lMTWIZqxRaYXGH3Gj0vAghEbc=s680-w680-h510-rw",
-      alt: "Professional Blood Sample Collection at Home Mohali - Trained Phlebotomists from SRL Diagnostics Lab.",
-      title: "Home Collection",
-      desc: "Safe, hygienic, and convenient blood sample collection from your doorstep in Mohali & Chandigarh by trained professionals.",
-      badge: "Safe & Convenient",
-      cta1: "Schedule Visit",
-      cta2: "Learn More",
-    },
-    {
-      src: imageOverview5,
-      alt: "High-end Medical Facility Interior with MNC Standards - Agilus Diagnostics Mohali.",
-      title: "Global Standards",
-      desc: "Operating strictly under NABL and ISO guidelines to ensure international reliability for life-saving diagnostics.",
-      badge: "NABL Accredited",
-      cta1: "Verify Quality",
-      cta2: "Our Standards",
-    },
-  ];
-
   const [searchQuery, setSearchQuery] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
   const searchRef = React.useRef<HTMLDivElement>(null);
@@ -693,114 +913,6 @@ export default function App() {
     };
   }, [searchRef]);
 
-  const searchSuggestions = [
-    {
-      name: "Full Body Checkup",
-      subtext: "Wellness & Prevention",
-      tags: ["routine", "health", "package"],
-      symptoms: ["Fatigue", "Weakness", "Annual Checkup", "Body Ache"],
-      relatedTests: ["CBC", "Lipid Profile", "KFT", "LFT"],
-      freeHomeCollection: true,
-    },
-    {
-      name: "Complete Fever Profile",
-      subtext: "Fever, Malaria, Dengue, Typhoid",
-      tags: ["fever", "chills", "body ache", "headache", "cold"],
-      symptoms: ["High Fever", "Chills", "Body Ache", "Headache"],
-      relatedTests: ["Platelet Count", "Widal Test", "Malaria Smear"],
-      freeHomeCollection: true,
-    },
-    {
-      name: "Diabetes Screening",
-      subtext: "Sugar, HbA1c, Glucose Test",
-      tags: ["diabetes", "sugar", "thirst", "tiredness", "frequent urination"],
-      symptoms: ["Excessive Thirst", "Frequent Urination", "Blurred Vision"],
-      relatedTests: ["HbA1c", "Glucose Fasting", "Insulin Fasting"],
-      freeHomeCollection: true,
-    },
-    {
-      name: "Thyroid Profile",
-      subtext: "T3, T4, TSH",
-      tags: ["thyroid", "weight gain", "weight loss", "hormonal", "hair fall"],
-      symptoms: ["Weight Changes", "Hair Loss", "Constipation"],
-      relatedTests: ["TSH", "Free T3", "Free T4", "Anti-TPO"],
-      freeHomeCollection: true,
-    },
-    {
-      name: "Lipid Profile",
-      subtext: "Cholesterol & Heart Health",
-      tags: ["heart", "cholesterol", "fatty liver", "blood pressure"],
-      symptoms: ["Chest Pain", "Shortness of Breath", "Dizziness"],
-      relatedTests: ["Total Cholesterol", "HDL", "LDL", "VLDL"],
-      freeHomeCollection: true,
-    },
-    {
-      name: "Kidney Function Test (KFT)",
-      subtext: "Creatinine, Urea, Uric Acid",
-      tags: ["kidney", "back pain", "swelling", "urine problem"],
-      symptoms: ["Swelling in Feet", "Back Pain", "Urine Changes"],
-      relatedTests: ["Creatinine", "Uric Acid", "BUN", "Urine R/M"],
-      freeHomeCollection: true,
-    },
-    {
-      name: "Liver Function Test (LFT)",
-      subtext: "Bilirubin, SGOT, SGPT",
-      tags: ["liver", "jaundice", "stomach pain", "digestion"],
-      symptoms: ["Yellow Eyes", "Loss of Appetite", "Nausea"],
-      relatedTests: ["SGOT", "SGPT", "Bilirubin Total", "Alkaline Phosphatase"],
-      freeHomeCollection: true,
-    },
-    {
-      name: "Vitamin D & B12 Test",
-      subtext: "Bone & Nerve Health",
-      tags: ["bone pain", "joint pain", "weakness", "numbness"],
-      symptoms: ["Joint Pain", "Numbness", "Muscle Weakness"],
-      relatedTests: ["Vitamin D 25-Hydroxy", "Vitamin B12", "Calcium"],
-      freeHomeCollection: true,
-    },
-    {
-      name: "CBC Test",
-      subtext: "Complete Blood Count",
-      tags: ["infection", "anemia", "weakness", "low blood"],
-      symptoms: ["Pale Skin", "Infection", "Bruising"],
-      relatedTests: [
-        "Hemoglobin",
-        "WBC Count",
-        "Platelet Count",
-        "RBC Indices",
-      ],
-      freeHomeCollection: true,
-    },
-    {
-      name: "Allergy Screening",
-      subtext: "Find your triggers",
-      tags: ["allergy", "itching", "sneezing", "skin rash"],
-      symptoms: ["Sneezing", "Skin Rashes", "Itching Eyes"],
-      relatedTests: [
-        "Total IgE",
-        "Allergy Panel - Veg",
-        "Allergy Panel - Non Veg",
-      ],
-      freeHomeCollection: true,
-    },
-    {
-      name: "Agilus Wellness Packages",
-      subtext: "Comprehensive Health Plans",
-      tags: ["screening", "health check"],
-      symptoms: ["Prevention", "Healthy Lifestyle", "Executive Health"],
-      relatedTests: ["Vital Care", "Active Care", "Premium Full Body"],
-      freeHomeCollection: true,
-    },
-    {
-      name: "Home Collection Mohali",
-      subtext: "Free Sample Pickup",
-      tags: ["home service", "sector 69", "chandigarh"],
-      symptoms: ["Elderly Care", "Convenience", "Bedridden Patients"],
-      relatedTests: ["Doorstep Service", "WhatsApp Reports", "Digital Records"],
-      freeHomeCollection: true,
-    },
-  ];
-
   const filteredSuggestions = searchSuggestions.filter(
     (item) =>
       item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -809,8 +921,6 @@ export default function App() {
         tag.toLowerCase().includes(searchQuery.toLowerCase()),
       ),
   );
-
-
 
   useEffect(() => {
     // Lead Conversion Tracking / Business Intelligence Simulation
@@ -861,7 +971,7 @@ export default function App() {
       aggregateRating: {
         "@type": "AggregateRating",
         ratingValue: "4.9",
-        reviewCount: "250",
+        reviewCount: "82",
       },
       priceRange: "$$",
     };
@@ -879,17 +989,28 @@ export default function App() {
     };
   }, []);
 
-  const [isPackagesLoading, setIsPackagesLoading] = useState(true);
+  const [isPackagesLoading, setIsPackagesLoading] = useState(false);
   const [isTestListLoading, setIsTestListLoading] = useState(true);
 
   useEffect(() => {
-    const pTimer = setTimeout(() => setIsPackagesLoading(false), 950);
-    const tTimer = setTimeout(() => setIsTestListLoading(false), 1250);
-    return () => {
-      clearTimeout(pTimer);
-      clearTimeout(tTimer);
-    };
+    const timer = setTimeout(() => {
+      setIsTestListLoading(false);
+    }, 1000);
+    return () => clearTimeout(timer);
   }, []);
+
+  const [testSortField, setTestSortField] = useState<"name" | "tat" | null>(null);
+  const [testSortDirection, setTestSortDirection] = useState<"asc" | "desc">("asc");
+  const [testSearchQuery, setTestSearchQuery] = useState("");
+  const [selectedTestCategory, setSelectedTestCategory] = useState<"all" | "packages" | "essential" | "organs">("all");
+
+  useEffect(() => {
+    setIsTestListLoading(true);
+    const timer = setTimeout(() => {
+      setIsTestListLoading(false);
+    }, 350);
+    return () => clearTimeout(timer);
+  }, [testSortField, testSortDirection, testSearchQuery, selectedTestCategory]);
 
   const [activeTab, setActiveTab] = useState<
     "overview" | "services" | "reviews" | "about"
@@ -897,6 +1018,47 @@ export default function App() {
 
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [activeGalleryIndex, setActiveGalleryIndex] = useState(0);
+  const [showGalleryInfo, setShowGalleryInfo] = useState(true);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (touchStartX === null) return;
+    const currentX = e.targetTouches[0].clientX;
+    const diffX = touchStartX - currentX;
+    if (Math.abs(diffX) > 60) {
+      if (diffX > 0) {
+        // Swipe left -> Next image
+        setActiveGalleryIndex((prev) => (prev === allGalleryPhotos.length - 1 ? 0 : prev + 1));
+      } else {
+        // Swipe right -> Previous image
+        setActiveGalleryIndex((prev) => (prev === 0 ? allGalleryPhotos.length - 1 : prev - 1));
+      }
+      setTouchStartX(null);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setTouchStartX(null);
+  };
+
+  useEffect(() => {
+    if (!isGalleryOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsGalleryOpen(false);
+      } else if (e.key === "ArrowRight") {
+        setActiveGalleryIndex((prev) => (prev === allGalleryPhotos.length - 1 ? 0 : prev + 1));
+      } else if (e.key === "ArrowLeft") {
+        setActiveGalleryIndex((prev) => (prev === 0 ? allGalleryPhotos.length - 1 : prev - 1));
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isGalleryOpen]);
 
   const [darkMode, setDarkMode] = useState(() => {
     return (
@@ -916,13 +1078,72 @@ export default function App() {
     }
   }, [darkMode]);
 
-  const [testSortField, setTestSortField] = useState<"name" | "tat" | null>(null);
-  const [testSortDirection, setTestSortDirection] = useState<"asc" | "desc">("asc");
-
   const sortedTestMenu = useMemo(() => {
-    if (!testSortField) return testMenu;
+    // 1. Filter by Category
+    let filtered = [...testMenu];
+    
+    if (selectedTestCategory !== "all") {
+      filtered = filtered.filter((test) => {
+        const codeUpper = (test.code || "").toUpperCase();
+        const nameUpper = (test.name || "").toUpperCase();
+        
+        if (selectedTestCategory === "packages") {
+          return (
+            codeUpper.startsWith("AG-FULL") ||
+            codeUpper.startsWith("AG-DIAB") ||
+            codeUpper.startsWith("AG-VIT") ||
+            nameUpper.includes("PACKAGE") ||
+            nameUpper.includes("CHECKUP") ||
+            nameUpper.includes("COMBO") ||
+            nameUpper.includes("PANEL") ||
+            codeUpper === "DIAB"
+          );
+        }
+        
+        if (selectedTestCategory === "essential") {
+          return (
+            codeUpper.includes("CBC") ||
+            codeUpper.includes("HBA1C") ||
+            codeUpper.includes("VITD3") ||
+            nameUpper.includes("BLOOD COUNT") ||
+            nameUpper.includes("VITB12")
+          );
+        }
+        
+        if (selectedTestCategory === "organs") {
+          return (
+            codeUpper.includes("LFT") ||
+            codeUpper.includes("KFT") ||
+            codeUpper.includes("LIPID") ||
+            codeUpper.includes("THYR") ||
+            nameUpper.includes("KIDNEY") ||
+            nameUpper.includes("LIVER") ||
+            nameUpper.includes("LIPID") ||
+            nameUpper.includes("THYROID")
+          );
+        }
+        
+        return true;
+      });
+    }
 
-    return [...testMenu].sort((a, b) => {
+    // 2. Filter by Search Query
+    if (testSearchQuery.trim()) {
+      const q = testSearchQuery.toLowerCase();
+      filtered = filtered.filter((test) => {
+        return (
+          (test.name || "").toLowerCase().includes(q) ||
+          (test.code || "").toLowerCase().includes(q) ||
+          (test.method || "").toLowerCase().includes(q) ||
+          (test.sample || "").toLowerCase().includes(q)
+        );
+      });
+    }
+
+    // 3. Sort
+    if (!testSortField) return filtered;
+
+    return [...filtered].sort((a, b) => {
       let comparison = 0;
       if (testSortField === "name") {
         comparison = (a.name || "").localeCompare(b.name || "");
@@ -940,7 +1161,7 @@ export default function App() {
 
       return testSortDirection === "asc" ? comparison : -comparison;
     });
-  }, [testSortField, testSortDirection]);
+  }, [testSortField, testSortDirection, testSearchQuery, selectedTestCategory]);
 
   const handleSort = (field: "name" | "tat") => {
     if (testSortField === field) {
@@ -971,88 +1192,6 @@ export default function App() {
     return () => observer.disconnect();
   }, []);
   const [visibleReviews, setVisibleReviews] = useState(3);
-  const allReviews = [
-    {
-      name: "Rahul Sharma",
-      rating: 5,
-      date: "2 weeks ago",
-      comment:
-        "Excellent service. The home collection was very smooth and the reports were delivered on time via email and WhatsApp. Very professional phlebotomist.",
-    },
-    {
-      name: "Pooja Verma",
-      rating: 5,
-      date: "1 month ago",
-      comment:
-        "One of the best labs in Mohali. Clean environment and the staff was very helpful. Highly recommended for full body checkups.",
-    },
-    {
-      name: "Amit Gupta",
-      rating: 5,
-      date: "3 weeks ago",
-      comment:
-        "Very accurate results and fast reporting. I have been visiting this lab for 2 years now, never disappointed.",
-    },
-    {
-      name: "Sneha Kapoor",
-      rating: 4,
-      date: "1 month ago",
-      comment:
-        "Professional staff and affordable prices. The home collection service is a life saver for my parents.",
-    },
-    {
-      name: "Vikram Singh",
-      rating: 5,
-      date: "2 months ago",
-      comment:
-        "Agilus (SRL) Mohali has state of the art equipment. The lab is very clean and follows all safety protocols.",
-    },
-    {
-      name: "Deepak Malhotra",
-      rating: 5,
-      date: "5 days ago",
-      comment:
-        "Prompt response for home collection and very gentle blood extraction. Highly recommended for anyone in Sector 69.",
-    },
-  ];
-
-  const curatedTestimonials = [
-    {
-      name: "Rahul Sharma",
-      rating: 5,
-      image: "https://i.pravatar.cc/150?img=12",
-      quote:
-        "Smooth and professional. Reports were on my WhatsApp within hours!",
-    },
-    {
-      name: "Deepak Malhotra",
-      rating: 5,
-      image: "https://i.pravatar.cc/150?img=33",
-      quote:
-        "The gentlest blood extraction I've ever experienced. Highly meticulous.",
-    },
-    {
-      name: "Pooja Verma",
-      rating: 5,
-      image: "https://i.pravatar.cc/150?img=44",
-      quote:
-        "Pristine hygiene standards. Clearly the best diagnostic lab in Mohali Sector 69.",
-    },
-    {
-      name: "Amit Gupta",
-      rating: 5,
-      image: "https://i.pravatar.cc/150?img=68",
-      quote:
-        "Reliable and fast. The tech stack they use for reports is very impressive.",
-    },
-    {
-      name: "Sneha Kapoor",
-      rating: 4,
-      image: "https://i.pravatar.cc/150?img=45",
-      quote:
-        "Excellent home collection service. Their phlebotomists are very well-trained.",
-    },
-  ];
 
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
@@ -1271,156 +1410,88 @@ export default function App() {
                     "w-3 h-3 rounded-full bg-white/60 transition-all duration-300 inline-block mx-1 cursor-pointer border border-white",
                 }}
                 autoplay={{ delay: 4000, disableOnInteraction: false }}
-                onSlideChange={(swiper) =>
-                  setCurrentImageIndex(swiper.realIndex)
-                }
                 className="w-full h-full"
               >
                 {heroImages.map((img, index) => (
-                  <SwiperSlide key={index}>
+                  <SwiperSlide key={index} className="relative w-full h-full overflow-hidden">
                     <div className="absolute inset-0">
                       <img
                         src={img.src}
                         alt={img.alt}
-                        className="w-full h-full object-cover brightness-[0.70] md:brightness-[0.80]"
+                        className="w-full h-full object-cover brightness-[0.60] md:brightness-[0.75]"
                         referrerPolicy="no-referrer"
                         loading={index === 0 ? "eager" : "lazy"}
                         fetchPriority={index === 0 ? "high" : "auto"}
                       />
                     </div>
+                    {/* Integrated dynamic overlay: text and CTAs transition with the slide image natively */}
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent p-5 sm:p-10 md:p-12 z-10 flex flex-col justify-end h-full">
+                      <div className="max-w-3xl">
+                        {/* Badges */}
+                        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-2 sm:mb-4">
+                          <span className="text-[10px] sm:text-xs font-black text-white bg-agilus-green px-3 sm:px-4 py-1 sm:py-1.5 rounded-full uppercase tracking-[0.1em] sm:tracking-[0.15em] shadow-lg border border-white/20">
+                            {img.badge || "Best Diagnostic Lab in Mohali"}
+                          </span>
+                          <div className="flex items-center bg-white/10 backdrop-blur-md px-2.5 sm:px-3 py-1 rounded-full text-[9px] sm:text-[10px] text-white font-black uppercase tracking-widest border border-white/20">
+                            <CheckCircle2 className="w-3 h-3 text-agilus-green mr-1.5 sm:mr-2" />
+                            NABL Accredited
+                          </div>
+                        </div>
+
+                        {/* Title */}
+                        <h1 className="text-xl sm:text-3xl md:text-5xl font-black text-white mb-2 sm:mb-4 leading-[1.1] drop-shadow-2xl tracking-tight">
+                          {img.title === "Trusted Diagnostics" ? (
+                            <>
+                              Best Diagnostic <br className="hidden sm:block" />
+                              <span className="text-agilus-green">
+                                Lab in Mohali
+                              </span>
+                            </>
+                          ) : (
+                            img.title
+                          )}
+                        </h1>
+
+                        {/* Description */}
+                        <p className="text-white/95 text-xs sm:text-sm md:text-lg mb-4 sm:mb-6 max-w-2xl font-medium leading-relaxed drop-shadow-md line-clamp-3 sm:line-clamp-none">
+                          {img.desc.includes("heart of Mohali")
+                            ? "Agilus Diagnostics (Formerly SRL) Sector 69. Superior Clinical Accuracy, 24/7 Free Home Sample Collection, & 3,000+ Specialized Tests."
+                            : img.desc}
+                        </p>
+
+                        {/* CTAs */}
+                        <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 w-full justify-start mt-2">
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              if (index === 0) {
+                                handleCall();
+                              } else if (index === 1) {
+                                setActiveTab("services");
+                                const el = document.getElementById("services");
+                                if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                              } else if (index === 2 || index === 3) {
+                                setIsBookingOpen(true);
+                              } else if (index === 4) {
+                                const el = document.getElementById("health-packages");
+                                if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                              }
+                            }}
+                            className="bg-google-blue hover:bg-blue-650 dark:bg-zinc-800 dark:hover:bg-zinc-700/80 hover:scale-[1.02] border border-white/10 text-white px-5 sm:px-7 py-3 sm:py-3.5 rounded-xl sm:rounded-2xl font-black text-xs sm:text-sm transition-all shadow-xl active:scale-95 flex items-center justify-center gap-2 w-full sm:w-auto cursor-pointer"
+                          >
+                            {index === 0 && <Phone className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-white animate-pulse" aria-hidden="true" />}
+                            {index === 1 && <FlaskConical className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-blue-200" aria-hidden="true" />}
+                            {index === 2 && <Calendar className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-green-200" aria-hidden="true" />}
+                            {index === 3 && <ClipboardCheck className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-orange-200" aria-hidden="true" />}
+                            {index === 4 && <HeartPulse className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-pink-200" aria-hidden="true" />}
+                            {img.cta}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
                   </SwiperSlide>
                 ))}
               </Swiper>
-
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/95 via-black/70 to-black/10 p-4 sm:p-8 md:p-12 pointer-events-none z-10">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={`text-${currentImageIndex}`}
-                    initial="hidden"
-                    animate="visible"
-                    exit="hidden"
-                    variants={{
-                      visible: {
-                        transition: {
-                          staggerChildren: 0.15,
-                          delayChildren: 0.1,
-                        },
-                      },
-                      hidden: {
-                        transition: {
-                          staggerChildren: 0.05,
-                          staggerDirection: -1,
-                        },
-                      },
-                    }}
-                    className="max-w-3xl pointer-events-auto"
-                  >
-                    <motion.div
-                      variants={{
-                        hidden: { opacity: 0, y: 20 },
-                        visible: {
-                          opacity: 1,
-                          y: 0,
-                          transition: { duration: 0.6, ease: "easeOut" },
-                        },
-                      }}
-                      className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-2 sm:mb-4"
-                    >
-                      <span className="text-[10px] sm:text-xs font-black text-white bg-agilus-green px-3 sm:px-4 py-1 sm:py-1.5 rounded-full uppercase tracking-[0.15em] sm:tracking-[0.2em] shadow-lg border border-white/20">
-                        Best Diagnostic Lab in Mohali
-                      </span>
-                      <div className="flex items-center bg-white/10 backdrop-blur-md px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[9px] sm:text-[10px] text-white font-black uppercase tracking-widest border border-white/20">
-                        <CheckCircle2 className="w-3 h-3 text-agilus-green mr-1.5 sm:mr-2" />
-                        NABL Accredited
-                      </div>
-                    </motion.div>
-                    <motion.h1
-                      variants={{
-                        hidden: { opacity: 0, y: 20 },
-                        visible: {
-                          opacity: 1,
-                          y: 0,
-                          transition: { duration: 0.6, ease: "easeOut" },
-                        },
-                      }}
-                      className="text-2xl sm:text-5xl md:text-7xl font-black text-white mb-2 sm:mb-4 leading-[1.1] sm:leading-[0.9] drop-shadow-2xl tracking-tighter"
-                    >
-                      {heroImages[currentImageIndex].title ===
-                      "Trusted Diagnostics" ? (
-                        <>
-                          Best Diagnostic <br className="hidden sm:block" />
-                          <span className="text-agilus-green">
-                            Lab in Mohali.
-                          </span>
-                        </>
-                      ) : (
-                        heroImages[currentImageIndex].title
-                      )}
-                    </motion.h1>
-                    <motion.p
-                      variants={{
-                        hidden: { opacity: 0, y: 20 },
-                        visible: {
-                          opacity: 1,
-                          y: 0,
-                          transition: { duration: 0.6, ease: "easeOut" },
-                        },
-                      }}
-                      className="text-white/90 text-xs sm:text-lg md:text-2xl mb-4 sm:mb-10 max-w-2xl font-medium leading-relaxed drop-shadow-xl line-clamp-3 sm:line-clamp-none"
-                    >
-                      {heroImages[currentImageIndex].desc.includes(
-                        "heart of Mohali",
-                      )
-                        ? "Agilus Diagnostics (Formerly SRL) Sector 69. Superior Clinical Accuracy, 24/7 Free Home Sample Collection, & 3,000+ Specialized Tests."
-                        : heroImages[currentImageIndex].desc}
-                    </motion.p>
-                    <motion.div
-                      variants={{
-                        hidden: { opacity: 0, y: 20 },
-                        visible: {
-                          opacity: 1,
-                          y: 0,
-                          transition: { duration: 0.6, ease: "easeOut" },
-                        },
-                      }}
-                      className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-4 w-full justify-start animate-fade-in"
-                    >
-                      <button
-                        onClick={() => {
-                          if (
-                            heroImages[currentImageIndex].cta1.includes(
-                              "Explore",
-                            ) ||
-                            heroImages[currentImageIndex].cta1.includes("Test")
-                          ) {
-                            window.open(
-                              "https://agilusdiagnostics.com/care-packages/mohali/",
-                              "_blank",
-                            );
-                          } else {
-                            setIsBookingOpen(true);
-                          }
-                        }}
-                        className="bg-google-blue hover:bg-blue-600 text-white px-5 sm:px-10 py-3 sm:py-5 rounded-xl sm:rounded-2xl font-black text-xs sm:text-lg transition-all shadow-2xl shadow-blue-900/40 active:scale-95 flex items-center justify-center gap-2 sm:gap-3 w-full sm:w-auto"
-                      >
-                        <Droplets className="w-4.5 h-4.5 sm:w-6 sm:h-6" aria-hidden="true" />
-                        {heroImages[currentImageIndex].cta1}
-                      </button>
-                      <button
-                        onClick={() =>
-                          window.open(
-                            "https://agilusdiagnostics.com/care-packages/mohali/",
-                            "_blank",
-                          )
-                        }
-                        className="bg-white/95 hover:bg-white text-google-blue px-5 sm:px-10 py-3 sm:py-5 rounded-xl sm:rounded-2xl font-black text-xs sm:text-lg transition-all active:scale-95 shadow-xl w-full sm:w-auto hidden sm:flex items-center justify-center"
-                      >
-                        {heroImages[currentImageIndex].cta2}
-                      </button>
-                    </motion.div>
-                  </motion.div>
-                </AnimatePresence>
-              </div>
 
               {/* Slider Controls */}
               <button
@@ -1587,11 +1658,11 @@ export default function App() {
                       setIsGalleryOpen(true);
                       setActiveGalleryIndex(0);
                     }}
-                    className="relative overflow-hidden aspect-square cursor-zoom-in group/item"
+                    className="relative overflow-hidden w-full h-full cursor-zoom-in group/item"
                   >
                     <img
                       src={centerPhotos[0].url}
-                      alt="Front view of Agilus Diagnostics Centre Mohali Sector 69"
+                      alt="Front view of Agilus Diagnostics Centre Exterior"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02] hover:!scale-105"
                       referrerPolicy="no-referrer"
                       loading="lazy"
@@ -1607,7 +1678,7 @@ export default function App() {
                       setIsGalleryOpen(true);
                       setActiveGalleryIndex(1);
                     }}
-                    className="relative overflow-hidden aspect-square cursor-zoom-in group/item"
+                    className="relative overflow-hidden w-full h-full cursor-zoom-in group/item"
                   >
                     <img
                       src={centerPhotos[1].url}
@@ -1627,7 +1698,7 @@ export default function App() {
                       setIsGalleryOpen(true);
                       setActiveGalleryIndex(2);
                     }}
-                    className="relative overflow-hidden aspect-square cursor-zoom-in group/item"
+                    className="relative overflow-hidden w-full h-full cursor-zoom-in group/item"
                   >
                     <img
                       src={centerPhotos[2].url}
@@ -1647,7 +1718,7 @@ export default function App() {
                       setIsGalleryOpen(true);
                       setActiveGalleryIndex(3);
                     }}
-                    className="relative overflow-hidden aspect-square cursor-zoom-in"
+                    className="relative overflow-hidden w-full h-full cursor-zoom-in"
                   >
                     <img
                       src={centerPhotos[3].url}
@@ -1961,7 +2032,7 @@ export default function App() {
             </section>
 
             {/* Featured Premier Health Packages (Indian Context) */}
-            <section className="">
+            <section className="scroll-mt-32 md:scroll-mt-40" id="health-packages">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 md:mb-5 px-2 md:px-0 gap-4">
                 <div className="flex flex-col">
                   <h2 className="text-2xl font-bold text-[#202124] tracking-tight">
@@ -2213,144 +2284,246 @@ export default function App() {
               id="services"
               role="tabpanel"
               aria-labelledby="services-tab"
-              className="border border-google-border rounded-xl p-5 md:p-6 shadow-sm scroll-mt-32 md:scroll-mt-40"
+              className="border border-google-border dark:border-zinc-850 rounded-xl p-5 md:p-6 shadow-sm scroll-mt-32 md:scroll-mt-40 bg-white dark:bg-[#1f2023]"
             >
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4 md:mb-5">
-                <div>
-                  <h2 className="text-2xl font-bold text-[#202124]">
-                    Specialized Test Menu
-                  </h2>
-                  <p className="text-sm text-google-grey mt-1">
-                    Directory of Services (DoS) effective from August 2025
-                  </p>
-                </div>
+              {(() => {
+                const packagesCount = testMenu.filter(t => {
+                  const code = (t.code || "").toUpperCase();
+                  const name = (t.name || "").toUpperCase();
+                  return code.startsWith("AG-FULL") || code.startsWith("AG-DIAB") || code.startsWith("AG-VIT") || name.includes("PACKAGE") || name.includes("CHECKUP") || name.includes("COMBO") || name.includes("PANEL") || code === "DIAB";
+                }).length;
 
-                <div className="flex flex-col sm:flex-row items-center gap-3">
-                  <button
-                    onClick={() => setIsBookingOpen(true)}
-                    className="flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full text-sm font-bold shadow-lg shadow-emerald-600/20 transition-all"
-                  >
-                    Book Online
-                  </button>
-                </div>
-              </div>
+                const essentialCount = testMenu.filter(t => {
+                  const code = (t.code || "").toUpperCase();
+                  const name = (t.name || "").toUpperCase();
+                  return code.includes("CBC") || code.includes("HBA1C") || code.includes("VIT") || name.includes("BLOOD COUNT") || name.includes("VITAMIN");
+                }).length;
 
-              <div className="overflow-x-auto -mx-6 px-6">
-                <table className="w-full text-left border-collapse">
-                  <thead>
-                    <tr className="border-b border-google-border">
-                      <th
-                        onClick={() => handleSort("name")}
-                        className="py-4 px-2 text-xs font-bold text-google-grey uppercase tracking-wider cursor-pointer hover:bg-google-light-grey/40 select-none group transition-colors"
-                        title="Click to sort by Test Name"
+                const organsCount = testMenu.filter(t => {
+                  const code = (t.code || "").toUpperCase();
+                  const name = (t.name || "").toUpperCase();
+                  return code.includes("LFT") || code.includes("KFT") || code.includes("LIPID") || code.includes("THYR") || name.includes("KIDNEY") || name.includes("LIVER") || name.includes("LIPID") || name.includes("THYROID");
+                }).length;
+
+                return (
+                  <>
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-3">
+                      <div>
+                        <h2 className="text-2xl font-black text-[#1a1c1e] dark:text-white tracking-tight">
+                          Specialized Test Menu
+                        </h2>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 font-semibold mt-1">
+                          Easily locate, search and filter through our certified directory of lab services.
+                        </p>
+                      </div>
+
+                      <button
+                        onClick={() => setIsBookingOpen(true)}
+                        className="flex items-center justify-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full text-sm font-bold shadow-lg shadow-emerald-600/20 hover:scale-[1.02] active:scale-95 transition-all shrink-0 w-full md:w-auto"
                       >
-                        <div className="flex items-center gap-1.5">
-                          <span>Test Name</span>
-                          {testSortField === "name" ? (
-                            testSortDirection === "asc" ? (
-                              <ArrowUp className="w-3.5 h-3.5 text-google-blue shrink-0" />
-                            ) : (
-                              <ArrowDown className="w-3.5 h-3.5 text-google-blue shrink-0" />
-                            )
-                          ) : (
-                            <ArrowUpDown className="w-3.5 h-3.5 text-google-grey/40 group-hover:text-google-grey/80 shrink-0 transition-colors" />
-                          )}
-                        </div>
-                      </th>
-                      <th
-                        onClick={() => handleSort("tat")}
-                        className="py-4 px-2 text-xs font-bold text-google-grey uppercase tracking-wider cursor-pointer hover:bg-google-light-grey/40 select-none group transition-colors"
-                        title="Click to sort by Delivery Speed"
+                        Book Test Online
+                      </button>
+                    </div>
+
+                    {/* High Contrast Selection Chips */}
+                    <div className="flex flex-wrap items-center gap-1.5 mt-3 pb-3 border-b border-gray-100 dark:border-zinc-800">
+                      <button
+                        onClick={() => setSelectedTestCategory("all")}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap uppercase tracking-wider ${
+                          selectedTestCategory === "all"
+                            ? "bg-google-blue text-white shadow-md shadow-blue-500/10"
+                            : "bg-gray-100 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700 text-gray-700 dark:text-gray-300 border border-gray-200/50 dark:border-zinc-700/50"
+                        }`}
                       >
-                        <div className="flex items-center gap-1.5">
-                          <span>Delivery Speed</span>
-                          {testSortField === "tat" ? (
-                            testSortDirection === "asc" ? (
-                              <ArrowUp className="w-3.5 h-3.5 text-google-blue shrink-0" />
-                            ) : (
-                              <ArrowDown className="w-3.5 h-3.5 text-google-blue shrink-0" />
-                            )
-                          ) : (
-                            <ArrowUpDown className="w-3.5 h-3.5 text-google-grey/40 group-hover:text-google-grey/80 shrink-0 transition-colors" />
-                          )}
+                        All ({testMenu.length})
+                      </button>
+                      <button
+                        onClick={() => setSelectedTestCategory("packages")}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap uppercase tracking-wider ${
+                          selectedTestCategory === "packages"
+                            ? "bg-google-blue text-white shadow-md shadow-blue-500/10"
+                            : "bg-gray-100 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700 text-gray-700 dark:text-gray-300 border border-gray-200/50 dark:border-zinc-700/50"
+                        }`}
+                      >
+                        Wellness Packages ({packagesCount})
+                      </button>
+                      <button
+                        onClick={() => setSelectedTestCategory("essential")}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap uppercase tracking-wider ${
+                          selectedTestCategory === "essential"
+                            ? "bg-google-blue text-white shadow-md shadow-blue-500/10"
+                            : "bg-gray-100 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700 text-gray-700 dark:text-gray-300 border border-gray-200/50 dark:border-zinc-700/50"
+                        }`}
+                      >
+                        Everyday Biomarkers ({essentialCount})
+                      </button>
+                      <button
+                        onClick={() => setSelectedTestCategory("organs")}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap uppercase tracking-wider ${
+                          selectedTestCategory === "organs"
+                            ? "bg-google-blue text-white shadow-md shadow-blue-500/10"
+                            : "bg-gray-100 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700 text-gray-700 dark:text-gray-300 border border-gray-200/50 dark:border-zinc-700/50"
+                        }`}
+                      >
+                        Organ Biomarkers ({organsCount})
+                      </button>
+                    </div>
+
+                    {sortedTestMenu.length === 0 ? (
+                      <div className="flex flex-col items-center justify-center py-12 px-4 text-center bg-gray-50/50 dark:bg-zinc-900/40 rounded-xl border border-dashed border-gray-200 dark:border-zinc-800 my-4 select-none">
+                        <div className="w-10 h-10 rounded-full bg-blue-50 dark:bg-blue-950/20 flex items-center justify-center mb-3 text-google-blue">
+                          <Info className="w-5 h-5" />
                         </div>
-                      </th>
-                      <th className="py-4 px-2 text-xs font-bold text-google-grey uppercase tracking-wider text-right select-none">
-                        Action
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {isTestListLoading ? (
-                      Array.from({ length: 5 }).map((_, idx) => (
-                        <tr
-                          key={`test-skeleton-${idx}`}
-                          className="border-b border-google-border/50 animate-pulse"
+                        <h4 className="text-sm font-black text-gray-950 dark:text-white mb-1">
+                          No Diagnostic Tests Found
+                        </h4>
+                        <p className="text-[11px] text-gray-500 dark:text-zinc-400 font-semibold max-w-sm mb-3.5 leading-relaxed">
+                          We couldn't locate any test corresponding to "{testSearchQuery}" in this selection.
+                        </p>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setTestSearchQuery("");
+                            setSelectedTestCategory("all");
+                          }}
+                          className="px-4 py-2 bg-google-blue hover:bg-blue-600 text-white rounded-lg text-[10px] font-black uppercase tracking-wider transition-all cursor-pointer shadow-sm animate-pulse"
                         >
-                          <td className="py-4 px-2">
-                            <div className="flex items-center gap-3">
-                              <div className="w-5 h-5 rounded-full bg-gray-200 shrink-0" />
-                              <div className="flex flex-col gap-1.5 w-full">
-                                <div className="h-4 w-32 bg-gray-200 rounded animate-pulse" />
-                                <div className="h-3 w-16 bg-gray-100 rounded animate-pulse" />
-                              </div>
-                            </div>
-                          </td>
-                          <td className="py-4 px-2">
-                            <div className="h-5 w-24 bg-gray-200 rounded-full animate-pulse" />
-                          </td>
-                          <td className="py-4 text-right pr-2">
-                            <div className="inline-flex gap-2">
-                              <div className="w-20 h-8 bg-gray-100 rounded-full animate-pulse" />
-                              <div className="w-16 h-8 bg-gray-200 rounded-full animate-pulse" />
-                            </div>
-                          </td>
-                        </tr>
-                      ))
+                          Reset Filters & Search
+                        </button>
+                      </div>
                     ) : (
-                      sortedTestMenu.map((test) => (
-                        <ExpandableTestRow
-                          key={test.code}
-                          test={test}
-                          onBook={() => setIsBookingOpen(true)}
-                        />
-                      ))
+                      <div className="overflow-x-auto -mx-6 px-6">
+                        <div className="overflow-y-auto max-h-[480px] border border-google-border/60 rounded-xl scrollbar-thin dark:border-[#3c4043] bg-white dark:bg-[#1f2023] mt-3">
+                          <table className="w-full text-left border-collapse table-fixed min-w-[640px]">
+                            <colgroup>
+                              <col className="w-[50%]" />
+                              <col className="w-[20%]" />
+                              <col className="w-[30%]" />
+                            </colgroup>
+                            <thead className="sticky top-0 bg-white dark:bg-[#1f2023] z-10 shadow-[0_1.5px_0_0_rgba(224,224,224,1)] dark:shadow-[0_1.5px_0_0_rgba(60,64,67,1)]">
+                              <tr>
+                                <th
+                                  onClick={() => handleSort("name")}
+                                  className="py-4 px-4 text-xs font-black text-gray-800 dark:text-gray-100 uppercase tracking-wider cursor-pointer hover:bg-google-light-grey/40 dark:hover:bg-zinc-800/50 select-none group transition-colors rounded-tl-xl"
+                                  title="Click to sort by Test Name"
+                                >
+                                  <div className="flex items-center gap-1.5">
+                                    <span>Test Name</span>
+                                    {testSortField === "name" ? (
+                                      testSortDirection === "asc" ? (
+                                        <ArrowUp className="w-3.5 h-3.5 text-google-blue dark:text-blue-400 shrink-0" />
+                                      ) : (
+                                        <ArrowDown className="w-3.5 h-3.5 text-google-blue dark:text-blue-400 shrink-0" />
+                                      )
+                                    ) : (
+                                      <ArrowUpDown className="w-3.5 h-3.5 text-gray-500 dark:text-gray-400 group-hover:text-google-blue dark:group-hover:text-blue-400 shrink-0 transition-colors" />
+                                    )}
+                                  </div>
+                                </th>
+                                <th
+                                  onClick={() => handleSort("tat")}
+                                  className="py-4 px-2 text-xs font-black text-gray-800 dark:text-gray-100 uppercase tracking-wider cursor-pointer hover:bg-google-light-grey/40 dark:hover:bg-zinc-800/50 select-none group transition-colors"
+                                  title="Click to sort by Delivery Speed"
+                                >
+                                  <div className="flex items-center gap-1.5">
+                                    <span>Delivery Speed</span>
+                                    {testSortField === "tat" ? (
+                                      testSortDirection === "asc" ? (
+                                        <ArrowUp className="w-3.5 h-3.5 text-google-blue dark:text-blue-400 shrink-0" />
+                                      ) : (
+                                        <ArrowDown className="w-3.5 h-3.5 text-google-blue dark:text-blue-400 shrink-0" />
+                                      )
+                                    ) : (
+                                      <ArrowUpDown className="w-3.5 h-3.5 text-gray-500 dark:text-gray-400 group-hover:text-google-blue dark:group-hover:text-blue-400 shrink-0 transition-colors" />
+                                    )}
+                                  </div>
+                                </th>
+                                <th className="py-4 px-4 text-xs font-black text-gray-800 dark:text-gray-100 uppercase tracking-wider text-right select-none rounded-tr-xl">
+                                  Action
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {isTestListLoading ? (
+                                Array.from({ length: 5 }).map((_, idx) => (
+                                  <tr
+                                    key={`test-skeleton-${idx}`}
+                                    className="border-b border-google-border/50 bg-white dark:bg-[#1f2023]"
+                                  >
+                                    <td className="py-4 px-4">
+                                      <div className="flex items-center gap-3">
+                                        <div className="w-5 h-5 rounded-full bg-google-light-grey dark:bg-zinc-800 shrink-0 animate-pulse" />
+                                        <div className="flex flex-col gap-1.5 w-full">
+                                          <div className="h-4 bg-google-light-grey dark:bg-zinc-800 rounded w-4/5 animate-pulse" />
+                                          <div className="flex gap-2 items-center mt-1">
+                                            <div className="h-3 w-12 bg-google-light-grey/80 dark:bg-zinc-800/80 rounded animate-pulse" />
+                                            <div className="h-3 w-24 bg-google-light-grey/60 dark:bg-zinc-800/60 rounded animate-pulse" />
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </td>
+                                    <td className="py-4 px-2">
+                                      <div className="flex items-center gap-1.5">
+                                        <div className="w-3.5 h-3.5 rounded-full bg-google-light-grey dark:bg-zinc-800 shrink-0 animate-pulse" />
+                                        <div className="h-4 w-20 bg-google-light-grey dark:bg-zinc-800 rounded animate-pulse" />
+                                      </div>
+                                    </td>
+                                    <td className="py-4 text-right pr-4">
+                                      <div className="flex items-center justify-end gap-2">
+                                        <div className="w-[84px] h-7 bg-google-light-grey/80 dark:bg-zinc-800/80 rounded-full animate-pulse" />
+                                        <div className="w-[80px] h-8 bg-google-light-grey dark:bg-zinc-800 rounded-full animate-pulse" />
+                                      </div>
+                                    </td>
+                                  </tr>
+                                ))
+                              ) : (
+                                sortedTestMenu.map((test) => (
+                                  <ExpandableTestRow
+                                    key={test.code}
+                                    test={test}
+                                    onBook={() => setIsBookingOpen(true)}
+                                  />
+                                ))
+                              )}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
                     )}
-                  </tbody>
-                </table>
-              </div>
-
-              <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 p-6 bg-google-light-grey/30 rounded-2xl border border-google-border/40">
+                  </>
+                );
+              })()}
+                            <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 p-6 bg-gray-50/50 dark:bg-zinc-900/40 rounded-2xl border border-gray-100 dark:border-zinc-800">
                 <div className="flex gap-4">
-                  <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shrink-0 shadow-sm border border-google-border/50">
-                    <FlaskConical className="w-5 h-5 text-google-blue" />
+                  <div className="w-10 h-10 rounded-full bg-white dark:bg-zinc-800 flex items-center justify-center shrink-0 shadow-sm border border-gray-200/50 dark:border-zinc-700">
+                    <FlaskConical className="w-5 h-5 text-google-blue dark:text-blue-400" />
                   </div>
                   <div>
-                    <h5 className="text-sm font-bold">Automated Precision</h5>
-                    <p className="text-[11px] text-google-grey leading-relaxed mt-1">
-                      International standards using advanced robotic lab
+                    <h5 className="text-sm font-extrabold text-gray-950 dark:text-gray-50">Automated Precision</h5>
+                    <p className="text-[11px] text-gray-500 dark:text-gray-400 font-semibold leading-relaxed mt-1">
+                      International standards using advanced technology lab
                       systems.
                     </p>
                   </div>
                 </div>
                 <div className="flex gap-4">
-                  <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shrink-0 shadow-sm border border-google-border/50">
-                    <Activity className="w-5 h-5 text-emerald-600" />
+                  <div className="w-10 h-10 rounded-full bg-white dark:bg-zinc-800 flex items-center justify-center shrink-0 shadow-sm border border-gray-200/50 dark:border-zinc-700">
+                    <Activity className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                   </div>
                   <div>
-                    <h5 className="text-sm font-bold">Super Specialized</h5>
-                    <p className="text-[11px] text-google-grey leading-relaxed mt-1">
+                    <h5 className="text-sm font-extrabold text-gray-950 dark:text-gray-50">Super Specialized</h5>
+                    <p className="text-[11px] text-gray-500 dark:text-gray-400 font-semibold leading-relaxed mt-1">
                       High-end genomics, molecular & histopathology expertise.
                     </p>
                   </div>
                 </div>
                 <div className="flex gap-4">
-                  <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shrink-0 shadow-sm border border-google-border/50">
-                    <Clock className="w-5 h-5 text-orange-600" />
+                  <div className="w-10 h-10 rounded-full bg-white dark:bg-zinc-800 flex items-center justify-center shrink-0 shadow-sm border border-gray-200/50 dark:border-zinc-700">
+                    <Clock className="w-5 h-5 text-orange-600 dark:text-orange-400" />
                   </div>
                   <div>
-                    <h5 className="text-sm font-bold">Rapid TAT</h5>
-                    <p className="text-[11px] text-google-grey leading-relaxed mt-1">
+                    <h5 className="text-sm font-extrabold text-gray-950 dark:text-gray-50 font-display">Rapid TAT</h5>
+                    <p className="text-[11px] text-gray-500 dark:text-gray-400 font-semibold leading-relaxed mt-1">
                       Fast turnaround times with real-time report delivery.
                     </p>
                   </div>
@@ -2361,90 +2534,146 @@ export default function App() {
             {/* Services Section */}
             <section
               id="services-provided"
-              className="border border-google-border rounded-xl p-5 md:p-6 shadow-sm scroll-mt-32 md:scroll-mt-40 mt-2"
+              className="border border-google-border dark:border-zinc-800 bg-white dark:bg-[#1f2023] rounded-2xl p-5 md:p-6 shadow-sm scroll-mt-32 md:scroll-mt-40 mt-3"
             >
-              <div className="flex flex-col mb-4 gap-3">
-                <div className="flex justify-between items-center">
-                  <h2 className="text-2xl font-bold flex items-center gap-2 text-[#202124]">
-                    Leading Pathology Care at Our Labs
+              <div className="flex flex-col mb-6 gap-3.5 bg-gradient-to-r from-blue-50/70 via-indigo-50/30 to-transparent dark:from-zinc-900/90 dark:via-[#1f2023]/50 dark:to-transparent p-5 sm:p-6 rounded-2xl border-l-[5px] border border-y-gray-200/60 border-r-gray-200/60 dark:border-y-zinc-800/60 dark:border-r-zinc-800/60 border-l-google-blue dark:border-l-blue-400 shadow-sm relative overflow-hidden">
+                {/* Subtle abstract background accent circles */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 dark:bg-blue-400/5 rounded-full blur-3xl pointer-events-none" />
+                
+                <div className="flex flex-wrap items-center justify-between gap-2.5">
+                  <div className="flex items-center gap-2.5">
+                    <div className="flex h-7 items-center justify-center rounded-full bg-google-blue/10 dark:bg-blue-400/10 px-3 py-1 text-[11px] font-black uppercase tracking-widest text-google-blue dark:text-blue-400 border border-google-blue/20 dark:border-blue-400/25">
+                      <CheckCircle2 className="w-3.5 h-3.5 mr-1 text-google-blue dark:text-blue-400" />
+                      Patient Information Desk
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex justify-between items-center mt-1">
+                  <h2 className="text-2xl sm:text-3xl font-black flex items-center gap-2.5 text-gray-950 dark:text-white tracking-tight leading-none">
+                    Leading Pathology Care &amp; Labs in Mohali
                   </h2>
                 </div>
-                <p className="text-sm text-[#202124]/70 max-w-4xl leading-relaxed">
-                  Complementing our <strong>Specialized Test Menu</strong>, we offer a diverse range of everyday and complex tests. Whether you're visiting <strong>SRL Lab Mohali</strong> or booking an <strong>Agilus Mohali Home Visit</strong>, our facilities ensure unparalleled accuracy. We are recognized as the premier <strong>Agilus Lab Mohali</strong> destination, and our <strong>SRL Diagnostics Home Collection</strong> is renowned across the Tricity area. Choose <strong>SRL Diagnostics Mohali</strong> or our specialized <strong>Agilus Lab Mohali Home Collection</strong> and <strong>SRL Lab Mohali Home Collection</strong> services for seamless diagnostics powered by <strong>Agilus Mohali</strong>.
+
+                <p className="text-sm text-gray-900 dark:text-zinc-100 max-w-4xl leading-relaxed font-semibold">
+                  Complementing our <strong className="text-google-blue dark:text-blue-400 font-extrabold hover:underline">Specialized Test Menu</strong>, we offer a diverse range of everyday and complex tests. Whether you're visiting <strong className="text-indigo-650 dark:text-indigo-400 font-extrabold hover:underline">SRL Lab Mohali</strong> or booking an <strong className="text-rose-650 dark:text-rose-400 font-extrabold hover:underline">Agilus Mohali Home Visit</strong>, our facilities ensure unparalleled accuracy. We are recognized as the premier <strong className="text-google-blue dark:text-blue-400 font-extrabold hover:underline">Agilus Lab Mohali</strong> destination, and our <strong className="text-emerald-650 dark:text-emerald-400 font-extrabold hover:underline">SRL Diagnostics Home Collection</strong> is renowned across the Tricity area. Choose <strong className="text-purple-650 dark:text-purple-400 font-extrabold hover:underline">SRL Diagnostics Mohali</strong> or our specialized <strong className="text-cyan-650 dark:text-cyan-400 font-extrabold hover:underline">Agilus Lab Mohali Home Collection</strong> and <strong className="text-orange-650 dark:text-orange-400 font-extrabold hover:underline">SRL Lab Mohali Home Collection</strong> services for seamless diagnostics powered by <strong className="text-google-blue dark:text-blue-400 font-extrabold hover:underline">Agilus Mohali</strong>.
                 </p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
                   {
                     name: "Agilus Lab Mohali Home Collection",
                     icon: Droplets,
-                    color: "text-red-600",
-                    bg: "bg-red-50",
+                    color: "text-red-650 dark:text-red-400",
+                    bg: "bg-red-50 dark:bg-red-950/20",
+                    aeoDescription: "Reliable home sample collection managed by our certified medical technicians. We serve families across Mohali, Sector 69, Sector 70, and surrounding neighborhoods. Every blood draw follows strict sterile procedures and temperature-controlled standards for highly accurate, fast laboratory results.",
                   },
                   {
                     name: "SRL Lab Mohali Home Collection",
                     icon: Activity,
-                    color: "text-blue-600",
-                    bg: "bg-blue-50",
+                    color: "text-blue-650 dark:text-blue-400",
+                    bg: "bg-blue-50 dark:bg-blue-950/20",
+                    aeoDescription: "Convenient home testing services spanning the entire Chandigarh-Mohali-Panchkula region. Trusted by local families and medical professionals alike for clear, accurate health monitoring. Our phlebotomists use modern, barcode-tracked container systems to guarantee safety and precision at every step.",
                   },
                   {
                     name: "SRL Diagnostics Mohali Services",
                     icon: FlaskConical,
-                    color: "text-purple-600",
-                    bg: "bg-purple-50",
+                    color: "text-purple-650 dark:text-purple-400",
+                    bg: "bg-purple-50 dark:bg-purple-950/20",
+                    aeoDescription: "A complete range of pathology services from essential blood counts to highly advanced diagnostic specialties. Our laboratory operates with meticulous care and state-of-the-art analytical equipment, ensuring that every patient receives precise and clinically verified diagnostic records.",
                   },
                   {
                     name: "Agilus Mohali Full Body Checkup",
                     icon: HeartPulse,
-                    color: "text-rose-600",
-                    bg: "bg-rose-50",
+                    color: "text-rose-650 dark:text-rose-400",
+                    bg: "bg-rose-50 dark:bg-rose-950/20",
+                    aeoDescription: "A thorough diagnostic checkup looking at 92 key biomarkers, including heart, liver, kidney, thyroid function, and essential vitamins (D3 and B12). Designed to give you and your doctor a complete, reliable picture of your current overall wellness and health trends.",
                   },
                   {
                     name: "Agilus Mohali Home Visit",
                     icon: Syringe,
-                    color: "text-emerald-600",
-                    bg: "bg-emerald-50",
+                    color: "text-emerald-650 dark:text-emerald-400",
+                    bg: "bg-emerald-50 dark:bg-emerald-950/20",
+                    aeoDescription: "Gentle and attentive laboratory testing designed for seniors, young children, or those unable to leave their homes easily. Our experienced laboratory nurses provide comforting and safe collection, ensuring a supportive experience right at your doorstep.",
                   },
                   {
                     name: "SRL Diagnostics Home Collection",
                     icon: Activity,
-                    color: "text-orange-600",
-                    bg: "bg-orange-50",
+                    color: "text-orange-650 dark:text-orange-400",
+                    bg: "bg-orange-50 dark:bg-orange-950/20",
+                    aeoDescription: "Flexible home testing scheduled around your busy morning or work routine. Perfect for fasting tests or routine checkups, with results delivered directly and securely to your smartphone via WhatsApp and email as soon as they are certified.",
                   },
                   {
                     name: "Diabetes & Thyroid Control",
                     icon: Gauge,
-                    color: "text-amber-600",
-                    bg: "bg-amber-50",
+                    color: "text-amber-650 dark:text-amber-400",
+                    bg: "bg-amber-50 dark:bg-amber-950/20",
+                    aeoDescription: "Dedicated evaluation for thyroid function and diabetic blood sugar trends over time. Helps monitor hormonal and metabolic wellness with clear, easy-to-understand reports that support your ongoing management plan.",
                   },
                   {
                     name: "Pathology Care at Agilus Lab Mohali",
                     icon: Stethoscope,
-                    color: "text-cyan-600",
-                    bg: "bg-cyan-50",
+                    color: "text-cyan-650 dark:text-cyan-400",
+                    bg: "bg-cyan-50 dark:bg-[#1f2023]/25",
+                    aeoDescription: "Our modern, clinical sample collection center in Sector 69, Mohali. Designed with your comfort in mind, offering a welcoming, pristine environment staffed by helpful medical professionals who make your visit seamless.",
                   },
                 ].map((service, idx) => (
                   <div
                     key={idx}
                     onClick={() => {
-                        window.open("https://agilusdiagnostics.com/health-checkup/mohali", "_blank");
+                      setActiveServiceDesc(activeServiceDesc === idx ? null : idx);
                     }}
-                    className="flex items-center gap-4 p-4 rounded-xl border border-google-border/50 hover:border-google-blue/30 hover:shadow-sm transition-all group cursor-pointer"
+                    className="flex flex-col p-4 rounded-xl border border-gray-200 dark:border-zinc-800 bg-white dark:bg-[#1f2023] hover:bg-gray-50/50 dark:hover:bg-zinc-800/10 hover:border-google-blue/30 dark:hover:border-google-blue/45 hover:shadow-md dark:hover:shadow-zinc-950/25 transition-all group cursor-pointer"
                   >
-                    <div
-                      className={`w-10 h-10 rounded-lg ${service.bg} flex items-center justify-center ${service.color} transition-transform group-hover:scale-110`}
-                    >
-                      <service.icon className="w-5 h-5" />
+                    <div className="flex items-center gap-4 w-full">
+                      <div
+                        className={`w-11 h-11 rounded-lg ${service.bg} flex items-center justify-center ${service.color} transition-transform group-hover:scale-105 shrink-0`}
+                      >
+                        <service.icon className="w-5.5 h-5.5" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <span className="text-sm font-extrabold text-gray-800 dark:text-gray-100 group-hover:text-google-blue dark:group-hover:text-blue-400 block leading-tight truncate">
+                          {service.name}
+                        </span>
+                        <span className="text-[10px] text-gray-500 dark:text-gray-400 font-semibold uppercase tracking-tight mt-0.5 block">
+                          Click to view laboratory details &amp; guidelines
+                        </span>
+                      </div>
+                      <ChevronDown
+                        className={`w-5 h-5 text-gray-400 dark:text-zinc-650 transition-transform duration-300 shrink-0 ${
+                          activeServiceDesc === idx ? "rotate-180 text-google-blue dark:text-blue-400" : "group-hover:translate-y-0.5"
+                        }`}
+                      />
                     </div>
-                    <div className="flex-1">
-                      <span className="text-sm font-medium text-google-grey group-hover:text-[#202124] block leading-tight">
-                        {service.name}
-                      </span>
-                      <span className="text-[10px] text-google-grey/60 uppercase tracking-tight mt-0.5 block">
-                        Available Today
-                      </span>
-                    </div>
-                    <ArrowRight className="w-4 h-4 text-google-border group-hover:text-google-blue transition-colors" />
+                    
+                    {/* Expandable SEO/GEO/AEO AI Overview Answer Drawer */}
+                    <AnimatePresence initial={false}>
+                      {activeServiceDesc === idx && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                          className="overflow-hidden mt-4 pt-4 border-t border-gray-100 dark:border-zinc-800 select-text"
+                          onClick={(e) => e.stopPropagation()} // Prevent closing when highlighting/copying text
+                        >
+                          <div className="flex items-center gap-1.5 mb-2.5 bg-google-blue/[0.04] dark:bg-blue-950/10 px-2 py-1.5 rounded-lg border border-google-blue/10 dark:border-blue-500/10 select-none">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-google-blue dark:text-blue-400 shrink-0" />
+                            <div className="text-[10px] font-black uppercase text-google-blue dark:text-blue-400 tracking-wider">
+                              Verified Patient Information Desk
+                            </div>
+                          </div>
+                          <p className="text-xs text-gray-650 dark:text-gray-300 font-semibold leading-relaxed">
+                            {service.aeoDescription}
+                          </p>
+                          <div className="mt-3 flex flex-wrap gap-1.5 text-[9px] font-bold text-gray-500 dark:text-gray-400">
+                            <span className="bg-gray-100 dark:bg-zinc-800 px-2 py-0.5 rounded border border-gray-200/50 dark:border-zinc-700">Verified Pathologist</span>
+                            <span className="bg-gray-100 dark:bg-zinc-800 px-2 py-0.5 rounded border border-gray-200/50 dark:border-zinc-700">Sector 69 Mohali</span>
+                            <span className="bg-gray-100 dark:bg-zinc-800 px-2 py-0.5 rounded border border-gray-200/50 dark:border-zinc-700">NABL Accredited</span>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 ))}
               </div>
@@ -2452,7 +2681,7 @@ export default function App() {
                 onClick={() => {
                    window.open("https://agilusdiagnostics.com/health-checkup/mohali", "_blank");
                 }}
-                className="mt-8 w-full border border-google-border py-4 rounded-xl text-sm font-bold text-google-blue hover:bg-google-blue/5 hover:border-google-blue/30 transition-all shadow-sm flex items-center justify-center gap-2 group"
+                className="mt-8 w-full border border-gray-300 dark:border-zinc-700 py-4 rounded-xl text-sm font-bold text-google-blue dark:text-[#4da9ad] bg-white dark:bg-[#1f2023] hover:bg-google-blue/5 dark:hover:bg-zinc-800/40 hover:border-google-blue/30 dark:hover:border-blue-450 transition-all shadow-sm flex items-center justify-center gap-2 group"
               >
                 Explore All Diagnostic Tests 
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -2473,7 +2702,7 @@ export default function App() {
                 </div>
                 <h3 className="text-2xl font-bold text-[#202124] mb-4">
                   {" "}
-                  Our Journey Since 1997{" "}
+                  Our Journey Since 1995{" "}
                 </h3>
                 <div className="w-full aspect-[4/3] border border-white shadow-2xl bg-white rounded-xl p-2 overflow-hidden transform group-hover:scale-[1.03] transition-transform duration-700">
                   <img
@@ -2485,7 +2714,7 @@ export default function App() {
                   <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-lg"></div>
                 </div>
                 <p className="mt-4 text-sm text-google-grey max-w-sm leading-relaxed">
-                  Since 1997, our commitment as SRL, now Agilus Diagnostics, has
+                  Since 1995, our commitment as SRL, now Agilus Diagnostics, has
                   been deeply rooted in Mohali. We take immense pride in our
                   long legacy of providing top-tier clinical accuracy and
                   reliable diagnostics, caring for generations of families with
@@ -2525,7 +2754,7 @@ export default function App() {
                   <p className="text-sm text-google-grey mb-4 leading-relaxed">
                     Our Sector 69 facility is designed to provide a{" "}
                     <strong>World-Class Diagnostic Experience</strong> with
-                    minimal wait times, fully automated robotics, and a sterile
+                    minimal wait times, fully automated , and a sterile
                     patients-first environment.
                   </p>
                   <a
@@ -2676,27 +2905,18 @@ export default function App() {
             </section>
 
             {/* FAQ Section */}
-            <section className="border border-google-border rounded-xl p-5 md:p-6 shadow-sm">
-              <h2 className="text-xl font-normal mb-4">
+            <section className="border border-google-border rounded-xl p-5 md:p-6 shadow-sm bg-white dark:bg-[#1f2023] dark:border-zinc-805">
+              <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
                 Frequently Asked Questions
               </h2>
-              <div className="space-y-2">
-                <FaqItem
-                  question="Do you offer home collection in Mohali?"
-                  answer="Yes, we offer 24/7 home collection services across Mohali, Chandigarh, and Kharar. Our certified phlebotomists ensure a painless and hygienic experience."
-                />
-                <FaqItem
-                  question="How can I book an appointment?"
-                  answer="Booking is simple. You can call us directly at +91 91154 59115, use the 'Make Appointment' form on this website, or visit our Sector 69 center."
-                />
-                <FaqItem
-                  question="When will I get my blood test reports?"
-                  answer="Most reports are processed within 6 to 12 hours. You'll receive them instantly on WhatsApp and your registered email address."
-                />
-                <FaqItem
-                  question="Are you open on Sundays and Holidays?"
-                  answer="Yes, SRL Lab Mohali is open 24 hours, 7 days a week, including all Sundays and public holidays for your convenience."
-                />
+              <div className="space-y-1">
+                {ALL_FAQS.map((faq, index) => (
+                  <FaqItem
+                    key={`faq-${index}`}
+                    question={faq.question}
+                    answer={faq.answer}
+                  />
+                ))}
               </div>
             </section>
 
@@ -2709,7 +2929,7 @@ export default function App() {
                 </h2>
               </div>
               <p className="text-sm text-google-grey mb-4 leading-relaxed">
-                SRL Lab Mohali is a verified healthcare provider across leading
+                SRL Diagnostics Lab Mohali is a verified healthcare provider across leading
                 digital platforms. Access our live profiles for real-time
                 customer feedback and ratings.
               </p>
@@ -2778,7 +2998,7 @@ export default function App() {
                 <div>
                   <h3 className="text-xl sm:text-2xl font-bold tracking-tight">Book Appointment</h3>
                   <p className="text-white/80 text-xs sm:text-sm mt-0.5 font-medium">
-                    Agilus Diagnostics Formerly SRL, Home Collection
+                    SRL Diagnostics - Blood Test | Full Body Checkup, Home Collection
                   </p>
                 </div>
                 <button
@@ -2841,7 +3061,7 @@ export default function App() {
                           formErrors.name ? "name-error" : undefined
                         }
                         type="text"
-                        placeholder="Rahul Sharma"
+                        placeholder="Rohit Sharma"
                         className={`w-full px-4 py-3.5 sm:py-3 rounded-xl border focus:ring-2 outline-none bg-white transition-all text-base sm:text-sm ${
                           formErrors.name ? "border-red-500 focus:ring-red-500" : "border-google-border focus:ring-google-blue hover:border-google-grey/40"
                         }`}
@@ -2901,7 +3121,7 @@ export default function App() {
                             formErrors.email ? "email-error" : undefined
                           }
                           type="email"
-                          placeholder="rahul@example.com"
+                          placeholder="rohit@example.com"
                           className={`w-full px-4 py-3.5 sm:py-3 rounded-xl border focus:ring-2 outline-none bg-white transition-all text-base sm:text-sm ${
                             formErrors.email ? "border-red-500 focus:ring-red-500" : "border-google-border focus:ring-google-blue hover:border-google-grey/40"
                           }`}
@@ -3030,7 +3250,12 @@ export default function App() {
       {/* Interactive Photo Gallery Lightbox */}
       <AnimatePresence>
         {isGalleryOpen && (
-          <div className="fixed inset-0 z-[120] flex flex-col justify-between bg-[#0e1013]/98 select-none text-white overflow-hidden p-3 sm:p-6 md:p-8">
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Image Gallery Lightbox"
+            className="fixed inset-0 z-[120] flex flex-col justify-between bg-[#0e1013]/98 select-none text-white overflow-hidden p-3 sm:p-6 md:p-8"
+          >
             {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
@@ -3057,6 +3282,7 @@ export default function App() {
                 </div>
                 <button
                   onClick={() => setIsGalleryOpen(false)}
+                  aria-label="Close Gallery Lightbox"
                   className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-all cursor-pointer border border-white/10 active:scale-95"
                 >
                   <X className="w-5 h-5 text-white" />
@@ -3066,7 +3292,12 @@ export default function App() {
               {/* Main Body */}
               <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center min-h-0 overflow-y-auto lg:overflow-visible py-2 sm:py-0">
                 {/* Image Section */}
-                <div className="lg:col-span-8 relative flex items-center justify-center h-[35vh] sm:h-[45vh] lg:h-[55vh] rounded-2xl overflow-hidden bg-black/40 border border-white/5 p-2 sm:p-4 group/img">
+                <div
+                  onTouchStart={handleTouchStart}
+                  onTouchMove={handleTouchMove}
+                  onTouchEnd={handleTouchEnd}
+                  className="lg:col-span-8 relative flex items-center justify-center h-[35vh] sm:h-[45vh] lg:h-[55vh] rounded-2xl overflow-hidden bg-black/40 border border-white/5 p-2 sm:p-4 group/img select-none"
+                >
                   <AnimatePresence mode="wait">
                     <motion.img
                       key={activeGalleryIndex}
@@ -3085,7 +3316,8 @@ export default function App() {
                     onClick={() => {
                       setActiveGalleryIndex((prev) => (prev === 0 ? allGalleryPhotos.length - 1 : prev - 1));
                     }}
-                    className="absolute left-3 w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-black/65 hover:bg-black/85 flex items-center justify-center text-white border border-white/10 hover:scale-105 active:scale-95 transition-all opacity-0 group-hover/img:opacity-100 focus:opacity-100 max-sm:opacity-100"
+                    aria-label="Previous photo"
+                    className="absolute left-3 w-11 sm:w-12 h-11 sm:h-12 rounded-full bg-black/75 hover:bg-black/90 flex items-center justify-center text-white border border-white/10 hover:scale-105 active:scale-95 transition-all opacity-0 group-hover/img:opacity-100 focus:opacity-100 max-[1023px]:opacity-100"
                   >
                     <ChevronLeft className="w-6 h-6" />
                   </button>
@@ -3093,32 +3325,70 @@ export default function App() {
                     onClick={() => {
                       setActiveGalleryIndex((prev) => (prev === allGalleryPhotos.length - 1 ? 0 : prev + 1));
                     }}
-                    className="absolute right-3 w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-black/65 hover:bg-black/85 flex items-center justify-center text-white border border-white/10 hover:scale-105 active:scale-95 transition-all opacity-0 group-hover/img:opacity-100 focus:opacity-100 max-sm:opacity-100"
+                    aria-label="Next photo"
+                    className="absolute right-3 w-11 sm:w-12 h-11 sm:h-12 rounded-full bg-black/75 hover:bg-black/90 flex items-center justify-center text-white border border-white/10 hover:scale-105 active:scale-95 transition-all opacity-0 group-hover/img:opacity-100 focus:opacity-100 max-[1023px]:opacity-100"
                   >
                     <ChevronRight className="w-6 h-6" />
                   </button>
+
+                  {/* Mobile Floating Overlay Toggle Button */}
+                  <button
+                    onClick={() => setShowGalleryInfo(!showGalleryInfo)}
+                    className="absolute top-3 right-3 z-30 w-10 h-10 rounded-full bg-black/75 hover:bg-black/90 flex items-center justify-center text-white border border-white/15 active:scale-95 transition-all lg:hidden"
+                    aria-label={showGalleryInfo ? "Hide description overlay" : "Show description overlay"}
+                  >
+                    {showGalleryInfo ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  </button>
+
+                  {/* Mobile-only rich transparent glass overlay at the bottom with high contrast */}
+                  <AnimatePresence>
+                    {showGalleryInfo && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 15 }}
+                        className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 z-20 rounded-xl bg-zinc-950/90 border border-white/15 p-3.5 backdrop-blur-md shadow-2xl lg:hidden text-left"
+                      >
+                        <div className="flex items-center gap-1.5 mb-1.5">
+                          <Sparkles className="w-3.5 h-3.5 text-google-blue shrink-0 animate-pulse" />
+                          <span className="text-[9px] bg-google-blue/20 text-blue-300 font-extrabold tracking-widest uppercase px-2 py-0.5 rounded border border-google-blue/30 inline-block">
+                            {allGalleryPhotos[activeGalleryIndex].category}
+                          </span>
+                        </div>
+                        <h4 className="text-xs sm:text-sm font-black text-white leading-tight mb-1">
+                          {allGalleryPhotos[activeGalleryIndex].title}
+                        </h4>
+                        <p className="text-[10px] sm:text-xs text-zinc-300 leading-relaxed font-semibold">
+                          {allGalleryPhotos[activeGalleryIndex].desc}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
 
-                {/* Metadata & Actions Sidebar */}
-                <div className="lg:col-span-4 flex flex-col gap-4 self-stretch justify-center h-full">
-                  <div className="bg-white/5 border border-white/10 rounded-2xl p-4 sm:p-5 backdrop-blur-md">
-                    <span className="text-[9px] bg-google-blue/20 text-blue-400 font-extrabold tracking-widest uppercase px-2.5 py-1 rounded-md border border-google-blue/30 inline-block mb-3">
-                      {allGalleryPhotos[activeGalleryIndex].category}
-                    </span>
-                    <h4 className="text-base sm:text-xl font-black text-white leading-snug tracking-tight mb-2">
+                {/* Metadata & Actions Sidebar (Visible on Desktop) */}
+                <div className="hidden lg:flex lg:col-span-4 flex-col gap-4 self-stretch justify-center h-full">
+                  <div className="bg-zinc-900/90 border border-white/10 rounded-2xl p-5 backdrop-blur-md shadow-xl text-left">
+                    <div className="flex items-center gap-1.5 mb-3">
+                      <Sparkles className="w-4 h-4 text-google-blue animate-pulse shrink-0" />
+                      <span className="text-[10px] bg-google-blue/25 text-blue-300 font-black tracking-widest uppercase px-3 py-1 rounded-md border border-google-blue/30 inline-block">
+                        {allGalleryPhotos[activeGalleryIndex].category}
+                      </span>
+                    </div>
+                    <h4 className="text-lg sm:text-xl font-black text-white leading-snug tracking-tight mb-3">
                       {allGalleryPhotos[activeGalleryIndex].title}
                     </h4>
-                    <p className="text-xs sm:text-sm text-google-grey/90 leading-relaxed font-medium">
+                    <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-semibold">
                       {allGalleryPhotos[activeGalleryIndex].desc}
                     </p>
                   </div>
 
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-col gap-2.5">
                     <a
                       href="https://www.google.com/search?q=SRL+Lab+Mohali&stick=H4sIAAAAAAAA_-NgU1I1qDC2NEizNE4zSzY3NUkyN0yyMqgwTDQwMkk0NUtMSUlJM0lNWcTKFxzko-CTmKTgm5-RmJMJAFRg05w6AAAA&hl=en&mat=Cb-ztOnJ85ZlElcBTVDHnvpK7UZHp1TY-0rfrGw6k3-HP2Rlf5zmTam-gUBy-jnNNxTLJqL-CncUqOLzPFIw0Ngm0u7nyaen7gcyIcP1g3Q9yFqdL6qwaARNl8Cpzp6Enk4&authuser=0"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full bg-[#34a853] hover:bg-[#2e954a] text-white py-3 sm:py-3.5 px-4 rounded-xl font-bold text-[11px] sm:text-xs uppercase tracking-wider flex items-center justify-center gap-2.5 transition-all cursor-pointer active:scale-95 text-center"
+                      className="w-full bg-[#34a853] hover:bg-[#2e954a] hover:scale-[1.02] text-white py-3.5 px-4 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2.5 transition-all cursor-pointer active:scale-95 text-center shadow-lg border border-emerald-500/10"
                     >
                       <MapPin className="w-4 h-4 text-white" />
                       View Remaining 34+ Photos on Google
@@ -3128,12 +3398,35 @@ export default function App() {
                         setIsGalleryOpen(false);
                         setIsBookingOpen(true);
                       }}
-                      className="w-full bg-google-blue hover:bg-blue-600 text-white py-3 sm:py-3.5 px-4 rounded-xl font-bold text-[11px] sm:text-xs uppercase tracking-wider flex items-center justify-center gap-2.5 transition-all shadow-lg shadow-blue-500/10 cursor-pointer active:scale-95"
+                      className="w-full bg-google-blue hover:bg-blue-600 hover:scale-[1.02] text-white py-3.5 px-4 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2.5 transition-all shadow-lg shadow-blue-500/15 cursor-pointer active:scale-95 border border-blue-500/10"
                     >
                       <Calendar className="w-4 h-4" />
                       Book Collection / Appointment
                     </button>
                   </div>
+                </div>
+
+                {/* Actions Row (Visible only on Mobile directly under the Image space) */}
+                <div className="flex flex-col sm:flex-row gap-2 lg:hidden w-full mt-1 shrink-0">
+                  <a
+                    href="https://www.google.com/search?q=SRL+Lab+Mohali&stick=H4sIAAAAAAAA_-NgU1I1qDC2NEizNE4zSzY3NUkyN0yyMqgwTDQwMkk0NUtMSUlJM0lNWcTKFxzko-CTmKTgm5-RmJMJAFRg05w6AAAA&hl=en&mat=Cb-ztOnJ85ZlElcBTVDHnvpK7UZHp1TY-0rfrGw6k3-HP2Rlf5zmTam-gUBy-jnNNxTLJqL-CncUqOLzPFIw0Ngm0u7nyaen7gcyIcP1g3Q9yFqdL6qwaARNl8Cpzp6Enk4&authuser=0"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 bg-[#34a853] hover:bg-[#2e954a] text-white py-3 px-3 rounded-lg font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all cursor-pointer text-center"
+                  >
+                    <MapPin className="w-4 h-4" />
+                    Remaining Photos on Google
+                  </a>
+                  <button
+                    onClick={() => {
+                      setIsGalleryOpen(false);
+                      setIsBookingOpen(true);
+                    }}
+                    className="flex-1 bg-google-blue hover:bg-blue-600 text-white py-3 px-3 rounded-lg font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Calendar className="w-4 h-4" />
+                    Book Laboratory Appointment
+                  </button>
                 </div>
               </div>
 
@@ -3385,7 +3678,7 @@ export default function App() {
                   className="h-8 w-auto object-contain brightness-0 invert self-start"
                 />
                 <span className="text-[9px] bg-orange-500/10 text-[#FF8A00] font-black tracking-wider uppercase px-2 py-0.5 rounded border border-orange-500/20 w-fit mt-2">
-                  Authorised Home Visit Partner
+                  Prop. TopRank Health Care (Authorised Home Visit Partner)
                 </span>
               </div>
               <p className="text-xs text-google-grey leading-relaxed pr-2">
@@ -3684,19 +3977,19 @@ const FaqItem: React.FC<{ question: string; answer: string }> = ({
   );
 
   return (
-    <div className="border-b border-google-border last:border-0">
+    <div className="border-b border-google-border dark:border-zinc-800 last:border-0 hover:bg-google-light-grey/20 dark:hover:bg-zinc-850/50 rounded-xl px-3 transition-colors">
       <button
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
         aria-controls={`faq-panel-${idSlug}`}
         id={`faq-btn-${idSlug}`}
-        className="w-full py-4 flex items-center justify-between text-left group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-google-blue focus-visible:ring-offset-2 transition-all rounded-lg px-2 -mx-2"
+        className="w-full py-4 flex items-center justify-between text-left group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-google-blue focus-visible:ring-offset-2 transition-all"
       >
-        <span className="text-sm font-medium text-[#202124] group-hover:text-google-blue transition-colors">
+        <span className="text-sm sm:text-base font-bold text-gray-900 dark:text-gray-100 group-hover:text-google-blue dark:group-hover:text-blue-400 transition-colors">
           {question}
         </span>
         <ChevronDown
-          className={`w-4 h-4 text-google-grey transition-transform duration-300 ${isOpen ? "rotate-180 text-google-blue" : ""}`}
+          className={`w-4 h-4 text-gray-500 dark:text-gray-400 transition-transform duration-300 ${isOpen ? "rotate-180 text-google-blue dark:text-blue-400" : ""}`}
         />
       </button>
       <AnimatePresence initial={false}>
@@ -3711,7 +4004,7 @@ const FaqItem: React.FC<{ question: string; answer: string }> = ({
             transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
             className="overflow-hidden"
           >
-            <p className="pb-4 pt-1 text-sm text-google-grey leading-relaxed">
+            <p className="pb-4 pt-1 text-xs sm:text-sm text-gray-700 dark:text-gray-300 leading-relaxed font-semibold">
               {answer}
             </p>
           </motion.div>
@@ -3852,36 +4145,36 @@ function ExpandableTestRow({
     <>
       <tr
         onClick={toggleDetails}
-        className={`border-b border-google-border/50 hover:bg-google-light-grey/30 transition-colors group cursor-pointer ${isOpen ? "bg-google-blue/[0.02]" : ""}`}
+        className={`border-b border-google-border/50 dark:border-zinc-800/60 hover:bg-google-light-grey/40 dark:hover:bg-zinc-800/40 transition-colors group cursor-pointer ${isOpen ? "bg-google-blue/[0.03] dark:bg-google-blue/10" : "bg-white dark:bg-[#1f2023]"}`}
       >
-        <td className="py-4 px-2">
+        <td className="py-4 px-4">
           <div className="flex items-center gap-3">
-            <div className="w-5 h-5 rounded-full bg-google-light-grey flex items-center justify-center shrink-0 group-hover:bg-google-blue/10 transition-colors">
+            <div className="w-6 h-6 rounded-full bg-google-light-grey dark:bg-zinc-800 flex items-center justify-center shrink-0 group-hover:bg-google-blue/10 dark:group-hover:bg-google-blue/20 transition-colors">
               <ChevronDown
-                className={`w-3 h-3 text-google-grey transition-transform duration-300 ${isOpen ? "rotate-180 text-google-blue" : "-rotate-90"}`}
+                className={`w-3.5 h-3.5 text-gray-700 dark:text-gray-300 transition-transform duration-300 ${isOpen ? "rotate-180 text-google-blue dark:text-blue-400" : "-rotate-90"}`}
               />
             </div>
             <div className="flex flex-col relative group/tooltip max-w-full">
               <RouterLink
                 to={`/tests/${encodeURIComponent(test.name)}`}
-                className="text-sm sm:text-base font-bold text-[#202124] group-hover:text-google-blue transition-colors cursor-pointer border-b border-dashed border-google-grey/40 pb-0.5 break-words line-clamp-2"
+                className="text-sm sm:text-base font-extrabold text-[#1a1c1e] dark:text-gray-50 group-hover:text-google-blue dark:group-hover:text-blue-450 transition-colors cursor-pointer border-b border-dashed border-gray-400 dark:border-zinc-700 pb-0.5 break-words line-clamp-2"
                 title={`Sample Required: ${test.sample}\nPatient Prep: ${test.preparation}`}
                 aria-label={`Test: ${test.name}. Sample required: ${test.sample}. Preparation: ${test.preparation}`}
               >
                 {test.name}
               </RouterLink>
-              <div className="flex flex-wrap items-center gap-2 mt-1">
-                <span className="text-[10px] bg-google-light-grey text-google-grey px-2 py-0.5 rounded font-black uppercase tracking-wider">
+              <div className="flex flex-wrap items-center gap-2 mt-1.5">
+                <span className="text-[10px] bg-gray-100 dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 text-gray-800 dark:text-gray-200 px-2 py-0.5 rounded font-black uppercase tracking-wider shadow-sm">
                   {test.code}
                 </span>
-                <span className="text-[10px] text-google-grey/70 font-medium">
+                <span className="text-[10px] text-gray-700 dark:text-gray-300 font-semibold">
                   {test.sample} Required
                 </span>
               </div>
               <div className="absolute top-full left-0 mt-2 min-w-[280px] bg-[#202124] text-white text-xs rounded-xl p-4 opacity-0 group-hover/tooltip:opacity-100 pointer-events-none z-50 shadow-2xl transition-all translate-y-1 group-hover/tooltip:translate-y-0 duration-200">
                 <div className="flex items-center gap-2 mb-1">
                   <FlaskConical className="w-3.5 h-3.5 text-google-blue" />
-                  <p className="font-bold text-google-blue uppercase tracking-widest text-[9px]">
+                  <p className="font-bold text-google-blue uppercase tracking-widest text-[9px] ...">
                     Sample Requirements
                   </p>
                 </div>
@@ -3903,21 +4196,21 @@ function ExpandableTestRow({
           </div>
         </td>
         <td className="py-4 px-2">
-          <div className="flex items-center gap-1.5 text-xs font-bold text-google-grey/90">
-            <Clock className="w-3.5 h-3.5 text-google-blue shrink-0" />
-            <span className="text-google-blue bg-google-blue/10 px-2.5 py-1 rounded-full font-black tracking-tight whitespace-nowrap">
+          <div className="flex items-center gap-1.5 text-xs font-bold text-gray-800 dark:text-gray-200">
+            <Clock className="w-3.5 h-3.5 text-google-blue dark:text-blue-400 shrink-0" />
+            <span className="text-blue-800 dark:text-blue-300 bg-blue-100/50 dark:bg-blue-950/40 px-2.5 py-1 rounded-full font-black tracking-tight whitespace-nowrap">
               {test.tat}
             </span>
           </div>
         </td>
-        <td className="py-4 text-right pr-2">
+        <td className="py-4 text-right pr-4">
           <div className="flex items-center justify-end gap-2">
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 toggleDetails();
               }}
-              className="text-[10px] font-black text-google-grey hover:text-google-blue px-3 py-1.5 rounded-full border border-google-border hover:border-google-blue transition-all"
+              className="text-[10px] font-black text-gray-800 dark:text-gray-200 hover:text-google-blue dark:hover:text-blue-400 px-3 py-1.5 rounded-full border border-gray-300 dark:border-zinc-600 hover:border-google-blue dark:hover:border-blue-400 transition-all bg-white dark:bg-zinc-800"
             >
               {isOpen ? "HIDE INFO" : "VIEW DETAILS"}
             </button>
@@ -3926,7 +4219,7 @@ function ExpandableTestRow({
                 e.stopPropagation();
                 onBook();
               }}
-              className="text-[10px] font-black bg-google-blue text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-all shadow-md active:scale-95"
+              className="text-[10px] font-black bg-google-blue hover:bg-blue-700 text-white px-4 py-2 rounded-full transition-all shadow-md active:scale-95 whitespace-nowrap"
             >
               BOOK NOW
             </button>
@@ -3940,67 +4233,67 @@ function ExpandableTestRow({
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="bg-white border-b border-google-border/50"
+            className="bg-gray-50/20 dark:bg-zinc-900 border-b border-google-border/50 dark:border-zinc-800/80"
           >
             <td
               colSpan={3}
-              className="py-6 px-12 text-xs text-google-grey bg-google-blue/[0.01]"
+              className="py-6 px-12 text-xs text-gray-700 dark:text-gray-200 bg-google-blue/[0.01]"
             >
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 <div className="space-y-1.5">
-                  <div className="flex items-center gap-2 text-google-blue mb-1">
+                  <div className="flex items-center gap-2 text-google-blue dark:text-blue-400 mb-1.5">
                     <FlaskConical className="w-3.5 h-3.5" />
                     <span className="font-black uppercase tracking-widest text-[10px]">
                       Testing Method
                     </span>
                   </div>
-                  <p className="text-sm text-[#202124] font-medium leading-relaxed bg-white p-3 rounded-xl border border-google-border/40 shadow-sm">
+                  <p className="text-sm text-gray-900 dark:text-white font-semibold leading-relaxed bg-white dark:bg-zinc-800 p-3 rounded-xl border border-gray-300 dark:border-zinc-700 shadow-sm">
                     {test.method}
                   </p>
                 </div>
 
                 <div className="space-y-1.5">
-                  <div className="flex items-center gap-2 text-google-blue mb-1">
+                  <div className="flex items-center gap-2 text-google-blue dark:text-blue-400 mb-1.5">
                     <Clock className="w-3.5 h-3.5" />
                     <span className="font-black uppercase tracking-widest text-[10px]">
                       Turnaround Time
                     </span>
                   </div>
-                  <p className="text-sm text-[#202124] font-medium leading-relaxed bg-white p-3 rounded-xl border border-google-border/40 shadow-sm">
+                  <p className="text-sm text-gray-900 dark:text-white font-semibold leading-relaxed bg-white dark:bg-zinc-800 p-3 rounded-xl border border-gray-300 dark:border-zinc-700 shadow-sm">
                     {test.tat}
                   </p>
                 </div>
 
                 <div className="space-y-1.5">
-                  <div className="flex items-center gap-2 text-google-blue mb-1">
+                  <div className="flex items-center gap-2 text-google-blue dark:text-blue-400 mb-1.5">
                     <MicroscopeIcon className="w-3.5 h-3.5" />
                     <span className="font-black uppercase tracking-widest text-[10px]">
                       Sample Requirements
                     </span>
                   </div>
-                  <p className="text-sm text-[#202124] font-medium leading-relaxed bg-white p-3 rounded-xl border border-google-border/40 shadow-sm">
+                  <p className="text-sm text-gray-900 dark:text-white font-semibold leading-relaxed bg-white dark:bg-zinc-800 p-3 rounded-xl border border-gray-300 dark:border-zinc-700 shadow-sm">
                     {test.sample}
                   </p>
                 </div>
 
                 <div className="space-y-1.5">
-                  <div className="flex items-center gap-2 text-google-blue mb-1">
+                  <div className="flex items-center gap-2 text-google-blue dark:text-blue-400 mb-1.5">
                     <ClipboardCheck className="w-3.5 h-3.5" />
                     <span className="font-black uppercase tracking-widest text-[10px]">
                       Patient Preparation
                     </span>
                   </div>
-                  <p className="text-sm text-[#202124] font-medium leading-relaxed bg-white p-3 rounded-xl border border-google-border/40 shadow-sm">
+                  <p className="text-sm text-gray-900 dark:text-white font-semibold leading-relaxed bg-white dark:bg-zinc-800 p-3 rounded-xl border border-gray-300 dark:border-zinc-700 shadow-sm">
                     {test.preparation}
                   </p>
                 </div>
               </div>
 
-              <div className="mt-6 flex items-center gap-4 p-4 bg-orange-50/50 rounded-2xl border border-orange-100/50 w-fit">
-                <div className="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center shrink-0">
-                  <Info className="w-4 h-4 text-orange-600" />
+              <div className="mt-6 flex items-center gap-4 p-4 bg-amber-50 dark:bg-amber-950/20 rounded-2xl border border-amber-200 dark:border-amber-800/30 w-fit">
+                <div className="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center shrink-0">
+                  <Info className="w-4 h-4 text-amber-800 dark:text-amber-400" />
                 </div>
-                <p className="text-[11px] text-orange-800 font-medium">
+                <p className="text-[11px] text-amber-900 dark:text-amber-200 font-semibold leading-relaxed">
                   Note: Home collection is available for this test. Home
                   response time is typically within 60 minutes in Mohali Sector
                   69 area.

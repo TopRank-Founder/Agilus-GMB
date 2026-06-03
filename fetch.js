@@ -1,5 +1,5 @@
 const https = require('https');
-https.get('https://www.justdial.com/Bhopal/Agilus-Diagnostics-Formerly-SRL-Opposite-Airtel-Office-Malviya-Nagar/0755P755STDS000005_BZDET', (res) => {
+https.get('https://www.justdial.com/Mohali/Agilus-Diagnostics-Formerly-SRL-Lab-Mohali-Mohali-Sector-69/0172PX172-X172-250913201546-R6G3_BZDET?via=scode', (res) => {
   let data = '';
   res.on('data', chunk => { data += chunk; });
   res.on('end', () => {
