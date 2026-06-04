@@ -20,6 +20,10 @@ import { LOCALIZATION } from '../localization';
 const ServicesPage = () => {
   const navigate = useNavigate();
 
+  React.useEffect(() => {
+    document.title = "Patient Diagnostics & Tests - Agilus Diagnostics (formerly SRL Diagnostics) Mohali";
+  }, []);
+
   const services = [
     { 
       name: "Blood Test Home Collection", 

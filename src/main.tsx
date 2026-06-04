@@ -18,6 +18,7 @@ const TestDetailPage = lazy(() => import('./pages/TestDetailPage'));
 const ServicesPage = lazy(() => import('./pages/ServicesPage'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
 const FaqPage = lazy(() => import('./pages/FaqPage'));
+const BookingPage = lazy(() => import('./pages/BookingPage'));
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -41,6 +42,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/faq" element={<FaqPage />} />
+          <Route path="/booking" element={<BookingPage />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

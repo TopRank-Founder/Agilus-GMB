@@ -7,6 +7,10 @@ import { LOCALIZATION } from '../localization';
 const AboutPage = () => {
   const navigate = useNavigate();
 
+  React.useEffect(() => {
+    document.title = "About Agilus Diagnostics (formerly SRL Diagnostics) Mohali";
+  }, []);
+
   return (
     <div className="min-h-screen bg-white dark:bg-[#121314] font-sans pb-16 transition-colors duration-300">
       {/* Top Header/Navbar */}

@@ -797,6 +797,7 @@ export default function App() {
   >("idle");
   const [formData, setFormData] = useState({
     name: "",
+    phone: "",
     location: "",
     email: "",
     date: "",
@@ -804,6 +805,7 @@ export default function App() {
   });
   const [formErrors, setFormErrors] = useState<{
     name?: string;
+    phone?: string;
     location?: string;
     email?: string;
     date?: string;
@@ -865,6 +867,12 @@ export default function App() {
       errors.name = LOCALIZATION.ERRORS.NAME_SHORT;
     }
 
+    if (!formData.phone.trim()) {
+      errors.phone = "Mobile Number is required *";
+    } else if (!/^[6-9]\d{9}$/.test(formData.phone.trim())) {
+      errors.phone = "Enter a valid 10-digit Mobile Number *";
+    }
+
     if (!formData.location.trim()) {
       errors.location = LOCALIZATION.ERRORS.LOCATION_REQUIRED;
     } else if (formData.location.trim().length < 3) {
@@ -908,6 +916,8 @@ export default function App() {
       },
     );
 
+    messageText += `\nPhone / Mobile: ${formData.phone}`;
+
     if (selectedPackageForBooking) {
       messageText += `\nPackage: ${selectedPackageForBooking}`;
     }
@@ -924,7 +934,7 @@ export default function App() {
   const closeBooking = () => {
     setIsBookingOpen(false);
     setBookingStatus("idle");
-    setFormData({ name: "", location: "", email: "", date: "", time: "" });
+    setFormData({ name: "", phone: "", location: "", email: "", date: "", time: "" });
     setFormErrors({});
     setSelectedPackageForBooking("");
   };
@@ -1018,6 +1028,7 @@ export default function App() {
 
     // Track page view
     trackEvent("page_view", { path: window.location.pathname });
+    document.title = "Agilus Diagnostics (formerly SRL Diagnostics) Mohali | Blood Test | Full Body Checkup | Home Collection";
 
     return () => {
       document.head.removeChild(script);
@@ -1346,6 +1357,15 @@ export default function App() {
               type="text"
               placeholder="Search Tests or Services..."
               className="bg-transparent border-none outline-none w-full text-sm placeholder:text-google-grey"
+              value={testSearchQuery}
+              onChange={(e) => {
+                setTestSearchQuery(e.target.value);
+                setActiveTab("services");
+                const servicesSec = document.getElementById("services");
+                if (servicesSec) {
+                  servicesSec.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+              }}
             />
           </div>
 
@@ -2239,12 +2259,33 @@ export default function App() {
                         </p>
                       </div>
 
-                      <button
-                        onClick={() => setIsBookingOpen(true)}
-                        className="flex items-center justify-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full text-sm font-bold shadow-lg shadow-emerald-600/20 hover:scale-[1.02] active:scale-95 transition-all shrink-0 w-full md:w-auto"
-                      >
-                        Book Test Online
-                      </button>
+                      <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto items-stretch sm:items-center animate-fade-in">
+                        <div className="relative flex items-center bg-gray-50 dark:bg-zinc-800 rounded-full px-4 py-2 border border-gray-200 dark:border-zinc-700 focus-within:border-google-blue focus-within:bg-white dark:focus-within:bg-zinc-900 focus-within:shadow-sm transition-all w-full sm:w-64">
+                          <Search className="w-4 h-4 text-gray-400 mr-2 shrink-0" />
+                          <input
+                            type="text"
+                            placeholder="Search tests (e.g. CBC, Lipid)..."
+                            className="bg-transparent border-none outline-none w-full text-xs text-[#202124] dark:text-gray-150 placeholder:text-gray-405 focus:ring-0"
+                            value={testSearchQuery}
+                            onChange={(e) => setTestSearchQuery(e.target.value)}
+                          />
+                          {testSearchQuery && (
+                            <button 
+                              onClick={() => setTestSearchQuery("")}
+                              className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 text-xs font-bold px-1.5 cursor-pointer"
+                              title="Clear search"
+                            >
+                              ✕
+                            </button>
+                          )}
+                        </div>
+                        <button
+                          onClick={() => setIsBookingOpen(true)}
+                          className="flex items-center justify-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full text-sm font-bold shadow-lg shadow-emerald-600/20 hover:scale-[1.02] active:scale-95 transition-all shrink-0 cursor-pointer"
+                        >
+                          Book Test Online
+                        </button>
+                      </div>
                     </div>
 
                     {/* High Contrast Selection Chips */}
@@ -2896,7 +2937,7 @@ export default function App() {
                   </span>
                 </div>
                 <h3 className="text-lg font-bold text-[#202124] leading-tight">
-                  SRL Diagnostics Mohali
+                  SRL Diagnostics Mohali | Blood Test | Full Body Checkup | Home Collection 
                 </h3>
                 <p className="text-[11px] text-google-grey mt-0.5 font-medium">
                   Booth 12, Gmada Market, Sector 69, Mohali
@@ -2931,7 +2972,7 @@ export default function App() {
                 </button>
 
                 <a
-                  href="https://maps.app.goo.gl/tPN5MedC4LLAbe4P8"
+                  href="https://www.google.com/maps/place/SRL+Diagnostics+Mohali+-+Blood+Test+%7C+Full+Body+Checkup+%7C+Pathology+Lab/@30.6891861,76.7127606,17z/data=!3m1!4b1!4m6!3m5!1s0x390f93f6c754b71b:0x1a024a56adddf4ed!8m2!3d30.6891861!4d76.7153355!16s%2Fg%2F11tx7sjs6j?entry=ttu&g_ep=EgoyMDI2MDYwMS4wIKXMDSoASAFQAw%3D%3D"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex flex-col items-center gap-1 focus:outline-none transition-transform active:scale-95 group text-center cursor-pointer decoration-transparent border-0"
@@ -3016,7 +3057,7 @@ export default function App() {
                   <p className="text-[9px] text-white/95 drop-shadow-sm font-medium mt-0.5">Gmada Market, Sector 69</p>
                 </div>
                 <a
-                  href="https://maps.app.goo.gl/tPN5MedC4LLAbe4P8"
+                  href="https://www.google.com/maps/place/SRL+Diagnostics+Mohali+-+Blood+Test+%7C+Full+Body+Checkup+%7C+Pathology+Lab/@30.6891861,76.7127606,17z/data=!3m1!4b1!4m6!3m5!1s0x390f93f6c754b71b:0x1a024a56adddf4ed!8m2!3d30.6891861!4d76.7153355!16s%2Fg%2F11tx7sjs6j?entry=ttu&g_ep=EgoyMDI2MDYwMS4wIKXMDSoASAFQAw%3D%3D"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="absolute top-2 right-2 px-2 py-1 bg-white hover:bg-google-blue hover:text-white text-google-blue rounded-md text-[9px] font-black uppercase tracking-wider flex items-center gap-1 shadow-md transition-all cursor-pointer decoration-transparent leading-none"
@@ -3033,7 +3074,7 @@ export default function App() {
                 Need Home collection?
               </h4>
               <p className="text-white/90 text-[11px] leading-relaxed mb-3.5 font-medium">
-                Skip queues. Certified phlebotomists will collect your diagnostic samples from your doorstep with hygiene.
+                Skip queues. Certified phlebotomists will collect your blood samples from your doorstep with hygiene & painless.
               </p>
               
               <div className="flex flex-col gap-1 text-[9px] font-bold uppercase tracking-wider mb-4">
@@ -3184,6 +3225,36 @@ export default function App() {
                       {formErrors.name && (
                         <p id="name-error" className="text-xs text-red-500 mt-1 font-medium">
                           {formErrors.name}
+                        </p>
+                      )}
+                    </div>
+                    <div className="space-y-1.5">
+                      <label htmlFor="phone" className="text-[11px] font-black text-google-grey uppercase tracking-wider block">
+                        Mobile Number *
+                      </label>
+                      <input
+                        id="phone"
+                        aria-label="Mobile Number"
+                        aria-required="true"
+                        aria-invalid={!!formErrors.phone}
+                        aria-describedby={
+                          formErrors.phone ? "phone-error" : undefined
+                        }
+                        type="tel"
+                        placeholder="9876543210"
+                        className={`w-full px-4 py-3.5 sm:py-3 rounded-xl border focus:ring-2 outline-none bg-white transition-all text-base sm:text-sm ${
+                          formErrors.phone ? "border-red-500 focus:ring-red-500" : "border-google-border focus:ring-google-blue hover:border-google-grey/40"
+                        }`}
+                        value={formData.phone}
+                        onChange={(e) => {
+                          setFormData({ ...formData, phone: e.target.value });
+                          if (formErrors.phone)
+                            setFormErrors({ ...formErrors, phone: undefined });
+                        }}
+                      />
+                      {formErrors.phone && (
+                        <p id="phone-error" className="text-xs text-red-500 mt-1 font-medium">
+                          {formErrors.phone}
                         </p>
                       )}
                     </div>

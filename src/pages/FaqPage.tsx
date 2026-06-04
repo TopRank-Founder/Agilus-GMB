@@ -7,6 +7,10 @@ import { LOCALIZATION } from '../localization';
 const FaqPage = () => {
   const navigate = useNavigate();
   const [openIndex, setOpenIndex] = React.useState<number | null>(null);
+
+  React.useEffect(() => {
+    document.title = "FAQ & Patient Support - Agilus Diagnostics (formerly SRL Diagnostics) Mohali";
+  }, []);
   
   const faqs = [
     {
