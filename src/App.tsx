@@ -13,11 +13,13 @@ import {
 } from "react-router-dom";
 import TestDetailPage from "./pages/TestDetailPage";
 import { BottomNav } from "./components/BottomNav";
-import imagePhoto1 from "./assets/images/agilus-diagnostics-mohali-exterior.jpg";
-import imageClinical from "./assets/images/agilus-diagnostics-clinical-phlebotomy.jpg";
-import imageJourney from "./assets/images/srl-diagnostics-mohali-history-1997.jpg";
-import imageTrusted from "./assets/images/agilus-diagnostics-laboratory-equipment.jpg";
-import imageOverview5 from "./assets/images/agilus-diagnostics-medical-facility-interior.jpg";
+
+const imagePhoto1 = "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFzkCsfd2SGjTxPnXaehVMK5tGHGEwcQ_OAPPHgXqQQGzvN1zq1oMhllgpbWDOeTBBFQDb2Fyu5l6L3MOeGzMEhfHcVHnmVXOHXL9jHP_ydQ9vHEKMYeJhQU5-ljy-LB9ff2v01_EenAqv3=s680-w680-h510-rw";
+const imageClinical = "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFlaB5_pzNKrnwe-Fg59wtnHZ1Bz5TfAReMu3lt7c1FY7juFoyslIKyFbkyjVVZh1Vt3RFh7B3IZZR3p6WWFPJ9wLJeVyTmJiBO0Kijz8UCafJMd8LE4dImeGdHDVYkq7ti9fOciA=s680-w680-h510-rw";
+const imageJourney = "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFSK8yeKeMYSUYgIGNfy0dELAZVAsxuW-wuRB0anoVLq_65kwqLsgWRB9SBpnpRPeHqeKjQN6AmbErx76bsJVp_OIxjPHJDvflWpYqnwvMQM7rMy7lDuEAY0UVkjdHp9W7f21KxNYuG7Ytm=s680-w680-h510-rw";
+const imageTrusted = "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEiB5ryxWLcsUYA35H_Gk00Q5-Cvk1R-FSoQ3GFPdOrS5oRePSFSWNZKPyiAkIc_uAIHnRfOWUVHdia-I7xS-mq0korrLo9Udb4qeJBu4QgRG4hmWp6tsro-hZBWUZyUER-dZ11sbXFNZs=s680-w680-h510-rw";
+const imageOverview5 = "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFUPfhJG4oXwMlO5RHFaW_xxHcp0lDzp-fYq9lDmQZpv6zKWw6UFcg5G1mR8xglq8Oef8nDrT7arIt84IU_t-C0ue2Lxc200MiHI-Fl7Rlf2U2FzIr7XcAlEkO48g7SC5qnfozA5vo8isl8=s680-w680-h510-rw";
+
 import { testMenu } from "./constants";
 import { LOCALIZATION, formatTemplate } from "./localization";
 import {
@@ -73,22 +75,40 @@ import {
   ArrowUp,
   ArrowDown,
 } from "lucide-react";
-import { jsPDF } from "jspdf";
-import "jspdf-autotable";
 import React, { useState, useMemo, useEffect, useRef } from "react";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import {
-  Autoplay,
-  EffectFade,
-  Navigation as SwiperNavigation,
-  Pagination,
-  A11y,
-} from "swiper/modules";
-import "swiper/css";
-import "swiper/css/effect-fade";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+const HeroSwiper = React.lazy(() => import("./components/HeroSwiper"));
+
+const HeroSwiperFallback = () => (
+  <div className="relative w-full h-[380px] sm:h-[440px] md:h-[500px] bg-black rounded-3xl overflow-hidden shadow-2xl border border-google-border animate-pulse">
+    <div className="absolute inset-0 bg-zinc-900" />
+    <div className="absolute inset-x-0 bottom-0 p-5 sm:p-10 md:p-12 z-10 flex flex-col justify-end h-full">
+      <div className="max-w-3xl space-y-4">
+        <div className="h-6 w-3/4 bg-white/10 rounded-md" />
+        <div className="h-4 w-1/2 bg-white/10 rounded-md" />
+        <div className="h-10 w-32 bg-white/10 rounded-xl" />
+      </div>
+    </div>
+  </div>
+);
+
+const optimizeGmbImage = (url: string, opts: { width?: number; height?: number } = {}) => {
+  if (!url) return url;
+  if (url.includes("googleusercontent.com")) {
+    const baseUrl = url.split("=")[0];
+    const params: string[] = [];
+    if (opts.width) params.push(`w${opts.width}`);
+    if (opts.height) params.push(`h${opts.height}`);
+    if (!opts.width && !opts.height) {
+      params.push("s800");
+    } else if (opts.width && opts.height) {
+      params.push("c");
+    }
+    params.push("rw"); // Always force WebP format using Google's GMB Edge CDN!
+    return `${baseUrl}=${params.join("-")}`;
+  }
+  return url;
+};
 
 const LAB_WELLNESS_PACKAGES = [
   {
@@ -698,12 +718,29 @@ export default function App() {
   const [activePackageIndex, setActivePackageIndex] = useState(0);
   const [activeServiceDesc, setActiveServiceDesc] = useState<number | null>(null);
   const packageScrollRef = useRef<HTMLDivElement>(null);
+  const cardWidthRef = useRef(300);
+
+  useEffect(() => {
+    if (!packageScrollRef.current) return;
+    const container = packageScrollRef.current;
+    const updateWidth = () => {
+      const card = container.querySelector("[data-package-card]");
+      if (card) {
+        cardWidthRef.current = card.clientWidth;
+      }
+    };
+    updateWidth();
+    const observer = new ResizeObserver(() => {
+      updateWidth();
+    });
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
 
   const handlePackageScroll = (direction: "prev" | "next") => {
     if (packageScrollRef.current) {
       const container = packageScrollRef.current;
-      const card = container.querySelector("[data-package-card]");
-      const cardWidth = card ? card.clientWidth : 300;
+      const cardWidth = cardWidthRef.current;
       const gap = 20;
       const currentScroll = container.scrollLeft;
       const scrollStep = cardWidth + gap;
@@ -723,8 +760,7 @@ export default function App() {
   const handlePackageScrollEvent = () => {
     if (packageScrollRef.current) {
       const container = packageScrollRef.current;
-      const card = container.querySelector("[data-package-card]");
-      const cardWidth = card ? card.clientWidth : 300;
+      const cardWidth = cardWidthRef.current;
       const gap = 20;
       const scrollLeft = container.scrollLeft;
       const index = Math.round(scrollLeft / (cardWidth + gap));
@@ -736,8 +772,7 @@ export default function App() {
   const handlePackageDotClick = (idx: number) => {
     if (packageScrollRef.current) {
       const container = packageScrollRef.current;
-      const card = container.querySelector("[data-package-card]");
-      const cardWidth = card ? card.clientWidth : 300;
+      const cardWidth = cardWidthRef.current;
       const gap = 20;
       container.scrollTo({
         left: idx * (cardWidth + gap),
@@ -995,7 +1030,7 @@ export default function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsTestListLoading(false);
-    }, 1000);
+    }, 50);
     return () => clearTimeout(timer);
   }, []);
 
@@ -1008,7 +1043,7 @@ export default function App() {
     setIsTestListLoading(true);
     const timer = setTimeout(() => {
       setIsTestListLoading(false);
-    }, 350);
+    }, 50);
     return () => clearTimeout(timer);
   }, [testSortField, testSortDirection, testSearchQuery, selectedTestCategory]);
 
@@ -1299,6 +1334,8 @@ export default function App() {
                 width={150}
                 height={48}
                 className="h-8 md:h-12 w-auto object-contain flex-shrink-0 cursor-pointer transition-all duration-200 hover:scale-[1.03]"
+                loading="eager"
+                fetchPriority="high"
               />
             </RouterLink>
           </div>
@@ -1387,138 +1424,18 @@ export default function App() {
             aria-labelledby="overview-tab"
             className="lg:col-span-12 scroll-mt-32 md:scroll-mt-40"
           >
-            <div className="relative group w-full h-[380px] sm:h-[440px] md:h-[500px] bg-black rounded-3xl overflow-hidden shadow-2xl border border-google-border">
-              <Swiper
-                modules={[
-                  Autoplay,
-                  EffectFade,
-                  SwiperNavigation,
-                  Pagination,
-                  A11y,
-                ]}
-                effect="fade"
-                loop={true}
-                navigation={{
-                  prevEl: ".hero-swiper-prev",
-                  nextEl: ".hero-swiper-next",
-                }}
-                pagination={{
-                  clickable: true,
-                  el: ".hero-swiper-pagination",
-                  bulletActiveClass: "w-8 bg-google-blue",
-                  bulletClass:
-                    "w-3 h-3 rounded-full bg-white/60 transition-all duration-300 inline-block mx-1 cursor-pointer border border-white",
-                }}
-                autoplay={{ delay: 4000, disableOnInteraction: false }}
-                className="w-full h-full"
-              >
-                {heroImages.map((img, index) => (
-                  <SwiperSlide key={index} className="relative w-full h-full overflow-hidden">
-                    <div className="absolute inset-0">
-                      <img
-                        src={img.src}
-                        alt={img.alt}
-                        className="w-full h-full object-cover brightness-[0.60] md:brightness-[0.75]"
-                        referrerPolicy="no-referrer"
-                        loading={index === 0 ? "eager" : "lazy"}
-                        fetchPriority={index === 0 ? "high" : "auto"}
-                      />
-                    </div>
-                    {/* Integrated dynamic overlay: text and CTAs transition with the slide image natively */}
-                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent p-5 sm:p-10 md:p-12 z-10 flex flex-col justify-end h-full">
-                      <div className="max-w-3xl">
-                        {/* Badges */}
-                        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-2 sm:mb-4">
-                          <span className="text-[10px] sm:text-xs font-black text-white bg-agilus-green px-3 sm:px-4 py-1 sm:py-1.5 rounded-full uppercase tracking-[0.1em] sm:tracking-[0.15em] shadow-lg border border-white/20">
-                            {img.badge || "Best Diagnostic Lab in Mohali"}
-                          </span>
-                          <div className="flex items-center bg-white/10 backdrop-blur-md px-2.5 sm:px-3 py-1 rounded-full text-[9px] sm:text-[10px] text-white font-black uppercase tracking-widest border border-white/20">
-                            <CheckCircle2 className="w-3 h-3 text-agilus-green mr-1.5 sm:mr-2" />
-                            NABL Accredited
-                          </div>
-                        </div>
-
-                        {/* Title */}
-                        <h1 className="text-xl sm:text-3xl md:text-5xl font-black text-white mb-2 sm:mb-4 leading-[1.1] drop-shadow-2xl tracking-tight">
-                          {img.title === "Trusted Diagnostics" ? (
-                            <>
-                              Best Diagnostic <br className="hidden sm:block" />
-                              <span className="text-agilus-green">
-                                Lab in Mohali
-                              </span>
-                            </>
-                          ) : (
-                            img.title
-                          )}
-                        </h1>
-
-                        {/* Description */}
-                        <p className="text-white/95 text-xs sm:text-sm md:text-lg mb-4 sm:mb-6 max-w-2xl font-medium leading-relaxed drop-shadow-md line-clamp-3 sm:line-clamp-none">
-                          {img.desc.includes("heart of Mohali")
-                            ? "Agilus Diagnostics (Formerly SRL) Sector 69. Superior Clinical Accuracy, 24/7 Free Home Sample Collection, & 3,000+ Specialized Tests."
-                            : img.desc}
-                        </p>
-
-                        {/* CTAs */}
-                        <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 w-full justify-start mt-2">
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              if (index === 0) {
-                                handleCall();
-                              } else if (index === 1) {
-                                setActiveTab("services");
-                                const el = document.getElementById("services");
-                                if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-                              } else if (index === 2 || index === 3) {
-                                setIsBookingOpen(true);
-                              } else if (index === 4) {
-                                const el = document.getElementById("health-packages");
-                                if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-                              }
-                            }}
-                            className="bg-google-blue hover:bg-blue-650 dark:bg-zinc-800 dark:hover:bg-zinc-700/80 hover:scale-[1.02] border border-white/10 text-white px-5 sm:px-7 py-3 sm:py-3.5 rounded-xl sm:rounded-2xl font-black text-xs sm:text-sm transition-all shadow-xl active:scale-95 flex items-center justify-center gap-2 w-full sm:w-auto cursor-pointer"
-                          >
-                            {index === 0 && <Phone className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-white animate-pulse" aria-hidden="true" />}
-                            {index === 1 && <FlaskConical className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-blue-200" aria-hidden="true" />}
-                            {index === 2 && <Calendar className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-green-200" aria-hidden="true" />}
-                            {index === 3 && <ClipboardCheck className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-orange-200" aria-hidden="true" />}
-                            {index === 4 && <HeartPulse className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-pink-200" aria-hidden="true" />}
-                            {img.cta}
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-
-              {/* Slider Controls */}
-              <button
-                className="hero-swiper-prev absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/30 backdrop-blur-md text-white transition-all opacity-0 group-hover:opacity-100 z-20"
-                aria-label="Previous slide"
-              >
-                <ChevronDown className="w-6 h-6 rotate-90" aria-hidden="true" />
-              </button>
-              <button
-                className="hero-swiper-next absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/30 backdrop-blur-md text-white transition-all opacity-0 group-hover:opacity-100 z-20"
-                aria-label="Next slide"
-              >
-                <ChevronDown
-                  className="w-6 h-6 -rotate-90"
-                  aria-hidden="true"
-                />
-              </button>
-
-              <div
-                className="hero-swiper-pagination absolute bottom-6 right-6 z-20 flex gap-0"
-                aria-label="Carousel pagination"
+            <React.Suspense fallback={<HeroSwiperFallback />}>
+              <HeroSwiper
+                heroImages={heroImages}
+                handleCall={handleCall}
+                setActiveTab={setActiveTab}
+                setIsBookingOpen={setIsBookingOpen}
               />
-            </div>
+            </React.Suspense>
           </section>
 
-          {/* Business Info Column */}
-          <div className="lg:col-span-12 max-w-4xl mx-auto w-full flex flex-col space-y-4 md:space-y-6">
+          {/* Left Column containing main detail sections */}
+          <div className="lg:col-span-8 w-full flex flex-col space-y-4 md:space-y-6">
             <motion.section
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -1661,11 +1578,12 @@ export default function App() {
                     className="relative overflow-hidden w-full h-full cursor-zoom-in group/item"
                   >
                     <img
-                      src={centerPhotos[0].url}
+                      src={optimizeGmbImage(centerPhotos[0].url, { width: 500, height: 380 })}
                       alt="Front view of Agilus Diagnostics Centre Exterior"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02] hover:!scale-105"
                       referrerPolicy="no-referrer"
                       loading="lazy"
+                      fetchPriority="low"
                     />
                     <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3 opacity-0 group-hover/item:opacity-100 transition-opacity flex items-center justify-between text-white">
                       <span className="text-[10px] font-black uppercase tracking-wider">Front Exterior</span>
@@ -1681,11 +1599,12 @@ export default function App() {
                     className="relative overflow-hidden w-full h-full cursor-zoom-in group/item"
                   >
                     <img
-                      src={centerPhotos[1].url}
+                      src={optimizeGmbImage(centerPhotos[1].url, { width: 500, height: 380 })}
                       alt="Automated blood testing analyzers at Agilus Diagnostics Mohali"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02] hover:!scale-105"
                       referrerPolicy="no-referrer"
                       loading="lazy"
+                      fetchPriority="low"
                     />
                     <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3 opacity-0 group-hover/item:opacity-100 transition-opacity flex items-center justify-between text-white">
                       <span className="text-[10px] font-black uppercase tracking-wider">Automated Analyzers</span>
@@ -1701,11 +1620,12 @@ export default function App() {
                     className="relative overflow-hidden w-full h-full cursor-zoom-in group/item"
                   >
                     <img
-                      src={centerPhotos[2].url}
+                      src={optimizeGmbImage(centerPhotos[2].url, { width: 500, height: 380 })}
                       alt="Professional patient sample collection assistance at Agilus Mohali"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02] hover:!scale-105"
                       referrerPolicy="no-referrer"
                       loading="lazy"
+                      fetchPriority="low"
                     />
                     <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3 opacity-0 group-hover/item:opacity-100 transition-opacity flex items-center justify-between text-white">
                       <span className="text-[10px] font-black uppercase tracking-wider">Sampling Area</span>
@@ -1721,11 +1641,12 @@ export default function App() {
                     className="relative overflow-hidden w-full h-full cursor-zoom-in"
                   >
                     <img
-                      src={centerPhotos[3].url}
+                      src={optimizeGmbImage(centerPhotos[3].url, { width: 500, height: 380 })}
                       alt="Modern diagnostic testing room at Agilus Lab Sector 69 Mohali"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02] hover:!scale-105"
                       referrerPolicy="no-referrer"
                       loading="lazy"
+                      fetchPriority="low"
                     />
                     
                     {/* View all overlay button that indicates the total number of images */}
@@ -2264,6 +2185,7 @@ export default function App() {
                 alt="Agilus Diagnostics SRL Lab Mohali Virtual Tour - Inside the Clinical Facility"
                 referrerPolicy="no-referrer"
                 loading="lazy"
+                fetchPriority="low"
               />
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4 md:p-6 text-center">
                 <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform shadow-lg border border-white/20">
@@ -2706,10 +2628,12 @@ export default function App() {
                 </h3>
                 <div className="w-full aspect-[4/3] border border-white shadow-2xl bg-white rounded-xl p-2 overflow-hidden transform group-hover:scale-[1.03] transition-transform duration-700">
                   <img
-                    src={imageJourney}
+                    src={optimizeGmbImage(imageJourney, { width: 500, height: 380 })}
                     alt="Clinical Excellence - State of the art Lab Equipment at SRL Mohali Center"
                     className="w-full h-full object-cover rounded-lg"
                     loading="lazy"
+                    fetchPriority="low"
+                    referrerPolicy="no-referrer"
                   />
                   <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-lg"></div>
                 </div>
@@ -2725,10 +2649,12 @@ export default function App() {
               <div className="border border-google-border rounded-2xl shadow-sm overflow-hidden group flex flex-col hover:shadow-xl hover:border-google-blue/20 transition-all duration-500">
                 <div className="h-72 overflow-hidden relative">
                   <img
-                    src={imageTrusted}
+                    src={optimizeGmbImage(imageTrusted, { width: 600, height: 450 })}
                     alt="Premium Healthcare Interior & Professional Standards at Agilus diagnostics Mohali Sector 69."
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2s]"
                     loading="lazy"
+                    fetchPriority="low"
+                    referrerPolicy="no-referrer"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
                   <div className="absolute bottom-6 left-6 right-6 z-10 transition-transform duration-500 group-hover:-translate-y-1">
@@ -2815,11 +2741,12 @@ export default function App() {
                 </div>
                 <div className="w-full md:w-[40%] aspect-[4/3] relative rounded-2xl border border-google-border overflow-hidden bg-white shadow-2xl p-3 group">
                   <img
-                    src={imageClinical}
+                    src={optimizeGmbImage(imageClinical, { width: 600, height: 450 })}
                     alt="Agilus Diagnostics commitment to medical standards and professional phlebotomy training"
                     className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-700"
                     loading="lazy"
                     referrerPolicy="no-referrer"
+                    fetchPriority="low"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                 </div>
@@ -2957,6 +2884,188 @@ export default function App() {
               </div>
             </section>
           </div>
+
+          {/* Right Column - Premium GMB Desktop Sidebar (Sticky, clean, high-conversion) */}
+          <aside className="hidden lg:flex lg:col-span-4 flex-col gap-6 self-start sticky top-[104px] z-30 pb-4 max-h-[calc(100vh-140px)] overflow-y-auto no-scrollbar">
+            {/* GMB Card Header */}
+            <div className="bg-white border border-google-border rounded-3xl p-5 shadow-sm space-y-4 flex flex-col">
+              <div>
+                <div className="flex items-center gap-1.5 mb-1.5">
+                  <span className="text-[10px] bg-blue-50 text-google-blue font-extrabold tracking-wider uppercase px-2 py-0.5 rounded border border-blue-100">
+                    Verified Profile
+                  </span>
+                </div>
+                <h3 className="text-lg font-bold text-[#202124] leading-tight">
+                  SRL Diagnostics Mohali
+                </h3>
+                <p className="text-[11px] text-google-grey mt-0.5 font-medium">
+                  Booth 12, Gmada Market, Sector 69, Mohali
+                </p>
+              </div>
+
+              {/* GMB Quick Ratings Row */}
+              <div className="flex items-center gap-1.5 py-1 border-t border-b border-gray-100 shrink-0">
+                <span className="text-sm font-black text-gray-900 leading-none">4.9</span>
+                <div className="flex items-center gap-0.5">
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <Star key={i} className="w-3.5 h-3.5 fill-[#F4B400] text-[#F4B400]" />
+                  ))}
+                </div>
+                <span className="text-[11px] text-google-grey hover:underline cursor-pointer" onClick={() => window.open("https://g.page/r/Ce303a1WSgIaEBM/review", "_blank")}>
+                  (82 reviews)
+                </span>
+                <span className="h-3 w-px bg-gray-200"></span>
+                <span className="text-[11px] text-google-grey font-semibold">Diagnostic Lab</span>
+              </div>
+
+              {/* GMB Circular Quick Action Buttons (Call, Directions, WhatsApp, Share) */}
+              <div className="flex items-center justify-around py-1 shrink-0">
+                <button
+                  onClick={handleCall}
+                  className="flex flex-col items-center gap-1 focus:outline-none transition-transform active:scale-95 group text-center cursor-pointer border-0 bg-transparent"
+                >
+                  <div className="w-10 h-10 rounded-full bg-blue-50 group-hover:bg-blue-100 border border-blue-200 flex items-center justify-center text-google-blue transition-colors">
+                    <Phone className="w-4 h-4" />
+                  </div>
+                  <span className="text-[10px] font-bold text-google-blue">CALL</span>
+                </button>
+
+                <a
+                  href="https://maps.app.goo.gl/tPN5MedC4LLAbe4P8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col items-center gap-1 focus:outline-none transition-transform active:scale-95 group text-center cursor-pointer decoration-transparent border-0"
+                >
+                  <div className="w-10 h-10 rounded-full bg-blue-50 group-hover:bg-blue-100 border border-blue-200 flex items-center justify-center text-google-blue transition-colors">
+                    <Navigation className="w-4 h-4" />
+                  </div>
+                  <span className="text-[10px] font-bold text-google-blue">DIRECTIONS</span>
+                </a>
+
+                <a
+                  href="https://wa.me/919115459115?text=Hello%20SRL%20Diagnostics%20Mohali,%20I%20want%2520to%2520book%252520a%252520test."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col items-center gap-1 focus:outline-none transition-transform active:scale-95 group text-center cursor-pointer decoration-transparent border-0"
+                >
+                  <div className="w-10 h-10 rounded-full bg-blue-50 group-hover:bg-blue-100 border border-blue-200 flex items-center justify-center text-google-blue transition-colors">
+                    <MessageSquare className="w-4 h-4" />
+                  </div>
+                  <span className="text-[10px] font-bold text-google-blue">WHATSAPP</span>
+                </a>
+
+                <button
+                  onClick={handleShare}
+                  className="flex flex-col items-center gap-1 focus:outline-none transition-transform active:scale-95 group text-center cursor-pointer border-0 bg-transparent"
+                >
+                  <div className="w-10 h-10 rounded-full bg-blue-50 group-hover:bg-blue-100 border border-blue-200 flex items-center justify-center text-google-blue transition-colors">
+                    <Share2 className="w-4 h-4" />
+                  </div>
+                  <span className="text-[10px] font-bold text-google-blue">SHARE</span>
+                </button>
+              </div>
+
+              {/* Styled Address and interactive Maps locator block */}
+              <div className="space-y-3 pt-1">
+                <div className="flex gap-2.5 text-slate-700 leading-relaxed">
+                  <MapPin className="w-4 h-4 text-gray-400 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="block font-bold text-[11px] text-gray-900 leading-none">Address</span>
+                    <span className="block text-[11px] text-google-grey mt-1">
+                      Booth No. 12, Gmada Market, Near Gurukul World School, Sector 69, Mohali, Punjab 160069
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex gap-2.5 text-slate-700 leading-relaxed">
+                  <Clock className="w-4 h-4 text-gray-400 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="block font-bold text-[11px] text-gray-900 leading-none">Hours</span>
+                    <span className="block text-[11px] text-green-700 font-bold mt-1">Open 24 Hours • 🟢 Serving Now</span>
+                    <span className="block text-[10px] text-google-grey mt-0.5 font-medium">Sunday: Open for sample collections</span>
+                  </div>
+                </div>
+
+                <div className="flex gap-2.5 text-slate-700 leading-relaxed">
+                  <Globe className="w-4 h-4 text-gray-400 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="block font-bold text-[11px] text-gray-900 leading-none">Service Area</span>
+                    <span className="block text-[11px] text-google-grey mt-1">
+                      Mohali, Chandigarh, Panchkula & Kharar
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Static Google Maps Visual Widget */}
+              <div className="relative h-28 rounded-xl overflow-hidden border border-google-border group/map shadow-inner shrink-0">
+                <img
+                  src={optimizeGmbImage("https://lh3.googleusercontent.com/gps-cs-s/APNQkAF-6kv1elhJvFOYgZom8JrFu329YquzGnhEfignDqUSW4cHyFpePWE_9dl2DMEgwaZIVDv-SuubYh9CgoCpLvD2rtiEbbuCLfd8Q0EWr9xldQsYaqetSEaUs4xt0ZqQUMQ-dK32b5k5KDWD=s680-w680-h510-rw", { width: 450, height: 250 })}
+                  alt="SRL Mohali Sector 69 Front View"
+                  className="w-full h-full object-cover brightness-75 group-hover/map:scale-105 transition-transform duration-700 ease-in-out"
+                  referrerPolicy="no-referrer"
+                  loading="lazy"
+                  fetchPriority="low"
+                />
+                <div className="absolute inset-0 bg-blue-900/10 mix-blend-multiply"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-2.5">
+                  <div className="flex items-center gap-1 text-white">
+                    <MapPin className="w-3.5 h-3.5 text-red-500 fill-red-500 animate-bounce" />
+                    <span className="text-[11px] font-black tracking-tight drop-shadow-md">Sector 69, Mohali</span>
+                  </div>
+                  <p className="text-[9px] text-white/95 drop-shadow-sm font-medium mt-0.5">Gmada Market, Sector 69</p>
+                </div>
+                <a
+                  href="https://maps.app.goo.gl/tPN5MedC4LLAbe4P8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute top-2 right-2 px-2 py-1 bg-white hover:bg-google-blue hover:text-white text-google-blue rounded-md text-[9px] font-black uppercase tracking-wider flex items-center gap-1 shadow-md transition-all cursor-pointer decoration-transparent leading-none"
+                >
+                  <Navigation className="w-2 h-2" /> Navigate
+                </a>
+              </div>
+            </div>
+
+            {/* Quick Home Test Booking CTA Widget */}
+            <div className="bg-gradient-to-br from-google-blue to-[#005a5d] rounded-3xl p-5 shadow-sm border border-teal-800 text-white relative overflow-hidden group flex flex-col">
+              <div className="absolute -right-10 -bottom-10 w-44 h-44 bg-white/5 rounded-full blur-2xl group-hover:scale-110 transition-transform"></div>
+              <h4 className="text-base font-extrabold tracking-tight text-white mb-1.5 leading-snug">
+                Need Home collection?
+              </h4>
+              <p className="text-white/90 text-[11px] leading-relaxed mb-3.5 font-medium">
+                Skip queues. Certified phlebotomists will collect your diagnostic samples from your doorstep with hygiene.
+              </p>
+              
+              <div className="flex flex-col gap-1 text-[9px] font-bold uppercase tracking-wider mb-4">
+                <span className="flex items-center gap-1.5 text-white/90">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-orange-400 shrink-0" /> Fast Same-Day Digital Reports
+                </span>
+                <span className="flex items-center gap-1.5 text-white/90">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-orange-400 shrink-0" /> NABL Accredited Precision
+                </span>
+                <span className="flex items-center gap-1.5 text-white/90">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-orange-400 shrink-0" /> Free Home Sample Collection
+                </span>
+              </div>
+
+              <div className="space-y-2 mt-auto">
+                <button
+                  onClick={() => setIsBookingOpen(true)}
+                  className="w-full bg-[#FF8A00] hover:bg-[#e07500] text-white font-extrabold tracking-widest text-[10px] uppercase py-3 rounded-xl shadow transition-all transform hover:-translate-y-0.5 active:translate-y-0 text-center cursor-pointer border-0"
+                >
+                  Book Home Collection
+                </button>
+                <a
+                  href="https://wa.me/919115459115?text=Hello%20SRL%20Diagnostics%20Mohali,%20I%20want%2520to%2520book%252520a%252520test."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full bg-white/15 hover:bg-white/25 text-white border border-white/20 font-black tracking-widest text-[10px] uppercase py-3 rounded-xl transition-all flex items-center justify-center gap-1.5 text-center decoration-transparent border text-[10px]"
+                >
+                  <MessageSquare className="w-3.5 h-3.5" /> Message on WhatsApp
+                </a>
+              </div>
+            </div>
+          </aside>
         </div>
 
         {/* AI Overview & Comprehensive Pathology SEO Block (Geo, AEO, Local) */}
@@ -3301,13 +3410,16 @@ export default function App() {
                   <AnimatePresence mode="wait">
                     <motion.img
                       key={activeGalleryIndex}
-                      src={allGalleryPhotos[activeGalleryIndex].url}
+                      src={optimizeGmbImage(allGalleryPhotos[activeGalleryIndex].url, { width: 900, height: 600 })}
                       alt={allGalleryPhotos[activeGalleryIndex].title}
                       initial={{ opacity: 0, scale: 0.98 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.98 }}
                       transition={{ duration: 0.3 }}
                       className="max-h-full max-w-full object-contain rounded-lg shadow-xl"
+                      referrerPolicy="no-referrer"
+                      loading="eager"
+                      fetchPriority="high"
                     />
                   </AnimatePresence>
 
@@ -3447,10 +3559,12 @@ export default function App() {
                       }`}
                     >
                       <img
-                        src={photo.url}
+                        src={optimizeGmbImage(photo.url, { width: 120, height: 90 })}
                         alt={`Thumbnail index ${index + 1}`}
                         className="w-full h-full object-cover"
                         referrerPolicy="no-referrer"
+                        loading="lazy"
+                        fetchPriority="low"
                       />
                       <div className="absolute inset-0 bg-black/10 hover:bg-transparent transition-colors" />
                     </button>
@@ -3676,6 +3790,8 @@ export default function App() {
                   width={100}
                   height={32}
                   className="h-8 w-auto object-contain brightness-0 invert self-start"
+                  loading="lazy"
+                  fetchPriority="low"
                 />
                 <span className="text-[9px] bg-orange-500/10 text-[#FF8A00] font-black tracking-wider uppercase px-2 py-0.5 rounded border border-orange-500/20 w-fit mt-2">
                   Prop. TopRank Health Care (Authorised Home Visit Partner)
@@ -4029,7 +4145,14 @@ function TestimonialHighlight({
     <div className="bg-white p-8 md:p-12 rounded-[2.5rem] h-full flex flex-col items-center text-center">
       <div className="relative mb-8">
         <div className="w-24 h-24 rounded-[2rem] overflow-hidden border-4 border-google-blue/10 shadow-2xl relative z-10 mx-auto transform rotate-3 hover:rotate-0 transition-transform duration-500">
-          <img src={image} alt={name} className="w-full h-full object-cover" />
+          <img
+            src={image}
+            alt={name}
+            className="w-full h-full object-cover"
+            loading="lazy"
+            fetchPriority="low"
+            referrerPolicy="no-referrer"
+          />
         </div>
         <div className="absolute -top-4 -right-4 w-12 h-12 bg-agilus-green/20 rounded-full blur-xl animate-pulse" />
         <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-google-blue/20 rounded-full blur-xl animate-pulse delay-700" />
@@ -4463,11 +4586,12 @@ function UpdateCard({
       <div className="h-48 overflow-hidden relative rounded-t-[1.95rem]">
         {typeof img === "string" ? (
           <img
-            src={img}
+            src={optimizeGmbImage(img, { width: 500, height: 350 })}
             alt={alt}
             className={`w-full h-full object-cover ${imgPosition} group-hover:scale-105 transition-transform duration-700 rounded-t-[1.95rem]`}
             referrerPolicy="no-referrer"
             loading="lazy"
+            fetchPriority="low"
           />
         ) : (
           <div className="w-full h-full group-hover:scale-102 transition-transform duration-700 rounded-t-[1.95rem] overflow-hidden">

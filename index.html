@@ -3,16 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-    <link rel="preconnect" href="https://media.agilus.in" crossorigin="anonymous" />
     <link rel="preconnect" href="https://lh3.googleusercontent.com" crossorigin="anonymous" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="anonymous" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-    <link rel="preconnect" href="https://img.youtube.com" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" />
     <link rel="dns-prefetch" href="https://media.agilus.in" />
-    <link rel="dns-prefetch" href="https://lh3.googleusercontent.com" />
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="https://img.youtube.com" />
     <meta name="description" content="Agilus Diagnostics (Formerly SRL Lab) Mohali Sector 69. NABL Accredited pathology laboratory providing home collection, health packages, and accurate clinical tests in Mohali, Panchkula and Chandigarh." />
     <meta name="keywords" content="SRL Lab Mohali, Agilus Diagnostics Mohali, Blood Test Mohali, Home Collection Mohali, Pathology Mohali Sector 69, Best Lab in Mohali, Diagnostics Centre in Mohali, Mohali Diagnostics" />
     <link rel="canonical" href="https://www.srllabmohali.in" />
@@ -144,7 +136,43 @@
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Light-speed Initial Loader (replaces white screen instantly) -->
+      <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background-color: #ffffff; color: #202124;">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 24px; max-width: 320px; width: 100%; padding: 0 16px; box-sizing: border-box;">
+          <!-- Custom-designed heartbeat pulse medical-style logo -->
+          <div style="position: relative; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
+            <div style="position: absolute; inset: 0; border-radius: 50%; background: rgba(66, 133, 244, 0.08); animation: srl-pulse 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;"></div>
+            <svg style="width: 42px; height: 42px; color: #4285F4; animation: srl-scale 1.8s ease-in-out infinite;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+            </svg>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 17px; font-weight: 800; letter-spacing: -0.025em; color: #202124; font-family: 'Outfit', sans-serif;">SRL Diagnostics Mohali</div>
+            <div style="font-size: 11px; font-weight: 700; color: #5f6368; margin-top: 5px; letter-spacing: 0.06em; text-transform: uppercase;">Clinical Excellence • Since 1995</div>
+          </div>
+          <!-- Dynamic loading progression bar -->
+          <div style="width: 140px; height: 3.5px; background-color: #f1f3f4; border-radius: 9999px; overflow: hidden; position: relative;">
+            <div style="position: absolute; top: 0; left: 0; height: 100%; width: 50%; background-color: #4285F4; border-radius: 9999px; animation: srl-loading 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;"></div>
+          </div>
+        </div>
+      </div>
+      <style>
+        @keyframes srl-pulse {
+          0%, 100% { transform: scale(1); opacity: 0.8; }
+          50% { transform: scale(1.18); opacity: 0.25; }
+        }
+        @keyframes srl-scale {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.07); }
+        }
+        @keyframes srl-loading {
+          0% { left: -45%; width: 45%; }
+          50% { left: 35%; width: 65%; }
+          100% { left: 100%; width: 45%; }
+        }
+      </style>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
