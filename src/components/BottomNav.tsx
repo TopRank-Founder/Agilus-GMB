@@ -77,7 +77,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({
   ], [location.pathname, navigate, setIsBookingOpen, handleTabClick]);
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-[100] bg-white border-t border-gray-200 flex justify-around items-center p-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] md:hidden shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+    <div className="fixed bottom-0 left-0 right-0 z-[100] bg-white border-t border-gray-200 flex justify-around items-center p-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] lg:hidden shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
       {navItems.map((item) => {
         const isActive = activeTab === item.id;
         return (

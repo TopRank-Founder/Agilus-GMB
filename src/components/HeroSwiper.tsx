@@ -63,7 +63,7 @@ export default function HeroSwiper({
   setIsBookingOpen,
 }: HeroSwiperProps) {
   return (
-    <div className="relative group w-full h-[380px] sm:h-[440px] md:h-[500px] bg-black rounded-3xl overflow-hidden shadow-2xl border border-google-border">
+    <div className="relative group w-full h-[380px] sm:h-[440px] md:h-[500px] lg:h-[540px] xl:h-[585px] bg-black rounded-3xl overflow-hidden shadow-2xl border border-google-border">
       <Swiper
         modules={[Autoplay, EffectFade, SwiperNavigation, Pagination, A11y]}
         effect="fade"
@@ -87,8 +87,8 @@ export default function HeroSwiper({
             <div className="absolute inset-0">
               <img
                 src={optimizeGmbImage(img.src, {
-                  width: index === 0 ? 1200 : 800,
-                  height: index === 0 ? 800 : 530,
+                  width: index === 0 ? 1600 : 1000,
+                  height: index === 0 ? 1000 : 660,
                 })}
                 alt={img.alt}
                 className="w-full h-full object-cover brightness-[0.60] md:brightness-[0.75]"

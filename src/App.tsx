@@ -1322,10 +1322,10 @@ export default function App() {
       {/* Modern Cinematic Header (Sticky top-0) */}
       <header className="sticky top-0 z-[60] w-full bg-white/95 backdrop-blur-md border-b border-gray-200/80 px-4 sm:px-[24px] h-16 md:h-20 flex items-center shadow-sm">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4 w-full">
-          <div className="flex items-center gap-2 md:gap-3 flex-1 overflow-hidden">
+          <div className="flex items-center gap-2 md:gap-3 shrink-0">
             <Menu
               aria-label="Menu"
-              className="hidden md:block w-8 h-8 text-google-grey cursor-pointer hover:bg-google-light-grey rounded-full p-1.5 flex-shrink-0"
+              className="hidden lg:block w-8 h-8 text-google-grey cursor-pointer hover:bg-google-light-grey rounded-full p-1.5 flex-shrink-0"
             />
             <RouterLink
               to="/"
@@ -1351,8 +1351,46 @@ export default function App() {
             </RouterLink>
           </div>
 
-          <div className="hidden md:flex flex-1 max-w-lg items-center bg-google-light-grey rounded-full px-4 py-2 border border-transparent focus-within:border-google-blue/30 focus-within:bg-white focus-within:shadow-sm transition-all">
-            <Search className="w-4 h-4 text-google-grey mr-3" />
+          {/* Premium Desktop Navigation Links */}
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-8 mx-4 shrink-0" aria-label="Main Navigation">
+            <RouterLink
+              to="/"
+              onClick={() => {
+                setActiveTab("overview");
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+              className={`text-[13px] xl:text-sm font-bold tracking-tight transition-all duration-155 hover:text-google-blue relative py-1.5 ${location.pathname === '/' ? 'text-google-blue border-b-2 border-google-blue' : 'text-google-grey'}`}
+            >
+              Overview
+            </RouterLink>
+            <RouterLink
+              to="/services"
+              className={`text-[13px] xl:text-sm font-bold tracking-tight transition-all duration-155 hover:text-google-blue relative py-1.5 ${location.pathname === '/services' ? 'text-google-blue border-b-2 border-google-blue' : 'text-google-grey'}`}
+            >
+              Our Services
+            </RouterLink>
+            <RouterLink
+              to="/about"
+              className={`text-[13px] xl:text-sm font-bold tracking-tight transition-all duration-155 hover:text-google-blue relative py-1.5 ${location.pathname === '/about' ? 'text-google-blue border-b-2 border-google-blue' : 'text-google-grey'}`}
+            >
+              About Lab
+            </RouterLink>
+            <RouterLink
+              to="/faq"
+              className={`text-[13px] xl:text-sm font-bold tracking-tight transition-all duration-155 hover:text-google-blue relative py-1.5 ${location.pathname === '/faq' ? 'text-google-blue border-b-2 border-google-blue' : 'text-google-grey'}`}
+            >
+              FAQs
+            </RouterLink>
+            <RouterLink
+              to="/booking"
+              className={`text-[13px] xl:text-sm font-bold tracking-tight transition-all duration-155 hover:text-google-blue relative py-1.5 ${location.pathname === '/booking' ? 'text-google-blue border-b-2 border-google-blue' : 'text-google-grey'}`}
+            >
+              Book Home Collection
+            </RouterLink>
+          </nav>
+
+          <div className="hidden md:flex flex-1 max-w-xs xl:max-w-sm items-center bg-google-light-grey rounded-full px-4 py-2 border border-transparent focus-within:border-google-blue/30 focus-within:bg-white focus-within:shadow-sm transition-all">
+            <Search className="w-4 h-4 text-google-grey mr-3 shrink-0" />
             <input
               type="text"
               placeholder="Search Tests or Services..."
@@ -1369,17 +1407,17 @@ export default function App() {
             />
           </div>
 
-          <div className="flex items-center gap-2 md:gap-3">
+          <div className="flex items-center gap-2 md:gap-3 shrink-0">
             <button
               onClick={handleShare}
-              className="hidden md:flex p-2.5 rounded-full hover:bg-google-light-grey text-google-grey transition-colors"
+              className="hidden md:flex p-2.5 rounded-full hover:bg-google-light-grey text-google-grey transition-colors cursor-pointer"
               aria-label="Share this app"
             >
               <Share2 className="w-5 h-5" />
             </button>
             <button
               onClick={() => setIsBookingOpen(true)}
-              className="px-4 md:px-5 py-2 md:py-2.5 bg-google-blue text-white rounded-full text-[13px] md:text-sm font-bold hover:bg-google-blue/90 shadow-sm whitespace-nowrap"
+              className="px-4 md:px-5 py-2 md:py-2.5 bg-google-blue text-white rounded-full text-[13px] md:text-sm font-bold hover:bg-google-blue/90 shadow-sm whitespace-nowrap cursor-pointer transition-all active:scale-[0.98]"
             >
               Book Now
             </button>

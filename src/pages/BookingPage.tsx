@@ -1,8 +1,24 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Calendar, ClipboardCheck, CheckCircle2, Clock, MapPin, User, Smartphone, Mail } from "lucide-react";
+import { useNavigate, Link as RouterLink, useLocation } from "react-router-dom";
+import { 
+  ArrowLeft, 
+  Calendar, 
+  ClipboardCheck, 
+  CheckCircle2, 
+  Clock, 
+  MapPin, 
+  User, 
+  Smartphone, 
+  Mail,
+  Menu,
+  Share2,
+  Search
+} from "lucide-react";
 import { LOCALIZATION } from '../localization';
 
 const BookingPage = () => {
+    const navigate = useNavigate();
+    const location = useLocation();
     const [bookingStatus, setBookingStatus] = useState<"idle" | "submitting" | "success">("idle");
 
     React.useEffect(() => {
@@ -86,13 +102,116 @@ const BookingPage = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50/50 font-sans p-4 sm:p-8 flex flex-col justify-center items-center">
-            <div className="w-full max-w-2xl">
-                <a href="/" className="inline-flex items-center gap-2 text-google-blue mb-6 font-bold hover:underline transition-all cursor-pointer">
-                    <ArrowLeft className="w-5 h-5" /> {LOCALIZATION.ACTIONS.BACK_HOME || "Back to Homepage"}
-                </a>
-                
-                <div className="bg-white border border-google-border rounded-3xl p-6 sm:p-10 shadow-sm">
+        <div className="min-h-screen bg-gray-50/30 dark:bg-[#121314] font-sans pb-16 transition-colors duration-300">
+            {/* Modern Cinematic Header (Sticky top-0) */}
+            <header className="sticky top-0 z-[60] w-full bg-white/95 dark:bg-[#121314]/95 backdrop-blur-md border-b border-gray-200/80 dark:border-zinc-800/80 px-4 sm:px-[24px] h-16 md:h-20 flex items-center shadow-sm">
+                <div className="max-w-7xl mx-auto flex items-center justify-between gap-4 w-full">
+                    <div className="flex items-center gap-2 md:gap-3 shrink-0">
+                        {/* Back button on mobile/tablet */}
+                        <button
+                            onClick={() => navigate('/')}
+                            className="lg:hidden p-2 rounded-full bg-gray-50 dark:bg-zinc-800 text-google-blue dark:text-blue-400 hover:bg-gray-150 transition-all cursor-pointer border-0"
+                            aria-label="Back to home"
+                        >
+                            <ArrowLeft className="w-5 h-5" />
+                        </button>
+                        <Menu
+                            aria-label="Menu"
+                            className="hidden lg:block w-8 h-8 text-google-grey cursor-pointer hover:bg-google-light-grey rounded-full p-1.5 flex-shrink-0"
+                        />
+                        <RouterLink
+                            to="/"
+                            className="flex items-center gap-2 hover:opacity-85 active:scale-95 transition-all duration-200 overflow-hidden flex-shrink-0 select-none cursor-pointer"
+                        >
+                            {/* Official Agilus Logo Image */}
+                            <img
+                                src="https://media.agilus.in/consumer-web/agilusLogo.png"
+                                alt="Agilus Diagnostics"
+                                width={150}
+                                height={48}
+                                className="h-8 md:h-12 w-auto object-contain flex-shrink-0 cursor-pointer transition-all duration-200 hover:scale-[1.03]"
+                                loading="eager"
+                            />
+                        </RouterLink>
+                    </div>
+
+                    {/* Premium Desktop Navigation Links */}
+                    <nav className="hidden lg:flex items-center gap-5 xl:gap-8 mx-4 shrink-0" aria-label="Main Navigation">
+                        <RouterLink
+                            to="/"
+                            className={`text-[13px] xl:text-sm font-bold tracking-tight transition-all duration-155 hover:text-google-blue relative py-1.5 ${location.pathname === '/' ? 'text-google-blue border-b-2 border-google-blue' : 'text-google-grey dark:text-gray-300'}`}
+                        >
+                            Overview
+                        </RouterLink>
+                        <RouterLink
+                            to="/services"
+                            className={`text-[13px] xl:text-sm font-bold tracking-tight transition-all duration-155 hover:text-google-blue relative py-1.5 ${location.pathname === '/services' ? 'text-google-blue border-b-2 border-google-blue' : 'text-google-grey dark:text-gray-300'}`}
+                        >
+                            Our Services
+                        </RouterLink>
+                        <RouterLink
+                            to="/about"
+                            className={`text-[13px] xl:text-sm font-bold tracking-tight transition-all duration-155 hover:text-google-blue relative py-1.5 ${location.pathname === '/about' ? 'text-google-blue border-b-2 border-google-blue' : 'text-google-grey dark:text-gray-300'}`}
+                        >
+                            About Lab
+                        </RouterLink>
+                        <RouterLink
+                            to="/faq"
+                            className={`text-[13px] xl:text-sm font-bold tracking-tight transition-all duration-155 hover:text-google-blue relative py-1.5 ${location.pathname === '/faq' ? 'text-google-blue border-b-2 border-google-blue' : 'text-google-grey dark:text-gray-300'}`}
+                        >
+                            FAQs
+                        </RouterLink>
+                        <RouterLink
+                            to="/booking"
+                            className={`text-[13px] xl:text-sm font-bold tracking-tight transition-all duration-155 hover:text-google-blue relative py-1.5 ${location.pathname === '/booking' ? 'text-google-blue border-b-2 border-google-blue' : 'text-google-grey dark:text-gray-300'}`}
+                        >
+                            Book Home Collection
+                        </RouterLink>
+                    </nav>
+
+                    <div 
+                        className="hidden md:flex flex-1 max-w-xs xl:max-w-sm items-center bg-google-light-grey dark:bg-zinc-850 rounded-full px-4 py-2 border border-transparent focus-within:border-google-blue/30 focus-within:bg-white dark:focus-within:bg-zinc-900 focus-within:shadow-sm transition-all cursor-pointer" 
+                        onClick={() => navigate('/')}
+                    >
+                        <Search className="w-4 h-4 text-google-grey dark:text-gray-400 mr-2 shrink-0" />
+                        <input
+                            type="text"
+                            readOnly
+                            placeholder="Search Tests or Services..."
+                            className="bg-transparent border-none outline-none w-full text-xs placeholder:text-google-grey dark:placeholder:text-gray-400 cursor-pointer pointer-events-none"
+                        />
+                    </div>
+
+                    <div className="flex items-center gap-2 md:gap-3 shrink-0">
+                        <button
+                            onClick={() => {
+                                if (navigator.share) {
+                                    navigator.share({
+                                        title: document.title,
+                                        url: window.location.href,
+                                    }).catch(() => {});
+                                } else {
+                                    navigator.clipboard.writeText(window.location.href);
+                                    alert("Link copied to clipboard!");
+                                }
+                            }}
+                            className="hidden md:flex p-2.5 rounded-full hover:bg-google-light-grey dark:hover:bg-zinc-800 text-google-grey dark:text-gray-350 transition-colors cursor-pointer border-0 bg-transparent"
+                            aria-label="Share this app"
+                        >
+                            <Share2 className="w-5 h-5" />
+                        </button>
+                        <button
+                            onClick={() => navigate('/booking')}
+                            className="px-4 md:px-5 py-2 md:py-2.5 bg-google-blue text-white rounded-full text-[13px] md:text-sm font-bold hover:bg-google-blue/90 shadow-sm whitespace-nowrap cursor-pointer transition-all active:scale-[0.98]"
+                        >
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <div className="max-w-2xl mx-auto px-4 mt-12">
+                <div className="bg-white dark:bg-zinc-900 border border-google-border dark:border-zinc-800 rounded-3xl p-6 sm:p-10 shadow-sm">
                     {bookingStatus === "success" ? (
                         <div className="text-center py-8 px-2 animate-fade-in">
                             <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6">
