@@ -1657,6 +1657,7 @@ export default function App() {
                       referrerPolicy="no-referrer"
                       loading="lazy"
                       fetchPriority="low"
+                      decoding="async"
                     />
                     <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3 opacity-0 group-hover/item:opacity-100 transition-opacity flex items-center justify-between text-white">
                       <span className="text-[10px] font-black uppercase tracking-wider">Front Exterior</span>
@@ -1678,6 +1679,7 @@ export default function App() {
                       referrerPolicy="no-referrer"
                       loading="lazy"
                       fetchPriority="low"
+                      decoding="async"
                     />
                     <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3 opacity-0 group-hover/item:opacity-100 transition-opacity flex items-center justify-between text-white">
                       <span className="text-[10px] font-black uppercase tracking-wider">Automated Analyzers</span>
@@ -1699,6 +1701,7 @@ export default function App() {
                       referrerPolicy="no-referrer"
                       loading="lazy"
                       fetchPriority="low"
+                      decoding="async"
                     />
                     <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3 opacity-0 group-hover/item:opacity-100 transition-opacity flex items-center justify-between text-white">
                       <span className="text-[10px] font-black uppercase tracking-wider">Sampling Area</span>
@@ -1720,6 +1723,7 @@ export default function App() {
                       referrerPolicy="no-referrer"
                       loading="lazy"
                       fetchPriority="low"
+                      decoding="async"
                     />
                     
                     {/* View all overlay button that indicates the total number of images */}
@@ -2259,6 +2263,7 @@ export default function App() {
                 referrerPolicy="no-referrer"
                 loading="lazy"
                 fetchPriority="low"
+                decoding="async"
               />
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4 md:p-6 text-center">
                 <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform shadow-lg border border-white/20">
@@ -2342,10 +2347,10 @@ export default function App() {
                     </div>
 
                     {/* High Contrast Selection Chips */}
-                    <div className="flex flex-wrap items-center gap-1.5 mt-3 pb-3 border-b border-gray-100 dark:border-zinc-800">
+                    <div className="flex flex-wrap items-center gap-2 mt-3 pb-3 border-b border-gray-100 dark:border-zinc-800">
                       <button
                         onClick={() => setSelectedTestCategory("all")}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap uppercase tracking-wider ${
+                        className={`px-4 py-2.5 md:px-3 md:py-1.5 min-h-[44px] md:min-h-0 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap uppercase tracking-wider flex items-center justify-center ${
                           selectedTestCategory === "all"
                             ? "bg-google-blue text-white shadow-md shadow-blue-500/10"
                             : "bg-gray-100 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700 text-gray-700 dark:text-gray-300 border border-gray-200/50 dark:border-zinc-700/50"
@@ -2355,7 +2360,7 @@ export default function App() {
                       </button>
                       <button
                         onClick={() => setSelectedTestCategory("packages")}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap uppercase tracking-wider ${
+                        className={`px-4 py-2.5 md:px-3 md:py-1.5 min-h-[44px] md:min-h-0 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap uppercase tracking-wider flex items-center justify-center ${
                           selectedTestCategory === "packages"
                             ? "bg-google-blue text-white shadow-md shadow-blue-500/10"
                             : "bg-gray-100 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700 text-gray-700 dark:text-gray-300 border border-gray-200/50 dark:border-zinc-700/50"
@@ -2365,7 +2370,7 @@ export default function App() {
                       </button>
                       <button
                         onClick={() => setSelectedTestCategory("essential")}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap uppercase tracking-wider ${
+                        className={`px-4 py-2.5 md:px-3 md:py-1.5 min-h-[44px] md:min-h-0 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap uppercase tracking-wider flex items-center justify-center ${
                           selectedTestCategory === "essential"
                             ? "bg-google-blue text-white shadow-md shadow-blue-500/10"
                             : "bg-gray-100 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700 text-gray-700 dark:text-gray-300 border border-gray-200/50 dark:border-zinc-700/50"
@@ -2375,7 +2380,7 @@ export default function App() {
                       </button>
                       <button
                         onClick={() => setSelectedTestCategory("organs")}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap uppercase tracking-wider ${
+                        className={`px-4 py-2.5 md:px-3 md:py-1.5 min-h-[44px] md:min-h-0 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap uppercase tracking-wider flex items-center justify-center ${
                           selectedTestCategory === "organs"
                             ? "bg-google-blue text-white shadow-md shadow-blue-500/10"
                             : "bg-gray-100 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700 text-gray-700 dark:text-gray-300 border border-gray-200/50 dark:border-zinc-700/50"
@@ -2728,6 +2733,7 @@ export default function App() {
                     loading="lazy"
                     fetchPriority="low"
                     referrerPolicy="no-referrer"
+                    decoding="async"
                   />
                   <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-lg"></div>
                 </div>
@@ -2749,6 +2755,7 @@ export default function App() {
                     loading="lazy"
                     fetchPriority="low"
                     referrerPolicy="no-referrer"
+                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
                   <div className="absolute bottom-6 left-6 right-6 z-10 transition-transform duration-500 group-hover:-translate-y-1">

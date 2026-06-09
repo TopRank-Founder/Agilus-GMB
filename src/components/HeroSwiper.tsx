@@ -95,6 +95,7 @@ export default function HeroSwiper({
                 referrerPolicy="no-referrer"
                 loading={index === 0 ? "eager" : "lazy"}
                 fetchPriority={index === 0 ? "high" : "low"}
+                decoding={index === 0 ? "sync" : "async"}
               />
             </div>
             {/* Integrated dynamic overlay: text and CTAs transition with the slide image natively */}
