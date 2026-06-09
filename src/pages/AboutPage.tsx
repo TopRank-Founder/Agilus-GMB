@@ -11,6 +11,7 @@ import {
   Search
 } from "lucide-react";
 import { LOCALIZATION } from '../localization';
+import agilusLogo from "../assets/images/agilusLogo.png";
 
 const AboutPage = () => {
   const navigate = useNavigate();
@@ -44,12 +45,13 @@ const AboutPage = () => {
             >
               {/* Official Agilus Logo Image */}
               <img
-                src="https://media.agilus.in/consumer-web/agilusLogo.png"
+                src={agilusLogo}
                 alt="Agilus Diagnostics"
                 width={150}
                 height={48}
                 className="h-8 md:h-12 w-auto object-contain flex-shrink-0 cursor-pointer transition-all duration-200 hover:scale-[1.03]"
                 loading="eager"
+                referrerPolicy="no-referrer"
               />
             </RouterLink>
           </div>

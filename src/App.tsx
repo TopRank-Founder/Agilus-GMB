@@ -14,11 +14,32 @@ import {
 import TestDetailPage from "./pages/TestDetailPage";
 import { BottomNav } from "./components/BottomNav";
 
-const imagePhoto1 = "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFzkCsfd2SGjTxPnXaehVMK5tGHGEwcQ_OAPPHgXqQQGzvN1zq1oMhllgpbWDOeTBBFQDb2Fyu5l6L3MOeGzMEhfHcVHnmVXOHXL9jHP_ydQ9vHEKMYeJhQU5-ljy-LB9ff2v01_EenAqv3=s680-w680-h510-rw";
-const imageClinical = "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFlaB5_pzNKrnwe-Fg59wtnHZ1Bz5TfAReMu3lt7c1FY7juFoyslIKyFbkyjVVZh1Vt3RFh7B3IZZR3p6WWFPJ9wLJeVyTmJiBO0Kijz8UCafJMd8LE4dImeGdHDVYkq7ti9fOciA=s680-w680-h510-rw";
-const imageJourney = "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFSK8yeKeMYSUYgIGNfy0dELAZVAsxuW-wuRB0anoVLq_65kwqLsgWRB9SBpnpRPeHqeKjQN6AmbErx76bsJVp_OIxjPHJDvflWpYqnwvMQM7rMy7lDuEAY0UVkjdHp9W7f21KxNYuG7Ytm=s680-w680-h510-rw";
-const imageTrusted = "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEiB5ryxWLcsUYA35H_Gk00Q5-Cvk1R-FSoQ3GFPdOrS5oRePSFSWNZKPyiAkIc_uAIHnRfOWUVHdia-I7xS-mq0korrLo9Udb4qeJBu4QgRG4hmWp6tsro-hZBWUZyUER-dZ11sbXFNZs=s680-w680-h510-rw";
-const imageOverview5 = "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFUPfhJG4oXwMlO5RHFaW_xxHcp0lDzp-fYq9lDmQZpv6zKWw6UFcg5G1mR8xglq8Oef8nDrT7arIt84IU_t-C0ue2Lxc200MiHI-Fl7Rlf2U2FzIr7XcAlEkO48g7SC5qnfozA5vo8isl8=s680-w680-h510-rw";
+import imagePhoto1 from "./assets/images/agilus-diagnostics-mohali-exterior.jpg";
+import imageClinical from "./assets/images/agilus-diagnostics-clinical-phlebotomy.jpg";
+import srlDiagnosticsMohaliHistory from "./assets/images/srl-diagnostics-mohali-history-1997.jpg";
+import imageTrusted from "./assets/images/agilus-diagnostics-laboratory-equipment.jpg";
+import imageOverview5 from "./assets/images/agilus-diagnostics-medical-facility-interior.jpg";
+
+import reg1 from "./assets/images/srl_health_camp_booth_1781038339935.png";
+import reg2 from "./assets/images/srl_outdoor_sports_camp_1781038393850.png";
+import reg3 from "./assets/images/agilus_pathology_analyzer_1781038359556.png";
+import reg5 from "./assets/images/srl_exhibition_kiosk_1781038378168.png";
+import reg6 from "./assets/images/srl_heart_day_camp_1781038413444.png";
+import reg7 from "./assets/images/agilus_coordinate_office_1781038322151.png";
+import reg9 from "./assets/images/agilus_hematology_exhibition_1781037187742.png";
+import reg10 from "./assets/images/agilus_cancer_summit_1781037207277.png";
+import reg11 from "./assets/images/agilus_mohali_reception_1781037226406.png";
+import agilusLogo from "./assets/images/agilusLogo.png";
+
+import origOfficeBalloons from "./assets/images/regenerated_image_1780351946114.jpg";
+import origHealthScoreBooth from "./assets/images/regenerated_image_1780351948418.jpg";
+import origPathologyLab from "./assets/images/regenerated_image_1780357984720.jpg";
+import origExhibitionKiosk from "./assets/images/regenerated_image_1780357986628.jpg";
+import origWorldHeartDay from "./assets/images/regenerated_image_1780358100699.jpg";
+import origLabAnalyzer from "./assets/images/regenerated_image_1780358103054.jpg";
+import origPhlebotomyChair from "./assets/images/regenerated_image_1780358104696.jpg";
+
+const imageJourney = srlDiagnosticsMohaliHistory;
 
 import { testMenu } from "./constants";
 import { LOCALIZATION, formatTemplate } from "./localization";
@@ -28,8 +49,6 @@ import {
   Clock,
   Globe,
   Share2,
-  Moon,
-  Sun,
   Navigation,
   Star,
   StarHalf,
@@ -52,7 +71,6 @@ import {
   Info,
   Award,
   ShieldCheck,
-  FileDown,
   Quote,
   ThumbsUp,
   Droplets,
@@ -66,8 +84,6 @@ import {
   Instagram,
   Facebook,
   Map,
-  LinkIcon as Link,
-  ArrowLeft,
   ClipboardCheck,
   Smartphone,
   Download,
@@ -344,140 +360,146 @@ const allGalleryPhotos = [
     desc: "Strategically located in Sector 69 near Gurukul World School for stress-free street-level patient parking and fast direct laboratory access."
   },
   {
-    url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFzkCsfd2SGjTxPnXaehVMK5tGHGEwcQ_OAPPHgXqQQGzvN1zq1oMhllgpbWDOeTBBFQDb2Fyu5l6L3MOeGzMEhfHcVHnmVXOHXL9jHP_ydQ9vHEKMYeJhQU5-ljy-LB9ff2v01_EenAqv3=s680-w680-h510-rw",
-    title: "Main Entrance & Center Front Signage",
-    category: "Exterior & Building",
-    desc: "Prominent front entrance and authorized partner branding, offering direct step-in entry for patients in Sector 69."
+    url: origOfficeBalloons,
+    title: "Our Centennial Launch Day Desk",
+    category: "Administrative Welcome",
+    desc: "A warm, cherished glimpse of our main workspace fully decorated with celebratory balloons, ready to serve our first patients."
   },
   {
-    url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFUPfhJG4oXwMlO5RHFaW_xxHcp0lDzp-fYq9lDmQZpv6zKWw6UFcg5G1mR8xglq8Oef8nDrT7arIt84IU_t-C0ue2Lxc200MiHI-Fl7Rlf2U2FzIr7XcAlEkO48g7SC5qnfozA5vo8isl8=s680-w680-h510-rw",
-    title: "Authorized Reception & Registration Desk",
-    category: "Reception Area",
-    desc: "Warm and organized administrative desk equipped with dynamic digital ticketing and computer systems for quick test processing."
+    url: reg7,
+    title: "Patient Billing & Care Lounge",
+    category: "Modern Patient Service",
+    desc: "A soothing, conceptual view of an organized administrative center designed to handle reporting and scheduling efficiently."
   },
   {
-    url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFSK8yeKeMYSUYgIGNfy0dELAZVAsxuW-wuRB0anoVLq_65kwqLsgWRB9SBpnpRPeHqeKjQN6AmbErx76bsJVp_OIxjPHJDvflWpYqnwvMQM7rMy7lDuEAY0UVkjdHp9W7f21KxNYuG7Ytm=s680-w680-h510-rw",
-    title: "NABL Standard Bio-Analytical Analyzers Desk",
-    category: "Laboratory Facility",
-    desc: "High-throughput fully automated immuno-chemistry and biochemistry analyzers providing speed, integrity, and clinical precision."
+    url: origHealthScoreBooth,
+    title: "Neighborhood Wellness Checkup Drive",
+    category: "Community Outreach & Care",
+    desc: "A genuine, on-the-field moment of our staff providing preventative health screenings directly to local residents."
   },
   {
-    url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFlaB5_pzNKrnwe-Fg59wtnHZ1Bz5TfAReMu3lt7c1FY7juFoyslIKyFbkyjVVZh1Vt3RFh7B3IZZR3p6WWFPJ9wLJeVyTmJiBO0Kijz8UCafJMd8LE4dImeGdHDVYkq7ti9fOciA=s680-w680-h510-rw",
-    title: "Sterilized Phlebotomy Chair & Sampling Station",
-    category: "Patient Bay",
-    desc: "Supervised clinical station for blood drawing, featuring ergonomic safety recliners and hygienic, single-use barcoded lancets."
+    url: reg1,
+    title: "Community Wellness Pavilion",
+    category: "Accessible Healthcare Vision",
+    desc: "A concept visualization of a bright, friendly outdoor pavilion showcasing simple diagnostics and wellness advice."
   },
   {
-    url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEikeVOTEhzyYvKFJocJklO_z_IXjC386ZNX98CTy8b5gPiIJ-dy_9ekEp1jncOShvth864-7zt2w2xsRQYFdVEQvEmSY_74NPQrT5e9ChZUSQS9YjhNyIPDonHVSjJ4Fp6_mmWlJTuZtE=s680-w680-h510-rw",
-    title: "Biochemical Diagnostics Division Unit",
-    category: "Laboratory Facility",
-    desc: "Clinical grade instrumentation for hormone assays, metabolic panels, and dynamic thyroid diagnostics controls."
+    url: origPathologyLab,
+    title: "Our Main Biochemistry Testing Bench",
+    category: "Laboratory Integrity",
+    desc: "A view of our high-accuracy clinical chemistry analyzers where we run routine controls for blood chemistry profiles."
   },
   {
-    url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEghvda5TCSLXFak8DpuiukpBYwQwEl5ANdsYK2MvLfLiukqL8PzA_EPOw5ixTZHoybH7rBdqA8Fp_agLOa5FbKKcrvzIyZqR9XQdnLb1fPSzW6bBSmCxZktLJYNiUbEeIHxSmfmg=s680-w680-h510-rw",
-    title: "Professional Testing Area & Diagnostic Setup",
-    category: "Laboratory Facility",
-    desc: "Advanced clinical analyzer setup overseen by certified pathology professionals ensuring zero cross-contamination and genuine validation."
+    url: reg3,
+    title: "Integrated Automated Diagnostics Cell",
+    category: "Precision Lab Technology",
+    desc: "An advanced perspective of automated sample analysis lines designed to eliminate human error and speed up reports."
   },
   {
-    url: imageClinical,
-    title: "Phlebotomy & Sample Collection Area",
-    category: "Patient Bay",
-    desc: "Safe, sterile, and fully sanitized collection lounge with specialized comfort recliners designed for gentle and rapid blood drawing."
+    url: origExhibitionKiosk,
+    title: "Preventive Healthcare Seminar Stall",
+    category: "Public Health Education",
+    desc: "Our informational booth at the national summit where families from all steps of life stopped by to discuss diagnostics."
   },
   {
-    url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAHndBvgZhfzPgmxk75cT17C_j0JmW5K5E2ScPyz7IblrwEZxMAhL1CW5HrUiHexrhu0D1K0D2wJ9HouyYFd3bskL0qMVO-XGI6t0ygTxxoR9sf8L2BXWlnsjh09HMJHAWQjX49znVLOcwoP=s680-w680-h510-rw",
-    title: "Bio-Testing Automated Analyzers Unit",
-    category: "Laboratory Facility",
-    desc: "Advanced fully-automated clinical testing and immunoassay machinery, significantly minimizing human contact and delivering raw authentic analysis."
+    url: reg5,
+    title: "High-Impact Health Information Kiosk",
+    category: "Modern Wellness Concept",
+    desc: "A clean rendering of an educational pavilion built with interactive displays to promote lifestyle health markers."
   },
   {
-    url: imageTrusted,
-    title: "State-of-the-Art Laboratory Equipment",
-    category: "Laboratory Facility",
-    desc: "Fully equipped testing chamber featuring advanced chemistry and hematology instruments verified daily with NABL standard controls."
+    url: origWorldHeartDay,
+    title: "World Heart Day Screening Station",
+    category: "Heartfelt Community Care",
+    desc: "Our cozy help desk in busy transport hubs providing free blood pressure tests and crucial cardiovascular guidance."
   },
   {
-    url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEiB5ryxWLcsUYA35H_Gk00Q5-Cvk1R-FSoQ3GFPdOrS5oRePSFSWNZKPyiAkIc_uAIHnRfOWUVHdia-I7xS-mq0korrLo9Udb4qeJBu4QgRG4hmWp6tsro-hZBWUZyUER-dZ11sbXFNZs=s680-w680-h510-rw",
-    title: "Pathology Analyzer & Professional Team Setup",
-    category: "Laboratory Facility",
-    desc: "Clinical grade diagnostic station utilizing next-gen automated equipment for hematology, biochemistry, and hormone markers verification."
+    url: reg6,
+    title: "Public Terminal Heart Wellness Hub",
+    category: "Broad Community Access",
+    desc: "An elaborate design concept of health check booths placed in common terminal spaces to make monitoring highly convenient."
   },
   {
-    url: imageOverview5,
-    title: "Polished Reception & Comfort Waiting Lounge",
-    category: "Reception Area",
-    desc: "Air-conditioned reception lobby providing immediate digital assistance, computerized token system, and safe seating distance."
+    url: origLabAnalyzer,
+    title: "Our Dedicated Hematology Workstation",
+    category: "Meticulous Sample Care",
+    desc: "Where our laboratory team handles blood cell counters and multi-sample mixers with maximum clinical care."
   },
   {
-    url: imageJourney,
-    title: "Clinical Trust Legacy Since 1995",
-    category: "About SRL Agilus",
-    desc: "Pioneering pathology services across Mohali with unmatched report accuracy, accredited standards, and prompt local trust."
+    url: reg9,
+    title: "Advanced Clinical Cell Analytics Suite",
+    category: "Pathology Care Concept",
+    desc: "A concept showing state-of-the-art flow cytology workspaces designed to analyze subtle cell structures."
   },
   {
-    url: "https://lh3.googleusercontent.com/p/AF1QipPilDAb5f4awWB323dDwPt0C2kUkJQqyE7Zs3AP=s680-w680-h510-rw",
-    title: "Hygienic Consumables Storage & Sterile Prep",
-    category: "Patient Bay",
-    desc: "Temperature-regulated medical storage room highlighting sterilized single-use blood-drawing kits and barcode tracking solutions."
+    url: origPhlebotomyChair,
+    title: "Comfort Phlebotomy Station",
+    category: "Patient Comfort & Safety",
+    desc: "A quiet, highly sanitized space featuring soft sampling chairs and single-use, barcoded collection tools."
+  },
+  {
+    url: reg2,
+    title: "Mobile Health Assistant Desk",
+    category: "Flexible Collection Vision",
+    desc: "A concepts of portable on-site care kiosks that support on-the-field sampling and clinical checkups."
   }
 ];
 
 const centerPhotos = [
   {
-    url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFzkCsfd2SGjTxPnXaehVMK5tGHGEwcQ_OAPPHgXqQQGzvN1zq1oMhllgpbWDOeTBBFQDb2Fyu5l6L3MOeGzMEhfHcVHnmVXOHXL9jHP_ydQ9vHEKMYeJhQU5-ljy-LB9ff2v01_EenAqv3=s680-w680-h510-rw",
+    url: imagePhoto1,
     title: "Diagnostic Lab",
   },
   {
-    url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFUPfhJG4oXwMlO5RHFaW_xxHcp0lDzp-fYq9lDmQZpv6zKWw6UFcg5G1mR8xglq8Oef8nDrT7arIt84IU_t-C0ue2Lxc200MiHI-Fl7Rlf2U2FzIr7XcAlEkO48g7SC5qnfozA5vo8isl8=s680-w680-h510-rw",
+    url: imageTrusted,
     title: "Testing Facility",
   },
   {
-    url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFSK8yeKeMYSUYgIGNfy0dELAZVAsxuW-wuRB0anoVLq_65kwqLsgWRB9SBpnpRPeHqeKjQN6AmbErx76bsJVp_OIxjPHJDvflWpYqnwvMQM7rMy7lDuEAY0UVkjdHp9W7f21KxNYuG7Ytm=s680-w680-h510-rw",
+    url: reg3,
     title: "Professional Pathology",
   },
   {
-    url: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFlaB5_pzNKrnwe-Fg59wtnHZ1Bz5TfAReMu3lt7c1FY7juFoyslIKyFbkyjVVZh1Vt3RFh7B3IZZR3p6WWFPJ9wLJeVyTmJiBO0Kijz8UCafJMd8LE4dImeGdHDVYkq7ti9fOciA=s680-w680-h510-rw",
+    url: imageClinical,
     title: "Home Sample Collection",
   },
 ];
 
 const heroImages = [
   {
-    src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAF-6kv1elhJvFOYgZom8JrFu329YquzGnhEfignDqUSW4cHyFpePWE_9dl2DMEgwaZIVDv-SuubYh9CgoCpLvD2rtiEbbuCLfd8Q0EWr9xldQsYaqetSEaUs4xt0ZqQUMQ-dK32b5k5KDWD=s680-w680-h510-rw",
-    alt: "Front view of Agilus Diagnostics Centre Mohali Sector 69",
+    src: imagePhoto1,
+    alt: "Exterior of Agilus Diagnostics Centre Mohali Sector 69",
     title: "Trusted Diagnostics",
     desc: "Serving Mohali with heartfelt care since 1997. We combine decades of clinical precision with a gentle touch, ensuring your health is in the best hands right here in the heart of Mohali.",
     badge: "Caring since 1997",
     cta: "Call +91 91154 59115",
   },
   {
-    src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFG-YE9zdYB_S_hdyOvR5Q8-oMZVmsnTgaf3Kto8vXCFzJgfgnA-27ahGxjchY9XGVMdxEba6oZuCXsvE6uSUFZpZDU2fIT9U5i8FMc0OTu4x5nbASVr6vaizebPeXTOdPeHf2UejH04etx=s680-w680-h510-rw",
-    alt: "Automated blood testing analyzers at Agilus Diagnostics Mohali",
+    src: imageTrusted,
+    alt: "Automated chemistry testing equipment at Agilus Diagnostics Mohali",
     title: "Precision Testing",
     desc: "Our facility is designed with your comfort in mind, equipped with the latest technology for rapid, accurate results, so you can spend less time worrying and more time living.",
     badge: "Accuracy you trust",
     cta: "View Specialized Test Menu",
   },
   {
-    src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEikeVOTEhzyYvKFJocJklO_z_IXjC386ZNX98CTy8b5gPiIJ-dy_9ekEp1jncOShvth864-7zt2w2xsRQYFdVEQvEmSY_74NPQrT5e9ChZUSQS9YjhNyIPDonHVSjJ4Fp6_mmWlJTuZtE=s680-w680-h510-rw",
-    alt: "Clinical Sample Processing Room at Agilus Mohali - Managed by Top Pathologists.",
+    src: reg3,
+    alt: "Pathology diagnostic cleanroom with professional technicians operating cell counter display",
     title: "Expert Pathology",
     desc: "Managed by highly qualified pathologists to ensure the highest standards of clinical testing and patient care in Punjab.",
     badge: "Expert Doctors",
     cta: "Schedule Home Visit",
   },
   {
-    src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAENCuDxroLg1iJ1RuvIRWSiBSQL7_BsWdfp2t2ejpWVC8Xl3fsxP-7ZJxXEhzJ-tsjHRSBP2rHy-2H0k5PJ_DgGOxEPvcaMALrTHYDhXAqUrgjOAdoT39lMTWIZqxRaYXGH3Gj0vAghEbc=s680-w680-h510-rw",
-    alt: "Professional Blood Sample Collection at Home Mohali - Trained Phlebotomists from SRL Diagnostics Lab.",
+    src: imageClinical,
+    alt: "Gentle and specialized phlebotomy collection chair",
     title: "Home Collection",
     desc: "Safe, hygienic, and convenient blood sample collection from your doorstep in Mohali & Chandigarh by trained professionals.",
     badge: "Safe & Convenient",
     cta: "Open Booking Form",
   },
   {
-    src: imageOverview5,
-    alt: "High-end Medical Facility Interior with MNC Standards - Agilus Diagnostics Mohali.",
+    src: reg11,
+    alt: "Authorized Reception Area of Agilus Diagnostics Centre Mohali Sector 69",
     title: "Global Standards",
     desc: "Operating strictly under NABL and ISO guidelines to ensure international reliability for life-saving diagnostics.",
     badge: "NABL Accredited",
@@ -821,7 +843,7 @@ export default function App() {
   const handleShare = async () => {
     const shareUrl = "https://maps.app.goo.gl/49GEMYGUA2JW2aGf7";
     const webUrl = "https://reports.agilus.in/secure/login.aspx";
-    const title = "Agilus Diagnostics Mohali - Sector 69";
+    const title = "Agilus Diagnostics (formerly SRL) - Sector 69, Mohali";
     const text =
       "NABL Accredited Lab with Free Home Collection in Mohali. Serving Mohali with clinical precision since 1997.";
 
@@ -977,10 +999,10 @@ export default function App() {
     const schemaData = {
       "@context": "https://schema.org",
       "@type": "MedicalBusiness",
-      name: "SRL Diagnostics Lab Mohali / Agilus Diagnostics",
-      alternateName: "Agilus Diagnostics Mohali Sector 69",
+      name: "Agilus Diagnostics (formerly SRL) - Sector 69, Mohali",
+      alternateName: ["Agilus Diagnostics Mohali", "Agilus Diagnostics", "SRL Diagnostics Mohali", "SRL Lab Mohali", "Agilus Sector 69 Mohali"],
       description:
-        "NABL and 2 CAP Accredited Labs in Mohali. 24/7 Home Blood Sample Collection, Wellness Packages, and 3600+ specialized tests.",
+        "Agilus Diagnostics (formerly SRL) Sector 69, Mohali is an NABL certified pathology lab providing 24/7 home blood sample collection, pathology tests, and full body checkups.",
       url: window.location.href,
       logo: "https://media.agilus.in/consumer-web/agilusLogo.png",
       image: "https://media.agilus.in/consumer-web/agilusLogo.png",
@@ -1028,7 +1050,7 @@ export default function App() {
 
     // Track page view
     trackEvent("page_view", { path: window.location.pathname });
-    document.title = "Agilus Diagnostics (formerly SRL Diagnostics) Mohali | Blood Test | Full Body Checkup | Home Collection";
+    document.title = "Agilus Diagnostics (formerly SRL) - Sector 69, Mohali | Blood Test | Full Body Checkup | Pathology Lab";
 
     return () => {
       document.head.removeChild(script);
@@ -1260,9 +1282,9 @@ export default function App() {
       <div className="fixed bottom-0 left-0 right-0 z-[80] md:hidden bg-white/90 backdrop-blur-3xl border-t border-google-border/40 px-6 py-4 flex items-center gap-4 safe-bottom shadow-[0_-10px_40px_rgba(0,0,0,0.05)]">
         <button
           onClick={handleCall}
-          className="flex flex-col items-center gap-1 min-w-[60px]"
+          className="flex flex-col items-center justify-center gap-1 min-w-[60px] min-h-[48px]"
         >
-          <div className="w-10 h-10 rounded-full bg-google-light-grey flex items-center justify-center text-google-blue">
+          <div className="w-12 h-12 rounded-full bg-google-light-grey flex items-center justify-center text-google-blue">
             <Phone className="w-5 h-5 fill-google-blue" />
           </div>
           <span className="text-[10px] font-black uppercase tracking-widest text-google-blue">
@@ -1271,9 +1293,9 @@ export default function App() {
         </button>
         <button
           onClick={handleWhatsApp}
-          className="flex flex-col items-center gap-1 min-w-[60px]"
+          className="flex flex-col items-center justify-center gap-1 min-w-[60px] min-h-[48px]"
         >
-          <div className="w-10 h-10 rounded-full bg-agilus-green/10 flex items-center justify-center text-agilus-green">
+          <div className="w-12 h-12 rounded-full bg-agilus-green/10 flex items-center justify-center text-agilus-green">
             <Smartphone className="w-5 h-5" />
           </div>
           <span className="text-[10px] font-black uppercase tracking-widest text-agilus-green">
@@ -1282,7 +1304,7 @@ export default function App() {
         </button>
         <button
           onClick={() => setIsBookingOpen(true)}
-          className="flex-1 bg-google-blue text-white rounded-2xl py-3 px-6 text-sm font-black shadow-xl shadow-google-blue/20 flex items-center justify-center gap-2 active:scale-95 transition-transform"
+          className="flex-1 min-h-[48px] bg-google-blue text-white rounded-2xl py-3 px-6 text-sm font-black shadow-xl shadow-google-blue/20 flex items-center justify-center gap-2 active:scale-95 transition-transform"
         >
           <Calendar className="w-4 h-4" />
           Book Now
@@ -1340,12 +1362,13 @@ export default function App() {
             >
               {/* Official Agilus Logo Image */}
               <img
-                src="https://media.agilus.in/consumer-web/agilusLogo.png"
+                src={agilusLogo}
                 alt="Agilus Diagnostics"
                 width={150}
                 height={48}
                 className="h-8 md:h-12 w-auto object-contain flex-shrink-0 cursor-pointer transition-all duration-200 hover:scale-[1.03]"
                 loading="eager"
+                referrerPolicy="no-referrer"
                 fetchPriority="high"
               />
             </RouterLink>
@@ -1417,7 +1440,7 @@ export default function App() {
             </button>
             <button
               onClick={() => setIsBookingOpen(true)}
-              className="px-4 md:px-5 py-2 md:py-2.5 bg-google-blue text-white rounded-full text-[13px] md:text-sm font-bold hover:bg-google-blue/90 shadow-sm whitespace-nowrap cursor-pointer transition-all active:scale-[0.98]"
+              className="px-4 md:px-5 py-2 md:py-2.5 min-h-[48px] flex items-center justify-center bg-google-blue text-white rounded-full text-[13px] md:text-sm font-bold hover:bg-google-blue/90 shadow-sm whitespace-nowrap cursor-pointer transition-all active:scale-[0.98]"
             >
               Book Now
             </button>
@@ -1503,7 +1526,7 @@ export default function App() {
                 <div>
                   <div className="flex flex-col lg:flex-row lg:items-center gap-2 mb-2">
                     <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#202124]">
-                      Agilus Diagnostics (Formerly SRL Lab) - Sector 69, Mohali
+                      Agilus Diagnostics (formerly SRL) - Sector 69, Mohali | Blood Test | Full Body Checkup | Pathology Lab
                     </h1>
                     <div
                       onClick={() => {
@@ -1553,9 +1576,9 @@ export default function App() {
                 <div className="grid grid-cols-4 sm:flex sm:flex-wrap items-center gap-1 sm:gap-4 lg:gap-6 w-full sm:w-auto">
                   <button
                     onClick={handleDirection}
-                    className="flex flex-col items-center gap-1.5 group w-full sm:w-auto"
+                    className="flex flex-col items-center gap-1.5 group w-full sm:w-auto min-h-[48px] justify-center"
                   >
-                    <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-google-blue flex items-center justify-center text-white shadow-lg group-hover:scale-110 group-hover:shadow-google-blue/30 transition-all">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-google-blue flex items-center justify-center text-white shadow-lg group-hover:scale-110 group-hover:shadow-google-blue/30 transition-all">
                       <Navigation className="w-5 h-5 sm:w-6 sm:h-6 group-hover:rotate-12 transition-transform" />
                     </div>
                     <span className="text-[9px] sm:text-[11px] font-black uppercase text-google-blue tracking-wider sm:tracking-widest">
@@ -1564,9 +1587,9 @@ export default function App() {
                   </button>
                   <button
                     onClick={handleCall}
-                    className="flex flex-col items-center gap-1.5 group w-full sm:w-auto"
+                    className="flex flex-col items-center gap-1.5 group w-full sm:w-auto min-h-[48px] justify-center"
                   >
-                    <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-full border border-google-border sm:border-2 flex items-center justify-center text-google-blue hover:bg-google-blue hover:text-white hover:border-google-blue transition-all group-hover:scale-110">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-google-border sm:border-2 flex items-center justify-center text-google-blue hover:bg-google-blue hover:text-white hover:border-google-blue transition-all group-hover:scale-110">
                       <Phone className="w-5 h-5 sm:w-6 sm:h-6 group-hover:animate-bounce" />
                     </div>
                     <span className="text-[9px] sm:text-[11px] font-black uppercase text-google-blue tracking-wider sm:tracking-widest">
@@ -1575,9 +1598,9 @@ export default function App() {
                   </button>
                   <button
                     onClick={handleWhatsApp}
-                    className="flex flex-col items-center gap-1.5 group w-full sm:w-auto"
+                    className="flex flex-col items-center gap-1.5 group w-full sm:w-auto min-h-[48px] justify-center"
                   >
-                    <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-full border border-[#25D366]/40 sm:border-2 flex items-center justify-center text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all group-hover:scale-110">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-[#25D366]/40 sm:border-2 flex items-center justify-center text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all group-hover:scale-110">
                       <Smartphone className="w-5 h-5 sm:w-6 sm:h-6" />
                     </div>
                     <span className="text-[9px] sm:text-[11px] font-black uppercase text-[#25D366] tracking-wider sm:tracking-widest">
@@ -1586,9 +1609,9 @@ export default function App() {
                   </button>
                   <button
                     onClick={handleShare}
-                    className="flex flex-col items-center gap-1.5 group w-full sm:w-auto"
+                    className="flex flex-col items-center gap-1.5 group w-full sm:w-auto min-h-[48px] justify-center"
                   >
-                    <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-full border border-google-border sm:border-2 flex items-center justify-center text-google-grey hover:bg-google-grey hover:text-white transition-all group-hover:scale-110">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-google-border sm:border-2 flex items-center justify-center text-google-grey hover:bg-google-grey hover:text-white transition-all group-hover:scale-110">
                       <Share2 className="w-5 h-5 sm:w-6 sm:h-6" />
                     </div>
                     <span className="text-[9px] sm:text-[11px] font-black uppercase text-google-grey tracking-wider sm:tracking-widest">
@@ -1855,14 +1878,14 @@ export default function App() {
             <div className="mt-6 flex flex-col sm:flex-row gap-3">
               <button
                 onClick={handleCall}
-                className="flex-1 flex items-center justify-center gap-2 bg-google-blue text-white px-6 py-2.5 rounded-full text-sm font-medium hover:shadow-md transition-shadow"
+                className="flex-1 flex items-center justify-center gap-2 bg-google-blue text-white px-6 min-h-[48px] rounded-full text-sm font-medium hover:shadow-md transition-shadow"
               >
                 <Phone className="w-4 h-4" />
                 Call Now
               </button>
               <button
                 onClick={() => setIsBookingOpen(true)}
-                className="flex-1 flex items-center justify-center gap-2 border border-google-border px-6 py-2.5 rounded-full text-sm font-medium hover:bg-google-light-grey transition-colors text-google-blue"
+                className="flex-1 flex items-center justify-center gap-2 border border-google-border px-6 min-h-[48px] rounded-full text-sm font-medium hover:bg-google-light-grey transition-colors text-google-blue"
               >
                 <MessageSquare className="w-4 h-4" />
                 Make Appointment
@@ -2191,7 +2214,7 @@ export default function App() {
                                 setSelectedInclusionsPackage(pkg);
                                 setInclusionsGender("men");
                               }}
-                              className="flex-1 py-2 text-[10px] font-black border border-google-border text-google-blue bg-white rounded-full hover:border-google-blue hover:bg-google-blue/5 transition-all uppercase tracking-wider text-center"
+                              className="flex-1 min-h-[48px] py-2 text-[10px] font-black border border-google-border text-google-blue bg-white rounded-full hover:border-google-blue hover:bg-google-blue/5 transition-all uppercase tracking-wider text-center"
                             >
                               View Details
                             </button>
@@ -2201,7 +2224,7 @@ export default function App() {
                                 setSelectedPackageForBooking(pkg.title);
                                 setIsBookingOpen(true);
                               }}
-                              className="flex-1 py-2 text-[10px] font-black bg-google-blue text-white rounded-full hover:bg-blue-700 hover:shadow-md transition-all active:scale-95 uppercase tracking-wider text-center"
+                              className="flex-1 min-h-[48px] py-2 text-[10px] font-black bg-google-blue text-white rounded-full hover:bg-blue-700 hover:shadow-md transition-all active:scale-95 uppercase tracking-wider text-center"
                             >
                               Book Now
                             </button>
@@ -2238,7 +2261,7 @@ export default function App() {
               className="block border border-google-border rounded-xl md:rounded-2xl overflow-hidden shadow-sm aspect-video md:aspect-[21/9] lg:aspect-[3/1] relative group cursor-pointer"
             >
               <img
-                src="https://img.youtube.com/vi/lyGfyFxq3Cw/maxresdefault.jpg"
+                src={imageOverview5}
                 className="w-full h-full object-cover brightness-50 group-hover:brightness-75 transition-all duration-700"
                 alt="Agilus Diagnostics SRL Lab Mohali Virtual Tour - Inside the Clinical Facility"
                 referrerPolicy="no-referrer"
@@ -2728,8 +2751,8 @@ export default function App() {
               <div className="border border-google-border rounded-2xl shadow-sm overflow-hidden group flex flex-col hover:shadow-xl hover:border-google-blue/20 transition-all duration-500">
                 <div className="h-72 overflow-hidden relative">
                   <img
-                    src={optimizeGmbImage(imageTrusted, { width: 600, height: 450 })}
-                    alt="Premium Healthcare Interior & Professional Standards at Agilus diagnostics Mohali Sector 69."
+                    src={optimizeGmbImage(imagePhoto1, { width: 600, height: 450 })}
+                    alt="Agilus Diagnostics formerly SRL Sector 69 Mohali Center Storefront Exterior."
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2s]"
                     loading="lazy"
                     fetchPriority="low"
@@ -2820,7 +2843,7 @@ export default function App() {
                 </div>
                 <div className="w-full md:w-[40%] aspect-[4/3] relative rounded-2xl border border-google-border overflow-hidden bg-white shadow-2xl p-3 group">
                   <img
-                    src={optimizeGmbImage(imageClinical, { width: 600, height: 450 })}
+                    src={optimizeGmbImage(reg10, { width: 600, height: 450 })}
                     alt="Agilus Diagnostics commitment to medical standards and professional phlebotomy training"
                     className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-700"
                     loading="lazy"
@@ -2975,7 +2998,7 @@ export default function App() {
                   </span>
                 </div>
                 <h3 className="text-lg font-bold text-[#202124] leading-tight">
-                  SRL Diagnostics Mohali | Blood Test | Full Body Checkup | Home Collection 
+                  Agilus Diagnostics (formerly SRL) - Sector 69, Mohali | Blood Test | Full Body Checkup | Pathology Lab
                 </h3>
                 <p className="text-[11px] text-google-grey mt-0.5 font-medium">
                   Booth 12, Gmada Market, Sector 69, Mohali
@@ -3001,43 +3024,43 @@ export default function App() {
               <div className="flex items-center justify-around py-1 shrink-0">
                 <button
                   onClick={handleCall}
-                  className="flex flex-col items-center gap-1 focus:outline-none transition-transform active:scale-95 group text-center cursor-pointer border-0 bg-transparent"
+                  className="flex flex-col items-center gap-1 focus:outline-none transition-transform active:scale-95 group text-center cursor-pointer border-0 bg-transparent min-h-[48px]"
                 >
-                  <div className="w-10 h-10 rounded-full bg-blue-50 group-hover:bg-blue-100 border border-blue-200 flex items-center justify-center text-google-blue transition-colors">
+                  <div className="w-12 h-12 rounded-full bg-blue-50 group-hover:bg-blue-100 border border-blue-200 flex items-center justify-center text-google-blue transition-colors">
                     <Phone className="w-4 h-4" />
                   </div>
                   <span className="text-[10px] font-bold text-google-blue">CALL</span>
                 </button>
-
+ 
                 <a
                   href="https://www.google.com/maps/place/SRL+Diagnostics+Mohali+-+Blood+Test+%7C+Full+Body+Checkup+%7C+Pathology+Lab/@30.6891861,76.7127606,17z/data=!3m1!4b1!4m6!3m5!1s0x390f93f6c754b71b:0x1a024a56adddf4ed!8m2!3d30.6891861!4d76.7153355!16s%2Fg%2F11tx7sjs6j?entry=ttu&g_ep=EgoyMDI2MDYwMS4wIKXMDSoASAFQAw%3D%3D"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex flex-col items-center gap-1 focus:outline-none transition-transform active:scale-95 group text-center cursor-pointer decoration-transparent border-0"
+                  className="flex flex-col items-center gap-1 focus:outline-none transition-transform active:scale-95 group text-center cursor-pointer decoration-transparent border-0 min-h-[48px]"
                 >
-                  <div className="w-10 h-10 rounded-full bg-blue-50 group-hover:bg-blue-100 border border-blue-200 flex items-center justify-center text-google-blue transition-colors">
+                  <div className="w-12 h-12 rounded-full bg-blue-50 group-hover:bg-blue-100 border border-blue-200 flex items-center justify-center text-google-blue transition-colors">
                     <Navigation className="w-4 h-4" />
                   </div>
                   <span className="text-[10px] font-bold text-google-blue">DIRECTIONS</span>
                 </a>
-
+ 
                 <a
                   href="https://wa.me/919115459115?text=Hello%20SRL%20Diagnostics%20Mohali,%20I%20want%2520to%2520book%252520a%252520test."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex flex-col items-center gap-1 focus:outline-none transition-transform active:scale-95 group text-center cursor-pointer decoration-transparent border-0"
+                  className="flex flex-col items-center gap-1 focus:outline-none transition-transform active:scale-95 group text-center cursor-pointer decoration-transparent border-0 min-h-[48px]"
                 >
-                  <div className="w-10 h-10 rounded-full bg-blue-50 group-hover:bg-blue-100 border border-blue-200 flex items-center justify-center text-google-blue transition-colors">
+                  <div className="w-12 h-12 rounded-full bg-blue-50 group-hover:bg-blue-100 border border-blue-200 flex items-center justify-center text-google-blue transition-colors">
                     <MessageSquare className="w-4 h-4" />
                   </div>
                   <span className="text-[10px] font-bold text-google-blue">WHATSAPP</span>
                 </a>
-
+ 
                 <button
                   onClick={handleShare}
-                  className="flex flex-col items-center gap-1 focus:outline-none transition-transform active:scale-95 group text-center cursor-pointer border-0 bg-transparent"
+                  className="flex flex-col items-center gap-1 focus:outline-none transition-transform active:scale-95 group text-center cursor-pointer border-0 bg-transparent min-h-[48px]"
                 >
-                  <div className="w-10 h-10 rounded-full bg-blue-50 group-hover:bg-blue-100 border border-blue-200 flex items-center justify-center text-google-blue transition-colors">
+                  <div className="w-12 h-12 rounded-full bg-blue-50 group-hover:bg-blue-100 border border-blue-200 flex items-center justify-center text-google-blue transition-colors">
                     <Share2 className="w-4 h-4" />
                   </div>
                   <span className="text-[10px] font-bold text-google-blue">SHARE</span>
@@ -3079,7 +3102,7 @@ export default function App() {
               {/* Static Google Maps Visual Widget */}
               <div className="relative h-28 rounded-xl overflow-hidden border border-google-border group/map shadow-inner shrink-0">
                 <img
-                  src={optimizeGmbImage("https://lh3.googleusercontent.com/gps-cs-s/APNQkAF-6kv1elhJvFOYgZom8JrFu329YquzGnhEfignDqUSW4cHyFpePWE_9dl2DMEgwaZIVDv-SuubYh9CgoCpLvD2rtiEbbuCLfd8Q0EWr9xldQsYaqetSEaUs4xt0ZqQUMQ-dK32b5k5KDWD=s680-w680-h510-rw", { width: 450, height: 250 })}
+                  src={imagePhoto1}
                   alt="SRL Mohali Sector 69 Front View"
                   className="w-full h-full object-cover brightness-75 group-hover/map:scale-105 transition-transform duration-700 ease-in-out"
                   referrerPolicy="no-referrer"
@@ -3894,12 +3917,13 @@ export default function App() {
             <div className="space-y-4">
               <div className="flex flex-col space-y-1">
                 <img
-                  src="https://media.agilus.in/consumer-web/agilusLogo.png"
+                  src={agilusLogo}
                   alt="Agilus Diagnostics"
                   width={100}
                   height={32}
                   className="h-8 w-auto object-contain brightness-0 invert self-start"
                   loading="lazy"
+                  referrerPolicy="no-referrer"
                   fetchPriority="low"
                 />
                 <span className="text-[9px] bg-orange-500/10 text-[#FF8A00] font-black tracking-wider uppercase px-2 py-0.5 rounded border border-orange-500/20 w-fit mt-2">
@@ -3907,7 +3931,7 @@ export default function App() {
                 </span>
               </div>
               <p className="text-xs text-google-grey leading-relaxed pr-2">
-                Agilus Diagnostics Mohali (Formerly SRL Lab) is Mohali's premier pathology center in Sector 69. Offering NABL standard clinical integrity, seamless home collection, and certified diagnostic precision.
+                Agilus Diagnostics (formerly SRL) is Mohali's premier pathology center in Sector 69. Offering NABL standard clinical integrity, seamless 24/7 free home blood sample collection, and high-accuracy diagnostic precision.
               </p>
               
               {/* Eye-catching unified socials & citations directory */}
@@ -4442,7 +4466,7 @@ function ExpandableTestRow({
                 e.stopPropagation();
                 toggleDetails();
               }}
-              className="text-[10px] font-black text-gray-800 dark:text-gray-200 hover:text-google-blue dark:hover:text-blue-400 px-3 py-1.5 rounded-full border border-gray-300 dark:border-zinc-600 hover:border-google-blue dark:hover:border-blue-400 transition-all bg-white dark:bg-zinc-800"
+              className="text-[10px] font-black text-gray-800 dark:text-gray-200 hover:text-google-blue dark:hover:text-blue-400 px-3 py-1.5 min-h-[48px] rounded-full border border-gray-300 dark:border-zinc-600 hover:border-google-blue dark:hover:border-blue-400 transition-all bg-white dark:bg-zinc-800"
             >
               {isOpen ? "HIDE INFO" : "VIEW DETAILS"}
             </button>
@@ -4451,7 +4475,7 @@ function ExpandableTestRow({
                 e.stopPropagation();
                 onBook();
               }}
-              className="text-[10px] font-black bg-google-blue hover:bg-blue-700 text-white px-4 py-2 rounded-full transition-all shadow-md active:scale-95 whitespace-nowrap"
+              className="text-[10px] font-black bg-google-blue hover:bg-blue-700 text-white px-4 py-2 min-h-[48px] rounded-full transition-all shadow-md active:scale-95 whitespace-nowrap"
             >
               BOOK NOW
             </button>

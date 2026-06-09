@@ -4,6 +4,7 @@ import { ArrowLeft, Clock, Droplets, Syringe, ClipboardList, Zap, Menu, Share2, 
 import { testMenu } from '../constants';
 import { LOCALIZATION } from '../localization';
 import { BottomNav } from '../components/BottomNav';
+import agilusLogo from "../assets/images/agilusLogo.png";
 
 const TestDetailPage = () => {
     const { testName } = useParams<{ testName: string }>();
@@ -19,7 +20,7 @@ const TestDetailPage = () => {
         if (!test) return;
 
         // 1. Dynamic document title
-        document.title = `${test.name} - Price, Preparation & Reports in Mohali`;
+        document.title = `${test.name} - Agilus Diagnostics (formerly SRL) Mohali`;
         
         // 2. Dynamic GEO-optimized meta description
         let metaDesc = document.querySelector('meta[name="description"]');
@@ -28,17 +29,17 @@ const TestDetailPage = () => {
             metaDesc.setAttribute('name', 'description');
             document.head.appendChild(metaDesc);
         }
-        metaDesc.setAttribute('content', `Book ${test.name} test at Agilus Diagnostics Mohali Sector 69. Cost: ₹${test.mrp}, Turner-around Time: ${test.tat}. Professional and NABL accredited home collection available.`);
+        metaDesc.setAttribute('content', `Book ${test.name} test at Agilus Diagnostics (formerly SRL) in Sector 69, Mohali. Cost: ₹${test.mrp} with NABL standard 24/7 free home blood sample collection.`);
 
         // 3. Dynamic Schema.org Structured Data
         const schemaData = {
             "@context": "https://schema.org",
             "@type": "MedicalTest",
             "name": test.name,
-            "description": `Diagnostic test ${test.name} at Agilus Diagnostics (formerly SRL Lab) Mohali Sector 69. Cost: ₹${test.mrp}, Sample: ${test.sample}, Preparation: ${test.preparation}.`,
+            "description": `Diagnostic test ${test.name} at Agilus Diagnostics (formerly SRL Diagnostics / SRL Lab Mohali). Cost: ₹${test.mrp}, Sample: ${test.sample}, Preparation: ${test.preparation}.`,
             "provider": {
                 "@type": "MedicalClinic",
-                "name": "Agilus Diagnostics Mohali",
+                "name": "Agilus Diagnostics (formerly SRL) - Sector 69, Mohali",
                 "url": "https://reports.agilus.in/secure/login.aspx",
                 "telephone": "+919115459115",
                 "priceRange": "$$",
@@ -107,12 +108,13 @@ const TestDetailPage = () => {
                         >
                             {/* Official Agilus Logo Image */}
                             <img
-                                src="https://media.agilus.in/consumer-web/agilusLogo.png"
+                                src={agilusLogo}
                                 alt="Agilus Diagnostics"
                                 width={150}
                                 height={48}
                                 className="h-8 md:h-12 w-auto object-contain flex-shrink-0 cursor-pointer transition-all duration-200 hover:scale-[1.03]"
                                 loading="eager"
+                                referrerPolicy="no-referrer"
                             />
                         </RouterLink>
                     </div>

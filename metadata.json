@@ -1,6 +1,8 @@
 {
   "name": "Remix: SRL Lab Mohali",
-  "description": "Premium diagnostic services at SRL Lab Mohali. Home collection, pathology, and complete wellness checkups with a Google Business Profile inspired interface.",
+  "description": "Premium diagnostic services at Agilus Diagnostics (formerly SRL) - Sector 69, Mohali. Home collection, pathology, and complete wellness checkups with a Google Business Profile inspired interface.",
   "requestFramePermissions": [],
-  "majorCapabilities": []
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }
