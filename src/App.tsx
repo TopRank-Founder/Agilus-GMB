@@ -29,6 +29,7 @@ import reg7 from "./assets/images/agilus_coordinate_office_1781038322151.png";
 import reg9 from "./assets/images/agilus_hematology_exhibition_1781037187742.png";
 import reg10 from "./assets/images/agilus_cancer_summit_1781037207277.png";
 import reg11 from "./assets/images/agilus_mohali_reception_1781037226406.png";
+import { AgilusLogo } from "./components/AgilusLogo";
 import agilusLogo from "./assets/images/agilusLogo.png";
 
 import origOfficeBalloons from "./assets/images/regenerated_image_1780351946114.jpg";
@@ -1360,17 +1361,8 @@ export default function App() {
               }}
               className="flex items-center gap-2 hover:opacity-85 active:scale-95 transition-all duration-200 overflow-hidden flex-shrink-0 select-none cursor-pointer"
             >
-              {/* Official Agilus Logo Image */}
-              <img
-                src={agilusLogo}
-                alt="Agilus Diagnostics"
-                width={150}
-                height={48}
-                className="h-8 md:h-12 w-auto object-contain flex-shrink-0 cursor-pointer transition-all duration-200 hover:scale-[1.03]"
-                loading="eager"
-                referrerPolicy="no-referrer"
-                fetchPriority="high"
-              />
+              {/* Official Agilus Logo */}
+              <AgilusLogo className="h-8 md:h-12 w-auto cursor-pointer transition-all duration-200 hover:scale-[1.03]" />
             </RouterLink>
           </div>
 
@@ -3916,16 +3908,7 @@ export default function App() {
             {/* Column 1: Brand Identity & Unified Digital Connections */}
             <div className="space-y-4">
               <div className="flex flex-col space-y-1">
-                <img
-                  src={agilusLogo}
-                  alt="Agilus Diagnostics"
-                  width={100}
-                  height={32}
-                  className="h-8 w-auto object-contain brightness-0 invert self-start"
-                  loading="lazy"
-                  referrerPolicy="no-referrer"
-                  fetchPriority="low"
-                />
+                <AgilusLogo variant="white" className="h-8 w-auto self-start" />
                 <span className="text-[9px] bg-orange-500/10 text-[#FF8A00] font-black tracking-wider uppercase px-2 py-0.5 rounded border border-orange-500/20 w-fit mt-2">
                   Prop. TopRank Health Care (Authorised Home Visit Partner)
                 </span>

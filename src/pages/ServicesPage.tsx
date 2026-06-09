@@ -19,7 +19,7 @@ import {
   Search
 } from "lucide-react";
 import { LOCALIZATION } from '../localization';
-import agilusLogo from "../assets/images/agilusLogo.png";
+import { AgilusLogo } from "../components/AgilusLogo";
 
 const ServicesPage = () => {
   const navigate = useNavigate();
@@ -125,16 +125,8 @@ const ServicesPage = () => {
               to="/"
               className="flex items-center gap-2 hover:opacity-85 active:scale-95 transition-all duration-200 overflow-hidden flex-shrink-0 select-none cursor-pointer"
             >
-              {/* Official Agilus Logo Image */}
-              <img
-                src={agilusLogo}
-                alt="Agilus Diagnostics"
-                width={150}
-                height={48}
-                className="h-8 md:h-12 w-auto object-contain flex-shrink-0 cursor-pointer transition-all duration-200 hover:scale-[1.03]"
-                loading="eager"
-                referrerPolicy="no-referrer"
-              />
+              {/* Official Agilus Logo */}
+              <AgilusLogo className="h-8 md:h-12 w-auto cursor-pointer transition-all duration-200 hover:scale-[1.03]" />
             </RouterLink>
           </div>
 
