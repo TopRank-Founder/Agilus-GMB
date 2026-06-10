@@ -16,29 +16,12 @@ import {
   HeartPulse,
   ChevronDown,
 } from "lucide-react";
+import { Image } from "./Image";
 
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
-const optimizeGmbImage = (url: string, opts: { width?: number; height?: number } = {}) => {
-  if (!url) return url;
-  if (url.includes("googleusercontent.com")) {
-    const baseUrl = url.split("=")[0];
-    const params: string[] = [];
-    if (opts.width) params.push(`w${opts.width}`);
-    if (opts.height) params.push(`h${opts.height}`);
-    if (!opts.width && !opts.height) {
-      params.push("s800");
-    } else if (opts.width && opts.height) {
-      params.push("c");
-    }
-    params.push("rw"); // Always force WebP format
-    return `${baseUrl}=${params.join("-")}`;
-  }
-  return url;
-};
 
 interface HeroImage {
   src: string;
@@ -85,17 +68,13 @@ export default function HeroSwiper({
         {heroImages.map((img, index) => (
           <SwiperSlide key={index} className="relative w-full h-full overflow-hidden">
             <div className="absolute inset-0">
-              <img
-                src={optimizeGmbImage(img.src, {
-                  width: index === 0 ? 1600 : 1000,
-                  height: index === 0 ? 1000 : 660,
-                })}
+              <Image
+                src={img.src}
+                width={index === 0 ? 1600 : 1000}
+                height={index === 0 ? 1000 : 660}
                 alt={img.alt}
                 className="w-full h-full object-cover brightness-[0.60] md:brightness-[0.75]"
-                referrerPolicy="no-referrer"
-                loading={index === 0 ? "eager" : "lazy"}
-                fetchPriority={index === 0 ? "high" : "low"}
-                decoding={index === 0 ? "sync" : "async"}
+                priority={index === 0}
               />
             </div>
             {/* Integrated dynamic overlay: text and CTAs transition with the slide image natively */}
@@ -113,7 +92,7 @@ export default function HeroSwiper({
                 </div>
 
                 {/* Title */}
-                <h1 className="text-xl sm:text-3xl md:text-5xl font-black text-white mb-2 sm:mb-4 leading-[1.1] drop-shadow-2xl tracking-tight">
+                <h2 className="text-xl sm:text-3xl md:text-5xl font-black text-white mb-2 sm:mb-4 leading-[1.1] drop-shadow-2xl tracking-tight">
                   {img.title === "Trusted Diagnostics" ? (
                     <>
                       Best Diagnostic <br className="hidden sm:block" />
@@ -122,7 +101,7 @@ export default function HeroSwiper({
                   ) : (
                     img.title
                   )}
-                </h1>
+                </h2>
 
                 {/* Description */}
                 <p className="text-white/95 text-xs sm:text-sm md:text-lg mb-4 sm:mb-6 max-w-2xl font-medium leading-relaxed drop-shadow-md line-clamp-3 sm:line-clamp-none">

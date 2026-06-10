@@ -16,15 +16,18 @@ import {
 } from "lucide-react";
 import { LOCALIZATION } from '../localization';
 import { AgilusLogo } from "../components/AgilusLogo";
+import { useSEO } from "../hooks/useSEO";
 
 const BookingPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [bookingStatus, setBookingStatus] = useState<"idle" | "submitting" | "success">("idle");
 
-    React.useEffect(() => {
-        document.title = "Book Blood Test Home Collection - Agilus Diagnostics (formerly SRL Diagnostics) Mohali";
-    }, []);
+    useSEO({
+        title: "Book Fast Pathology Lab Mohali Home Collection | SRL Diagnostics Sector 69",
+        description: "Schedule a fast, reliable blood test home collection in Mohali. Book your appointment at SRL Diagnostics Sector 69 for accurate pathological testing.",
+        canonicalUrl: "/booking"
+    });
 
     const [formData, setFormData] = useState({
         name: "",
@@ -217,12 +220,12 @@ const BookingPage = () => {
                             <p className="text-gray-500 text-sm sm:text-base mb-8 max-w-md mx-auto leading-relaxed font-semibold">
                                 We are redirecting you to WhatsApp to instantly deliver your request. Our clinical team will reach you shortly on <span className="text-google-blue font-bold">{formData.phone}</span>.
                             </p>
-                            <a 
-                                href="/"
+                            <RouterLink 
+                                to="/"
                                 className="inline-block w-full sm:w-auto px-8 bg-google-blue hover:bg-blue-700 text-white py-4 rounded-xl font-bold transition-all text-center"
                             >
                                 Back to Homepage
-                            </a>
+                            </RouterLink>
                         </div>
                     ) : (
                         <div>

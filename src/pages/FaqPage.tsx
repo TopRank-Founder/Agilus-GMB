@@ -11,15 +11,18 @@ import {
 } from "lucide-react";
 import { LOCALIZATION } from '../localization';
 import { AgilusLogo } from "../components/AgilusLogo";
+import { useSEO } from "../hooks/useSEO";
 
 const FaqPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [openIndex, setOpenIndex] = React.useState<number | null>(null);
 
-  React.useEffect(() => {
-    document.title = "FAQ & Patient Support - Agilus Diagnostics (formerly SRL Diagnostics) Mohali";
-  }, []);
+  useSEO({
+    title: "FAQ & Support | Pathology Lab Mohali Home Collection | SRL Diagnostics Sector 69",
+    description: "Find answers to frequently asked questions about blood tests and home sample collection at SRL Diagnostics Sector 69, Mohali's premier pathology lab.",
+    canonicalUrl: "/faq"
+  });
   
   const faqs = [
     {

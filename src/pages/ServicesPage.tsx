@@ -20,14 +20,17 @@ import {
 } from "lucide-react";
 import { LOCALIZATION } from '../localization';
 import { AgilusLogo } from "../components/AgilusLogo";
+import { useSEO } from "../hooks/useSEO";
 
 const ServicesPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  React.useEffect(() => {
-    document.title = "Patient Diagnostics & Tests - Agilus Diagnostics (formerly SRL Diagnostics) Mohali";
-  }, []);
+  useSEO({
+    title: "Diagnostic Services | Pathology Lab Mohali Home Collection | SRL Diagnostics Sector 69",
+    description: "Explore our comprehensive range of pathological tests, full body checkups, and diagnostic services at SRL Diagnostics Sector 69. Offering reliable home collection in Mohali.",
+    canonicalUrl: "/services"
+  });
 
   const services = [
     { 

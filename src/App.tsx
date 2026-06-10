@@ -6,13 +6,11 @@
 import { motion, AnimatePresence } from "motion/react";
 import {
   useNavigate,
-  Routes,
-  Route,
   useLocation,
   Link as RouterLink,
 } from "react-router-dom";
-import TestDetailPage from "./pages/TestDetailPage";
 import { BottomNav } from "./components/BottomNav";
+import { useSEO } from "./hooks/useSEO";
 
 import imagePhoto1 from "./assets/images/agilus-diagnostics-mohali-exterior.jpg";
 import imageClinical from "./assets/images/agilus-diagnostics-clinical-phlebotomy.jpg";
@@ -30,6 +28,8 @@ import reg9 from "./assets/images/agilus_hematology_exhibition_1781037187742.png
 import reg10 from "./assets/images/agilus_cancer_summit_1781037207277.png";
 import reg11 from "./assets/images/agilus_mohali_reception_1781037226406.png";
 import { AgilusLogo } from "./components/AgilusLogo";
+import { Image } from "./components/Image";
+import { optimizeGmbImage } from "./utils/image";
 import agilusLogo from "./assets/images/agilusLogo.png";
 
 import origOfficeBalloons from "./assets/images/regenerated_image_1780351946114.jpg";
@@ -108,24 +108,6 @@ const HeroSwiperFallback = () => (
     </div>
   </div>
 );
-
-const optimizeGmbImage = (url: string, opts: { width?: number; height?: number } = {}) => {
-  if (!url) return url;
-  if (url.includes("googleusercontent.com")) {
-    const baseUrl = url.split("=")[0];
-    const params: string[] = [];
-    if (opts.width) params.push(`w${opts.width}`);
-    if (opts.height) params.push(`h${opts.height}`);
-    if (!opts.width && !opts.height) {
-      params.push("s800");
-    } else if (opts.width && opts.height) {
-      params.push("c");
-    }
-    params.push("rw"); // Always force WebP format using Google's GMB Edge CDN!
-    return `${baseUrl}=${params.join("-")}`;
-  }
-  return url;
-};
 
 const LAB_WELLNESS_PACKAGES = [
   {
@@ -857,7 +839,6 @@ export default function App() {
         });
       } catch (err) {
         if (err instanceof Error && err.name !== "AbortError") {
-          console.error("Error sharing:", err);
           // Fallback to clipboard if share fails
           try {
             await navigator.clipboard.writeText(
@@ -951,7 +932,7 @@ export default function App() {
     closeBooking();
     window.open(`https://wa.me/919115459115?text=${whatsappMessage}`, "_blank", "noopener,noreferrer");
 
-    console.log("Appointment Booked via WhatsApp:", formData);
+
   };
 
   const closeBooking = () => {
@@ -991,10 +972,7 @@ export default function App() {
   );
 
   useEffect(() => {
-    // Lead Conversion Tracking / Business Intelligence Simulation
-    const trackEvent = (eventName: string, details?: any) => {
-      console.log(`[BI TRACKING] Event: ${eventName}`, details);
-    };
+      // Lead Conversion Tracking / Business Intelligence Tracking Removed
 
     // SEO: Inject Local Business JSON-LD for Search Engines
     const schemaData = {
@@ -1049,14 +1027,16 @@ export default function App() {
     script.innerHTML = JSON.stringify(schemaData);
     document.head.appendChild(script);
 
-    // Track page view
-    trackEvent("page_view", { path: window.location.pathname });
-    document.title = "Agilus Diagnostics (formerly SRL) - Sector 69, Mohali | Blood Test | Full Body Checkup | Pathology Lab";
-
     return () => {
       document.head.removeChild(script);
     };
   }, []);
+
+  useSEO({
+    title: "SRL Diagnostics Sector 69 | Pathology Lab Mohali Home Collection",
+    description: "Book expert full body checkups and blood tests at SRL Diagnostics Sector 69, recognized as the premier pathology lab in Mohali. Reliable home collection available 24/7.",
+    canonicalUrl: ""
+  });
 
   const [isPackagesLoading, setIsPackagesLoading] = useState(false);
   const [isTestListLoading, setIsTestListLoading] = useState(true);
@@ -1518,7 +1498,7 @@ export default function App() {
                 <div>
                   <div className="flex flex-col lg:flex-row lg:items-center gap-2 mb-2">
                     <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#202124]">
-                      Agilus Diagnostics (formerly SRL) - Sector 69, Mohali | Blood Test | Full Body Checkup | Pathology Lab
+                      Agilus Diagnostics Sector 69 Mohali
                     </h1>
                     <div
                       onClick={() => {
@@ -1650,13 +1630,12 @@ export default function App() {
                     }}
                     className="relative overflow-hidden w-full h-full cursor-zoom-in group/item"
                   >
-                    <img
-                      src={optimizeGmbImage(centerPhotos[0].url, { width: 500, height: 380 })}
+                    <Image
+                      src={centerPhotos[0].url}
+                      width={500}
+                      height={380}
                       alt="Front view of Agilus Diagnostics Centre Exterior"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02] hover:!scale-105"
-                      referrerPolicy="no-referrer"
-                      loading="lazy"
-                      fetchPriority="low"
                       decoding="async"
                     />
                     <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3 opacity-0 group-hover/item:opacity-100 transition-opacity flex items-center justify-between text-white">
@@ -1672,13 +1651,12 @@ export default function App() {
                     }}
                     className="relative overflow-hidden w-full h-full cursor-zoom-in group/item"
                   >
-                    <img
-                      src={optimizeGmbImage(centerPhotos[1].url, { width: 500, height: 380 })}
+                    <Image
+                      src={centerPhotos[1].url}
+                      width={500}
+                      height={380}
                       alt="Automated blood testing analyzers at Agilus Diagnostics Mohali"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02] hover:!scale-105"
-                      referrerPolicy="no-referrer"
-                      loading="lazy"
-                      fetchPriority="low"
                       decoding="async"
                     />
                     <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3 opacity-0 group-hover/item:opacity-100 transition-opacity flex items-center justify-between text-white">
@@ -1694,13 +1672,12 @@ export default function App() {
                     }}
                     className="relative overflow-hidden w-full h-full cursor-zoom-in group/item"
                   >
-                    <img
-                      src={optimizeGmbImage(centerPhotos[2].url, { width: 500, height: 380 })}
+                    <Image
+                      src={centerPhotos[2].url}
+                      width={500}
+                      height={380}
                       alt="Professional patient sample collection assistance at Agilus Mohali"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02] hover:!scale-105"
-                      referrerPolicy="no-referrer"
-                      loading="lazy"
-                      fetchPriority="low"
                       decoding="async"
                     />
                     <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3 opacity-0 group-hover/item:opacity-100 transition-opacity flex items-center justify-between text-white">
@@ -1716,13 +1693,12 @@ export default function App() {
                     }}
                     className="relative overflow-hidden w-full h-full cursor-zoom-in"
                   >
-                    <img
-                      src={optimizeGmbImage(centerPhotos[3].url, { width: 500, height: 380 })}
+                    <Image
+                      src={centerPhotos[3].url}
+                      width={500}
+                      height={380}
                       alt="Modern diagnostic testing room at Agilus Lab Sector 69 Mohali"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02] hover:!scale-105"
-                      referrerPolicy="no-referrer"
-                      loading="lazy"
-                      fetchPriority="low"
                       decoding="async"
                     />
                     
@@ -1754,10 +1730,10 @@ export default function App() {
                     </p>
                   </div>
                   <button
-                    onClick={() => window.open('https://www.google.com/search?sca_esv=37ec142c46dae260&rlz=1C5GCEM_enIN1196IN1196&cs=1&sxsrf=ANbL-n6mkBurf3x8E58FFmdUhrDJ6xQDhg:1780363391202&si=AL3DRZGNtcdgKOqVhotcr-UG2kkYpwR2WO4qu3O00NmpwBmLndRtLgrQuXytoKow3EMlQTVu-C2UvcDxx4FVZsm-1pdKA2XNHW4zT8TYLxlt7APiUI3fQ_VauHbrqTs18pqu0GxDjU9z_unl-LR9BnAPuYRXtt0cwGGYT1TKEugfJF8B4KKT8W2bityByk1gBw6vPh2wMyF_G-CXik-7kM76i-mzaTdnt1BfHVshvU436jUCq4uxlSc%3D&q=Agilus+Diagnostics+%28formerly+SRL%29+-+Sector+69,+Mohali+%7C+Blood+Test+%7C+Full+Body+Checkup+%7C+Pathology+Lab&hl=en-IN&sa=X&ved=2ahUKEwiGmoK8sueUAxXkxDgGHWGOCWQQ_oMLegQICxAB&biw=1440&bih=900&dpr=1#lpc=lpc', '_blank', 'noopener,noreferrer')}
+                    onClick={() => setIsBookingOpen(true)}
                     className="text-google-blue text-sm font-black hover:bg-google-blue/5 px-6 py-3 rounded-2xl transition-all uppercase tracking-widest"
                   >
-                    View all
+                    Book Now
                   </button>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
@@ -1782,10 +1758,10 @@ export default function App() {
                       profiles.
                     </p>
                     <button 
-                      onClick={() => window.open('https://medicalbuyer.co.in/how-labs-are-shaping-indias-healthcare/', '_blank', 'noopener,noreferrer')}
+                      onClick={() => setIsBookingOpen(true)}
                       className="flex items-center gap-2 text-google-blue text-xs font-black uppercase tracking-widest group-hover:gap-4 transition-all"
                     >
-                      Learn More <ArrowRight className="w-4 h-4" />
+                      Book Test <ArrowRight className="w-4 h-4" />
                     </button>
                   </div>
                   <div className="border border-google-border/60 rounded-[2rem] p-5 md:p-6 pb-6 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] transition-all group bg-white relative overflow-hidden">
@@ -2700,7 +2676,7 @@ export default function App() {
               </div>
               <button 
                 onClick={() => {
-                   window.open("https://agilusdiagnostics.com/health-checkup/mohali", "_blank");
+                   setIsBookingOpen(true);
                 }}
                 className="mt-8 w-full border border-gray-300 dark:border-zinc-700 py-4 rounded-xl text-sm font-bold text-google-blue dark:text-[#4da9ad] bg-white dark:bg-[#1f2023] hover:bg-google-blue/5 dark:hover:bg-zinc-800/40 hover:border-google-blue/30 dark:hover:border-blue-450 transition-all shadow-sm flex items-center justify-center gap-2 group"
               >
@@ -2726,13 +2702,12 @@ export default function App() {
                   Our Journey Since 1995{" "}
                 </h3>
                 <div className="w-full aspect-[4/3] border border-white shadow-2xl bg-white rounded-xl p-2 overflow-hidden transform group-hover:scale-[1.03] transition-transform duration-700">
-                  <img
-                    src={optimizeGmbImage(imageJourney, { width: 500, height: 380 })}
+                  <Image
+                    src={imageJourney}
+                    width={500}
+                    height={380}
                     alt="Clinical Excellence - State of the art Lab Equipment at SRL Mohali Center"
                     className="w-full h-full object-cover rounded-lg"
-                    loading="lazy"
-                    fetchPriority="low"
-                    referrerPolicy="no-referrer"
                     decoding="async"
                   />
                   <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-lg"></div>
@@ -2748,13 +2723,12 @@ export default function App() {
 
               <div className="border border-google-border rounded-2xl shadow-sm overflow-hidden group flex flex-col hover:shadow-xl hover:border-google-blue/20 transition-all duration-500">
                 <div className="h-72 overflow-hidden relative">
-                  <img
-                    src={optimizeGmbImage(imagePhoto1, { width: 600, height: 450 })}
+                  <Image
+                    src={imagePhoto1}
+                    width={600}
+                    height={450}
                     alt="Agilus Diagnostics formerly SRL Sector 69 Mohali Center Storefront Exterior."
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2s]"
-                    loading="lazy"
-                    fetchPriority="low"
-                    referrerPolicy="no-referrer"
                     decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
@@ -2841,13 +2815,12 @@ export default function App() {
                   </div>
                 </div>
                 <div className="w-full md:w-[40%] aspect-[4/3] relative rounded-2xl border border-google-border overflow-hidden bg-white shadow-2xl p-3 group">
-                  <img
-                    src={optimizeGmbImage(reg10, { width: 600, height: 450 })}
+                  <Image
+                    src={reg10}
+                    width={600}
+                    height={450}
                     alt="Agilus Diagnostics commitment to medical standards and professional phlebotomy training"
                     className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-700"
-                    loading="lazy"
-                    referrerPolicy="no-referrer"
-                    fetchPriority="low"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                 </div>
@@ -3689,13 +3662,12 @@ export default function App() {
                           : "border-transparent opacity-50 hover:opacity-80"
                       }`}
                     >
-                      <img
-                        src={optimizeGmbImage(photo.url, { width: 120, height: 90 })}
+                      <Image
+                        src={photo.url}
+                        width={120}
+                        height={90}
                         alt={`Thumbnail index ${index + 1}`}
                         className="w-full h-full object-cover"
-                        referrerPolicy="no-referrer"
-                        loading="lazy"
-                        fetchPriority="low"
                       />
                       <div className="absolute inset-0 bg-black/10 hover:bg-transparent transition-colors" />
                     </button>
@@ -4708,13 +4680,12 @@ function UpdateCard({
 
       <div className="h-48 overflow-hidden relative rounded-t-[1.95rem]">
         {typeof img === "string" ? (
-          <img
-            src={optimizeGmbImage(img, { width: 500, height: 350 })}
+          <Image
+            src={img}
+            width={500}
+            height={350}
             alt={alt}
             className={`w-full h-full object-cover ${imgPosition} group-hover:scale-105 transition-transform duration-700 rounded-t-[1.95rem]`}
-            referrerPolicy="no-referrer"
-            loading="lazy"
-            fetchPriority="low"
           />
         ) : (
           <div className="w-full h-full group-hover:scale-102 transition-transform duration-700 rounded-t-[1.95rem] overflow-hidden">

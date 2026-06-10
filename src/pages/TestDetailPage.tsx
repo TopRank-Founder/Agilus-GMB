@@ -5,6 +5,7 @@ import { testMenu } from '../constants';
 import { LOCALIZATION } from '../localization';
 import { BottomNav } from '../components/BottomNav';
 import { AgilusLogo } from "../components/AgilusLogo";
+import { useSEO } from "../hooks/useSEO";
 
 const TestDetailPage = () => {
     const { testName } = useParams<{ testName: string }>();
@@ -12,6 +13,12 @@ const TestDetailPage = () => {
     const location = useLocation();
     const test = testMenu.find(t => t.code === testName || t.name === decodeURIComponent(testName || ''));
     
+    useSEO({
+        title: test ? `${test.name} | Pathology Lab Mohali Home Collection | SRL Diagnostics Sector 69` : "Test Not Found | SRL Diagnostics Sector 69",
+        description: test ? `Book ${test.name} test at SRL Diagnostics Sector 69. Cost: ₹${test.mrp}. Expert Pathology Lab Mohali Home Collection available 24/7.` : "Medical diagnostic test at SRL Diagnostics Sector 69, Mohali.",
+        canonicalUrl: test ? `/tests/${encodeURIComponent(testName || '')}` : undefined
+    });
+
     const [isBookingOpen, setIsBookingOpen] = useState(false);
     const [activeTab, setActiveTab] = useState('');
 
@@ -19,27 +26,15 @@ const TestDetailPage = () => {
     useEffect(() => {
         if (!test) return;
 
-        // 1. Dynamic document title
-        document.title = `${test.name} - Agilus Diagnostics (formerly SRL) Mohali`;
-        
-        // 2. Dynamic GEO-optimized meta description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
-        }
-        metaDesc.setAttribute('content', `Book ${test.name} test at Agilus Diagnostics (formerly SRL) in Sector 69, Mohali. Cost: ₹${test.mrp} with NABL standard 24/7 free home blood sample collection.`);
-
-        // 3. Dynamic Schema.org Structured Data
+        // Dynamic Schema.org Structured Data
         const schemaData = {
             "@context": "https://schema.org",
             "@type": "MedicalTest",
             "name": test.name,
-            "description": `Diagnostic test ${test.name} at Agilus Diagnostics (formerly SRL Diagnostics / SRL Lab Mohali). Cost: ₹${test.mrp}, Sample: ${test.sample}, Preparation: ${test.preparation}.`,
+            "description": `Diagnostic test ${test.name} at SRL Diagnostics Sector 69 | Pathology Lab Mohali Home Collection. Cost: ₹${test.mrp}, Sample: ${test.sample}, Preparation: ${test.preparation}.`,
             "provider": {
                 "@type": "MedicalClinic",
-                "name": "Agilus Diagnostics (formerly SRL) - Sector 69, Mohali",
+                "name": "SRL Diagnostics Sector 69",
                 "url": "https://reports.agilus.in/secure/login.aspx",
                 "telephone": "+919115459115",
                 "priceRange": "$$",

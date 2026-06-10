@@ -17,18 +17,21 @@ export default defineConfig(({mode}) => {
     },
     server: {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
-      // Do not modifyâ€”file watching is disabled to prevent flickering during agent edits.
       hmr: process.env.DISABLE_HMR !== 'true',
     },
     build: {
       target: 'esnext',
       minify: 'esbuild',
       cssMinify: true,
+      sourcemap: false, // Disabling sourcemaps for smaller production size
       rollupOptions: {
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
-              return 'vendor';
+               if (id.includes('react')) return 'vendor-react';
+               if (id.includes('framer-motion') || id.includes('motion')) return 'vendor-motion';
+               if (id.includes('lucide')) return 'vendor-icons';
+               return 'vendor-core';
             }
           },
         },

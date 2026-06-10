@@ -12,14 +12,17 @@ import {
 } from "lucide-react";
 import { LOCALIZATION } from '../localization';
 import { AgilusLogo } from "../components/AgilusLogo";
+import { useSEO } from "../hooks/useSEO";
 
 const AboutPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  React.useEffect(() => {
-    document.title = "About Agilus Diagnostics (formerly SRL Diagnostics) Mohali";
-  }, []);
+  useSEO({
+    title: "About Us | Pathology Lab Mohali Home Collection | SRL Diagnostics Sector 69",
+    description: "Learn about SRL Diagnostics Sector 69, the trusted pathology lab in Mohali. Offering NABL standard testing and premier home collection services.",
+    canonicalUrl: "/about"
+  });
 
   return (
     <div className="min-h-screen bg-white dark:bg-[#121314] font-sans pb-16 transition-colors duration-300">
