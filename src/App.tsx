@@ -1279,7 +1279,7 @@ export default function App() {
                       Agilus Diagnostics Sector 69 Mohali
                     </h1>
                     <div className="text-sm font-medium text-google-grey/90 mt-1 md:mt-2 italic animate-pulse">
-                      (We test blood, not your patience. 🧛‍♂️ Approved by local vampires... probably.)
+                      (We test blood, not your patience. 🧛‍♂️)
                     </div>
                     <div
                       onClick={() => {
@@ -1321,7 +1321,7 @@ export default function App() {
                       onClick={() => window.open(LOCALIZATION.CONTACT.REVIEW_URL, "_blank", "noopener,noreferrer")}
                       className="text-sm text-google-blue hover:text-blue-700 hover:underline cursor-pointer font-medium active:scale-95 transition-all"
                     >
-                      (35 Google Reviews)
+                      (82 Google Reviews)
                     </span>
                     <span className="text-google-border">|</span>
                     <span className="text-sm text-google-grey">
@@ -2640,7 +2640,7 @@ export default function App() {
                     </div>
                   </h2>
                   <p className="text-sm text-google-grey mt-1">
-                    Based on <strong className="text-gray-700">250+ verified patient experiences</strong>
+                    Based on <strong className="text-gray-700">80+ verified patient experiences</strong>
                   </p>
                 </div>
                 <button
