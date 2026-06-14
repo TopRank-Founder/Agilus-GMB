@@ -2877,7 +2877,7 @@ export default function App() {
                   <div>
                     <span className="block font-bold text-[11px] text-gray-900 leading-none">Service Area</span>
                     <span className="block text-[11px] text-google-grey mt-1">
-                      Mohali, Chandigarh, Panchkula & Kharar
+                      Mohali, Chandigarh, Panchkula, Zirakpur & Kharar
                     </span>
                   </div>
                 </div>
@@ -3748,7 +3748,7 @@ export default function App() {
 
           <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
             <p className="text-[11px] text-google-grey select-none hover:text-white transition-colors cursor-default">
-              © {new Date().getFullYear()} TopRank Health Care. Independent Partner of Agilus Diagnostics, Mohali.
+              © {new Date().getFullYear()} TopRank Health Care. Aurthorised Partner of Agilus Diagnostics Formerly SRL, Mohali.
             </p>
             <div className="flex gap-5 text-[10px] font-bold text-google-grey uppercase tracking-widest">
               <a href="#" className="hover:text-white transition-colors">Privacy</a>
