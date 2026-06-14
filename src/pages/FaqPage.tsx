@@ -19,8 +19,8 @@ const FaqPage = () => {
   const [openIndex, setOpenIndex] = React.useState<number | null>(null);
 
   useSEO({
-    title: "FAQ & Support | Pathology Lab Mohali Home Collection | SRL Diagnostics Sector 69",
-    description: "Find answers to frequently asked questions about blood tests and home sample collection at SRL Diagnostics Sector 69, Mohali's premier pathology lab.",
+    title: "FAQs & Patient Support | SRL Diagnostics Mohali",
+    description: "Get clear answers to FAQs about test reports, blood home collection, and pricing specs at SRL Diagnostics Mohali, your trusted pathology lab in Mohali.",
     canonicalUrl: "/faq"
   });
   

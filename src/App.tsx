@@ -109,231 +109,8 @@ const HeroSwiperFallback = () => (
   </div>
 );
 
-const LAB_WELLNESS_PACKAGES = [
-  {
-    id: "vital-pro",
-    title: "Complete Care Vital Pro",
-    priceText: "2599",
-    parameters: "92 Parameters",
-    sub: "Comprehensive full body package covering Heart, Kidney, Liver, Thyroid and general Wellness.",
-    desc: "Comprehensive full-body test panel monitoring cardiac health (Lipid Profile), diabetes indices (HbA1c & Blood Glucose), Liver, Kidneys, Thyroid profile, Vitamin D, Vitamin B12, and Iron studies.",
-    features: [
-      "Vitamin D & B12",
-      "Sugar Monitoring",
-      "Thyroid Panel",
-      "Liver & Kidney",
-      "Lipid Profile"
-    ],
-    link: "https://agilusdiagnostics.com/package/mohali/200025539/complete-care-vital-pro?srsltid=sr_1780169587878_qj7ogl&utm_source=Direct&utm_medium=none",
-    bgClass: "bg-gradient-to-br from-[#E0F2FE] via-[#BAE6FD] to-[#7DD3FC]",
-    textColorClass: "text-[#034C7A]",
-    badgeBg: "bg-[#034C7A]/10 border-[#034C7A]/15",
-    badgeText: "text-[#034C7A]",
-    icon: HeartPulse,
-    testGroups: [
-      { name: "Cardiac / Lipid Profile", details: "Cholesterol, Triglycerides, HDL, LDL, VLDL, Cholesterol/HDL Ratio" },
-      { name: "Diabetes monitoring", details: "HbA1c (Glycated Hemoglobin), Fasting Blood Sugar" },
-      { name: "Thyroid Level Assay", details: "T3 (Total Triiodothyronine), T4 (Total Thyroxine), TSH (Thyroid Stimulating Hormone)" },
-      { name: "Renal Panel (KFT)", details: "Creatinine, Urea, Uric Acid, Blood Urea Nitrogen (BUN), BUN/Creatinine Ratio" },
-      { name: "Hepatic Panel (LFT)", details: "SGOT, SGPT, Bilirubin (Total, Direct & Indirect), Alkaline Phosphatase, Total Protein, Albumin, Globulin, A/G Ratio" },
-      { name: "Vitamins Profile", details: "Vitamin D (25-Hydroxy), Vitamin B12" },
-      { name: "Iron Indices", details: "Serum Iron, TIBC, UIBC, Ferritin" },
-      { name: "Hematology & Urine", details: "Complete Blood Count (CBC with 24 parameters), Urine Routine & Microscopy Examination (18 parameters)" }
-    ]
-  },
-  {
-    id: "active-men-women",
-    title: "Complete Care Active Men / Women",
-    priceText: "3099",
-    parameters: "97 Parameters",
-    sub: "Premium diagnostic tracking for active lifestyles: screens active hormones, bone fitness and joint index.",
-    desc: "Engineered for active lifestyles. Screens and monitors active hormones (Testosterone/Estrogens), joint/bone health and co-factors, cardiac fitness indicators, stress markers, and full vital organs.",
-    features: [
-      "Active Hormones",
-      "Bone Health",
-      "Energy Index",
-      "Liver & Kidneys",
-      "Stress Control"
-    ],
-    link: "https://agilusdiagnostics.com/package/mohali/200032796/complete-care-active-men",
-    bgClass: "bg-gradient-to-br from-[#F5F3FF] via-[#EDE9FE] to-[#DDD6FE]",
-    textColorClass: "text-[#4C1D95]",
-    badgeBg: "bg-[#4C1D95]/10 border-[#4C1D95]/15",
-    badgeText: "text-[#4C1D95]",
-    icon: Activity,
-    testGroups: [
-      { name: "Active Hormonal Assessment", details: "Serum Testosterone (for Men) / Estrogens (for Women) - critical for stamina, strength, fitness, and cellular balance" },
-      { name: "Bone & Joint health", details: "Vitamin D3 (25-Hydroxy), Bone-specific minerals (Serum Calcium, Serum Phosphorus), Serum Uric Acid" },
-      { name: "Cardiac & Lipid Wellness", details: "Total Cholesterol, High Density Lipids (HDL), Low Density Lipids (LDL), Very Low Density Lipids (VLDL), Triglycerides" },
-      { name: "Liver Integrity", details: "SGOT (AST), SGPT (ALT), Bilirubin, Alkaline Phosphatase, Total Proteins" },
-      { name: "Kidney Performance", details: "Uric Acid, Creatinine, Urea, BUN" },
-      { name: "Metabolic Activity (Thyroid)", details: "TSH (Thyroid Stimulating Hormone)" },
-      { name: "Blood Sugar", details: "Fasting Blood Glucose" },
-      { name: "Hematology / Blood Profile", details: "Complete Blood Count (CBC with 24 parameters), Vitamin B12 and Iron studies" }
-    ],
-    menSpecial: "Serum Testosterone - Clinically essential screening marker to monitor male cellular fitness, muscle performance, and stress response.",
-    womenSpecial: "Estrogen Screen - Highly sensitive reproductive and hormonal pathway indicator for female metabolic wellness."
-  },
-  {
-    id: "vital-75",
-    title: "Agilus Complete Care Vital",
-    priceText: "2099",
-    parameters: "75 Parameters",
-    sub: "Essential diagnostics covering blood glucose, thyroid performance, lipid parameters, and vital organs.",
-    desc: "Best for: Essential regular health tracking covering blood sugar, thyroid, liver, and kidney health indices. Inclusions: CBC, Fasting Blood Sugar, LFT, KFT, Lipid Profile, Urine Examination. Same Day Report Available.",
-    features: [
-      "FBS Checking",
-      "LFT Profile",
-      "KFT Profile",
-      "Lipids Panel",
-      "CBC Routine"
-    ],
-    link: "https://agilusdiagnostics.com/package/mohali/200032795/complete-care-vital",
-    bgClass: "bg-gradient-to-br from-[#E6F4EA] via-[#CEEAD6] to-[#A8DAB5]",
-    textColorClass: "text-[#137333]",
-    badgeBg: "bg-[#137333]/10 border-[#137333]/15",
-    badgeText: "text-[#137333]",
-    icon: FlaskConical,
-    testGroups: [
-      { name: "Cardiovascular baseline", details: "Complete Lipid Profile (Total Cholesterol, HDL, LDL, VLDL, Triglycerides)" },
-      { name: "Blood Sugar screen", details: "Fasting Blood Sugar" },
-      { name: "Hepatic health (LFT)", details: "SGOT, SGPT, Total Bilirubin, Alkaline Phosphatase, Albumin, Globulin" },
-      { name: "Renal health (KFT)", details: "Serum Creatinine, Blood Urea, BUN" },
-      { name: "Hematology count", details: "Complete Blood Count (CBC with 24 parameters) analyzing hemoglobin, white cells, red cells, and platelets" },
-      { name: "Urine Screen", details: "Urine Routine & Microscopic Examination (18 tests) for biological and renal pathway screening" }
-    ]
-  },
-  {
-    id: "active-pro",
-    title: "Complete Care Active Pro",
-    priceText: "4199",
-    parameters: "100 Parameters",
-    sub: "Comprehensive health check for active individuals monitoring body systems, bone health, active hormones, and vital organ wellness.",
-    desc: "NABL Accredited package engineered for active individuals. Monitors heart health, full liver and kidney functions, metabolic indices, active hormones, bone-mineral status, with dedicated gender markers (PSA/CA-125).",
-    features: [
-      "Active Hormones",
-      "Vitamin D & B12",
-      "Sugar & HbA1c",
-      "Liver & Kidney",
-      "Lipid Panel",
-      "PSA / CA-125 Focus",
-    ],
-    link: "https://agilusdiagnostics.com/care-packages/mohali/packages/active-pro",
-    bgClass: "bg-gradient-to-br from-[#E0F2FE] via-[#BAE6FD] to-[#7DD3FC]",
-    textColorClass: "text-[#034C7A]",
-    badgeBg: "bg-[#034C7A]/10 border-[#034C7A]/15",
-    badgeText: "text-[#034C7A]",
-    icon: Activity,
-    testGroups: [
-      { name: "Cardiac Care", details: "Complete Lipid Profile (Cholesterol, HDL, LDL, VLDL, Triglycerides, Cholesterol/HDL ratios)" },
-      { name: "Diabetes & Glucose", details: "HbA1c (Three Month Glycated Hemoglobin Average, critical for monitoring long-term glucose trends), Fasting Blood Sugar" },
-      { name: "Kidney Function Test (KFT)", details: "Serum Creatinine, Blood Urea, Blood Urea Nitrogen (BUN), Uric Acid, BUN/Creatinine Ratio" },
-      { name: "Liver Function Test (LFT)", details: "Serum Bilirubin (Total, Direct & Indirect), SGOT (AST), SGPT (ALT), Alkaline Phosphatase (ALP), Total Protein, Albumin, Globulin, A/G Ratio" },
-      { name: "Thyroid Profile (Ultracentral)", details: "Thyroid Stimulating Hormone (TSH), Total Thyroxine (T4), Total Triiodothyronine (T3)" },
-      { name: "Vitamins & Bone index", details: "Vitamin D3 (25-Hydroxy), Vitamin B12, Serum Calcium, Serum Phosphorus" },
-      { name: "Iron & Blood Indices", details: "Iron Studies Profile (Serum Iron, Total Iron Binding Capacity - TIBC, UIBC, Ferritin), Complete Blood Count (CBC with 24 parameters)" },
-      { name: "Urine Analytics", details: "Urine Routine & Microscopy (Urine R/M) covering 18 chemical & microscopic indicators" }
-    ],
-    menSpecial: "PSA (Prostate-Specific Antigen) - Clinically essential screening marker to monitor prostate health, cell growth, and cancer diagnostics.",
-    womenSpecial: "CA 125 (Ovarian Cancer Antigen 125) - Highly sensitive reproductive and ovarian cell monitoring marker for women."
-  },
-  {
-    id: "premium-care",
-    title: "Complete Care Premium Packages",
-    priceText: "6699",
-    parameters: "107 Parameters",
-    sub: "Elite holistic diagnostic screening covering advanced cardiac risk markers, hormonal assessment, fitness tracking, and immunity.",
-    desc: "Our gold-standard complete diagnostic package. Features comprehensive organ scans, intensive cardiovascular risk markers (Apolipoproteins), essential vitamins, reproductive/hormonal panels, and targeted clinical tumor screenings.",
-    features: [
-      "Cardiac Risk Apo",
-      "Reproductive Hormones",
-      "All Vitamins & Folate",
-      "Pancreatic Enzymes",
-      "Extended KFT Electrolytes",
-      "Extended LFT with GGT"
-    ],
-    link: "https://agilusdiagnostics.com/care-packages/mohali/packages/premium-care",
-    bgClass: "bg-gradient-to-br from-[#F5F3FF] via-[#EDE9FE] to-[#DDD6FE]",
-    textColorClass: "text-[#4C1D95]",
-    badgeBg: "bg-[#4C1D95]/10 border-[#4C1D95]/15",
-    badgeText: "text-[#4C1D95]",
-    icon: Star,
-    testGroups: [
-      { name: "Advanced Cardiac Risk Profile", details: "Apolipoprotein A1 (Apo-A1), Apolipoprotein B (Apo-B), Apo-A1/Apo-B Ratio, hs-CRP (High-Sensitivity C-Reactive Protein), plus complete standard Lipids Panel" },
-      { name: "Hormonal & Thryoid Assay", details: "Complete Free & Total Thyroid Panel (FT3, FT4, TSH), Active Hormonal Screening (Serum Testosterone for Men / Estrogens for Women)" },
-      { name: "Pancreatic & Spleen Care", details: "Serum Amylase, Serum Lipase, Gamma Glutamyl Transferase (GGT) - sensitive organ integrity filters" },
-      { name: "Extended Organ Integrity", details: "Liver Function Test (LFT) with GGT, Kidney Function Test (KFT) with Serum Electrolytes (Sodium, Potassium, Chloride for blood pressure & cellular fluid sync)" },
-      { name: "Total Vitamins Profile", details: "Vitamin D3 (25-Hydroxy), Vitamin B12, Serum Folic Acid (Folate)" },
-      { name: "Diabetes Advanced", details: "HbA1c (Glycated Hemoglobin), Fasting Blood Glucose, Average Blood Glucose" },
-      { name: "Hematology & ESR", details: "Complete Blood Count (CBC with 24 indices) plus ESR (Erythrocyte Sedimentation Rate marker for inflammation)" },
-      { name: "Urine Analytics", details: "Urine Routine & Microscopy (Urine R/M) - 18 chemical and sediment parameters" }
-    ],
-    menSpecial: "PSA (Prostate-Specific Antigen) & Serum Testosterone - Elite hormonal, cellular growth and prostate cancer risk diagnostic tracker for men.",
-    womenSpecial: "CA 125 & Reproductive Hormones - Specialized tumor marker screening and reproductive hormone analysis for women."
-  },
-  {
-    id: "vital-core",
-    title: "Complete Care Vital Shape Core",
-    priceText: "5999",
-    parameters: "83 Parameters",
-    sub: "Focused core fitness and metabolic wellness checkup analyzing body indicators, basic organs, and bone minerals.",
-    desc: "Excellent value package for routine monitoring. Screens and analyzes basic thyroid performance (TSH), diabetes indicators (HbA1c), complete blood indices, full lipid/cholesterol panel, and diagnostic bone/joint markers.",
-    features: [
-      "Thyroid TSH Panel",
-      "Diabetes HbA1c",
-      "Core Liver & Kidney",
-      "Bone & Mineral Care",
-      "Complete CBC Routine",
-    ],
-    link: "https://agilusdiagnostics.com/package/mohali/200036176/complete-care-vital-shape-core-",
-    bgClass: "bg-gradient-to-br from-[#E6F4EA] via-[#CEEAD6] to-[#A8DAB5]",
-    textColorClass: "text-[#137333]",
-    badgeBg: "bg-[#137333]/10 border-[#137333]/15",
-    badgeText: "text-[#137333]",
-    icon: FlaskConical,
-    testGroups: [
-      { name: "Core Blood Indices", details: "Complete Blood Count (CBC) including Hemoglobin, WBC, Red Blood Cells, Platelets, Hematocrit, and 24 detailed cellular parameters" },
-      { name: "Thyroid Screening", details: "Thyroid Stimulating Hormone (TSH) - highly accurate base filter for metabolic activity and wellness" },
-      { name: "Diabetes Monitoring", details: "HbA1c (Glycated Hemoglobin Three Month Average), Fasting Blood Glucose" },
-      { name: "Lipid Wellness Panel", details: "Total Cholesterol, High Density Lipids (HDL), Low Density Lipids (LDL), Very Low Density Lipids (VLDL), Triglycerides, ratios" },
-      { name: "Core Kidney Performance", details: "Serum Creatinine, Blood Urea, Blood Urea Nitrogen (BUN), BUN/Creatinine Ratio" },
-      { name: "Core Liver Performance", details: "SGPT (ALT), SGOT (AST), Serum Bilirubin, Alkaline Phosphatase (ALP)" },
-      { name: "Bone-Joint Minerals index", details: "Serum Calcium, Serum Phosphorus, Serum Uric Acid" },
-      { name: "Urine Analytics", details: "Urine Routine Chemistry, Specific Gravity, and Microscopic Sediment analysis (18 tests)" }
-    ]
-  },
-  {
-    id: "diabetes-heart",
-    title: "Complete Care Diabetes & Heart Advance",
-    priceText: "3499",
-    parameters: "103 Parameters",
-    sub: "Advanced targeted diagnostic evaluating cardiovascular health, diabetes indices, and renal-hepatic profiles.",
-    desc: "Specially formulated for individuals tracking cardiometabolic health. Evaluates advanced cardiac risks (Apolipoproteins), diabetes controls (HbA1c & Microalbuminuria), myocardial wellness, and comprehensive renal/hepatic integrity.",
-    features: [
-      "hs-CRP Cardiac Index",
-      "Apolipoprotein A1 & B",
-      "Microalbuminuria",
-      "Myocardial Minerals",
-      "Extended KFT & LFT",
-    ],
-    link: "https://agilusdiagnostics.com/package/mohali/200032803/complete-care-diabetes-and-heart-advance",
-    bgClass: "bg-gradient-to-br from-[#FFF7ED] via-[#FFEDD5] to-[#FED7AA]",
-    textColorClass: "text-[#9A3412]",
-    badgeBg: "bg-[#9A3412]/10 border-[#9A3412]/15",
-    badgeText: "text-[#9A3412]",
-    icon: HeartPulse,
-    testGroups: [
-      { name: "Advanced Cardiometabolic Indicators", details: "hs-CRP (Myocardial Inflammation Indicator), Apolipoprotein A1 (Apo-A1), Apolipoprotein B (Apo-B), Apo-A1/Apo-B Ratio, plus complete lipid profile (8 parameters)" },
-      { name: "Advanced Diabetes & Renal Check", details: "Fasting Blood Sugar, HbA1c, Average Blood Glucose, Urine Microalbumin (Microalbuminuria), Urine Creatinine, Urine Microalbumin/Creatinine Ratio - vital for tracking early diabetic kidney damage" },
-      { name: "Kidney Integrity & Electrolytes", details: "Urea, Creatinine, Uric Acid, Blood Urea Nitrogen, Serum Sodium, Serum Potassium, Serum Chloride" },
-      { name: "Complete Liver Integrity", details: "Liver Function Test (LFT) - Serum Bilirubin, SGOT, SGPT, ALP, Total Protein, Albumin, Globulin, A/G Ratio" },
-      { name: "Vital Neuro-Vitamins", details: "Vitamin D3 (25-Hydroxy), Vitamin B12 - crucial co-factors for nerve pathways" },
-      { name: "Thyroid Performance", details: "Thyroid Profile (TSH, Total T3, Total T4)" },
-      { name: "Myocardial Minerals", details: "Serum Magnesium, Serum Calcium, Serum Phosphorus" },
-      { name: "Urine Analytics", details: "Urine Routine physical, chemical and microscopic sediment analysis with ratio filters (20 parameters)" }
-    ]
-  }
-];
+import { LAB_WELLNESS_PACKAGES } from "./data/wellnessPackages";
+
 
 const allGalleryPhotos = [
   {
@@ -1033,8 +810,8 @@ export default function App() {
   }, []);
 
   useSEO({
-    title: "SRL Diagnostics Sector 69 | Pathology Lab Mohali Home Collection",
-    description: "Book expert full body checkups and blood tests at SRL Diagnostics Sector 69, recognized as the premier pathology lab in Mohali. Reliable home collection available 24/7.",
+    title: "SRL Diagnostics Mohali | Premier Pathology Lab & Blood Tests",
+    description: "Book expert blood tests and medical diagnostics at SRL Diagnostics Mohali (formerly SRL Diagnostics). Fast reports and 24/7 hygienic free home sample pickup.",
     canonicalUrl: ""
   });
 
@@ -1240,7 +1017,7 @@ export default function App() {
     });
     return () => observer.disconnect();
   }, []);
-  const [visibleReviews, setVisibleReviews] = useState(3);
+
 
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
@@ -1483,6 +1260,7 @@ export default function App() {
                 handleCall={handleCall}
                 setActiveTab={setActiveTab}
                 setIsBookingOpen={setIsBookingOpen}
+                handleWhatsApp={handleWhatsApp}
               />
             </React.Suspense>
           </section>
@@ -1500,6 +1278,9 @@ export default function App() {
                     <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#202124]">
                       Agilus Diagnostics Sector 69 Mohali
                     </h1>
+                    <div className="text-sm font-medium text-google-grey/90 mt-1 md:mt-2 italic animate-pulse">
+                      (We test blood, not your patience. 🧛‍♂️ Approved by local vampires... probably.)
+                    </div>
                     <div
                       onClick={() => {
                         window.open(
@@ -1517,12 +1298,16 @@ export default function App() {
                   <p className="text-google-blue font-bold text-sm mb-3 underline decoration-google-blue/20 underline-offset-4">
                     Blood Test | Full Body Checkup | Pathology Lab
                   </p>
-                  <div className="flex flex-wrap items-center gap-3">
-                    <div className="flex items-center gap-1">
+                  <div className="flex flex-wrap items-center gap-3 select-none">
+                    <div
+                      onClick={() => window.open(LOCALIZATION.CONTACT.REVIEW_URL, "_blank", "noopener,noreferrer")}
+                      className="flex items-center gap-1 cursor-pointer hover:opacity-85 active:scale-95 transition-all text-google-blue hover:text-blue-700 font-bold"
+                      title="Write a Google Review"
+                    >
                       <span className="text-lg font-bold text-[#e7711b]">
                         4.9
                       </span>
-                      <div className="flex items-center">
+                      <div className="flex items-center mr-1">
                         {[...Array(4)].map((_, i) => (
                           <Star
                             key={i}
@@ -1532,7 +1317,10 @@ export default function App() {
                         <StarHalf className="w-4 h-4 fill-[#e7711b] text-[#e7711b]" />
                       </div>
                     </div>
-                    <span className="text-sm text-google-blue hover:underline cursor-pointer font-medium">
+                    <span 
+                      onClick={() => window.open(LOCALIZATION.CONTACT.REVIEW_URL, "_blank", "noopener,noreferrer")}
+                      className="text-sm text-google-blue hover:text-blue-700 hover:underline cursor-pointer font-medium active:scale-95 transition-all"
+                    >
                       (35 Google Reviews)
                     </span>
                     <span className="text-google-border">|</span>
@@ -2833,76 +2621,56 @@ export default function App() {
               role="tabpanel"
               aria-labelledby="reviews-tab"
               className="border border-google-border rounded-2xl p-5 md:p-8 shadow-sm bg-white scroll-mt-32 md:scroll-mt-40"
+              itemScope
+              itemType="https://schema.org/LocalBusiness"
             >
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4 md:mb-5">
+              <meta itemProp="name" content="Agilus Diagnostics Sector 69 Mohali" />
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
                 <div>
                   <h2 className="text-2xl font-bold text-[#202124] flex items-center gap-3">
                     Patient Reviews
-                    <div className="flex items-center bg-green-50 px-2 py-0.5 rounded-full border border-green-100">
-                      <span className="text-[10px] font-bold text-green-700 uppercase">
-                        4.9 / 5.0
-                      </span>
+                    <div 
+                      className="flex items-center bg-green-50 px-2.5 py-1 rounded-full border border-green-100"
+                      itemProp="aggregateRating" itemScope itemType="https://schema.org/AggregateRating"
+                    >
+                      <span className="text-[11px] font-bold text-green-700 uppercase" itemProp="ratingValue">4.9</span>
+                      <span className="text-[11px] font-bold text-green-700 uppercase mx-1">/</span>
+                      <span className="text-[11px] font-bold text-green-700 uppercase" itemProp="bestRating">5.0</span>
+                      <meta itemProp="reviewCount" content="250" />
                     </div>
                   </h2>
                   <p className="text-sm text-google-grey mt-1">
-                    Based on 250+ verified patient experiences
+                    Based on <strong className="text-gray-700">250+ verified patient experiences</strong>
                   </p>
                 </div>
                 <button
-                  onClick={() =>
-                    window.open(
-                      "https://g.page/r/Ce303a1WSgIaEBM/review",
-                      "_blank",
-                    )
-                  }
-                  className="bg-google-blue/10 text-google-blue text-sm font-bold px-6 py-2.5 rounded-xl hover:bg-google-blue/20 transition-all flex items-center gap-2"
+                  onClick={() => window.open(LOCALIZATION.CONTACT.REVIEW_URL, "_blank", "noopener,noreferrer")}
+                  className="bg-blue-50 text-blue-600 border border-blue-100 text-sm font-bold px-6 py-2.5 rounded-xl hover:bg-blue-100 transition-all flex items-center justify-center gap-2 active:scale-95"
                 >
-                  <Star className="w-4 h-4 fill-google-blue" />
+                  <Star className="w-4 h-4 fill-blue-600" />
                   Write a Review
                 </button>
               </div>
 
-              <motion.div
-                layout
-                className="grid grid-cols-1 md:grid-cols-2 gap-6"
-              >
-                <AnimatePresence mode="popLayout">
-                  {allReviews.slice(0, visibleReviews).map((review, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, scale: 0.95 }}
-                      transition={{
-                        duration: 0.4,
-                        delay: (index % visibleReviews) * 0.1,
-                      }}
-                    >
-                      <ReviewItem
-                        name={review.name}
-                        rating={review.rating}
-                        date={review.date}
-                        comment={review.comment}
-                      />
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
-              </motion.div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 lg:gap-6">
+                {allReviews.slice(0, 3).map((review, index) => (
+                  <ReviewItem
+                    key={index}
+                    name={review.name}
+                    rating={review.rating}
+                    date={review.date}
+                    comment={review.comment}
+                  />
+                ))}
+              </div>
 
-              {visibleReviews < allReviews.length && (
-                <button
-                  onClick={() =>
-                    window.open(
-                      "https://g.page/r/Ce303a1WSgIaEBM/review",
-                      "_blank",
-                    )
-                  }
-                  className="mt-5 md:mt-6 w-full flex items-center justify-center gap-2 border border-blue-100 bg-blue-50 py-4 rounded-2xl text-sm font-black text-blue-700 hover:bg-blue-100 transition-all group"
-                >
-                  See All Experiences on Google
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
-              )}
+              <button
+                onClick={() => window.open(LOCALIZATION.CONTACT.REVIEW_URL, "_blank", "noopener,noreferrer")}
+                className="mt-6 w-full flex items-center justify-center gap-2 bg-gray-50 hover:bg-gray-100 border border-gray-200 py-3.5 rounded-xl text-sm font-bold text-gray-700 transition-all group"
+              >
+                Read All Experiences on Google
+                <ArrowRight className="w-4 h-4 text-gray-500 group-hover:translate-x-1 transition-transform" />
+              </button>
             </section>
 
             {/* FAQ Section */}
@@ -2922,39 +2690,77 @@ export default function App() {
             </section>
 
             {/* Verified Directory Listings (Citations) */}
-            <section className="border border-google-border rounded-xl p-5 md:p-6 shadow-sm bg-google-light-grey/30">
-              <div className="flex items-center gap-2 mb-4">
-                <CheckCircle2 className="w-5 h-5 text-google-blue" />
-                <h2 className="text-lg font-medium">
-                  Verified Digital Presence
-                </h2>
-              </div>
-              <p className="text-sm text-google-grey mb-4 leading-relaxed">
-                SRL Diagnostics Lab Mohali is a verified healthcare provider across leading
-                digital platforms. Access our live profiles for real-time
-                customer feedback and ratings.
-              </p>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                <DirectoryLink
-                  name="Justdial"
-                  icon="JD"
-                  url="https://jsdl.in/DT-19QZ6ZHKYGF"
-                />
-                <DirectoryLink
-                  name="Sulekha"
-                  icon="S"
-                  url="https://www.sulekha.com/srl-diagnostics-mohali-sector-59-mohali-contact-address"
-                />
-                <DirectoryLink
-                  name="IndiaMart"
-                  icon="IM"
-                  url="https://www.indiamart.com/s-r-l-lab-collection/"
-                />
-                <DirectoryLink
-                  name="Magicpin"
-                  icon="MP"
-                  url="https://magicpin.in/Chandigarh/Sector-69/Healthcare/Srl-Lab-Mohali/store/1c24c08"
-                />
+            <section className="border border-google-border rounded-xl p-5 md:p-8 shadow-sm bg-white overflow-hidden relative active-section ring-opacity-0">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-full z-0 opacity-60" />
+              <div className="relative z-10">
+                <div className="flex items-center gap-2.5 mb-2">
+                  <ShieldCheck className="w-6 h-6 text-google-blue" />
+                  <h2 className="text-xl md:text-2xl font-bold text-[#202124] tracking-tight">
+                    Verified Digital Presence
+                  </h2>
+                </div>
+                <p className="text-[13px] md:text-sm text-google-grey mb-6 leading-relaxed max-w-2xl">
+                  Agilus Diagnostics (formerly SRL Lab) Mohali is officially verified across top global health & local business directories. View our credentials, patient reviews, and real-time community engagement.
+                </p>
+                
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+                  {/* Google Profile */}
+                  <a href="https://maps.app.goo.gl/tPN5MedC4LLAbe4P8" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center gap-2 p-4 bg-[#F8F9FA] rounded-xl border border-gray-200 hover:border-google-blue hover:shadow-md transition-all group">
+                    <div className="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-google-blue group-hover:bg-google-blue group-hover:text-white transition-colors duration-300">
+                      <MapPin className="w-5 h-5" />
+                    </div>
+                    <span className="text-[11px] font-extrabold tracking-wide uppercase text-gray-700 group-hover:text-google-blue transition-colors">Google Profile</span>
+                  </a>
+                  {/* Apple Maps */}
+                  <a href="https://maps.apple.com/?address=Booth%20No%2012%0ASector%2069,%20Sahibzada%20Ajit%20Singh%20Nagar%0AMohali%0APunjab%20160069%0AIndia&auid=17299077469199884354&ll=30.689314,76.715340&lsp=9902&q=SRL%20Lab%20Mohali%20-%20Home%20Collection&_ext=CjMKBQgEEIwBCgQIBRADCgUIBhDXAwoECAoQAAoECFIQAwoECFUQEQoECFkQBAoFCMEBEAESJinROHk2UK8+QDEfAv10ci1TQDnlmgKZnbE+QEEmoZnMHS5TQFAE" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center gap-2 p-4 bg-[#F8F9FA] rounded-xl border border-gray-200 hover:border-[#333333] hover:shadow-md transition-all group">
+                    <div className="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-gray-700 group-hover:bg-[#333333] group-hover:text-white transition-colors duration-300">
+                      <Map className="w-5 h-5" />
+                    </div>
+                    <span className="text-[11px] font-extrabold tracking-wide uppercase text-gray-700 group-hover:text-[#333333] transition-colors">Apple Maps</span>
+                  </a>
+                  {/* Instagram */}
+                  <a href="https://www.instagram.com/srl_lab_mohali_home_collection/" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center gap-2 p-4 bg-[#F8F9FA] rounded-xl border border-gray-200 hover:border-[#E1306C] hover:shadow-md transition-all group">
+                    <div className="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-[#E1306C] group-hover:bg-gradient-to-tr group-hover:from-[#F56040] group-hover:to-[#C13584] group-hover:text-white transition-all duration-300 relative overflow-hidden">
+                      <Instagram className="w-5 h-5 relative z-10" />
+                    </div>
+                    <span className="text-[11px] font-extrabold tracking-wide uppercase text-gray-700 group-hover:text-[#E1306C] transition-colors">Instagram</span>
+                  </a>
+                  {/* Facebook */}
+                  <a href="https://www.facebook.com/SRLLabMohali/" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center gap-2 p-4 bg-[#F8F9FA] rounded-xl border border-gray-200 hover:border-[#1877F2] hover:shadow-md transition-all group">
+                    <div className="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-[#1877F2] group-hover:bg-[#1877F2] group-hover:text-white transition-colors duration-300">
+                      <Facebook className="w-5 h-5" />
+                    </div>
+                    <span className="text-[11px] font-extrabold tracking-wide uppercase text-gray-700 group-hover:text-[#1877F2] transition-colors">Facebook</span>
+                  </a>
+                  {/* JustDial */}
+                  <a href="https://jsdl.in/DT-19QZ6ZHKYGF" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center gap-2 p-4 bg-[#F8F9FA] rounded-xl border border-gray-200 hover:border-[#FF8A00] hover:shadow-md transition-all group">
+                    <div className="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-[#FF8A00] group-hover:bg-[#FF8A00] group-hover:text-white font-black text-sm transition-colors duration-300">
+                      JD
+                    </div>
+                    <span className="text-[11px] font-extrabold tracking-wide uppercase text-gray-700 group-hover:text-[#FF8A00] transition-colors">Justdial</span>
+                  </a>
+                  {/* Sulekha */}
+                  <a href="https://www.sulekha.com/srl-diagnostics-mohali-sector-59-mohali-contact-address" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center gap-2 p-4 bg-[#F8F9FA] rounded-xl border border-gray-200 hover:border-[#FFA500] hover:shadow-md transition-all group">
+                    <div className="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-[#FFA500] group-hover:bg-[#FFA500] group-hover:text-white font-black text-sm transition-colors duration-300">
+                      S
+                    </div>
+                    <span className="text-[11px] font-extrabold tracking-wide uppercase text-gray-700 group-hover:text-[#FFA500] transition-colors">Sulekha</span>
+                  </a>
+                  {/* IndiaMart */}
+                  <a href="https://www.indiamart.com/s-r-l-lab-collection/" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center gap-2 p-4 bg-[#F8F9FA] rounded-xl border border-gray-200 hover:border-[#02447A] hover:shadow-md transition-all group">
+                    <div className="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-[#02447A] group-hover:bg-[#02447A] group-hover:text-white font-black text-sm transition-colors duration-300">
+                      IM
+                    </div>
+                    <span className="text-[11px] font-extrabold tracking-wide uppercase text-gray-700 group-hover:text-[#02447A] transition-colors">IndiaMart</span>
+                  </a>
+                  {/* MagicPin */}
+                  <a href="https://magicpin.in/Chandigarh/Sector-69/Healthcare/Srl-Lab-Mohali/store/1c24c08" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center gap-2 p-4 bg-[#F8F9FA] rounded-xl border border-gray-200 hover:border-[#FF3E6C] hover:shadow-md transition-all group">
+                    <div className="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-[#FF3E6C] group-hover:bg-[#FF3E6C] group-hover:text-white font-black text-sm transition-colors duration-300">
+                      MP
+                    </div>
+                    <span className="text-[11px] font-extrabold tracking-wide uppercase text-gray-700 group-hover:text-[#FF3E6C] transition-colors">Magicpin</span>
+                  </a>
+                </div>
               </div>
             </section>
           </div>
@@ -2978,14 +2784,20 @@ export default function App() {
               </div>
 
               {/* GMB Quick Ratings Row */}
-              <div className="flex items-center gap-1.5 py-1 border-t border-b border-gray-100 shrink-0">
-                <span className="text-sm font-black text-gray-900 leading-none">4.9</span>
-                <div className="flex items-center gap-0.5">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <Star key={i} className="w-3.5 h-3.5 fill-[#F4B400] text-[#F4B400]" />
-                  ))}
+              <div className="flex items-center gap-1.5 py-1 border-t border-b border-gray-100 shrink-0 select-none">
+                <div 
+                  className="flex items-center gap-1 cursor-pointer hover:opacity-85 active:scale-95 transition-all"
+                  onClick={() => window.open(LOCALIZATION.CONTACT.REVIEW_URL, "_blank", "noopener,noreferrer")}
+                  title="Write a Google Review"
+                >
+                  <span className="text-sm font-black text-gray-900 leading-none">4.9</span>
+                  <div className="flex items-center gap-0.5">
+                    {[1, 2, 3, 4, 5].map((i) => (
+                      <Star key={i} className="w-3.5 h-3.5 fill-[#F4B400] text-[#F4B400]" />
+                    ))}
+                  </div>
                 </div>
-                <span className="text-[11px] text-google-grey hover:underline cursor-pointer" onClick={() => window.open("https://g.page/r/Ce303a1WSgIaEBM/review", "_blank")}>
+                <span className="text-[11px] text-google-grey hover:underline cursor-pointer active:scale-95 transition-all" onClick={() => window.open(LOCALIZATION.CONTACT.REVIEW_URL, "_blank")}>
                   (82 reviews)
                 </span>
                 <span className="h-3 w-px bg-gray-200"></span>
@@ -3883,249 +3695,64 @@ export default function App() {
       <footer className="bg-[#0c0d0f] text-white pt-10 pb-24 md:pb-8 px-4 md:px-8 border-t border-white/5 relative">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-google-blue/5 rounded-full blur-[100px] pointer-events-none" />
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
-            {/* Column 1: Brand Identity & Unified Digital Connections */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-8">
+            {/* Column 1: Brand */}
             <div className="space-y-4">
-              <div className="flex flex-col space-y-1">
-                <AgilusLogo variant="white" className="h-8 w-auto self-start" />
-                <span className="text-[9px] bg-orange-500/10 text-[#FF8A00] font-black tracking-wider uppercase px-2 py-0.5 rounded border border-orange-500/20 w-fit mt-2">
-                  Prop. TopRank Health Care (Authorised Home Visit Partner)
-                </span>
-              </div>
-              <p className="text-xs text-google-grey leading-relaxed pr-2">
-                Agilus Diagnostics (formerly SRL) is Mohali's premier pathology center in Sector 69. Offering NABL standard clinical integrity, seamless 24/7 free home blood sample collection, and high-accuracy diagnostic precision.
+              <AgilusLogo variant="white" className="h-7 w-auto" />
+              <p className="text-xs text-google-grey leading-relaxed pr-4">
+                Agilus Diagnostics (formerly SRL) is Mohali's premier pathology center in Sector 69. Offering NABL standard clinical integrity and seamless 24/7 free home blood sample collection.
               </p>
-              
-              {/* Eye-catching unified socials & citations directory */}
-              <div className="pt-2">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-google-grey mb-2.5">
-                  Digital Connect Network
-                </p>
-                <div className="flex flex-wrap items-center gap-2">
-                  <a
-                    title="Instagram"
-                    href="https://www.instagram.com/srl_lab_mohali_home_collection/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#E1306C] flex items-center justify-center hover:-translate-y-0.5 transition-all cursor-pointer border border-white/10"
-                  >
-                    <Instagram className="w-4 h-4 text-white" />
-                  </a>
-                  <a
-                    title="Facebook"
-                    href="https://www.facebook.com/SRLLabMohali/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#1877F2] flex items-center justify-center hover:-translate-y-0.5 transition-all cursor-pointer border border-white/10"
-                  >
-                    <Facebook className="w-4 h-4 text-white" />
-                  </a>
-                  <a
-                    title="JustDial Portfolio"
-                    href="https://www.justdial.com/Mohali/Srl-Lab-Mohali-Post-Office-Ptl-Chowk/0172PX172-X172-241016220516-Q1B9_BZDET"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#FF8A00] flex items-center justify-center hover:-translate-y-0.5 transition-all cursor-pointer font-black text-xs text-white border border-white/10"
-                  >
-                    JD
-                  </a>
-                  <a
-                    title="Apple Maps Directions"
-                    href="https://maps.apple.com/?address=Booth%20No%2012%0ASector%2069,%20Sahibzada%20Ajit%20Singh%20Nagar%0AMohali%0APunjab%20160069%0AIndia&auid=17299077469199884354&ll=30.689314,76.715340&lsp=9902&q=SRL%20Lab%20Mohali%20-%20Home%20Collection&_ext=CjMKBQgEEIwBCgQIBRADCgUIBhDXAwoECAoQAAoECFIQAwoECFUQEQoECFkQBAoFCMEBEAESJinROHk2UK8+QDEfAv10ci1TQDnlmgKZnbE+QEEmoZnMHS5TQFAE"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#7d7d7d] flex items-center justify-center hover:-translate-y-0.5 transition-all cursor-pointer border border-white/10"
-                  >
-                    <Map className="w-4 h-4 text-white" />
-                  </a>
-                  <a
-                    title="Google Maps Location"
-                    href="https://maps.app.goo.gl/tPN5MedC4LLAbe4P8"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-full bg-white/5 hover:bg-google-blue flex items-center justify-center hover:-translate-y-0.5 transition-all cursor-pointer border border-white/10"
-                  >
-                    <MapPin className="w-4 h-4 text-white" />
-                  </a>
-                  <div className="h-4 w-px bg-white/10 mx-0.5"></div>
-                  <a
-                    title="Sulekha Verified Profile"
-                    href="https://www.sulekha.com/srl-diagnostics-mohali-sector-59-mohali-contact-address"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#FFA500] flex items-center justify-center hover:-translate-y-0.5 transition-all cursor-pointer font-black text-[10px] text-white border border-white/10"
-                  >
-                    S
-                  </a>
-                  <a
-                    title="IndiaMart Listing"
-                    href="https://www.indiamart.com/s-r-l-lab-collection/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#02447A] flex items-center justify-center hover:-translate-y-0.5 transition-all cursor-pointer font-black text-[10px] text-white border border-white/10"
-                  >
-                    IM
-                  </a>
-                  <a
-                    title="Magicpin Healthcare"
-                    href="https://magicpin.in/Chandigarh/Sector-69/Healthcare/Srl-Lab-Mohali/store/1c24c08"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#FF3E6C] flex items-center justify-center hover:-translate-y-0.5 transition-all cursor-pointer font-black text-[10px] text-white border border-white/10"
-                  >
-                    MP
-                  </a>
-                </div>
+              <div className="flex items-center gap-2.5 pt-1 text-xs">
+                 <a href="https://www.instagram.com/srl_lab_mohali_home_collection/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-[#E1306C] text-white transition-colors"><Instagram className="w-4 h-4"/></a>
+                 <a href="https://www.facebook.com/SRLLabMohali/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-[#1877F2] text-white transition-colors"><Facebook className="w-4 h-4"/></a>
+                 <a href="https://maps.app.goo.gl/tPN5MedC4LLAbe4P8" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-google-blue text-white transition-colors"><MapPin className="w-4 h-4"/></a>
               </div>
             </div>
 
-            {/* Column 2: Streamlined Services & Dynamic Download */}
-            <div>
-              <p className="text-xs font-black uppercase tracking-widest text-google-grey mb-4 block border-l-2 border-google-blue pl-2">
-                Diagnostic Scope
-              </p>
-              <ul className="space-y-3.5 text-xs text-google-grey">
-                <li>
-                  <a
-                    href="#services"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      document
-                        .getElementById("services")
-                        ?.scrollIntoView({ behavior: "smooth" });
-                    }}
-                    className="hover:text-white transition-colors cursor-pointer flex items-center gap-2 group"
-                  >
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform text-google-blue" />
-                    <span>Pathology & Blood Checks</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#services"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      document
-                        .getElementById("services")
-                        ?.scrollIntoView({ behavior: "smooth" });
-                    }}
-                    className="hover:text-white transition-colors cursor-pointer flex items-center gap-2 group"
-                  >
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform text-google-blue" />
-                    <span>Free Home Blood Sample Collection</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#services"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      document
-                        .getElementById("services")
-                        ?.scrollIntoView({ behavior: "smooth" });
-                    }}
-                    className="hover:text-white transition-colors cursor-pointer flex items-center gap-2 group"
-                  >
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform text-google-blue" />
-                    <span>Comprehensive Wellness Packages</span>
-                  </a>
-                </li>
-                <li className="pt-2">
-                  <a
-                    href="https://reports.agilus.in/secure/login.aspx"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-google-blue/15 hover:bg-google-blue/25 text-google-blue hover:text-white border border-google-blue/20 transition-all font-bold text-[11px] uppercase tracking-wider cursor-pointer"
-                  >
-                    <Download className="w-3.5 h-3.5" />
-                    Download Patient Reports
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            {/* Column 3: Contact Channels & Patient Support */}
-            <div>
-              <p className="text-xs font-black uppercase tracking-widest text-google-grey mb-4 block border-l-2 border-green-500 pl-2">
-                Patient Support
-              </p>
-              <ul className="space-y-3 text-xs text-google-grey">
-                <li
-                  onClick={handleCall}
-                  className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-white/5 hover:text-white transition-all cursor-pointer group border border-transparent hover:border-white/5"
-                >
-                  <Phone className="w-4 h-4 text-google-blue group-hover:scale-110 transition-transform shrink-0" />
-                  <span className="font-bold">+91 91154 59115 (Call Desk)</span>
-                </li>
-                <li
-                  onClick={handleWhatsApp}
-                  className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-white/5 hover:text-white transition-all cursor-pointer group border border-transparent hover:border-white/5"
-                >
-                  <Smartphone className="w-4 h-4 text-agilus-green group-hover:scale-110 transition-transform shrink-0" />
-                  <span className="font-bold text-agilus-green">WhatsApp Home Collection</span>
-                </li>
-                <li
-                  onClick={handleDirection}
-                  className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-white/5 hover:text-white transition-all cursor-pointer group border border-transparent hover:border-white/5"
-                >
-                  <MapPin className="w-4 h-4 text-red-500 group-hover:scale-110 transition-transform shrink-0 mt-0.5" />
-                  <span className="leading-tight">Booth 12, Gmada Market, Near Gurukul School, Sector 69</span>
-                </li>
-                <li className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-white/5 hover:text-white transition-all group border border-transparent hover:border-white/5">
-                  <MessageSquare className="w-4 h-4 text-google-blue shrink-0" />
-                  <a href="mailto:Agilusmohali69@gmail.com" className="break-all font-medium hover:underline">Agilusmohali69@gmail.com</a>
-                </li>
-              </ul>
-            </div>
-
-            {/* Column 4: NABL Credentials & Safety Badges */}
+            {/* Column 2: Easy Booking (Intentive) */}
             <div className="space-y-4">
-              <p className="text-xs font-black uppercase tracking-widest text-google-grey mb-4 block border-l-2 border-[#ff8a00] pl-2">
-                Quality Credentials
+               <p className="text-[11px] font-black uppercase tracking-widest text-white border-l-2 border-agilus-green pl-2">
+                Quick Booking
               </p>
-              <div className="grid grid-cols-2 gap-2.5">
-                <div className="bg-white/[0.02] hover:bg-white/[0.06] p-3 rounded-2xl flex flex-col items-center justify-center text-center border border-white/5 hover:border-google-blue/20 transition-all">
-                  <span className="text-sm font-black text-white tracking-wide">NABL</span>
-                  <span className="text-[9px] text-google-grey uppercase font-bold tracking-wider mt-0.5">
-                    Accredited Lab
-                  </span>
-                </div>
-                <div className="bg-white/[0.02] hover:bg-white/[0.06] p-3 rounded-2xl flex flex-col items-center justify-center text-center border border-white/5 hover:border-google-blue/20 transition-all">
-                  <span className="text-sm font-black text-white tracking-wide">ISO</span>
-                  <span className="text-[9px] text-google-grey uppercase font-bold tracking-wider mt-0.5">
-                    9001 Certified
-                  </span>
-                </div>
+              <div className="flex flex-col gap-3">
+                <button onClick={handleWhatsApp} className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-agilus-green hover:bg-agilus-green/90 text-white font-bold text-sm transition-transform hover:-translate-y-0.5 active:scale-[0.98] cursor-pointer shadow-sm">
+                  <Smartphone className="w-4 h-4" /> Book Home Collection
+                </button>
+                <button onClick={handleCall} className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-sm transition-transform hover:-translate-y-0.5 active:scale-[0.98] cursor-pointer">
+                  <Phone className="w-4 h-4" /> +91 91154 59115
+                </button>
               </div>
-              <a
-                href="https://maps.app.goo.gl/tPN5MedC4LLAbe4P8"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-between p-3 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-google-blue/20 hover:bg-white/[0.04] transition-all group"
-              >
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-google-blue" />
-                  <span className="text-xs font-bold text-google-grey group-hover:text-white transition-colors">Verified Google Profile</span>
-                </div>
-                <ArrowRight className="w-3.5 h-3.5 text-google-grey/60 group-hover:translate-x-1 transition-transform" />
-              </a>
             </div>
+
+            {/* Column 3: Address & Info */}
+            <div className="space-y-4">
+              <p className="text-[11px] font-black uppercase tracking-widest text-white border-l-2 border-google-blue pl-2">
+                Visit Us
+              </p>
+              <div className="space-y-3.5 text-xs text-google-grey flex flex-col">
+                <div onClick={handleDirection} className="flex items-start gap-3 cursor-pointer hover:text-white transition-colors group">
+                  <MapPin className="w-4 h-4 text-google-blue shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+                  <span className="leading-relaxed">Booth 12, Gmada Market, Near Gurukul School, Sector 69, Mohali</span>
+                </div>
+                <div className="flex items-center gap-3 font-semibold">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                  <span>NABL Accredited & ISO Certified Lab</span>
+                </div>
+                <a href="https://reports.agilus.in/secure/login.aspx" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 w-fit text-google-blue hover:text-white font-bold transition-colors pt-1 hover:underline underline-offset-4 cursor-pointer">
+                  <Download className="w-4 h-4" /> Download Patient Reports
+                </a>
+              </div>
+            </div>
+            
           </div>
 
-          <div className="pt-6 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left pointer-events-none select-none">
-            <p className="text-xs text-google-grey">
-              © {new Date().getFullYear()} SRL Lab Mohali (Agilus Diagnostics). All clinical rights reserved.
+          <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
+            <p className="text-[11px] text-google-grey select-none hover:text-white transition-colors cursor-default">
+              © {new Date().getFullYear()} TopRank Health Care. Independent Partner of Agilus Diagnostics, Mohali.
             </p>
-            <div className="flex flex-wrap justify-center gap-6 text-[10px] font-black text-google-grey uppercase tracking-widest">
-              <a href="#" className="hover:text-white transition-colors">
-                Privacy Policy
-              </a>
-              <a href="#" className="hover:text-white transition-colors">
-                Terms and Conditions
-              </a>
-              <a href="/sitemap.xml" className="hover:text-white transition-colors">
-                Sitemap
-              </a>
+            <div className="flex gap-5 text-[10px] font-bold text-google-grey uppercase tracking-widest">
+              <a href="#" className="hover:text-white transition-colors">Privacy</a>
+              <a href="#" className="hover:text-white transition-colors">Terms</a>
             </div>
           </div>
         </div>
@@ -4286,18 +3913,28 @@ function ReviewItem({
   rating: number;
   date: string;
   comment: string;
+  key?: string | number;
 }) {
   return (
-    <div className="bg-[#f8f9fa] p-5 rounded-2xl border border-google-border/50 hover:border-google-blue/30 transition-all group">
+    <div 
+      className="bg-[#f8f9fa] p-5 rounded-2xl border border-google-border/50 hover:border-google-blue/30 transition-all group flex flex-col h-full"
+      itemProp="review" itemScope itemType="https://schema.org/Review"
+    >
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-full bg-google-blue/10 flex items-center justify-center text-google-blue font-bold text-lg shadow-sm">
+          <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-google-blue/10 flex items-center justify-center text-google-blue font-bold text-lg shadow-sm shrink-0">
             {name[0]}
           </div>
           <div>
-            <p className="font-bold text-[#202124]">{name}</p>
-            <div className="flex items-center gap-2 mt-0.5">
-              <div className="flex items-center">
+            <p className="font-bold text-[#202124] text-sm md:text-base leading-tight" itemProp="author" itemScope itemType="https://schema.org/Person">
+              <span itemProp="name">{name}</span>
+            </p>
+            <div className="flex items-center gap-2 mt-1">
+              <div 
+                className="flex items-center"
+                itemProp="reviewRating" itemScope itemType="https://schema.org/Rating"
+              >
+                <meta itemProp="ratingValue" content={rating.toString()} />
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
@@ -4309,25 +3946,23 @@ function ReviewItem({
                   />
                 ))}
               </div>
-              <span className="text-[10px] text-google-grey font-bold uppercase tracking-wider">
+              <span className="text-[10px] text-google-grey font-bold uppercase tracking-wider whitespace-nowrap">
                 {date}
               </span>
             </div>
           </div>
         </div>
-        <div className="bg-white p-1.5 rounded-lg shadow-sm border border-google-border/30">
+        <div className="bg-white p-1.5 rounded-lg shadow-sm border border-google-border/30 shrink-0 hidden sm:block">
           <Quote className="w-4 h-4 text-google-blue/40" />
         </div>
       </div>
-      <p className="text-sm leading-relaxed text-[#444] mb-4">"{comment}"</p>
-      <div className="flex items-center gap-4 pt-3 border-t border-google-border/30">
-        <button className="text-[11px] font-bold text-google-blue uppercase tracking-tight flex items-center gap-1.5 hover:opacity-80 transition-opacity">
+      <p className="text-sm leading-relaxed text-[#444] mb-4 grow" itemProp="reviewBody">
+        "{comment}"
+      </p>
+      <div className="flex items-center gap-4 pt-3 border-t border-google-border/30 mt-auto opacity-80 group-hover:opacity-100 transition-opacity">
+        <button className="text-[11px] font-bold text-google-blue uppercase tracking-tight flex items-center gap-1.5 hover:text-blue-700 transition-colors">
           <ThumbsUp className="w-3 h-3" />
-          Helpful?
-        </button>
-        <div className="w-1 h-1 rounded-full bg-google-border" />
-        <button className="text-[11px] font-bold text-google-grey uppercase tracking-tight hover:text-[#202124] transition-colors">
-          Report
+          Helpful
         </button>
       </div>
     </div>
@@ -4525,43 +4160,6 @@ function ExpandableTestRow({
   );
 }
 
-function DirectoryLink({
-  name,
-  icon,
-  url,
-}: {
-  name: string;
-  icon: string;
-  url: string;
-}) {
-  // Brand specific styling mimicking official app/site icon themes
-  let brandIconClass = "bg-google-light-grey text-google-grey group-hover:bg-google-blue group-hover:text-white";
-  if (name.toLowerCase() === "justdial") {
-    brandIconClass = "bg-orange-50 text-orange-600 border border-orange-200 group-hover:bg-orange-500 group-hover:text-white group-hover:border-transparent";
-  } else if (name.toLowerCase() === "sulekha") {
-    brandIconClass = "bg-yellow-50 text-yellow-600 border border-yellow-200 group-hover:bg-yellow-500 group-hover:text-white group-hover:border-transparent";
-  } else if (name.toLowerCase() === "indiamart") {
-    brandIconClass = "bg-sky-50 text-sky-900 border border-sky-200 group-hover:bg-[#002f6c] group-hover:text-white group-hover:border-transparent";
-  } else if (name.toLowerCase() === "magicpin") {
-    brandIconClass = "bg-pink-50 text-pink-600 border border-pink-200 group-hover:bg-[#fd3e66] group-hover:text-white group-hover:border-transparent";
-  }
-
-  return (
-    <a
-      href={url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex flex-col items-center gap-2 p-3 bg-white rounded-xl border border-google-border hover:border-google-blue hover:shadow-md transition-all group"
-    >
-      <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs font-black transition-all duration-300 ${brandIconClass}`}>
-        {icon}
-      </div>
-      <span className="text-[11px] font-bold text-google-grey group-hover:text-[#202124]">
-        {name}
-      </span>
-    </a>
-  );
-}
 
 function WellnessPackageVisual({
   title,

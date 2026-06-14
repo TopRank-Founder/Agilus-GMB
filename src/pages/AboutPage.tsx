@@ -19,8 +19,8 @@ const AboutPage = () => {
   const location = useLocation();
 
   useSEO({
-    title: "About Us | Pathology Lab Mohali Home Collection | SRL Diagnostics Sector 69",
-    description: "Learn about SRL Diagnostics Sector 69, the trusted pathology lab in Mohali. Offering NABL standard testing and premier home collection services.",
+    title: "About SRL Diagnostics Mohali | Trusted Pathology Lab",
+    description: "Discover SRL Diagnostics Mohali, a premier authorized lab franchise. Offering certified diagnostic tests, expert services, and reliable home blood sample collection.",
     canonicalUrl: "/about"
   });
 

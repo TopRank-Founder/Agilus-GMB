@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from "motion/react";
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from "motion/react";
 import { useNavigate, Link as RouterLink, useLocation } from "react-router-dom";
 import { 
   ArrowLeft, 
@@ -16,19 +16,33 @@ import {
   Award,
   Menu,
   Share2,
-  Search
+  Search,
+  CheckCircle2,
+  X,
+  Calendar,
+  MessageCircle,
+  Sparkles,
+  ClipboardCheck,
+  ChevronDown,
+  ChevronUp,
+  Award as StarIcon,
+  Info,
+  Shield,
 } from "lucide-react";
 import { LOCALIZATION } from '../localization';
 import { AgilusLogo } from "../components/AgilusLogo";
 import { useSEO } from "../hooks/useSEO";
+import { LAB_WELLNESS_PACKAGES, WellnessPackage } from "../data/wellnessPackages";
 
 const ServicesPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [selectedPackage, setSelectedPackage] = useState<WellnessPackage | null>(null);
+  const [inclusionsGender, setInclusionsGender] = useState<"men" | "women">("men");
 
   useSEO({
-    title: "Diagnostic Services | Pathology Lab Mohali Home Collection | SRL Diagnostics Sector 69",
-    description: "Explore our comprehensive range of pathological tests, full body checkups, and diagnostic services at SRL Diagnostics Sector 69. Offering reliable home collection in Mohali.",
+    title: "Diagnostic Services & Blood Tests | SRL Diagnostics Mohali",
+    description: "Explore our comprehensive range of blood tests and packages at SRL Diagnostics Mohali. Accurate medical diagnostics with convenient home sample pickup.",
     canonicalUrl: "/services"
   });
 
@@ -247,6 +261,238 @@ const ServicesPage = () => {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Fullbody Health Packages Section */}
+        <section className="mt-16 pt-12 border-t border-gray-100 dark:border-zinc-850" id="health-packages">
+          <div className="mb-8">
+            <span className="text-[11px] font-black tracking-widest uppercase text-google-blue dark:text-blue-400 bg-google-blue/5 dark:bg-blue-950/20 px-3 py-1.5 rounded-full border border-google-blue/10 dark:border-blue-950/30">
+              NABL ACCREDITED • EXECUTIVE SCREENINGS
+            </span>
+            <h2 className="text-3xl sm:text-4xl text-[#1a1c1e] dark:text-white font-black tracking-tight mt-3 mb-3">
+              Fullbody Health Packages
+            </h2>
+            <p className="text-gray-500 dark:text-gray-400 text-sm sm:text-base max-w-3xl leading-relaxed">
+              Tailored checkups monitoring up to 107 parameters with MNC-standard diagnostics automation. Includes vitamins, liver-kidney functions, cardiac lipid grids, and gender-specific hormone indexes.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {LAB_WELLNESS_PACKAGES.map((pkg) => {
+              const IconComp = pkg.icon;
+              return (
+                <div 
+                  key={pkg.id} 
+                  className="flex flex-col border border-gray-200/80 dark:border-zinc-800 bg-white dark:bg-[#1f2023] rounded-3xl overflow-hidden hover:shadow-xl dark:hover:shadow-zinc-950/20 hover:border-google-blue/30 dark:hover:border-google-blue/40 transition-all duration-300 pointer-events-auto"
+                >
+                  {/* Top Gradient Banner */}
+                  <div className={`p-5 ${pkg.bgClass} relative select-none flex flex-col justify-between h-40`}>
+                    <div className="flex items-center justify-between">
+                      <span className={`text-[10px] font-black tracking-widest uppercase px-2.5 py-1 rounded-md border ${pkg.badgeBg} ${pkg.badgeText} shadow-sm`}>
+                        {pkg.parameters}
+                      </span>
+                      <div className="p-2 rounded-xl bg-white/70 backdrop-blur-md shadow-sm border border-white/30 text-gray-800">
+                        <IconComp className={`w-5 h-5 ${pkg.textColorClass}`} />
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className={`text-base font-extrabold tracking-tight ${pkg.textColorClass} mb-1 leading-snug`}>
+                        {pkg.title}
+                      </h3>
+                      <p className={`text-[11px] font-semibold leading-relaxed opacity-90 line-clamp-2 ${pkg.textColorClass}`}>
+                        {pkg.sub}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Features List */}
+                  <div className="p-5 flex-1 flex flex-col justify-between">
+                    <ul className="space-y-2 mb-6">
+                      {pkg.features.map((feat, i) => (
+                        <li key={i} className="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-300 font-medium">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                          <span>{feat}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* Bottom Action Area */}
+                    <div className="pt-4 border-t border-gray-100 dark:border-zinc-800/80 space-y-3">
+                      <div className="flex items-baseline justify-between">
+                        <span className="text-gray-400 dark:text-gray-500 text-[10px] font-bold uppercase tracking-wider">Mohali Price</span>
+                        <div className="flex items-baseline gap-1">
+                          <span className="text-xs font-bold text-gray-400 line-through">₹{(parseInt(pkg.priceText) * 2).toLocaleString()}</span>
+                          <span className="text-xl font-extrabold text-[#1a1c1e] dark:text-white">₹{parseInt(pkg.priceText).toLocaleString()}</span>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-2 pt-1">
+                        <button
+                          onClick={() => {
+                            setSelectedPackage(pkg);
+                            setInclusionsGender("men");
+                          }}
+                          className="w-full h-10 rounded-full border border-gray-200 dark:border-zinc-700 hover:border-google-blue dark:hover:border-google-blue text-[11px] font-bold text-[#1a1c1e] dark:text-white dark:hover:text-[#4da9ad] hover:text-google-blue bg-transparent transition-all cursor-pointer flex items-center justify-center gap-1"
+                        >
+                          <Info className="w-3.5 h-3.5 animate-pulse" /> Inclusions
+                        </button>
+                        <button
+                          onClick={() => {
+                            const text = `Hi, I would like to book the "${pkg.title}" diagnostic fullbody package (₹${pkg.priceText}) at SRL Diagnostics Mohali. Please confirm available slots.`;
+                            window.open(`https://wa.me/919115459115?text=${encodeURIComponent(text)}`, "_blank", "noopener,noreferrer");
+                          }}
+                          className="w-full h-10 rounded-full bg-google-blue text-white hover:bg-google-blue/90 text-[11px] font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5 shadow-sm active:scale-[0.98]"
+                        >
+                          <MessageCircle className="w-3.5 h-3.5" /> Book Now
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* Modal Overlay for Package Inclusions details */}
+        <AnimatePresence>
+          {selectedPackage && (
+            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+              {/* Backdrop blur element */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setSelectedPackage(null)}
+                className="absolute inset-0 bg-black/60 backdrop-blur-md"
+              />
+
+              {/* Modal Container */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 30 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 30 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto bg-white dark:bg-[#1f2023] border border-gray-200 dark:border-zinc-800 rounded-3xl shadow-2xl p-6 md:p-8 z-10 scrollbar-thin outline-none"
+              >
+                {/* Close Button */}
+                <button
+                  onClick={() => setSelectedPackage(null)}
+                  className="absolute top-5 right-5 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-zinc-800 text-gray-500 dark:text-gray-400 cursor-pointer border-0 transition-colors z-20"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+
+                {/* Header Banner Area */}
+                <div className="mb-6">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-[9px] font-black tracking-widest uppercase px-2.5 py-1 rounded-md bg-google-blue/10 text-google-blue border border-google-blue/15 shadow-sm">
+                      {selectedPackage.parameters}
+                    </span>
+                    <span className="text-[9px] font-black tracking-widest uppercase px-2.5 py-1 rounded-md bg-emerald-50 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-900/30">
+                      NABL APPROVED QUALITY
+                    </span>
+                  </div>
+
+                  <h3 className="text-2xl font-black text-gray-900 dark:text-white tracking-tight leading-tight mb-2">
+                    {selectedPackage.title}
+                  </h3>
+
+                  <div className="p-4 bg-gray-50 dark:bg-zinc-800/30 rounded-2xl border border-gray-100 dark:border-zinc-800/55 text-xs text-gray-600 dark:text-gray-300 leading-relaxed font-medium">
+                    {selectedPackage.desc}
+                  </div>
+                </div>
+
+                {/* Gender Specific Section */}
+                {(selectedPackage.menSpecial || selectedPackage.womenSpecial) && (
+                  <div className="mb-6 p-4 bg-indigo-50/40 dark:bg-indigo-950/20 rounded-2xl border border-indigo-100/60 dark:border-indigo-950/30">
+                    <div className="flex items-center justify-between mb-3 border-b border-indigo-100 dark:border-indigo-900/30 pb-2 flex-wrap gap-2">
+                      <span className="text-[10px] font-black uppercase text-indigo-700 dark:text-indigo-400 tracking-wider flex items-center gap-1.5">
+                        <Shield className="w-4 h-4" /> Gender Specialized Wellness Markers
+                      </span>
+                      <div className="flex gap-1 bg-indigo-100/30 dark:bg-indigo-950/40 p-0.5 rounded-lg border border-indigo-100 dark:border-indigo-900/30">
+                        <button
+                          onClick={() => setInclusionsGender("men")}
+                          className={`px-3 py-1 text-[10px] font-extrabold rounded-md cursor-pointer transition-all border-0 ${
+                            inclusionsGender === "men"
+                              ? "bg-indigo-600 text-white shadow-sm"
+                              : "text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100/40 dark:hover:bg-indigo-950/30"
+                          }`}
+                        >
+                          Men Specifics
+                        </button>
+                        <button
+                          onClick={() => setInclusionsGender("women")}
+                          className={`px-3 py-1 text-[10px] font-extrabold rounded-md cursor-pointer transition-all border-0 ${
+                            inclusionsGender === "women"
+                              ? "bg-rose-600 text-white shadow-sm"
+                              : "text-rose-600 dark:text-rose-400 hover:bg-rose-100/40 dark:hover:bg-rose-950/30"
+                          }`}
+                        >
+                          Women Specifics
+                        </button>
+                      </div>
+                    </div>
+
+                    <p className="text-xs font-semibold leading-relaxed text-gray-700 dark:text-gray-300">
+                      {inclusionsGender === "men" 
+                        ? selectedPackage.menSpecial || "PSA Test Panel - Included and monitored for prostate cellular health and age-appropriate screenings." 
+                        : selectedPackage.womenSpecial || "CA-125 Ovarian Screen - Included to monitor reproductive pathways, cellular health, and ovarian wellness."}
+                    </p>
+                  </div>
+                )}
+
+                {/* Test Categories and parameters list */}
+                <div className="mb-8">
+                  <h4 className="text-xs font-black text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
+                    Full Test Inclusions ({selectedPackage.testGroups?.length || 0} Key Categories)
+                  </h4>
+                  <div className="space-y-3.5 max-h-[30vh] overflow-y-auto pr-2 scrollbar-thin">
+                    {selectedPackage.testGroups?.map((group, idx) => (
+                      <div 
+                        key={idx}
+                        className="p-3 bg-gray-50 dark:bg-zinc-800/40 rounded-xl hover:bg-gray-100 dark:hover:bg-zinc-800/60 transition-colors border border-gray-100 dark:border-zinc-800"
+                      >
+                        <h5 className="text-xs font-black text-gray-900 dark:text-white flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-google-blue" />
+                          {group.name}
+                        </h5>
+                        <p className="text-[11px] leading-relaxed text-gray-500 dark:text-gray-400 font-medium mt-1 pl-3.5">
+                          {group.details}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Bottom CTA Area */}
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-gray-100 dark:border-zinc-800">
+                  <div>
+                    <span className="text-[9px] uppercase tracking-wider text-gray-400 dark:text-gray-500 font-extrabold block">Accredited Net price</span>
+                    <span className="text-3xl font-black text-gray-900 dark:text-white leading-tight">₹{parseInt(selectedPackage.priceText).toLocaleString()}</span>
+                  </div>
+
+                  <div className="flex gap-2 w-full sm:w-auto">
+                    <button
+                      onClick={() => setSelectedPackage(null)}
+                      className="px-5 h-11 border border-gray-200 dark:border-zinc-700 hover:bg-gray-50 dark:hover:bg-zinc-800 text-[13px] font-bold text-gray-700 dark:text-gray-300 rounded-full transition-all cursor-pointer flex items-center justify-center bg-transparent"
+                    >
+                      Close View
+                    </button>
+                    <button
+                      onClick={() => {
+                        const text = `Hi, I would like to book the "${selectedPackage.title}" diagnostic fullbody package (₹${selectedPackage.priceText}) at SRL Diagnostics Mohali. Please confirm available slots.`;
+                        window.open(`https://wa.me/919115459115?text=${encodeURIComponent(text)}`, "_blank", "noopener,noreferrer");
+                      }}
+                      className="flex-1 sm:flex-initial px-6 h-11 bg-google-blue text-white hover:bg-google-blue/90 text-[13px] font-bold rounded-full transition-all cursor-pointer flex items-center justify-center gap-2 shadow-sm"
+                    >
+                      <MessageCircle className="w-4 h-4" /> Book Appointment
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
 
         {/* Quality Badges Row */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-16 pt-10 border-t border-gray-100 dark:border-zinc-800">

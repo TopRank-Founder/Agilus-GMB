@@ -24,8 +24,8 @@ const BookingPage = () => {
     const [bookingStatus, setBookingStatus] = useState<"idle" | "submitting" | "success">("idle");
 
     useSEO({
-        title: "Book Fast Pathology Lab Mohali Home Collection | SRL Diagnostics Sector 69",
-        description: "Schedule a fast, reliable blood test home collection in Mohali. Book your appointment at SRL Diagnostics Sector 69 for accurate pathological testing.",
+        title: "Book Blood Test Home Collection | Pathology Lab Mohali",
+        description: "Schedule your blood test home collection in Mohali in seconds. Get hassle-free sample pickup and NABL-certified reporting by SRL Diagnostics Mohali.",
         canonicalUrl: "/booking"
     });
 

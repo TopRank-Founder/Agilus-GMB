@@ -14,6 +14,49 @@ import "@fontsource/outfit/700.css";
 import App from './App.tsx';
 import './index.css';
 
+// Custom interactive, non-blocking toast overlay to replace default window.alert
+if (typeof window !== "undefined") {
+  window.alert = (message: string) => {
+    let container = document.getElementById("custom-toast-container");
+    if (!container) {
+      container = document.createElement("div");
+      container.id = "custom-toast-container";
+      container.className = "fixed bottom-24 sm:bottom-6 left-1/2 -translate-x-1/2 z-[10000] flex flex-col gap-2 w-full max-w-xs px-4 pointer-events-none";
+      document.body.appendChild(container);
+    }
+
+    const toast = document.createElement("div");
+    toast.className = "bg-zinc-900/95 backdrop-blur-md border border-zinc-800 text-white rounded-2xl p-4 shadow-2xl flex items-center justify-between gap-3 text-xs font-semibold tracking-wide transform translate-y-10 opacity-0 transition-all duration-300 pointer-events-auto select-none";
+    
+    const iconContainer = document.createElement("div");
+    iconContainer.className = "w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0";
+    iconContainer.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>`;
+    
+    const msgSpan = document.createElement("span");
+    msgSpan.className = "flex-1 text-zinc-100 font-medium leading-normal";
+    msgSpan.textContent = message;
+
+    toast.appendChild(iconContainer);
+    toast.appendChild(msgSpan);
+    container.appendChild(toast);
+
+    setTimeout(() => {
+      toast.className = "bg-zinc-900/95 backdrop-blur-md border border-zinc-800 text-white rounded-2xl p-4 shadow-2xl flex items-center justify-between gap-3 text-xs font-semibold tracking-wide transform translate-y-0 opacity-100 transition-all duration-300 pointer-events-auto select-none";
+    }, 10);
+
+    setTimeout(() => {
+      toast.className = "bg-zinc-900/95 backdrop-blur-md border border-zinc-800 text-white rounded-2xl p-4 shadow-2xl flex items-center justify-between gap-3 text-xs font-semibold tracking-wide transform translate-y-2 opacity-0 transition-all duration-300 pointer-events-auto select-none";
+      setTimeout(() => {
+        toast.remove();
+        const updatedContainer = document.getElementById("custom-toast-container");
+        if (updatedContainer && updatedContainer.childNodes.length === 0) {
+          updatedContainer.remove();
+        }
+      }, 300);
+    }, 3000);
+  };
+}
+
 const TestDetailPage = lazy(() => import('./pages/TestDetailPage'));
 const ServicesPage = lazy(() => import('./pages/ServicesPage'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));

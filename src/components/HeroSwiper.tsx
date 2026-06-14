@@ -15,6 +15,7 @@ import {
   ClipboardCheck,
   HeartPulse,
   ChevronDown,
+  MessageCircle,
 } from "lucide-react";
 import { Image } from "./Image";
 
@@ -37,6 +38,7 @@ interface HeroSwiperProps {
   handleCall: () => void;
   setActiveTab: (tab: string) => void;
   setIsBookingOpen: (open: boolean) => void;
+  handleWhatsApp?: () => void;
 }
 
 export default function HeroSwiper({
@@ -44,6 +46,7 @@ export default function HeroSwiper({
   handleCall,
   setActiveTab,
   setIsBookingOpen,
+  handleWhatsApp,
 }: HeroSwiperProps) {
   return (
     <div className="relative group w-full h-[380px] sm:h-[440px] md:h-[500px] lg:h-[540px] xl:h-[585px] bg-black rounded-3xl overflow-hidden shadow-2xl border border-google-border">
@@ -111,7 +114,8 @@ export default function HeroSwiper({
                 </p>
 
                 {/* CTAs */}
-                <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 w-full justify-start mt-2">
+                {/* Mobile-Only Enhanced Multi-Button Quick Booking Tray */}
+                <div className="flex flex-col gap-2 w-full sm:hidden mt-2">
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
@@ -128,22 +132,78 @@ export default function HeroSwiper({
                         if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
                       }
                     }}
-                    className="bg-google-blue hover:bg-blue-650 dark:bg-zinc-800 dark:hover:bg-zinc-700/80 hover:scale-[1.02] border border-white/10 text-white px-5 sm:px-7 py-3 sm:py-3.5 rounded-xl sm:rounded-2xl font-black text-xs sm:text-sm transition-all shadow-xl active:scale-95 flex items-center justify-center gap-2 w-full sm:w-auto cursor-pointer"
+                    className="bg-blue-600 active:bg-blue-700 text-white min-h-[48px] py-3 px-4 rounded-xl font-bold text-xs uppercase tracking-wider shadow-lg active:scale-[0.97] transition-all flex items-center justify-center gap-2 border border-white/10"
+                  >
+                    {index === 0 && <Phone className="w-4 h-4 text-white animate-pulse" />}
+                    {index === 1 && <FlaskConical className="w-4 h-4 text-blue-200" />}
+                    {index === 2 && <Calendar className="w-4 h-4 text-green-200" />}
+                    {index === 3 && <ClipboardCheck className="w-4 h-4 text-orange-200" />}
+                    {index === 4 && <HeartPulse className="w-4 h-4 text-pink-200" />}
+                    {img.cta}
+                  </button>
+
+                  <div className="grid grid-cols-2 gap-2">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (handleWhatsApp) {
+                          handleWhatsApp();
+                        } else {
+                          window.open("https://wa.me/919115459115?text=Hi, I want to book a blood test.", "_blank");
+                        }
+                      }}
+                      className="bg-[#25D366] active:bg-[#20ba56] text-white min-h-[44px] py-2 px-3 rounded-lg font-bold text-[11px] uppercase tracking-tight transition-all active:scale-[0.97] flex items-center justify-center gap-1.5 shadow"
+                    >
+                      <MessageCircle className="w-4 h-4 fill-white text-[#25D366]" />
+                      <span>WhatsApp Book</span>
+                    </button>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setIsBookingOpen(true);
+                      }}
+                      className="bg-zinc-800 active:bg-zinc-700 text-white min-h-[44px] py-2 px-3 rounded-lg font-bold text-[11px] uppercase tracking-tight transition-all active:scale-[0.97] flex items-center justify-center gap-1.5 border border-zinc-700 shadow"
+                    >
+                      <Calendar className="w-4 h-4 text-blue-400" />
+                      <span>Quick Form</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Desktop-Only Clean Single Button CTA */}
+                <div className="hidden sm:flex flex-row flex-wrap gap-3 w-full justify-start mt-2">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (index === 0) {
+                        handleCall();
+                      } else if (index === 1) {
+                        setActiveTab("services");
+                        const el = document.getElementById("services");
+                        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                      } else if (index === 2 || index === 3) {
+                        setIsBookingOpen(true);
+                      } else if (index === 4) {
+                        const el = document.getElementById("health-packages");
+                        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                      }
+                    }}
+                    className="bg-google-blue hover:bg-blue-650 dark:bg-zinc-800 dark:hover:bg-zinc-700/80 hover:scale-[1.02] border border-white/10 text-white px-7 py-3.5 rounded-2xl font-black text-sm transition-all shadow-xl active:scale-95 flex items-center justify-center gap-2 cursor-pointer"
                   >
                     {index === 0 && (
-                      <Phone className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-white animate-pulse" aria-hidden="true" />
+                      <Phone className="w-4.5 h-4.5 text-white animate-pulse" aria-hidden="true" />
                     )}
                     {index === 1 && (
-                      <FlaskConical className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-blue-200" aria-hidden="true" />
+                      <FlaskConical className="w-4.5 h-4.5 text-blue-200" aria-hidden="true" />
                     )}
                     {index === 2 && (
-                      <Calendar className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-green-200" aria-hidden="true" />
+                      <Calendar className="w-4.5 h-4.5 text-green-200" aria-hidden="true" />
                     )}
                     {index === 3 && (
-                      <ClipboardCheck className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-orange-200" aria-hidden="true" />
+                      <ClipboardCheck className="w-4.5 h-4.5 text-orange-200" aria-hidden="true" />
                     )}
                     {index === 4 && (
-                      <HeartPulse className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-pink-200" aria-hidden="true" />
+                      <HeartPulse className="w-4.5 h-4.5 text-pink-200" aria-hidden="true" />
                     )}
                     {img.cta}
                   </button>

@@ -14,8 +14,8 @@ const TestDetailPage = () => {
     const test = testMenu.find(t => t.code === testName || t.name === decodeURIComponent(testName || ''));
     
     useSEO({
-        title: test ? `${test.name} | Pathology Lab Mohali Home Collection | SRL Diagnostics Sector 69` : "Test Not Found | SRL Diagnostics Sector 69",
-        description: test ? `Book ${test.name} test at SRL Diagnostics Sector 69. Cost: ₹${test.mrp}. Expert Pathology Lab Mohali Home Collection available 24/7.` : "Medical diagnostic test at SRL Diagnostics Sector 69, Mohali.",
+        title: test ? `${test.name} Test | SRL Diagnostics Mohali` : "Test Not Found | SRL Diagnostics Mohali",
+        description: test ? `Book ${test.name} with SRL Diagnostics Mohali. Certified diagnostic analysis, quick online reports, and free Mohali home sample pickup. Cost: ₹${test.mrp}.` : "Medical diagnostic test at SRL Diagnostics Mohali.",
         canonicalUrl: test ? `/tests/${encodeURIComponent(testName || '')}` : undefined
     });
 
