@@ -1278,9 +1278,6 @@ export default function App() {
                     <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#202124]">
                       Agilus Diagnostics Sector 69 Mohali
                     </h1>
-                    <div className="text-sm font-medium text-google-grey/90 mt-1 md:mt-2 italic animate-pulse">
-                      (We test blood, not your patience. 🧛‍♂️)
-                    </div>
                     <div
                       onClick={() => {
                         window.open(
