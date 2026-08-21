@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link as RouterLink, useLocation } from 'react-router-dom';
-import { ArrowLeft, Clock, Droplets, Syringe, ClipboardList, Zap, Menu, Share2, Search, ShieldCheck } from "lucide-react";
+import { ArrowLeft, Clock, Droplets, Syringe, ClipboardList, Zap, Menu, Share2, Search } from "lucide-react";
 import { testMenu } from '../constants';
 import { LOCALIZATION } from '../localization';
 import { BottomNav } from '../components/BottomNav';

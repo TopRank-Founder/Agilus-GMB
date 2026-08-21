@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from "motion/react";
 import { useNavigate, Link as RouterLink, useLocation } from "react-router-dom";
 import { 
@@ -19,12 +19,7 @@ import {
   Search,
   CheckCircle2,
   X,
-  Calendar,
   MessageCircle,
-  Sparkles,
-  ClipboardCheck,
-  ChevronDown,
-  ChevronUp,
   Award as StarIcon,
   Info,
   Shield,

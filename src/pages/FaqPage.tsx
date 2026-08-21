@@ -1,9 +1,8 @@
-import React from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from "motion/react";
 import { useNavigate, Link as RouterLink, useLocation } from "react-router-dom";
 import { 
   ArrowLeft, 
-  MessageSquare, 
   ChevronDown,
   Menu,
   Share2,
@@ -16,7 +15,7 @@ import { useSEO } from "../hooks/useSEO";
 const FaqPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [openIndex, setOpenIndex] = React.useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   useSEO({
     title: "FAQs & Patient Support | SRL Diagnostics Mohali",
