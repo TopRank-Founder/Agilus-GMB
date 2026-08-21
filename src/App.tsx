@@ -755,11 +755,11 @@ export default function App() {
     const schemaData = {
       "@context": "https://schema.org",
       "@type": "MedicalBusiness",
-      name: "Agilus Diagnostics (formerly SRL) - Sector 69, Mohali",
-      alternateName: ["Agilus Diagnostics Mohali", "Agilus Diagnostics", "SRL Diagnostics Mohali", "SRL Lab Mohali", "Agilus Sector 69 Mohali"],
+      name: "SRL Diagnostics Mohali | Blood Test | Full Body Checkup | Pathology Lab",
+      alternateName: ["SRL Diagnostics Mohali", "Agilus Diagnostics Mohali", "SRL Lab Mohali", "Agilus Diagnostics Sector 69 Mohali", "SRL Sector 69 Mohali"],
       description:
-        "Agilus Diagnostics (formerly SRL) Sector 69, Mohali is an NABL certified pathology lab providing 24/7 home blood sample collection, pathology tests, and full body checkups.",
-      url: window.location.href,
+        "SRL Diagnostics Mohali (Agilus franchise partner) is an NABL certified pathology lab providing 24/7 home blood sample collection, pathology tests, and full body health checkup packages.",
+      url: "https://www.srlmohali.co.in",
       logo: "https://media.agilus.in/consumer-web/agilusLogo.png",
       image: "https://media.agilus.in/consumer-web/agilusLogo.png",
       telephone: "+919115459115",
@@ -810,8 +810,8 @@ export default function App() {
   }, []);
 
   useSEO({
-    title: "SRL Diagnostics Mohali | Premier Pathology Lab & Blood Tests",
-    description: "Book expert blood tests and medical diagnostics at SRL Diagnostics Mohali (formerly SRL Diagnostics). Fast reports and 24/7 hygienic free home sample pickup.",
+    title: "SRL Diagnostics Mohali | Blood Test | Full Body Checkup | Pathology Lab",
+    description: "Book certified blood tests, health packages & medical diagnostics at SRL Diagnostics Mohali (Agilus Diagnostics). Fast NABL reports & 24/7 free home collection in Mohali.",
     canonicalUrl: ""
   });
 
@@ -1276,7 +1276,7 @@ export default function App() {
                 <div>
                   <div className="flex flex-col lg:flex-row lg:items-center gap-2 mb-2">
                     <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#202124]">
-                      Agilus Diagnostics Sector 69 Mohali
+                      SRL Diagnostics Mohali | Blood Test | Full Body Checkup | Pathology Lab
                     </h1>
                     <div
                       onClick={() => {
@@ -1286,14 +1286,14 @@ export default function App() {
                           "noopener,noreferrer"
                         );
                       }}
-                      className="flex items-center bg-blue-50 hover:bg-blue-100 active:scale-95 transition-all cursor-pointer text-google-blue px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border border-google-blue/20 shadow-sm w-fit"
+                      className="flex items-center bg-blue-50 hover:bg-blue-100 active:scale-95 transition-all cursor-pointer text-google-blue px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border border-google-blue/20 shadow-sm w-fit shrink-0"
                     >
                       <ShieldCheck className="w-3 h-3 mr-1.5" />
                       Verified by Google
                     </div>
                   </div>
                   <p className="text-google-blue font-bold text-sm mb-3 underline decoration-google-blue/20 underline-offset-4">
-                    Blood Test | Full Body Checkup | Pathology Lab
+                    Authorized Diagnostic Franchise • NABL Certified Reporting • Free 24/7 Home Collection
                   </p>
                   <div className="flex flex-wrap items-center gap-3 select-none">
                     <div
@@ -1907,28 +1907,28 @@ export default function App() {
                             <div className="absolute -right-6 -top-6 w-24 h-24 rounded-full bg-white/20 blur-md pointer-events-none" />
                             <div className="absolute -left-6 -bottom-6 w-24 h-24 rounded-full bg-white/10 blur-sm pointer-events-none" />
                             
-                            <div className="flex items-center justify-between z-10 w-full animate-fade-in">
-                              <span className={`text-[9px] font-black tracking-widest uppercase px-2.5 py-1 rounded-md border ${pkg.badgeBg} ${pkg.badgeText} shadow-sm`}>
-                                {pkg.priceText}
-                              </span>
+                            <div className="flex items-center justify-between z-10 w-full animate-fade-in pr-8">
+                              <div className="flex items-center gap-1.5">
+                                <span className={`text-[10px] font-black tracking-wider uppercase px-2.5 py-1 rounded-md border ${pkg.badgeBg} ${pkg.badgeText} shadow-sm`}>
+                                  {pkg.priceText}
+                                </span>
+                                <span className="text-[9px] font-extrabold uppercase tracking-wider bg-white/90 text-google-blue px-2 py-1 rounded-md border border-white/50 shadow-xs">
+                                  NABL Approved
+                                </span>
+                              </div>
                               <div className="p-2 rounded-xl bg-white/70 backdrop-blur-md shadow-sm border border-white/30">
                                 <IconComponent className={`w-4 h-4 ${pkg.textColorClass}`} />
                               </div>
                             </div>
 
-                            <div className="z-10 mt-2">
+                            <div className="z-10 mt-auto pt-2">
                               <h4 className={`text-base font-extrabold tracking-tight leading-tight ${pkg.textColorClass} mb-1`}>
                                 {pkg.title}
                               </h4>
-                              <p className={`text-[10px] leading-snug font-semibold opacity-90 ${pkg.textColorClass} line-clamp-2`}>
+                              <p className={`text-[11px] leading-snug font-semibold opacity-90 ${pkg.textColorClass} line-clamp-2`}>
                                 {pkg.sub}
                               </p>
                             </div>
-                          </div>
-                          <div className="absolute bottom-4 left-4 z-10 pointer-events-none">
-                            <span className="bg-google-blue text-white text-[9px] font-black px-3 py-1.5 rounded-lg shadow-xl tracking-[0.2em] uppercase border border-white/20 select-none">
-                              NABL QUALITY APPROVED
-                            </span>
                           </div>
                         </div>
 

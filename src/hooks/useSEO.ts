@@ -35,7 +35,7 @@ export const useSEO = ({ title, description, canonicalUrl }: SEOProps) => {
     }
 
     // Update canonical tag
-    const baseUrl = "https://srllabmohali.in";
+    const baseUrl = "https://www.srlmohali.co.in";
     const fullCanonical = canonicalUrl ? `${baseUrl}${canonicalUrl}` : baseUrl;
     let canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) {

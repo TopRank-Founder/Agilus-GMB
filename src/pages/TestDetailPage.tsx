@@ -31,11 +31,11 @@ const TestDetailPage = () => {
             "@context": "https://schema.org",
             "@type": "MedicalTest",
             "name": test.name,
-            "description": `Diagnostic test ${test.name} at SRL Diagnostics Sector 69 | Pathology Lab Mohali Home Collection. Cost: ₹${test.mrp}, Sample: ${test.sample}, Preparation: ${test.preparation}.`,
+            "description": `Diagnostic test ${test.name} at SRL Diagnostics Mohali | Pathology Lab & Home Collection. Cost: ₹${test.mrp}, Sample: ${test.sample}, Preparation: ${test.preparation}.`,
             "provider": {
                 "@type": "MedicalClinic",
-                "name": "SRL Diagnostics Sector 69",
-                "url": "https://reports.agilus.in/secure/login.aspx",
+                "name": "SRL Diagnostics Mohali",
+                "url": "https://www.srlmohali.co.in",
                 "telephone": "+919115459115",
                 "priceRange": "$$",
                 "address": {

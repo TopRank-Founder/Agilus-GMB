@@ -18,8 +18,8 @@ const FaqPage = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   useSEO({
-    title: "FAQs & Patient Support | SRL Diagnostics Mohali",
-    description: "Get clear answers to FAQs about test reports, blood home collection, and pricing specs at SRL Diagnostics Mohali, your trusted pathology lab in Mohali.",
+    title: "Frequently Asked Questions | SRL Diagnostics Mohali",
+    description: "Find clear answers on blood test preparation, NABL report delivery via WhatsApp/Email, pricing, and home sample collection at SRL Diagnostics Mohali.",
     canonicalUrl: "/faq"
   });
   

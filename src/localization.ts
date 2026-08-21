@@ -32,13 +32,13 @@ export const LOCALIZATION = {
   // Contact & Location Details
   CONTACT: {
     PHONE_NUMBER: "+919115459115",
-    EMAIL: "info@srllabmohali.in",
+    EMAIL: "info@srlmohali.co.in",
     ADDRESS:
       "Booth No. 12, GMADA Market, Near Gurukul World School, Sector 69, Mohali, Punjab 160069",
     DIRECTIONS_URL: "https://maps.app.goo.gl/cjZ9Zjs4n3BWewWQ9",
     SHARE_URL: "https://maps.app.goo.gl/49GEMYGUA2JW2aGf7",
     REVIEW_URL: "https://g.page/r/CXvFg4NydNIhEBM/review",
-    WEBSITE_URL: "https://www.srllabmohali.in",
+    WEBSITE_URL: "https://www.srlmohali.co.in",
   },
 
   // Navigation Items

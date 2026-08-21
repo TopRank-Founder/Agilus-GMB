@@ -18,8 +18,8 @@ const AboutPage = () => {
   const location = useLocation();
 
   useSEO({
-    title: "About SRL Diagnostics Mohali | Trusted Pathology Lab",
-    description: "Discover SRL Diagnostics Mohali, a premier authorized lab franchise. Offering certified diagnostic tests, expert services, and reliable home blood sample collection.",
+    title: "About Us | SRL Diagnostics Mohali | Premier Pathology Lab",
+    description: "Learn about SRL Diagnostics Mohali (Agilus Diagnostics franchise partner). 25+ years of diagnostic trust, NABL-certified reporting & dedicated doorstep blood collection.",
     canonicalUrl: "/about"
   });
 

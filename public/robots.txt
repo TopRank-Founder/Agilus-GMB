@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://srllabmohali.in/sitemap.xml
+Sitemap: https://www.srlmohali.co.in/sitemap.xml

@@ -36,8 +36,8 @@ const ServicesPage = () => {
   const [inclusionsGender, setInclusionsGender] = useState<"men" | "women">("men");
 
   useSEO({
-    title: "Diagnostic Services & Blood Tests | SRL Diagnostics Mohali",
-    description: "Explore our comprehensive range of blood tests and packages at SRL Diagnostics Mohali. Accurate medical diagnostics with convenient home sample pickup.",
+    title: "Diagnostic Tests & Health Packages | SRL Diagnostics Mohali",
+    description: "Explore all blood tests, organ panels & full body checkup packages at SRL Diagnostics Mohali. Fast turnaround, NABL certified reporting and free home pickup.",
     canonicalUrl: "/services"
   });
 
