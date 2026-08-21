@@ -1,20 +1,66 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# SRL Diagnostics Mohali (Agilus Partner) - Web Application
 
-# Run and deploy your AI Studio app
+Authorized partner booking portal and web application for SRL / Agilus Diagnostics Mohali, featuring dynamic test cataloging, home collection scheduling, package comparisons, and direct WhatsApp / call bookings.
 
-This contains everything you need to run your app locally.
+## 🚀 Getting Started Locally
 
-View your app in AI Studio: https://ai.studio/apps/7904cb7b-a812-40c9-8d3d-6afde7780876
+### Prerequisites
+- **Node.js**: v18 or higher
+- **npm**: v9 or higher
 
-## Run Locally
+### Installation & Development
+1. **Clone or Download the Repository:**
+   ```bash
+   git clone <your-repository-url>
+   cd srllabmohali
+   ```
 
-**Prerequisites:**  Node.js
+2. **Install Dependencies:**
+   ```bash
+   npm install
+   ```
 
+3. **Environment Setup:**
+   Copy `.env.example` to `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+   Add your Gemini API key or any required secrets in `.env`.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+4. **Start Development Server:**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## 📦 Build & Production
+
+- **Build for production:**
+  ```bash
+  npm run build
+  ```
+- **Start production server:**
+  ```bash
+  npm run start
+  ```
+- **Lint & Type-check:**
+  ```bash
+  npm run lint
+  ```
+
+## 🔄 Updating Changes via GitHub
+
+When updating changes directly via Git/GitHub:
+```bash
+# Check status of changed files
+git status
+
+# Stage all changes
+git add .
+
+# Commit your changes
+git commit -m "Update site configurations and assets"
+
+# Push to your repository
+git push origin main
+```
