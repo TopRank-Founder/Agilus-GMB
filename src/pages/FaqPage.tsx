@@ -100,10 +100,10 @@ const FaqPage = () => {
               FAQs
             </RouterLink>
             <RouterLink
-              to="/booking"
-              className={`text-[13px] xl:text-sm font-bold tracking-tight transition-all duration-155 hover:text-google-blue relative py-1.5 ${location.pathname === '/booking' ? 'text-google-blue border-b-2 border-google-blue' : 'text-google-grey dark:text-gray-300'}`}
+              to="/home-collection"
+              className={`text-[13px] xl:text-sm font-bold tracking-tight transition-all duration-155 hover:text-google-blue relative py-1.5 ${location.pathname === '/home-collection' ? 'text-google-blue border-b-2 border-google-blue' : 'text-google-grey dark:text-gray-300'}`}
             >
-              Book Home Collection
+              Home Collection
             </RouterLink>
           </nav>
 

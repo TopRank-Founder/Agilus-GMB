@@ -28,6 +28,7 @@ import reg9 from "./assets/images/agilus_hematology_exhibition_1781037187742.png
 import reg10 from "./assets/images/agilus_cancer_summit_1781037207277.png";
 import reg11 from "./assets/images/agilus_mohali_reception_1781037226406.png";
 import { AgilusLogo } from "./components/AgilusLogo";
+import { Footer } from "./components/Footer";
 import { Image } from "./components/Image";
 import { optimizeGmbImage } from "./utils/image";
 import agilusLogo from "./assets/images/agilusLogo.png";
@@ -91,6 +92,7 @@ import {
   ArrowUpDown,
   ArrowUp,
   ArrowDown,
+  Truck,
 } from "lucide-react";
 import React, { useState, useMemo, useEffect, useRef } from "react";
 
@@ -458,35 +460,108 @@ const curatedTestimonials = [
   },
 ];
 
-const ALL_FAQS = [
+const ALL_FAQS: Array<{ question: string; answer: React.ReactNode }> = [
   {
     question: "Do you offer home collection in Mohali?",
-    answer: "Yes, we offer 24/7 complimentary home collection services across Mohali (including Sector 69, 70, 71, and all major phases), Chandigarh, and Kharar. Our certified phlebotomists follow strict hygiene and safety protocols to ensure a painless experience right at your doorstep."
+    answer: (
+      <span>
+        Yes, we offer 24/7 complimentary{" "}
+        <RouterLink
+          to="/home-collection"
+          className="text-google-blue font-bold hover:underline"
+        >
+          blood test home collection in Mohali
+        </RouterLink>{" "}
+        (covering Sector 69, 70, 71, 68, Phase 1 to 11, and Kharar). Our certified phlebotomists follow strict zero-contamination cold-chain protocols to ensure a painless experience right at your doorstep.
+      </span>
+    ),
   },
   {
     question: "How can I book an appointment?",
-    answer: "Booking is extremely simple. You can call or WhatsApp us directly at +91 91154 59115, use the appointment forms on this website, click 'Book Online' on our specialized test menu, or walk in to our collection center in Sector 69, Mohali."
+    answer: (
+      <span>
+        Booking is fast and easy. You can{" "}
+        <RouterLink
+          to="/home-collection"
+          className="text-google-blue font-bold hover:underline"
+        >
+          book home sample pickup online
+        </RouterLink>
+        , call or WhatsApp us directly at +91 91154 59115, or explore our complete catalog of{" "}
+        <RouterLink
+          to="/services"
+          className="text-google-blue font-bold hover:underline"
+        >
+          diagnostic services in Mohali
+        </RouterLink>{" "}
+        to select your tests.
+      </span>
+    ),
   },
   {
     question: "When will I get my blood test reports?",
-    answer: "Most routine reports (like CBC, Liver Function Test (LFT), Kidney Function Test (KFT), Lipid Profile, or Diabetes Screening) are processed within 6 to 12 hours. Advanced molecular or culture tests may take 24 to 48 hours. You will receive them instantly on WhatsApp, registered email, and through our secure online portal."
+    answer: (
+      <span>
+        Most routine tests (like Complete Blood Count, Liver Function Test (LFT), Kidney Function Test (KFT), Lipid Profile, or Diabetes Screening) are processed within 6 to 12 hours. Advanced molecular or culture tests may take 24 to 48 hours. Digital reports verified under{" "}
+        <RouterLink
+          to="/about"
+          className="text-google-blue font-bold hover:underline"
+        >
+          NABL accredited lab standards
+        </RouterLink>{" "}
+        are sent directly to your WhatsApp and email.
+      </span>
+    ),
   },
   {
     question: "Are you open on Sundays and Holidays?",
-    answer: "Yes, SRL Diagnostics (Agilus) Mohali is open 24 hours, 7 days a week, including all Sundays and public holidays for urgent clinical diagnostics, home blood collection, and reporting."
+    answer: "Yes, SRL Diagnostics (Agilus) Mohali is open 24 hours, 7 days a week, including all Sundays and public holidays for urgent clinical diagnostics, home blood collection, and reporting.",
   },
   {
     question: "Is SRL Diagnostics now Agilus Diagnostics?",
-    answer: "Yes, SRL Diagnostics has officially rebranded to Agilus Diagnostics. Our commitment to absolute accuracy, world-class pathology services, state-of-the-art laboratory automation, and NABL-accredited standards remains exactly the same under the new name."
+    answer: (
+      <span>
+        Yes, SRL Diagnostics has officially rebranded to Agilus Diagnostics. Our commitment to absolute accuracy, world-class pathology services, state-of-the-art laboratory automation, and NABL-accredited standards remains exactly the same. Read more on our{" "}
+        <RouterLink
+          to="/about"
+          className="text-google-blue font-bold hover:underline"
+        >
+          About SRL Agilus Mohali
+        </RouterLink>{" "}
+        page.
+      </span>
+    ),
   },
   {
     question: "Is home sample collection free in Mohali?",
-    answer: "Yes, home sample collection is entirely free of charge within Mohali. There are no convenience fees or hidden charges for sample collection at your residence or office."
+    answer: (
+      <span>
+        Yes, home sample collection is entirely free of charge within Mohali. There are no convenience fees or hidden charges for sample collection at your residence or office. You can{" "}
+        <RouterLink
+          to="/home-collection"
+          className="text-google-blue font-bold hover:underline"
+        >
+          schedule doorstep collection now
+        </RouterLink>
+        .
+      </span>
+    ),
   },
   {
     question: "Are you an NABL accredited lab?",
-    answer: "Yes, our Mohali Sector 69 diagnostic facility is fully NABL accredited. This ensures that our laboratory devices, pathologists, test procedures, and reports meet high national and international regulatory standards for competence, clinical precision, and quality."
-  }
+    answer: (
+      <span>
+        Yes, our Mohali Sector 69 diagnostic facility is fully NABL accredited. Learn more about our quality control benchmarks on our{" "}
+        <RouterLink
+          to="/about"
+          className="text-google-blue font-bold hover:underline"
+        >
+          quality standards & certifications page
+        </RouterLink>
+        .
+      </span>
+    ),
+  },
 ];
 
 export default function App() {
@@ -1154,10 +1229,10 @@ export default function App() {
               FAQs
             </RouterLink>
             <RouterLink
-              to="/booking"
-              className={`text-[13px] xl:text-sm font-bold tracking-tight transition-all duration-155 hover:text-google-blue relative py-1.5 ${location.pathname === '/booking' ? 'text-google-blue border-b-2 border-google-blue' : 'text-google-grey'}`}
+              to="/home-collection"
+              className={`text-[13px] xl:text-sm font-bold tracking-tight transition-all duration-155 hover:text-google-blue relative py-1.5 ${location.pathname === '/home-collection' ? 'text-google-blue border-b-2 border-google-blue' : 'text-google-grey'}`}
             >
-              Book Home Collection
+              Home Collection
             </RouterLink>
           </nav>
 
@@ -1214,35 +1289,53 @@ export default function App() {
               role="tablist"
             >
               {[
-                { id: "overview", label: "Overview", icon: House },
-                { id: "services", label: "Services", icon: FlaskConical },
-                { id: "reviews", label: "Reviews", icon: Star },
-                { id: "about", label: "About", icon: Info },
+                { id: "overview", label: "Overview", icon: House, isRoute: false },
+                { id: "home-collection", label: "Home Collection", icon: Truck, isRoute: true, route: "/home-collection", badge: "24/7 Free" },
+                { id: "services", label: "Services", icon: FlaskConical, isRoute: false },
+                { id: "reviews", label: "Reviews", icon: Star, isRoute: false },
+                { id: "about", label: "About", icon: Info, isRoute: false },
               ].map((tab) => (
-                <button
-                  key={tab.id}
-                  id={`${tab.id}-tab`}
-                  role="tab"
-                  aria-selected={activeTab === tab.id}
-                  aria-controls={`${tab.id}-panel`}
-                  onClick={() => {
-                    setActiveTab(tab.id as any);
-                    const el = document.getElementById(tab.id);
-                    if (el)
-                      el.scrollIntoView({ behavior: "smooth", block: "start" });
-                  }}
-                  className={`flex items-center gap-1.5 md:gap-2 py-2 md:py-3 px-3 md:px-6 rounded-lg transition-all whitespace-nowrap text-xs sm:text-[13px] md:text-sm font-semibold tracking-tight ${
-                    activeTab === tab.id
-                      ? "text-blue-600 bg-blue-50"
-                      : "text-gray-600 hover:bg-gray-100"
-                  }`}
-                >
-                  <tab.icon
-                    className={`w-3.5 h-3.5 md:w-4 md:h-4 ${activeTab === tab.id ? "text-blue-600" : "text-gray-500"}`}
-                    aria-hidden="true"
-                  />
-                  {tab.label}
-                </button>
+                tab.isRoute ? (
+                  <RouterLink
+                    key={tab.id}
+                    id={`${tab.id}-tab`}
+                    to={tab.route!}
+                    className="flex items-center gap-1.5 md:gap-2 py-2 md:py-2.5 px-3 md:px-5 rounded-xl transition-all whitespace-nowrap text-xs sm:text-[13px] md:text-sm font-bold tracking-tight text-google-blue bg-blue-50/80 hover:bg-blue-100/80 border border-blue-200/60 shadow-2xs hover:scale-[1.02] active:scale-95 shrink-0"
+                  >
+                    <tab.icon className="w-3.5 h-3.5 md:w-4 md:h-4 text-google-blue" aria-hidden="true" />
+                    <span>{tab.label}</span>
+                    {tab.badge && (
+                      <span className="bg-google-blue text-white text-[9px] font-black px-1.5 py-0.5 rounded-md uppercase tracking-wider">
+                        {tab.badge}
+                      </span>
+                    )}
+                  </RouterLink>
+                ) : (
+                  <button
+                    key={tab.id}
+                    id={`${tab.id}-tab`}
+                    role="tab"
+                    aria-selected={activeTab === tab.id}
+                    aria-controls={`${tab.id}-panel`}
+                    onClick={() => {
+                      setActiveTab(tab.id as any);
+                      const el = document.getElementById(tab.id);
+                      if (el)
+                        el.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }}
+                    className={`flex items-center gap-1.5 md:gap-2 py-2 md:py-2.5 px-3 md:px-5 rounded-xl transition-all whitespace-nowrap text-xs sm:text-[13px] md:text-sm font-semibold tracking-tight shrink-0 ${
+                      activeTab === tab.id
+                        ? "text-blue-600 bg-blue-50 font-bold border border-blue-200/50 shadow-2xs"
+                        : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                    }`}
+                  >
+                    <tab.icon
+                      className={`w-3.5 h-3.5 md:w-4 md:h-4 ${activeTab === tab.id ? "text-blue-600" : "text-gray-500"}`}
+                      aria-hidden="true"
+                    />
+                    {tab.label}
+                  </button>
+                )
               ))}
             </div>
           </nav>
@@ -1324,6 +1417,25 @@ export default function App() {
                     <span className="text-sm text-google-grey">
                       Open 24 Hours
                     </span>
+                  </div>
+
+                  {/* Contextual Internal Link Banner */}
+                  <div className="mt-4 pt-3 border-t border-google-border/60 text-xs sm:text-[13px] text-gray-600 leading-relaxed">
+                    Looking for convenient doorstep testing? Schedule a{" "}
+                    <RouterLink
+                      to="/home-collection"
+                      className="text-google-blue font-bold hover:underline inline-flex items-center gap-0.5"
+                    >
+                      blood test home collection in Mohali
+                    </RouterLink>{" "}
+                    with zero convenience fees, certified phlebotomists, and WhatsApp report delivery. You can also view our full catalog of{" "}
+                    <RouterLink
+                      to="/services"
+                      className="text-google-blue font-bold hover:underline inline-flex items-center gap-0.5"
+                    >
+                      diagnostic services in Mohali
+                    </RouterLink>
+                    .
                   </div>
                 </div>
               </div>
@@ -2007,6 +2119,37 @@ export default function App() {
                     aria-label={`Show package ${idx + 1}`}
                   />
                 ))}
+              </div>
+
+              {/* Internal Link Bridge: At-Home Sample Collection & All Services */}
+              <div className="mt-5 p-4 md:p-5 rounded-2xl bg-gradient-to-r from-blue-50/80 via-indigo-50/50 to-emerald-50/60 border border-blue-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className="flex items-center gap-3 text-left">
+                  <div className="w-10 h-10 rounded-xl bg-google-blue text-white flex items-center justify-center shrink-0 shadow-sm">
+                    <Truck className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="text-xs sm:text-sm font-extrabold text-gray-900">
+                      All packages include Free Blood Test Home Collection in Mohali
+                    </h4>
+                    <p className="text-[11px] text-gray-600 font-medium">
+                      Certified phlebotomists, sterile sealed kits, and fast reports directly on WhatsApp.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 shrink-0 w-full sm:w-auto">
+                  <RouterLink
+                    to="/home-collection"
+                    className="flex-1 sm:flex-none px-4 py-2 bg-google-blue text-white text-xs font-bold rounded-full hover:bg-blue-700 transition-all text-center shadow-xs whitespace-nowrap"
+                  >
+                    Book Home Pickup
+                  </RouterLink>
+                  <RouterLink
+                    to="/services"
+                    className="flex-1 sm:flex-none px-4 py-2 bg-white text-google-blue border border-google-blue/30 text-xs font-bold rounded-full hover:bg-blue-50 transition-all text-center whitespace-nowrap"
+                  >
+                    View All Tests
+                  </RouterLink>
+                </div>
               </div>
             </section>
 
@@ -3688,72 +3831,7 @@ export default function App() {
         </button>
       </div>
 
-      <div className="w-full h-[3px] bg-gradient-to-r from-google-blue via-[#17b978] to-[#ff8a00] opacity-80" />
-      <footer className="bg-[#0c0d0f] text-white pt-10 pb-24 md:pb-8 px-4 md:px-8 border-t border-white/5 relative">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-google-blue/5 rounded-full blur-[100px] pointer-events-none" />
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-8">
-            {/* Column 1: Brand */}
-            <div className="space-y-4">
-              <AgilusLogo variant="white" className="h-7 w-auto" />
-              <p className="text-xs text-google-grey leading-relaxed pr-4">
-                Agilus Diagnostics (formerly SRL) is Mohali's premier pathology center in Sector 69. Offering NABL standard clinical integrity and seamless 24/7 free home blood sample collection.
-              </p>
-              <div className="flex items-center gap-2.5 pt-1 text-xs">
-                 <a href="https://www.instagram.com/srl_lab_mohali_home_collection/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-[#E1306C] text-white transition-colors"><Instagram className="w-4 h-4"/></a>
-                 <a href="https://www.facebook.com/SRLLabMohali/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-[#1877F2] text-white transition-colors"><Facebook className="w-4 h-4"/></a>
-                 <a href="https://maps.app.goo.gl/tPN5MedC4LLAbe4P8" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-google-blue text-white transition-colors"><MapPin className="w-4 h-4"/></a>
-              </div>
-            </div>
-
-            {/* Column 2: Easy Booking (Intentive) */}
-            <div className="space-y-4">
-               <p className="text-[11px] font-black uppercase tracking-widest text-white border-l-2 border-agilus-green pl-2">
-                Quick Booking
-              </p>
-              <div className="flex flex-col gap-3">
-                <button onClick={handleWhatsApp} className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-agilus-green hover:bg-agilus-green/90 text-white font-bold text-sm transition-transform hover:-translate-y-0.5 active:scale-[0.98] cursor-pointer shadow-sm">
-                  <Smartphone className="w-4 h-4" /> Book Home Collection
-                </button>
-                <button onClick={handleCall} className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-sm transition-transform hover:-translate-y-0.5 active:scale-[0.98] cursor-pointer">
-                  <Phone className="w-4 h-4" /> +91 91154 59115
-                </button>
-              </div>
-            </div>
-
-            {/* Column 3: Address & Info */}
-            <div className="space-y-4">
-              <p className="text-[11px] font-black uppercase tracking-widest text-white border-l-2 border-google-blue pl-2">
-                Visit Us
-              </p>
-              <div className="space-y-3.5 text-xs text-google-grey flex flex-col">
-                <div onClick={handleDirection} className="flex items-start gap-3 cursor-pointer hover:text-white transition-colors group">
-                  <MapPin className="w-4 h-4 text-google-blue shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
-                  <span className="leading-relaxed">Booth 12, Gmada Market, Near Gurukul School, Sector 69, Mohali</span>
-                </div>
-                <div className="flex items-center gap-3 font-semibold">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                  <span>NABL Accredited & ISO Certified Lab</span>
-                </div>
-                <a href="https://reports.agilus.in/secure/login.aspx" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 w-fit text-google-blue hover:text-white font-bold transition-colors pt-1 hover:underline underline-offset-4 cursor-pointer">
-                  <Download className="w-4 h-4" /> Download Patient Reports
-                </a>
-              </div>
-            </div>
-            
-          </div>
-
-          <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
-            <p className="text-[11px] text-google-grey select-none hover:text-white transition-colors cursor-default">
-              © {new Date().getFullYear()} TopRank Health Care. Aurthorised Partner of Agilus Diagnostics Formerly SRL, Mohali.
-            </p>
-            <div className="flex gap-5 text-[10px] font-bold text-google-grey uppercase tracking-widest">
-              <a href="#" className="hover:text-white transition-colors">Privacy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms</a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
       {/* Premium High-Conversion Sidebar (Mobile) */}
       <motion.div
@@ -3797,7 +3875,7 @@ export default function App() {
   );
 }
 
-const FaqItem: React.FC<{ question: string; answer: string }> = ({
+const FaqItem: React.FC<{ question: string; answer: React.ReactNode }> = ({
   question,
   answer,
 }) => {
@@ -3839,9 +3917,9 @@ const FaqItem: React.FC<{ question: string; answer: string }> = ({
             transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
             className="overflow-hidden"
           >
-            <p className="pb-4 pt-1 text-xs sm:text-sm text-gray-700 dark:text-gray-300 leading-relaxed font-semibold">
+            <div className="pb-4 pt-1 text-xs sm:text-sm text-gray-700 dark:text-gray-300 leading-relaxed font-semibold">
               {answer}
-            </p>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

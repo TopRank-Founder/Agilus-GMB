@@ -7,7 +7,8 @@ import {
   MessageCircle, 
   CalendarPlus, 
   ChevronUp, 
-  X 
+  X,
+  Truck
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { LOCALIZATION } from "../localization";
@@ -204,17 +205,40 @@ export const BottomNav: React.FC<BottomNavProps> = ({
           </span>
         </button>
 
+        {/* Home Collection Direct Button */}
+        <button
+          onClick={() => {
+            setIsActionsOpen(false);
+            navigate("/home-collection");
+          }}
+          className={`flex flex-col items-center justify-center min-h-[48px] min-w-[48px] p-2 transition-colors relative ${
+            location.pathname === "/home-collection"
+              ? "text-google-blue dark:text-blue-400 font-bold"
+              : "text-google-grey dark:text-zinc-400 hover:text-google-blue"
+          }`}
+        >
+          <span className="absolute -top-1 right-1 bg-google-blue text-white text-[8px] font-black px-1 rounded-full animate-pulse uppercase">
+            Free
+          </span>
+          <Truck
+            className={`w-6 h-6 ${location.pathname === "/home-collection" ? "text-google-blue dark:text-blue-400" : ""}`}
+          />
+          <span className="text-[10px] font-black mt-1 uppercase tracking-wider whitespace-nowrap">
+            Pickup
+          </span>
+        </button>
+
         {/* Services Tab Button */}
         <button
           onClick={() => handleTabClick("services")}
           className={`flex flex-col items-center justify-center min-h-[48px] min-w-[48px] p-2 transition-colors ${
-            activeTab === "services" && !isActionsOpen
+            activeTab === "services" && !isActionsOpen && location.pathname !== "/home-collection"
               ? "text-google-blue dark:text-blue-400"
               : "text-google-grey dark:text-zinc-400 hover:text-google-blue"
           }`}
         >
           <Stethoscope
-            className={`w-6 h-6 ${activeTab === "services" && !isActionsOpen ? "fill-blue-50 dark:fill-blue-950/35" : ""}`}
+            className={`w-6 h-6 ${activeTab === "services" && !isActionsOpen && location.pathname !== "/home-collection" ? "fill-blue-50 dark:fill-blue-950/35" : ""}`}
           />
           <span className="text-[10px] font-black mt-1 uppercase tracking-wider">
             Services

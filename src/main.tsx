@@ -62,6 +62,7 @@ const ServicesPage = lazy(() => import('./pages/ServicesPage'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
 const FaqPage = lazy(() => import('./pages/FaqPage'));
 const BookingPage = lazy(() => import('./pages/BookingPage'));
+const HomeCollectionPage = lazy(() => import('./pages/HomeCollectionPage'));
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -86,6 +87,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="/about" element={<AboutPage />} />
           <Route path="/faq" element={<FaqPage />} />
           <Route path="/booking" element={<BookingPage />} />
+          <Route path="/home-collection" element={<HomeCollectionPage />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

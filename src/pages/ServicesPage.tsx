@@ -23,9 +23,12 @@ import {
   Award as StarIcon,
   Info,
   Shield,
+  Truck,
 } from "lucide-react";
 import { LOCALIZATION } from '../localization';
 import { AgilusLogo } from "../components/AgilusLogo";
+import { Footer } from "../components/Footer";
+import { Breadcrumbs } from "../components/Breadcrumbs";
 import { useSEO } from "../hooks/useSEO";
 import { LAB_WELLNESS_PACKAGES, WellnessPackage } from "../data/wellnessPackages";
 
@@ -169,10 +172,10 @@ const ServicesPage = () => {
               FAQs
             </RouterLink>
             <RouterLink
-              to="/booking"
-              className={`text-[13px] xl:text-sm font-bold tracking-tight transition-all duration-155 hover:text-google-blue relative py-1.5 ${location.pathname === '/booking' ? 'text-google-blue border-b-2 border-google-blue' : 'text-google-grey dark:text-gray-300'}`}
+              to="/home-collection"
+              className={`text-[13px] xl:text-sm font-bold tracking-tight transition-all duration-155 hover:text-google-blue relative py-1.5 ${location.pathname === '/home-collection' ? 'text-google-blue border-b-2 border-google-blue' : 'text-google-grey dark:text-gray-300'}`}
             >
-              Book Home Collection
+              Home Collection
             </RouterLink>
           </nav>
 
@@ -217,14 +220,39 @@ const ServicesPage = () => {
         </div>
       </header>
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
-        <div className="border-b border-gray-100 dark:border-zinc-800 pb-8 mb-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+        <Breadcrumbs items={[{ name: 'Diagnostic Services in Mohali', url: '/services' }]} className="mb-4" />
+
+        <div className="border-b border-gray-100 dark:border-zinc-800 pb-8 mb-8">
           <h1 className="text-4xl sm:text-5xl font-black mb-4 text-[#1a1c1e] dark:text-white tracking-tight">
             Our Diagnostic Services
           </h1>
           <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-3xl leading-relaxed">
             {LOCALIZATION.BRAND.NAME} Mohali offers a comprehensive suite of highly accredited clinical pathology services. Utilizing advanced MNC-standard diagnostic automation and robotic processes, we assure the highest level of laboratory precision and safety.
           </p>
+        </div>
+
+        {/* Contextual SEO Link Banner to Home Collection */}
+        <div className="mb-10 p-5 rounded-2xl bg-gradient-to-r from-blue-50/90 via-indigo-50/50 to-emerald-50/70 dark:from-zinc-850 dark:to-zinc-800 border border-blue-100 dark:border-zinc-700 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xs">
+          <div className="flex items-center gap-3.5 text-left">
+            <div className="w-12 h-12 rounded-xl bg-google-blue text-white flex items-center justify-center shrink-0 shadow-md">
+              <Truck className="w-6 h-6" />
+            </div>
+            <div>
+              <h2 className="text-sm sm:text-base font-extrabold text-gray-900 dark:text-white">
+                Need Blood Sample Collection from Home in Mohali?
+              </h2>
+              <p className="text-xs sm:text-[13px] text-gray-600 dark:text-gray-300 mt-0.5">
+                All individual blood tests and health checkup packages are covered under 24/7 free doorstep collection across Sector 68-71, Phase 1-11, and Kharar.
+              </p>
+            </div>
+          </div>
+          <RouterLink
+            to="/home-collection"
+            className="px-5 py-2.5 bg-google-blue text-white text-xs font-bold rounded-full hover:bg-blue-700 transition-all text-center whitespace-nowrap shadow-sm shrink-0"
+          >
+            Book Home Collection →
+          </RouterLink>
         </div>
 
         {/* Services Grid */}
@@ -234,27 +262,41 @@ const ServicesPage = () => {
           animate="show"
           className="grid grid-cols-1 md:grid-cols-2 gap-6"
         >
-          {services.map((service, idx) => (
-            <motion.div 
-              key={idx} 
-              variants={itemVariants}
-              onClick={() => navigate('/')}
-              className="p-6 border border-gray-200/80 dark:border-zinc-800 bg-white dark:bg-[#1f2023] rounded-2xl shadow-sm hover:shadow-lg dark:hover:shadow-zinc-950/20 hover:border-google-blue/30 dark:hover:border-google-blue/40 transition-all duration-300 flex items-start gap-5 cursor-pointer group"
-            >
-              <div className={`w-12 h-12 rounded-xl ${service.bgClass} flex items-center justify-center shrink-0`}>
-                <service.icon className={`w-6 h-6 ${service.color} transition-transform group-hover:scale-110 duration-300`} />
-              </div>
-              <div className="flex-1 min-w-0">
-                <h3 className="text-lg sm:text-xl font-extrabold text-[#1a1c1e] dark:text-white mb-1.5 flex items-center gap-1.5 group-hover:text-google-blue dark:group-hover:text-[#4da9ad] transition-colors">
-                  {service.name}
-                  <ChevronRight className="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
-                </h3>
-                <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 leading-relaxed font-medium">
-                  {service.desc}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+          {services.map((service, idx) => {
+            const isHomeCollection = service.name === "Blood Test Home Collection";
+            const targetUrl = isHomeCollection ? "/home-collection" : "/booking";
+
+            return (
+              <motion.div 
+                key={idx} 
+                variants={itemVariants}
+                onClick={() => navigate(targetUrl)}
+                className="p-6 border border-gray-200/80 dark:border-zinc-800 bg-white dark:bg-[#1f2023] rounded-2xl shadow-sm hover:shadow-lg dark:hover:shadow-zinc-950/20 hover:border-google-blue/30 dark:hover:border-google-blue/40 transition-all duration-300 flex items-start gap-5 cursor-pointer group"
+              >
+                <div className={`w-12 h-12 rounded-xl ${service.bgClass} flex items-center justify-center shrink-0`}>
+                  <service.icon className={`w-6 h-6 ${service.color} transition-transform group-hover:scale-110 duration-300`} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-lg sm:text-xl font-extrabold text-[#1a1c1e] dark:text-white mb-1.5 flex items-center gap-1.5 group-hover:text-google-blue dark:group-hover:text-[#4da9ad] transition-colors">
+                    {service.name}
+                    <ChevronRight className="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
+                  </h3>
+                  <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 leading-relaxed font-medium">
+                    {service.desc}
+                  </p>
+                  {isHomeCollection && (
+                    <RouterLink
+                      to="/home-collection"
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center gap-1 mt-3 text-xs font-bold text-google-blue dark:text-blue-400 hover:underline"
+                    >
+                      Explore Home Collection Details →
+                    </RouterLink>
+                  )}
+                </div>
+              </motion.div>
+            );
+          })}
         </motion.div>
 
         {/* Fullbody Health Packages Section */}
@@ -511,6 +553,11 @@ const ServicesPage = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* SEO Topical Linking Footer */}
+      <div className="mt-16">
+        <Footer />
       </div>
     </div>
   );

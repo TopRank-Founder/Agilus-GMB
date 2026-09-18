@@ -7,10 +7,14 @@ import {
   Heart,
   Menu,
   Share2,
-  Search
+  Search,
+  Truck,
+  ArrowRight
 } from "lucide-react";
 import { LOCALIZATION } from '../localization';
 import { AgilusLogo } from "../components/AgilusLogo";
+import { Breadcrumbs } from "../components/Breadcrumbs";
+import { Footer } from "../components/Footer";
 import { useSEO } from "../hooks/useSEO";
 
 const AboutPage = () => {
@@ -77,10 +81,10 @@ const AboutPage = () => {
               FAQs
             </RouterLink>
             <RouterLink
-              to="/booking"
-              className={`text-[13px] xl:text-sm font-bold tracking-tight transition-all duration-155 hover:text-google-blue relative py-1.5 ${location.pathname === '/booking' ? 'text-google-blue border-b-2 border-google-blue' : 'text-google-grey dark:text-gray-300'}`}
+              to="/home-collection"
+              className={`text-[13px] xl:text-sm font-bold tracking-tight transition-all duration-155 hover:text-google-blue relative py-1.5 ${location.pathname === '/home-collection' ? 'text-google-blue border-b-2 border-google-blue' : 'text-google-grey dark:text-gray-300'}`}
             >
-              Book Home Collection
+              Home Collection
             </RouterLink>
           </nav>
 
@@ -125,7 +129,9 @@ const AboutPage = () => {
         </div>
       </header>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+        <Breadcrumbs items={[{ name: 'About Us', url: '/about' }]} className="mb-4" />
+
         <motion.div 
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -147,7 +153,11 @@ const AboutPage = () => {
           className="space-y-8 text-gray-700 dark:text-gray-300 text-base sm:text-lg leading-relaxed font-medium"
         >
           <p>
-            {LOCALIZATION.BRAND.NAME} ({LOCALIZATION.BRAND.SUBBRAND.toUpperCase()}) in Mohali {LOCALIZATION.BRAND.LOCATION} is proud to be part of India’s premier laboratory and diagnostics network. We bring high-end international diagnostic procedures to the Mohali community, emphasizing perfect reporting precision.
+            {LOCALIZATION.BRAND.NAME} ({LOCALIZATION.BRAND.SUBBRAND.toUpperCase()}) in Mohali {LOCALIZATION.BRAND.LOCATION} is proud to be part of India’s premier laboratory and diagnostics network. We bring high-end international diagnostic procedures to the Mohali community, emphasizing perfect reporting precision. Patients can explore our full catalog of over 300+ routine and specialized{" "}
+            <RouterLink to="/services" className="font-bold text-google-blue dark:text-blue-400 hover:underline">
+              clinical pathology & diagnostic services
+            </RouterLink>
+            .
           </p>
 
           <div className="grid md:grid-cols-2 gap-6 my-8">
@@ -180,9 +190,42 @@ const AboutPage = () => {
           </div>
 
           <p>
-            Our Mohali team of medical phlebotomists is trained strictly to provide the most comfortable and safe diagnostics. Feel secure booking blood draws and full health packages from the comfort of your home with {LOCALIZATION.BRAND.NAME} Mohali.
+            Our Mohali team of certified medical phlebotomists is trained strictly to provide the most comfortable and safe diagnostics. Feel secure booking blood draws and full health packages from the comfort of your home with {LOCALIZATION.BRAND.NAME} Mohali through our dedicated{" "}
+            <RouterLink to="/home-collection" className="font-bold text-google-blue dark:text-blue-400 hover:underline">
+              blood test home collection service
+            </RouterLink>
+            .
           </p>
+
+          {/* Contextual Internal Link Bridge */}
+          <div className="mt-10 p-6 rounded-3xl bg-gradient-to-br from-blue-50/70 via-white to-indigo-50/40 dark:from-zinc-850 dark:to-zinc-800 border border-blue-100 dark:border-zinc-700 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-5">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-2xl bg-google-blue text-white flex items-center justify-center shrink-0 shadow-sm">
+                <Truck className="w-6 h-6" />
+              </div>
+              <div>
+                <h4 className="text-base font-extrabold text-gray-900 dark:text-white">
+                  Need a Blood Test or Health Package at Home?
+                </h4>
+                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-0.5">
+                  Book certified phlebotomist pickup across Sector 69, 70, 71, Phase 1-11, and Kharar.
+                </p>
+              </div>
+            </div>
+            <RouterLink
+              to="/home-collection"
+              className="px-5 py-2.5 bg-google-blue text-white text-xs font-bold rounded-full hover:bg-blue-700 transition-all text-center whitespace-nowrap shadow-sm shrink-0 flex items-center gap-1.5"
+            >
+              <span>Book Home Pickup</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </RouterLink>
+          </div>
         </motion.div>
+      </div>
+
+      {/* SEO Hub-and-Spoke Footer */}
+      <div className="mt-16">
+        <Footer />
       </div>
     </div>
   );
